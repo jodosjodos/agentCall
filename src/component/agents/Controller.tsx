@@ -55,6 +55,8 @@ const ControllerContainer = styled.div<{ $selected?: boolean }>`
 `;
 
 export function Controller({ selected }: { selected?: boolean }) {
+  console.log(selected);
+
   const [showCreateAgentModal, setShowCreateAgentModal] = useState(false);
   const [showEditingMethodModal, setshowEditingMethodModal] = useState(false);
   const [showCreatePrompModal, setShowCreatePrompModal] = useState(false);
