@@ -28,7 +28,20 @@ ul.nav {
     display: none;
   }
 
+  .fixed {
+    display: flex;
+    justify-content: center;
+    top: 0;
 
+    position: fixed;
+    width: 100lvw;
+    padding: 0;
+    background-color: #0A2328;
+  }
+
+  .container-fluid {
+    padding: 0;
+  }
 
   .mobile_active {
     display: block;
@@ -39,6 +52,15 @@ ul.nav {
   border: 1px solid #00B7DF;
   padding: 8px 12px;
   border-radius: 8px;
+
+}
+
+.custom_input {
+  width: 100%;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 8px;
+  background-color: #0A2328;
 }
 
 .centered_modal .modal-dialog {

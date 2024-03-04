@@ -95,11 +95,10 @@ function DragAndDrop({
                 gap: "20px",
               }}
             >
-              <p style={styles.title}>Upload files</p>
               <Icon />
             </div>
             <p style={{ ...styles.subtitle, textAlign: "center" }}>
-              {file ? <p>{file.name}</p> : "Or Drag and Drop"}
+              {file ? <p>{file.name}</p> : "(Pdf,txt,doc)"}
             </p>
           </div>
         ) : (
@@ -121,40 +120,19 @@ function DragAndDrop({
 function Icon() {
   return (
     <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="21"
-      height="21"
-      viewBox="0 0 21 21"
+      width="28"
+      height="28"
+      viewBox="0 0 28 28"
       fill="none"
+      xmlns="http://www.w3.org/2000/svg"
     >
-      <g clipPath="url(#clip0_225_872)">
-        <path
-          d="M10.5 12.4688V3.28125"
-          stroke="#605B5B"
-          strokeWidth="1.4"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-        <path
-          d="M17.7188 12.4688V17.0625C17.7188 17.2365 17.6496 17.4035 17.5265 17.5265C17.4035 17.6496 17.2365 17.7188 17.0625 17.7188H3.9375C3.76345 17.7188 3.59653 17.6496 3.47346 17.5265C3.35039 17.4035 3.28125 17.2365 3.28125 17.0625V12.4688"
-          stroke="#605B5B"
-          strokeWidth="1.4"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-        <path
-          d="M7.21875 6.5625L10.5 3.28125L13.7812 6.5625"
-          stroke="#605B5B"
-          strokeWidth="1.4"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-      </g>
-      <defs>
-        <clipPath id="clip0_225_872">
-          <rect width="21" height="21" fill="white" />
-        </clipPath>
-      </defs>
+      <rect width="28" height="28" rx="8" fill="#384B4F" />
+      <path
+        d="M22.3332 13.167V18.167C22.3332 21.5003 21.4998 22.3337 18.1665 22.3337H9.83317C6.49984 22.3337 5.6665 21.5003 5.6665 18.167V9.83366C5.6665 6.50033 6.49984 5.66699 9.83317 5.66699H11.0832C12.3332 5.66699 12.6082 6.03366 13.0832 6.66699L14.3332 8.33366C14.6498 8.75033 14.8332 9.00033 15.6665 9.00033H18.1665C21.4998 9.00033 22.3332 9.83366 22.3332 13.167Z"
+        stroke="#96ADB3"
+        stroke-width="1.5"
+        stroke-miterlimit="10"
+      />
     </svg>
   );
 }

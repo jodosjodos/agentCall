@@ -29,8 +29,8 @@ function CenteredModal(props: any) {
       <div className="d-flex align-items-end justify-content-end pb-2 px-3">
         <button onClick={props.onContinue} className="modal_button">
           <div className="d-flex align-items-center">
-             {props.btnText}
-            <img src="/nextIcon.svg" alt="" />
+            {props.btnText}
+            {props.btnText == "Next" && <img src="/nextIcon.svg" alt="" />}
           </div>
         </button>
       </div>

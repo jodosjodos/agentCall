@@ -234,16 +234,18 @@ export function KnowledgePage() {
       <CenteredModal
         children={
           <div className="d-flex flex-column gap-1">
-            <CustomInput
-              name="type"
-              label="Sales pitches"
-              value="sales_pitches"
-            ></CustomInput>
-            <CustomInput
-              name="type"
-              label="Product knowledge"
-              value="prod_knowledge"
-            ></CustomInput>
+            <div className="flex-grow flex-column">
+              <label htmlFor="paste">
+              Paste text
+              </label>
+              <input
+                id="paste"
+                type="text"
+                className="custom_input"
+                placeholder="Paste text"
+              />
+            </div>
+
             <DragAndDrop></DragAndDrop>
           </div>
         }

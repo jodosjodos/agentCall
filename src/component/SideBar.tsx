@@ -9,6 +9,7 @@ const StyledMenu = styled("img")`
   color: #96adb3;
   width: 40px;
   height: 40px;
+  padding: 5px 0;
   cursor: pointer;
 `;
 export function SideBar() {
@@ -17,7 +18,7 @@ export function SideBar() {
   useEffect(() => {}, [window.innerWidth]);
   return (
     <div className="mt-2 ">
-      <ul className="nav   flex-column " id="parentM">
+      <ul className={`nav fixed  flex-column `} id="parentM">
         <li
           className={`${
             window.innerWidth > 600 &&
