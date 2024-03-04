@@ -32,7 +32,7 @@ const Th = styled.th`
   background-color: #0f2e35;
 `;
 
-export function SalesPitchers() {
+export function SalesPitchers({activeButton}:{activeButton:string}) {
   return (
     <TableParent>
       <TheadMade>
@@ -48,27 +48,27 @@ export function SalesPitchers() {
       <tbody>
         <TRrMade className="pt-5">
           <td className="pt-4 pb-2">3093578590</td>
-          <td className="pt-4 pb-2">Inbound</td>
+          <td className="pt-4 pb-2">{activeButton}</td>
           <td className="pt-4 pb-2"></td>
         </TRrMade>
         <TRrMade className="pt-5">
           <td className="pt-4 pb-2">3093578590</td>
-          <td className="pt-4 pb-2">Inbound</td>
+          <td className="pt-4 pb-2">{activeButton}</td>
           <td className="pt-4 pb-2"></td>
         </TRrMade>
         <TRrMade className="pt-5">
           <td className="pt-4 pb-2">3093578590</td>
-          <td className="pt-4 pb-2">Inbound</td>
+          <td className="pt-4 pb-2">{activeButton}</td>
           <td className="pt-4 pb-2"></td>
         </TRrMade>
         <TRrMade className="pt-5">
           <td className="pt-4 pb-2">3093578590</td>
-          <td className="pt-4 pb-2">Inbound</td>
+          <td className="pt-4 pb-2">{activeButton}</td>
           <td className="pt-4 pb-2"></td>
         </TRrMade>
         <TRrMade className="pt-5">
           <td className="pt-4 pb-2">3093578590</td>
-          <td className="pt-4 pb-2">Inbound</td>
+          <td className="pt-4 pb-2">{activeButton}</td>
           <td className="pt-4 pb-2"></td>
         </TRrMade>
       </tbody>
