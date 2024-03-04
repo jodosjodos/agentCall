@@ -19,3 +19,71 @@ ul.nav {
   transition: 1s;
 
 }
+
+
+
+
+@media screen and (max-width: 600px) {
+  .nav-item {
+    display: none;
+  }
+
+
+
+  .mobile_active {
+    display: block;
+  }
+}
+
+.custom_radio {
+  border: 1px solid #00B7DF;
+  padding: 8px 12px;
+  border-radius: 8px;
+}
+
+.centered_modal .modal-dialog {
+  max-width: 454px !important;
+
+}
+
+.h-fit {
+
+  text-align: center;
+  flex-grow: 1;
+
+}
+
+.modal_button {
+  background: #00B7DF;
+  border: none;
+  border-radius: 24px;
+  padding: 8px 12px;
+
+}
+
+
+.modal_title {
+
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 25px;
+  letter-spacing: 0em;
+  text-align: center;
+
+}
+
+.modal_label {
+
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 20px;
+  letter-spacing: 0em;
+  text-align: left;
+
+}
+
+
+.centered_modal .modal-content {
+  background-color: #17454F !important;
+  color: white;
+}

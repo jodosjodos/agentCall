@@ -1,7 +1,12 @@
-import { Col, Row } from "react-bootstrap";
+import { Col, Modal, ModalHeader, Row } from "react-bootstrap";
 import styled from "styled-components";
 import "./int.css";
 import { SalesPitchers } from "../component/SalesPitchers";
+import { useState } from "react";
+import CenteredModal from "../component/modals/Modal";
+import CustomInput from "../component/CustomInput";
+import DragAndDrop from "../component/DragAndDrop";
+
 const H1Styled = styled.h4`
   color: #96adb3;
   font-weight: bold;
@@ -101,97 +106,152 @@ const UnderLineSpan = styled.span`
   text-decoration: underline;
 `;
 export function KnowledgePage() {
+  const [modalShow, setModalShow] = useState(false);
+  const [nextModalShow, setNextModalShow] = useState(false);
   return (
-    <Col>
-      <DivStyled className="px-5 py-1">
-        <H1Styled>Welcome Raam , Adi</H1Styled>
-        <PModified>September 12, 2024</PModified>
-      </DivStyled>
-      <Row sm={3} className="pt-3 px-5 ">
-        <FileCol lg={3} className="p-2 d-flex flex-column gap-3">
-          <StyledH4>All files</StyledH4>
-          {/* parental one */}
-          <div className="d-flex flex-column gap-4">
-            {/* one component */}
-            <ComponentDiv className="d-flex  justify-content-between  pb-2">
-              <div className="d-flex flex-row align-items-baseline gap-2">
-                <CircledD></CircledD>
-                <p>Documents</p>
-              </div>
+    <>
+      <Col>
+        <DivStyled className="px-5 py-1">
+          <H1Styled>Welcome Raam , Adi</H1Styled>
+          <PModified>September 12, 2024</PModified>
+        </DivStyled>
+        <Row className="pt-3 gap-2   px-lg-5 px-4  ">
+          <FileCol lg={3} className="p-2 w-fit   d-flex  flex-column gap-3">
+            <StyledH4>All files</StyledH4>
+            {/* parental one */}
+            <div className="d-flex flex-column gap-4">
+              {/* one component */}
+              <ComponentDiv className="d-flex  justify-content-between  pb-2">
+                <div className="d-flex flex-row align-items-baseline gap-2">
+                  <CircledD></CircledD>
+                  <p>Documents</p>
+                </div>
 
-              <div className="d-flex flex-column gap-0 align-items-center">
-                <p className="p-0 m-0">20 documents</p>
-                <p className="p-0 m-0">200m tokens</p>
-              </div>
-            </ComponentDiv>
-            <ComponentDiv className="d-flex  justify-content-between ">
-              <div className="d-flex flex-row align-items-baseline gap-2">
-                <CircledS></CircledS>
-                <p>SpreadSheet</p>
-              </div>
+                <div className="d-flex flex-column gap-0 align-items-center">
+                  <p className="p-0 m-0">20 documents</p>
+                  <p className="p-0 m-0">200m tokens</p>
+                </div>
+              </ComponentDiv>
+              <ComponentDiv className="d-flex  justify-content-between ">
+                <div className="d-flex flex-row align-items-baseline gap-2">
+                  <CircledS></CircledS>
+                  <p>SpreadSheet</p>
+                </div>
 
-              <div className="d-flex flex-column gap-0 align-items-center">
-                <p className="p-0 m-0 text-end" style={{ width: "100%" }}>
-                  3 sheets
-                </p>
-                <p className="p-0 m-0">200m tokens</p>
-              </div>
-            </ComponentDiv>
-            <ComponentDiv className="d-flex  justify-content-between ">
-              <div className="d-flex flex-row align-items-baseline gap-2">
-                <CircledA></CircledA>
-                <p>Audio</p>
-              </div>
+                <div className="d-flex flex-column gap-0 align-items-center">
+                  <p className="p-0 m-0 text-end" style={{ width: "100%" }}>
+                    3 sheets
+                  </p>
+                  <p className="p-0 m-0">200m tokens</p>
+                </div>
+              </ComponentDiv>
+              <ComponentDiv className="d-flex  justify-content-between ">
+                <div className="d-flex flex-row align-items-baseline gap-2">
+                  <CircledA></CircledA>
+                  <p>Audio</p>
+                </div>
 
-              <div className="d-flex flex-column gap-0 align-items-center">
-                <p className="p-0 m-0 text-end" style={{ width: "100%" }}>
-                  38 files
-                </p>
-                <p className="p-0 m-0"> 956.5 minutes</p>
-              </div>
-            </ComponentDiv>
-            <ComponentDiv className="d-flex  justify-content-between ">
-              <div className="d-flex flex-row align-items-baseline gap-2">
-                <CircledV></CircledV>
-                <p>Video</p>
-              </div>
+                <div className="d-flex flex-column gap-0 align-items-center">
+                  <p className="p-0 m-0 text-end" style={{ width: "100%" }}>
+                    38 files
+                  </p>
+                  <p className="p-0 m-0"> 956.5 minutes</p>
+                </div>
+              </ComponentDiv>
+              <ComponentDiv className="d-flex  justify-content-between ">
+                <div className="d-flex flex-row align-items-baseline gap-2">
+                  <CircledV></CircledV>
+                  <p>Video</p>
+                </div>
 
-              <div className="d-flex flex-column gap-0 align-items-center">
-                <p className="p-0 m-0  text-end" style={{ width: "100%" }}>
-                  38 files
-                </p>
-                <p className="p-0 m-0 "> 956.5 minutes</p>
-              </div>
-            </ComponentDiv>
-          </div>
-          <div>
-            <p>90/100files</p>
-
-            <ParentProgressBar>
-              <ChildProgressBar className="text-end">90%</ChildProgressBar>
-            </ParentProgressBar>
-          </div>
-        </FileCol>
-        <SalesCol lg={9} className="d-flex flex-column gap-5 pt-3">
-          <LinkP className="text-end">
-            + <UnderLineSpan> upload Document</UnderLineSpan>
-          </LinkP>
-          <div className="d-flex flex-column gap-3">
-            <div className="d-flex flex-row gap-3">
-              <ComponentRender className="py-2 px-3">
-                Sales Pitches
-              </ComponentRender>
-              <ComponentRender className="py-2 px-3">
-                Product Knowledge
-              </ComponentRender>
-              <ComponentRender className="py-2 px-3">
-                Service guidelines
-              </ComponentRender>
+                <div className="d-flex flex-column gap-0 align-items-center">
+                  <p className="p-0 m-0  text-end" style={{ width: "100%" }}>
+                    38 files
+                  </p>
+                  <p className="p-0 m-0 "> 956.5 minutes</p>
+                </div>
+              </ComponentDiv>
             </div>
-            <SalesPitchers />
+            <div>
+              <p>90/100files</p>
+
+              <ParentProgressBar>
+                <ChildProgressBar className="text-end">90%</ChildProgressBar>
+              </ParentProgressBar>
+            </div>
+          </FileCol>
+          <SalesCol className="d-flex flex-column gap-5 pt-3">
+            <LinkP className="text-end" onClick={() => setModalShow(true)}>
+              + <UnderLineSpan> upload Document</UnderLineSpan>
+            </LinkP>
+
+            <div className="d-flex flex-column gap-3">
+              <div className="d-flex flex-row gap-3">
+                <ComponentRender className="py-2 px-3">
+                  Sales Pitches
+                </ComponentRender>
+                <ComponentRender className="py-2 px-3">
+                  Product Knowledge
+                </ComponentRender>
+                <ComponentRender className="py-2 px-3">
+                  Service guidelines
+                </ComponentRender>
+              </div>
+              <SalesPitchers />
+            </div>
+          </SalesCol>
+        </Row>
+      </Col>
+      <CenteredModal
+        children={
+          <div className="d-flex flex-column gap-1">
+            <CustomInput
+              name="type"
+              label="Sales pitches"
+              value="sales_pitches"
+            ></CustomInput>
+            <CustomInput
+              name="type"
+              label="Product knowledge"
+              value="prod_knowledge"
+            ></CustomInput>
+            <CustomInput
+              name="type"
+              label="Service guidelines"
+              value="service_guideline"
+            ></CustomInput>
           </div>
-        </SalesCol>
-      </Row>
-    </Col>
+        }
+        show={modalShow}
+        btnText="Next"
+        onHide={() => setModalShow(false)}
+        onContinue={() => {
+          setModalShow(false);
+          setTimeout(() => {}, 2000);
+          setNextModalShow(true);
+        }}
+      ></CenteredModal>
+      <CenteredModal
+        children={
+          <div className="d-flex flex-column gap-1">
+            <CustomInput
+              name="type"
+              label="Sales pitches"
+              value="sales_pitches"
+            ></CustomInput>
+            <CustomInput
+              name="type"
+              label="Product knowledge"
+              value="prod_knowledge"
+            ></CustomInput>
+            <DragAndDrop></DragAndDrop>
+          </div>
+        }
+        show={nextModalShow}
+        btnText="Upload"
+        onHide={() => setNextModalShow(false)}
+        onContinue={() => setNextModalShow(false)}
+      ></CenteredModal>
+    </>
   );
 }

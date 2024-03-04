@@ -16,22 +16,24 @@ import CampaignPage from "./pages/CampaignPage";
 const SideBarDiv = styled.div`
   background-color: #0b2227;
 `;
-const ParentCol = styled(Col)` 
-background-color: #051316;
-padding-inline:0px;
-border-left:2px solid #0F2E35;
-overflow-x:hidden;
-
-`
+const ParentCol = styled(Col)`
+  background-color: #051316;
+  padding-inline: 0px;
+  border-left: 2px solid #0f2e35;
+  overflow-x: hidden;
+`;
 function App() {
   return (
     <div>
       <Router>
         <Container fluid>
+          <div className="d-lg-none d-block">
+            <SideBar></SideBar>
+          </div>
           <Row>
             <SideBarDiv
               // sm={2}
-              className="col-auto  d-flex flex-column justify-content-between min-vh-100 gap "
+              className="col-auto d-none d-lg-flex  flex-column justify-content-between min-vh-100 gap "
             >
               <SideBar />
             </SideBarDiv>

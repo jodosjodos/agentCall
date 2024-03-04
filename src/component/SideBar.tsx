@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
@@ -13,113 +13,128 @@ const StyledMenu = styled("img")`
 `;
 export function SideBar() {
   const [isSidebarOpened, setIsSidebarOpen] = useState(false);
+  const [activeMobile, setActiveMobile] = useState(false);
+  useEffect(() => {}, [window.innerWidth]);
   return (
-    <div className="mt-2">
-      <ul className="nav  flex-column" id="parentM">
+    <div className="mt-2 ">
+      <ul className="nav   flex-column " id="parentM">
         <li
           className={`${
-            !isSidebarOpened
-              ? "align-items-center  justify-content-center"
-              : "align-items-start px-3 justify-content-start"
-          } d-flex  `}
+            window.innerWidth > 600 &&
+            !isSidebarOpened &&
+            "align-items-start     justify-content-center"
+          }  d-flex `}
         >
           <StyledMenu
             src="/menu.svg"
-            onClick={() => setIsSidebarOpen(!isSidebarOpened)}
+            onClick={() =>
+              window.innerWidth > 600
+                ? setIsSidebarOpen(!isSidebarOpened)
+                : setActiveMobile(!activeMobile)
+            }
           ></StyledMenu>
         </li>
-        <li className="nav-item  my-1">
+        <li className={`nav-item ${activeMobile ? "mobile_active" : ""}  my-1`}>
           <StyledLink
             to="/"
-            className="nav-link "
+            className={`nav-link ${activeMobile ? "mobile_active" : ""}`}
             id="link"
             aria-current="page"
           >
             <img src="/HomeIcon.png" alt="" />
-            {isSidebarOpened && (
+            {(isSidebarOpened || activeMobile) && (
               <span className="ms-2 d-md-none d-lg-inline-block ">Home</span>
             )}
           </StyledLink>
         </li>
-        <li className="nav-item  my-1">
+        <li className={`nav-item ${activeMobile ? "mobile_active" : ""}  my-1`}>
           <StyledLink
             to="/call"
-            className="nav-link "
+            className={`nav-link ${activeMobile ? "mobile_active" : ""}`}
             id="link"
             aria-current="page"
           >
             <img src="/callIcon.png" alt="" />
-
-            {isSidebarOpened && (
-              <span className="ms-2  d-none d-sm-inline">Agent</span>
+            {(isSidebarOpened || activeMobile) && (
+              <span className="ms-2 d-md-none d-lg-inline-block ">Agent</span>
             )}
           </StyledLink>
         </li>
 
-        <li className="nav-item  my-1">
+        <li className={`nav-item ${activeMobile ? "mobile_active" : ""}  my-1`}>
           <StyledLink
             to="/call"
-            className="nav-link "
+            className={`nav-link ${
+              activeMobile && window.innerWidth <= 600 ? "mobile_active" : ""
+            }`}
             id="link"
             aria-current="page"
           >
             <img src="/callIcon.png" alt="" />
-            {isSidebarOpened && (
-              <span className="ms-2  d-none d-sm-inline">Calls</span>
-            )}{" "}
+            {(isSidebarOpened || activeMobile) && (
+              <span className="ms-2 d-md-none d-lg-inline-block ">Calls</span>
+            )}
           </StyledLink>
         </li>
-        <li className="nav-item  my-1">
+        <li className={`nav-item ${activeMobile ? "mobile_active" : ""}  my-1`}>
           <StyledLink
             to="/contact"
-            className="nav-link "
+            className={`nav-link ${activeMobile ? "mobile_active" : ""}`}
             id="link"
             aria-current="page"
           >
             <img src="/contactIcon.png" alt="" />
-            {isSidebarOpened && (
-              <span className="ms-2   d-none d-sm-inline">Contacts</span>
-            )}{" "}
+            {(isSidebarOpened || activeMobile) && (
+              <span className="ms-2 d-md-none d-lg-inline-block ">
+                Contacts
+              </span>
+            )}
           </StyledLink>
         </li>
-        <li className="nav-item my-1">
+        <li className={`nav-item ${activeMobile ? "mobile_active" : ""}  my-1`}>
           <StyledLink
             to="/campaign"
-            className="nav-link "
+            className={`nav-link ${activeMobile ? "mobile_active" : ""}`}
             id="link"
             aria-current="page"
           >
             <img src="/campaignIcon.png" alt="" />
-            {isSidebarOpened && (
-              <span className="ms-2   d-none d-sm-inline">Campaigns</span>
-            )}{" "}
+            {(isSidebarOpened || activeMobile) && (
+              <span className="ms-2 d-md-none d-lg-inline-block ">
+                Compaigns
+              </span>
+            )}
           </StyledLink>
         </li>
-        <li className="nav-item my-1">
+        <li className={`nav-item ${activeMobile ? "mobile_active" : ""}  my-1`}>
           <StyledLink
             to="/company"
-            className="nav-link "
+            className={`nav-link ${activeMobile ? "mobile_active" : ""}`}
             id="link"
             aria-current="page"
           >
             <img src="/companyIcon.png" alt="" />
 
-            {isSidebarOpened && (
-              <span className="ms-2   d-none d-sm-inline">Companies</span>
+            {(isSidebarOpened || activeMobile) && (
+              <span className="ms-2 d-md-none d-lg-inline-block ">
+                Companies
+              </span>
             )}
           </StyledLink>
         </li>
-        <li className="nav-item my-1">
+        <li className={`nav-item ${activeMobile ? "mobile_active" : ""}  my-1`}>
           <StyledLink
             to="/knowledge"
-            className="nav-link "
+            className={`nav-link ${activeMobile ? "mobile_active" : ""}`}
             id="link"
             aria-current="page"
           >
             <img src="/companyIcon.png" alt="" />
-            {isSidebarOpened && (
-              <span className="ms-2   d-none d-sm-inline">Knowledge</span>
-            )}{" "}
+            {(isSidebarOpened || activeMobile) && (
+              <span className="ms-2 d-md-none d-lg-inline-block ">
+                Knowledge
+              </span>
+            )}
           </StyledLink>
         </li>
       </ul>
