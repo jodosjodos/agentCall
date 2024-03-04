@@ -1,4 +1,4 @@
-import { Col, Modal, ModalHeader, Row } from "react-bootstrap";
+import { Col, Row } from "react-bootstrap";
 import styled from "styled-components";
 import "./int.css";
 import { SalesPitchers } from "../component/SalesPitchers";
