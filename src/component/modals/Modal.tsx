@@ -1,6 +1,4 @@
-import Button from "react-bootstrap/Button";
-import Modal from "react-bootstrap/Modal";
-import CustomInput from "../CustomInput";
+import { Modal } from "react-bootstrap";
 
 function CenteredModal(props: any) {
   return (
@@ -29,7 +27,7 @@ function CenteredModal(props: any) {
       <div className="d-flex align-items-end justify-content-end pb-2 px-3">
         <button onClick={props.onContinue} className="modal_button">
           <div className="d-flex align-items-center">
-             {props.btnText}
+            {props.btnText}
             <img src="/nextIcon.svg" alt="" />
           </div>
         </button>
