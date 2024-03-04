@@ -125,6 +125,7 @@ export function KnowledgePage() {
           </div>
           <div>
             <p>90/100files</p>
+            {/* not done yet */}
             <ProgressBarChild
               min={0}
               max={100}
