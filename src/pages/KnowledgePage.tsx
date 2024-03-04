@@ -109,8 +109,7 @@ const UnderLineSpan = styled.span`
 export function KnowledgePage() {
   const [modalShow, setModalShow] = useState(false);
   const [nextModalShow, setNextModalShow] = useState(false);
-  const [activeRadio, setActiveRadio] = useState("sales_pitches");
-  setActiveRadio("")
+
   
   return (
     <>
@@ -214,16 +213,16 @@ export function KnowledgePage() {
               name="type"
               label="Sales pitches"
               value="sales_pitches"
-              active={activeRadio}
+              active={""}
             ></CustomInput>
             <CustomInput
               name="type"
-              active={activeRadio}
+              active={""}
               label="Product knowledge"
               value="prod_knowledge"
             ></CustomInput>
             <CustomInput
-              active={activeRadio}
+              active={""}
               name="type"
               label="Service guidelines"
               value="service_guideline"
