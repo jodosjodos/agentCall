@@ -1,6 +1,6 @@
-import Button from "react-bootstrap/Button";
+
 import Modal from "react-bootstrap/Modal";
-import CustomInput from "../CustomInput";
+
 
 function CenteredModal(props: any) {
   return (
@@ -19,6 +19,7 @@ function CenteredModal(props: any) {
           <img
             src="/close.svg"
             alt=""
+            className="cursor-pointer"
             width={26}
             height={26}
             onClick={props.onHide}

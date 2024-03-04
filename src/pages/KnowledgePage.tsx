@@ -1,4 +1,4 @@
-import { Col, Modal, ModalHeader, Row } from "react-bootstrap";
+import { Col, Row } from "react-bootstrap";
 import styled from "styled-components";
 import "./int.css";
 import { SalesPitchers } from "../component/SalesPitchers";
@@ -25,6 +25,7 @@ const PModified = styled.p`
 const FileCol = styled(Col)`
   background-color: #0b2227;
   color: White;
+  height: fit-content;
   border-radius: 10px;
   border: 1px solid #0f2e35;
 `;
@@ -108,6 +109,9 @@ const UnderLineSpan = styled.span`
 export function KnowledgePage() {
   const [modalShow, setModalShow] = useState(false);
   const [nextModalShow, setNextModalShow] = useState(false);
+  const [activeRadio, setActiveRadio] = useState("sales_pitches");
+  setActiveRadio("")
+  
   return (
     <>
       <Col>
@@ -115,8 +119,8 @@ export function KnowledgePage() {
           <H1Styled>Welcome Raam , Adi</H1Styled>
           <PModified>September 12, 2024</PModified>
         </DivStyled>
-        <Row className="pt-3 gap-2   px-lg-5 px-4  ">
-          <FileCol lg={3} className="p-2 w-fit   d-flex  flex-column gap-3">
+        <Row className="pt-3 gap-5   px-lg-5 px-4  ">
+          <FileCol lg={3} className="p-2 w-fit  d-flex  flex-column gap-3">
             <StyledH4>All files</StyledH4>
             {/* parental one */}
             <div className="d-flex flex-column gap-4">
@@ -205,20 +209,25 @@ export function KnowledgePage() {
       <CenteredModal
         children={
           <div className="d-flex flex-column gap-1">
+            <label htmlFor="paste">Choose what type of document </label>
             <CustomInput
               name="type"
               label="Sales pitches"
               value="sales_pitches"
+              active={activeRadio}
             ></CustomInput>
             <CustomInput
               name="type"
+              active={activeRadio}
               label="Product knowledge"
               value="prod_knowledge"
             ></CustomInput>
             <CustomInput
+              active={activeRadio}
               name="type"
               label="Service guidelines"
               value="service_guideline"
+              
             ></CustomInput>
           </div>
         }
@@ -235,9 +244,7 @@ export function KnowledgePage() {
         children={
           <div className="d-flex flex-column gap-1">
             <div className="flex-grow flex-column">
-              <label htmlFor="paste">
-              Paste text
-              </label>
+              <label htmlFor="paste">Paste text</label>
               <input
                 id="paste"
                 type="text"

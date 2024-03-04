@@ -21,7 +21,7 @@ export function SideBar() {
       <ul className={`nav fixed  flex-column `} id="parentM">
         <li
           className={`${
-            window.innerWidth > 600 &&
+            window.innerWidth > 993 &&
             !isSidebarOpened &&
             "align-items-start     justify-content-center"
           }  d-flex `}
@@ -29,7 +29,7 @@ export function SideBar() {
           <StyledMenu
             src="/menu.svg"
             onClick={() =>
-              window.innerWidth > 600
+              window.innerWidth > 993
                 ? setIsSidebarOpen(!isSidebarOpened)
                 : setActiveMobile(!activeMobile)
             }
@@ -66,7 +66,7 @@ export function SideBar() {
           <StyledLink
             to="/call"
             className={`nav-link ${
-              activeMobile && window.innerWidth <= 600 ? "mobile_active" : ""
+              activeMobile && window.innerWidth <= 993 ? "mobile_active" : ""
             }`}
             id="link"
             aria-current="page"

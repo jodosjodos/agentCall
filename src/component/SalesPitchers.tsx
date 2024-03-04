@@ -4,6 +4,7 @@ const ParentProgressBar = styled.div`
   border: 2px solid #09d799;
   border-radius: 20px;
   background-color: #0b2227;
+  padding: 5px;
 `;
 const ChildProgressBar = styled.div`
   background-color: #09d799;
@@ -17,27 +18,31 @@ const TableParent = styled.table`
 `;
 
 const TheadMade = styled.tr`
-  background-color: #0f2e35;
+  border-radius: 20px;
   color: #c9d5d8;
-  padding: 4px;
+  padding: 20px;
 `;
 
 const TRrMade = styled.tr`
   background-color: #0b2227;
   border-bottom: 1px solid #0f2e35;
 `;
+const Th = styled.th`
+  padding: 10px;
+  background-color: #0f2e35;
+`;
 
 export function SalesPitchers() {
   return (
     <TableParent>
       <TheadMade>
-        <th>File Name</th>
-        <th>Campaign</th>
-        <th>
+        <Th className="first_header">File Name</Th>
+        <Th>Campaign</Th>
+        <Th className="last_header text-end px-1">
           <ParentProgressBar>
             <ChildProgressBar>90% embedded</ChildProgressBar>
           </ParentProgressBar>
-        </th>
+        </Th>
       </TheadMade>
 
       <tbody>

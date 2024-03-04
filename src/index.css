@@ -49,10 +49,23 @@ ul.nav {
 }
 
 .custom_radio {
-  border: 1px solid #00B7DF;
+
   padding: 8px 12px;
   border-radius: 8px;
+  background-color: #0A2328;
 
+}
+
+img.cursor-pointer {
+  cursor: pointer;
+}
+
+.border-input {
+  border: 1px solid #00B7DF;
+}
+
+.border-none {
+  border: none;
 }
 
 .custom_input {
@@ -108,4 +121,15 @@ ul.nav {
 .centered_modal .modal-content {
   background-color: #17454F !important;
   color: white;
+}
+
+.first_header {
+  border-top-left-radius: 30px;
+  border-bottom-left-radius: 30px;
+}
+
+.last_header {
+  border-top-right-radius: 30px;
+  border-bottom-right-radius: 30px;
+  padding-right: 10px !important;
 }
