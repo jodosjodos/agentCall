@@ -1,5 +1,6 @@
-import { Col, ProgressBar, Row } from "react-bootstrap";
+import { Col,  Row } from "react-bootstrap";
 import styled from "styled-components";
+import "./int.css";
 const H1Styled = styled.h4`
   color: #96adb3;
   font-weight: bold;
@@ -56,9 +57,24 @@ const ComponentDiv = styled.div`
   border-bottom: 1px solid #0f2e35;
   color: #96adb3;
 `;
-const ProgressBarChild = styled(ProgressBar)`
-  color: #09bed7;
+const ParentProgressBar = styled.div`
+  border:2px solid #09BED7;
+  border-radius:20px;
+  padding:5px;
 `;
+const ChildProgressBar = styled.div`
+  background-color: #09BED7;
+  border-radius:20px;
+ color:black;
+ width:90%;
+ padding-inline:5px;
+
+`;
+
+// sales
+const SalesCol = styled(Col)`
+background-color:#0F2E35;
+`
 export function KnowledgePage() {
   return (
     <Col>
@@ -66,7 +82,7 @@ export function KnowledgePage() {
         <H1Styled>Welcome Raam , Adi</H1Styled>
         <PModified>September 12, 2024</PModified>
       </DivStyled>
-      <Row sm={3} className="pt-3 px-5">
+      <Row sm={3} className="pt-3 px-5  ">
         <FileCol lg={3} className="p-2 d-flex flex-column gap-3">
           <StyledH4>All files</StyledH4>
           {/* parental one */}
@@ -125,15 +141,20 @@ export function KnowledgePage() {
           </div>
           <div>
             <p>90/100files</p>
-            <ProgressBarChild
+            {/* not done yet */}
+            {/* <ProgressBarChild
               min={0}
               max={100}
               now={90}
               label={`${90}%`}
-            ></ProgressBarChild>
+              variant="awesome"
+            ></ProgressBarChild> */}
+            <ParentProgressBar>
+              <ChildProgressBar className="text-end">90%</ChildProgressBar>
+            </ParentProgressBar>
           </div>
         </FileCol>
-        <Col lg={9}>sales pitches</Col>
+        <SalesCol lg={9}>sales pitches</SalesCol>
       </Row>
     </Col>
   );
