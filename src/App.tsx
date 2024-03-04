@@ -13,9 +13,16 @@ import { CallPage } from "./pages/CallPage";
 import { ContactPage } from "./pages/ContactPage";
 import CampaignPage from "./pages/CampaignPage";
 
-const SideBarDiv = styled(Col)`
+const SideBarDiv = styled.div`
   background-color: #0b2227;
 `;
+const ParentCol = styled(Col)` 
+background-color: #051316;
+padding-inline:0px;
+border-left:2px solid #0F2E35;
+overflow-x:hidden;
+
+`
 function App() {
   return (
     <div>
@@ -23,12 +30,12 @@ function App() {
         <Container fluid>
           <Row>
             <SideBarDiv
-              sm={2}
-              className="col-auto col-sm-2  d-flex flex-column justify-content-between min-vh-100 gap"
+              // sm={2}
+              className="col-auto  d-flex flex-column justify-content-between min-vh-100 gap "
             >
               <SideBar />
             </SideBarDiv>
-            <Col>
+            <ParentCol>
               <Routes>
                 <Route path="/" element={<HomePage />} />
                 <Route path="/agent" element={<AgentPage />} />
@@ -38,7 +45,7 @@ function App() {
                 <Route path="/company" element={<CompanyPage />} />
                 <Route path="/knowledge" element={<KnowledgePage />} />
               </Routes>
-            </Col>
+            </ParentCol>
           </Row>
         </Container>
       </Router>
