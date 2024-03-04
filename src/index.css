@@ -1,7 +1,10 @@
-#parentM  li a:hover  {
+#parentM li a:hover {
   background-color: #17454F;
+  color: #96ADB3;
+
 }
-:root{
+
+:root {
   padding: 0;
   margin: 0;
 }
