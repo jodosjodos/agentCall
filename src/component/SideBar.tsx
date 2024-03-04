@@ -8,7 +8,7 @@ const StyledLink = styled(Link)`
 export function SideBar() {
   return (
     <div className="mt-2">
-      <ul className="nav nav-pills flex-column" id="parentM">
+      <ul className="nav  flex-column" id="parentM">
         <li className="nav-item  my-1">
           <StyledLink to="/" className="nav-link " id="link" aria-current="page">
             <img src="/HomeIcon.png" alt="" />
@@ -16,9 +16,10 @@ export function SideBar() {
           </StyledLink>
         </li>
         <li className="nav-item  my-1">
-          <StyledLink to="/agent" className="nav-link " id="link"  aria-current="page">
-            <img src="/agentIcon.png" alt="" />
-            <span className="ms-2 d-md-none d-lg-inline-block ">Agent</span>
+          <StyledLink to="/call" className="nav-link " id="link" aria-current="page" >
+            <img src="/callIcon.png" alt="" />
+
+            <span className="ms-2  d-none d-sm-inline">Agent</span>
           </StyledLink>
         </li>
 
