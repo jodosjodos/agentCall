@@ -1,10 +1,10 @@
-
-
 #parentM li a:hover {
   background-color: #17454F;
   color: #96ADB3;
 
 }
+
+
 
 #link {
   color: #96ADB3;
@@ -15,3 +15,7 @@
   margin: 0;
 }
 
+ul.nav {
+  transition: 1s;
+
+}

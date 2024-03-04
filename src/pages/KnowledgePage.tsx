@@ -1,4 +1,4 @@
-import { Col,  Row } from "react-bootstrap";
+import { Col, Row } from "react-bootstrap";
 import styled from "styled-components";
 import "./int.css";
 const H1Styled = styled.h4`
@@ -58,23 +58,22 @@ const ComponentDiv = styled.div`
   color: #96adb3;
 `;
 const ParentProgressBar = styled.div`
-  border:2px solid #09BED7;
-  border-radius:20px;
-  padding:5px;
+  border: 2px solid #09bed7;
+  border-radius: 20px;
+  padding: 5px;
 `;
 const ChildProgressBar = styled.div`
-  background-color: #09BED7;
-  border-radius:20px;
- color:black;
- width:90%;
- padding-inline:5px;
-
+  background-color: #09bed7;
+  border-radius: 20px;
+  color: black;
+  width: 90%;
+  padding-inline: 5px;
 `;
 
 // sales
 const SalesCol = styled(Col)`
-background-color:#0F2E35;
-`
+  background-color: #0f2e35;
+`;
 export function KnowledgePage() {
   return (
     <Col>
@@ -83,7 +82,7 @@ export function KnowledgePage() {
         <PModified>September 12, 2024</PModified>
       </DivStyled>
       <Row sm={3} className="pt-3 px-5  ">
-        <FileCol lg={3} className="p-2 d-flex flex-column gap-3">
+        <FileCol lg={3} className="p-2 d-flex w-[] flex-column gap-3">
           <StyledH4>All files</StyledH4>
           {/* parental one */}
           <div className="d-flex flex-column gap-4">
