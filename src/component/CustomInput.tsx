@@ -1,6 +1,5 @@
-// import React, { useState } from "react";
+import React, { useState } from "react";
 
-<<<<<<< HEAD
 function CustomInput({
   value,
   label,
@@ -14,10 +13,6 @@ function CustomInput({
 }) {
   const [selected, setSelected] = useState(active);
   console.log(selected)
-=======
-function CustomInput({ value, label,name }: { value: string; label: string,name:string }) {
-  // const [selected, setSelected] = useState(false);
->>>>>>> 27b2d1ecff60481ffd45d526d50805dc631b0692
   return (
     <div
       onClick={() => setSelected(value)}
