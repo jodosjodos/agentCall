@@ -24,7 +24,7 @@ const AgentContainer = styled.div<{ $isLeft?: boolean }>`
   height: fit-content;
   width:${(props) => (props.$isLeft ? "50%" : "320px")}
 
-  min-width: ${(props) => (props.$isLeft ? "380px" : "320px")};
+  min-width: ${(props) => (props.$isLeft ? "380px" : "380px")};
   background: ${(props) =>
     props.$isLeft
       ? "transparent"
