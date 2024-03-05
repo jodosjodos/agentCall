@@ -12,6 +12,9 @@ const ChildProgressBar = styled.div`
   color: black;
   width: 90%;
   padding-inline: 5px;
+  @media (max-width: 768px) {
+    font-size: 14px;
+  }
 `;
 const TableParent = styled.table`
   color: #c9d5d8;
@@ -30,9 +33,21 @@ const TRrMade = styled.tr`
 const Th = styled.th`
   padding: 10px;
   background-color: #0f2e35;
+  @media (max-width: 768px) {
+    font-size: 14px;
+    padding: 5px;
+  }
+`;
+const Td = styled.td`
+  padding-top: 10px;
+  padding-bottom: 5px;
+  @media (max-width: 768px) {
+    font-size: 14px;
+    padding: 5px;
+  }
 `;
 
-export function SalesPitchers({activeButton}:{activeButton:string}) {
+export function SalesPitchers({ activeButton }: { activeButton: string }) {
   return (
     <TableParent>
       <TheadMade>
@@ -47,28 +62,28 @@ export function SalesPitchers({activeButton}:{activeButton:string}) {
 
       <tbody>
         <TRrMade className="pt-5">
-          <td className="pt-4 pb-2">3093578590</td>
-          <td className="pt-4 pb-2">{activeButton}</td>
-          <td className="pt-4 pb-2"></td>
+          <Td className="pt-4  pb-2">3093578590</Td>
+          <Td className="pt-4 pb-2">{activeButton}</Td>
+          <Td className="pt-4 pb-2"></Td>
         </TRrMade>
         <TRrMade className="pt-5">
-          <td className="pt-4 pb-2">3093578590</td>
-          <td className="pt-4 pb-2">{activeButton}</td>
-          <td className="pt-4 pb-2"></td>
+          <Td className="pt-4 pb-2">3093578590</Td>
+          <Td className="pt-4 pb-2">{activeButton}</Td>
+          <Td className="pt-4 pb-2"></Td>
         </TRrMade>
         <TRrMade className="pt-5">
-          <td className="pt-4 pb-2">3093578590</td>
-          <td className="pt-4 pb-2">{activeButton}</td>
-          <td className="pt-4 pb-2"></td>
+          <Td className="pt-4 pb-2">3093578590</Td>
+          <Td className="pt-4 pb-2">{activeButton}</Td>
+          <Td className="pt-4 pb-2"></Td>
         </TRrMade>
         <TRrMade className="pt-5">
-          <td className="pt-4 pb-2">3093578590</td>
-          <td className="pt-4 pb-2">{activeButton}</td>
-          <td className="pt-4 pb-2"></td>
+          <Td className="pt-4 pb-2">3093578590</Td>
+          <Td className="pt-4 pb-2">{activeButton}</Td>
+          <Td className="pt-4 pb-2"></Td>
         </TRrMade>
         <TRrMade className="pt-5">
-          <td className="pt-4 pb-2">3093578590</td>
-          <td className="pt-4 pb-2">{activeButton}</td>
+          <Td className="pt-4 pb-2">3093578590</Td>
+          <Td className="pt-4 pb-2">{activeButton}</Td>
           <td className="pt-4 pb-2"></td>
         </TRrMade>
       </tbody>

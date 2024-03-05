@@ -44,7 +44,7 @@ export function SideBar() {
           >
             <img src="/HomeIcon.png" alt="" />
             {(isSidebarOpened || activeMobile) && (
-              <span className="ms-2 d-md-none d-lg-inline-block ">Home</span>
+              <span className="ms-2  d-lg-inline-block ">Home</span>
             )}
           </StyledLink>
         </li>
@@ -57,7 +57,7 @@ export function SideBar() {
           >
             <img src="/callIcon.png" alt="" />
             {(isSidebarOpened || activeMobile) && (
-              <span className="ms-2 d-md-none d-lg-inline-block ">Agent</span>
+              <span className="ms-2  d-lg-inline-block ">Agent</span>
             )}
           </StyledLink>
         </li>
@@ -73,7 +73,7 @@ export function SideBar() {
           >
             <img src="/callIcon.png" alt="" />
             {(isSidebarOpened || activeMobile) && (
-              <span className="ms-2 d-md-none d-lg-inline-block ">Calls</span>
+              <span className="ms-2  d-lg-inline-block ">Calls</span>
             )}
           </StyledLink>
         </li>
@@ -86,9 +86,7 @@ export function SideBar() {
           >
             <img src="/contactIcon.png" alt="" />
             {(isSidebarOpened || activeMobile) && (
-              <span className="ms-2 d-md-none d-lg-inline-block ">
-                Contacts
-              </span>
+              <span className="ms-2  d-lg-inline-block ">Contacts</span>
             )}
           </StyledLink>
         </li>
@@ -101,9 +99,7 @@ export function SideBar() {
           >
             <img src="/campaignIcon.png" alt="" />
             {(isSidebarOpened || activeMobile) && (
-              <span className="ms-2 d-md-none d-lg-inline-block ">
-                Compaigns
-              </span>
+              <span className="ms-2  d-lg-inline-block ">Compaigns</span>
             )}
           </StyledLink>
         </li>
@@ -117,9 +113,7 @@ export function SideBar() {
             <img src="/companyIcon.png" alt="" />
 
             {(isSidebarOpened || activeMobile) && (
-              <span className="ms-2 d-md-none d-lg-inline-block ">
-                Companies
-              </span>
+              <span className="ms-2  d-lg-inline-block ">Companies</span>
             )}
           </StyledLink>
         </li>
@@ -132,9 +126,7 @@ export function SideBar() {
           >
             <img src="/knowledgeIcon.png" alt="" />
             {(isSidebarOpened || activeMobile) && (
-              <span className="ms-2 d-md-none d-lg-inline-block ">
-                Knowledge
-              </span>
+              <span className="ms-2  d-lg-inline-block ">Knowledge</span>
             )}
           </StyledLink>
         </li>

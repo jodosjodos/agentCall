@@ -24,7 +24,7 @@ ul.nav {
 
 
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 993px) {
   .nav-item {
     display: none;
   }

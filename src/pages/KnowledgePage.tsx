@@ -189,7 +189,7 @@ export function KnowledgePage() {
             </LinkP>
 
             <div className="d-flex flex-column gap-3">
-              <div className="d-flex flex-row gap-3">
+              <div className="d-flex flex-lg-row flex-column gap-3">
                 <ComponentRender
                   onClick={() => setActiveButton("Inbound")}
                   className="py-2 px-3"
