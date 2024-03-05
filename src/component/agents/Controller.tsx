@@ -54,7 +54,7 @@ export function Controller() {
   const [showEditingMethodModal, setshowEditingMethodModal] = useState(false);
   const [showCreatePrompModal, setShowCreatePrompModal] = useState(false);
   const [showGeneratePromptModal, setShowGeneratePromptModal] = useState(false);
-
+  const [showEditor,setShowEditor]=useState(false)
   return (
     <>
       <div className="d-flex flex-row justify-content-between py-4 px-4">
@@ -167,7 +167,7 @@ export function Controller() {
           </>
         }
         show={showEditingMethodModal}
-        btnText="Create Agent"
+        btnText="Choose selected method"
         onHide={() => setshowEditingMethodModal(false)}
         onBack={() => {
           setshowEditingMethodModal(false);
@@ -232,7 +232,7 @@ export function Controller() {
           </>
         }
         show={showCreatePrompModal}
-        btnText="Create Agent"
+        btnText="Choose selected method"
         onHide={() => setShowCreatePrompModal(false)}
         onBack={() => {
           setShowCreatePrompModal(false);
@@ -299,7 +299,7 @@ export function Controller() {
           </>
         }
         show={showGeneratePromptModal}
-        btnText="Create Agent"
+        btnText="Choose selected method"
         onHide={() => setShowGeneratePromptModal(false)}
         onBack={() => {
           setShowGeneratePromptModal(false);
