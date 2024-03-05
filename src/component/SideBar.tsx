@@ -50,7 +50,7 @@ export function SideBar() {
         </li>
         <li className={`nav-item ${activeMobile ? "mobile_active" : ""}  my-1`}>
           <StyledLink
-            to="/call"
+            to="/agent"
             className={`nav-link ${activeMobile ? "mobile_active" : ""}`}
             id="link"
             aria-current="page"
