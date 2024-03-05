@@ -3,8 +3,8 @@ import { DropdownButton } from "./DropDown";
 import styled from "styled-components";
 import CenteredModal from "../modals/Modal";
 import CustomInput from "../CustomInput";
-import PromptEditor from "./PromptEditor";
-import { useNavigate, useNavigation } from "react-router-dom";
+
+import { useNavigate } from "react-router-dom";
 
 const HMod = styled.h5`
   color: #c9d5d8;
@@ -47,15 +47,12 @@ const Paragraph = styled.p`
   width: 300px;
   margin-bottom: 0px;
 `;
-const FullParagraph = styled.p`
-  width: 600px;
-  margin-bottom: 0px;
-`;
+
 export function Controller() {
   const [showCreateAgentModal, setShowCreateAgentModal] = useState(false);
   const [showEditingMethodModal, setshowEditingMethodModal] = useState(false);
   const [showCreatePrompModal, setShowCreatePrompModal] = useState(false);
-  const [showGeneratePromptModal, setShowGeneratePromptModal] = useState(false);
+  
   const navigate = useNavigate();
   return (
     <>

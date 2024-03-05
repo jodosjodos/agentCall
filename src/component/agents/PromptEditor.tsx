@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+
 import styled from "styled-components";
 import { Header } from "./Header";
 import { Col } from "react-bootstrap";
@@ -33,7 +33,7 @@ const Head = styled.div`
   text-align: left;
 `;
 function PromptEditor() {
-  const [value, setValue] = useState("");
+  
 
   return (
     <Col>
