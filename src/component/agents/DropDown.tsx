@@ -6,6 +6,7 @@ const DropMod = styled(Dropdown.Toggle)`
   border: none;
   border-radius: 20px;
   color: #96adb3;
+  height: 40px;
   &:hover {
     background-color: #00b7df;
     color: black;

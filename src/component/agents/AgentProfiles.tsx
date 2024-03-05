@@ -7,23 +7,29 @@ import { Controller } from "./Controller";
 const GridContainer = styled.div<{ $selected?: boolean }>`
   display: grid;
   flex-grow: 1;
-  
-  grid-template-columns:${(props) =>
-    props.$selected ? "repeat(1, 1fr)" : "repeat(2,1fr)"} ;
 
-        
+  grid-template-columns: ${(props) =>
+    props.$selected ? "repeat(1, 1fr)" : "repeat(1, 2fr)"};
+
+  @media (max-width: 600px) {
+    display: none;
+  }
+
+  @media (min-width: 600px) and (max-width: 1199px) {
+    grid-template-columns: ${(props) =>
+      props.$selected ? "repeat(1, 1fr)" : "repeat(2, 1fr)"};
+  }
+
+  @media (min-width: 1200px) and (max-width: 1999px) {
+    grid-template-columns: ${(props) =>
+      props.$selected ? "repeat(2, 1fr)" : "repeat(3, 1fr)"};
+  }
+
   @media (min-width: 2000px) {
-display:grid;
-grid-template-columns:${(props) =>
-  props.$selected ? "repeat(4, 1fr)" : "repeat(3,1fr)"} ;
-
-
-  };
-       @media (max-width: 2000px) {
-        grid-template-columns:${(props) =>
-          props.$selected ? "repeat(2, 1fr)" : "repeat(3,1fr)"}
-           ; 
+    grid-template-columns: repeat(4, 1fr);
+  }
 `;
+
 const AgentProfileContainer = styled.div`
   width: 100%;
 `;

@@ -31,6 +31,8 @@ const Input = styled.input`
 const CreateButton = styled.button`
   background-color: #00b7df;
   border-radius: 20px;
+  min-width: fit-content;
+  height: 45px;
   border: none;
   &:hover {
     background-color: #0f2e35;
@@ -39,7 +41,8 @@ const CreateButton = styled.button`
 `;
 const ParentButton = styled.div`
   background-color: #0b2227;
-  height: 50px;
+  height: fit-content;
+  flex-wrap: wrap;
   border-radius: 20px;
   padding: 0.5rem;
 `;
@@ -52,11 +55,11 @@ export function Controller() {
   const [showCreateAgentModal, setShowCreateAgentModal] = useState(false);
   const [showEditingMethodModal, setshowEditingMethodModal] = useState(false);
   const [showCreatePrompModal, setShowCreatePrompModal] = useState(false);
-  
+
   const navigate = useNavigate();
   return (
     <>
-      <div className="d-flex flex-xl-row flex-column justify-content-between py-4 px-4">
+      <div className="d-flex flex-xl-row gap-2 flex-column justify-content-between py-4 px-4">
         <div className="d-flex flex-column">
           <HMod>Click any agent to select</HMod>
           <PMode>
@@ -64,7 +67,10 @@ export function Controller() {
           </PMode>
         </div>
         <ParentButton className="d-flex flex-row  gap-3">
-          <CreateButton onClick={() => setShowCreateAgentModal(true)}>
+          <CreateButton
+            className=""
+            onClick={() => setShowCreateAgentModal(true)}
+          >
             Create new agent +
           </CreateButton>
           <DropdownButton name="Date" />
