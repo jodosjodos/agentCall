@@ -8,6 +8,7 @@
 
 #link {
   color: #96ADB3;
+  
 }
 
 :root {
@@ -15,10 +16,8 @@
   margin: 0;
 }
 
-ul.nav {
-  transition: 1s;
 
-}
+
 
 
 
