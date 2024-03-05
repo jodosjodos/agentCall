@@ -8,7 +8,7 @@
 
 #link {
   color: #96ADB3;
-  
+
 }
 
 :root {
@@ -56,7 +56,7 @@
 
 }
 
-img.cursor-pointer {
+.flex img.cursor-pointer {
   cursor: pointer;
 }
 
@@ -77,8 +77,13 @@ img.cursor-pointer {
 }
 
 .centered_modal .modal-dialog {
-  max-width: 454px !important;
+  width: 454px !important;
 
+}
+
+#flexible .modal-content {
+  width: fit-content;
+  max-width: 750px !important;
 }
 
 .h-fit {
@@ -133,6 +138,7 @@ img.cursor-pointer {
   border-bottom-right-radius: 30px;
   padding-right: 10px !important;
 }
-.w-full{
-  width: 100%;
+
+.w-full {
+  width: 100% !important;
 }

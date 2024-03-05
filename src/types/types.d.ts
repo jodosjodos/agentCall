@@ -10,3 +10,8 @@ interface agentType{
   client2: number,
   id: number,
 }
+
+
+interface callPart{
+  name:string,
+}

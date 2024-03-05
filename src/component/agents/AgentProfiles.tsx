@@ -3,6 +3,7 @@ import { agents } from "../../data/agents";
 import AgentModal from "./AgentModal";
 import { useState } from "react";
 import { Controller } from "./Controller";
+
 const GridContainer = styled.div<{ $selected?: boolean }>`
   display: grid;
   flex-grow: 1;
@@ -29,6 +30,13 @@ const AgentProfileSubContainer = styled.div`
   display: flex;
   width: 100%;
 `;
+const Input = styled.input`
+  flex-grow: 1;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  color: white;
+`;
 const AgentProfileLeft = styled.div`
   max-width: 600px;
   margin: 20px 10px 0px 0px;
@@ -43,50 +51,80 @@ const Row = styled.div`
   align-items: center;
   justify-content: space-between;
 `;
+const InputRow = styled.div`
+  display: flex;
+  padding: 10px 20px;
+  border-radius: 10px;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #051316;
+`;
+
 const Paragraph = styled.p`
   color: #96adb3;
   margin-bottom: 0;
 `;
+const OnGoingCall = styled.div`
+  background-color: #051316;
+  padding: 16px, 12px;
+  border-radius: 16px;
+  gap: 64px;
+`;
 export function AgentProfiles() {
+
   const [selectedAgent, setSelectedAgent] = useState<agentType | null>(null);
   return (
-    <AgentProfileContainer className="d-flex">
-      <AgentProfileSubContainer className="d-flex flex-column ">
-        <Controller></Controller>
-        <GridContainer
-          $selected={selectedAgent != null}
-          className="gap-5  px-4"
-        >
-          {agents.map((agent) => (
-            <AgentModal
-              onclick={() => {
-                setSelectedAgent(agent);
-              }}
-              key={agent.id}
-              agent={agent}
-            />
-          ))}
-        </GridContainer>
-      </AgentProfileSubContainer>
+    <>
+      <AgentProfileContainer className="d-flex">
+        <AgentProfileSubContainer className="d-flex flex-column ">
+          <Controller></Controller>
+          <GridContainer
+            $selected={selectedAgent != null}
+            className="gap-5  px-4"
+          >
+            {agents.map((agent) => (
+              <AgentModal
+                onclick={() => {
+                  setSelectedAgent(agent);
+                }}
+                key={agent.id}
+                agent={agent}
+              />
+            ))}
+          </GridContainer>
+        </AgentProfileSubContainer>
 
-      {selectedAgent != null && (
-        <AgentProfileLeft>
-          <Row className="gap-2 w-full justify-content-end ">
-            <Row
-              className="gap-2 align-items-center cursor-pointer"
-              onClick={() => setSelectedAgent(null)}
-            >
-              <Paragraph>Close</Paragraph>
-              <img src="/close.svg" alt="close" />
+        {selectedAgent != null && (
+          <AgentProfileLeft>
+            <Row className="gap-2 w-full justify-content-end ">
+              <Row
+                className="gap-2 align-items-center cursor-pointer"
+                onClick={() => setSelectedAgent(null)}
+              >
+                <Paragraph>Close</Paragraph>
+                <img src="/close.svg" alt="close" />
+              </Row>
             </Row>
-          </Row>
-          <AgentModal
-            isLeft={true}
-            key={selectedAgent.id}
-            agent={selectedAgent}
-          ></AgentModal>
-        </AgentProfileLeft>
-      )}
-    </AgentProfileContainer>
+            <AgentModal
+              isLeft={true}
+              key={selectedAgent.id}
+              agent={selectedAgent}
+            ></AgentModal>
+            <Paragraph className="text-white bold">Ongoing call</Paragraph>
+            <OnGoingCall></OnGoingCall>
+            <InputRow>
+              <Input
+                id="paste"
+                type="text"
+                className=""
+                placeholder="Paste text"
+              />
+              <img src="/record.svg" alt="" />
+            </InputRow>
+          </AgentProfileLeft>
+        )}
+      </AgentProfileContainer>
+      
+    </>
   );
 }
