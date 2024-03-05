@@ -50,8 +50,11 @@ const Paragraph = styled.p`
   width: 300px;
   margin-bottom: 0px;
 `;
+const ControllerContainer = styled.div<{ $selected?: boolean }>`
+  display: ${(props) => (props.$selected ? "none" : "block")};
+`;
 
-export function Controller() {
+export function Controller({ selected }: { selected?: boolean }) {
   const [showCreateAgentModal, setShowCreateAgentModal] = useState(false);
   const [showEditingMethodModal, setshowEditingMethodModal] = useState(false);
   const [showCreatePrompModal, setShowCreatePrompModal] = useState(false);
@@ -59,26 +62,32 @@ export function Controller() {
   const navigate = useNavigate();
   return (
     <>
-      <div className="d-flex flex-xl-row gap-2 flex-column justify-content-between py-4 px-4">
-        <div className="d-flex flex-column">
-          <HMod>Click any agent to select</HMod>
-          <PMode>
-            any agent selected would be displayed on the right of panel
-          </PMode>
-        </div>
-        <ParentButton className="d-flex flex-row  gap-3">
-          <CreateButton
-            className=""
-            onClick={() => setShowCreateAgentModal(true)}
-          >
-            Create new agent +
-          </CreateButton>
-          <DropdownButton name="Date" />
-          <DropdownButton name="Week" />
-          <DropdownButton name="Month" />
-          <DropdownButton name="Custom" />
-        </ParentButton>
-      </div>
+      {
+        <ControllerContainer
+          $selected
+          className="d-flex flex-xl-row gap-2 flex-column justify-content-between py-4 px-4"
+        >
+          <div className="d-flex flex-column">
+            <HMod>Click any agent to select</HMod>
+            <PMode>
+              any agent selected would be displayed on the right of panel
+            </PMode>
+          </div>
+          <ParentButton className="d-flex flex-row  gap-3">
+            <CreateButton
+              className=""
+              onClick={() => setShowCreateAgentModal(true)}
+            >
+              Create new agent +
+            </CreateButton>
+            <DropdownButton name="Date" />
+            <DropdownButton name="Week" />
+            <DropdownButton name="Month" />
+            <DropdownButton name="Custom" />
+          </ParentButton>
+        </ControllerContainer>
+      }
+
       <CenteredModal
         title="Create a new Agent"
         children={

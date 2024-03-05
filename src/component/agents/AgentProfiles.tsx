@@ -12,7 +12,7 @@ const GridContainer = styled.div<{ $selected?: boolean }>`
     props.$selected ? "repeat(1, 1fr)" : "repeat(1, 2fr)"};
 
   @media (max-width: 600px) {
-    display: none;
+    display: ${(props) => (props.$selected ? "none" : "block")};
   }
 
   @media (min-width: 600px) and (max-width: 1199px) {
@@ -33,9 +33,14 @@ const GridContainer = styled.div<{ $selected?: boolean }>`
 const AgentProfileContainer = styled.div`
   width: 100%;
 `;
-const AgentProfileSubContainer = styled.div`
+const AgentProfileSubContainer = styled.div<{ $selcted?: boolean }>`
   display: flex;
   width: 100%;
+  @media (max-width: 600px) {
+    width: ${(props) => (props.$selcted ? "0" : "100vw")};
+    max-width: 100vw;
+    flex-grow: 1;
+  }
   height: calc(100vh - 94px);
   overflow: auto;
 `;
@@ -51,6 +56,11 @@ const AgentProfileLeft = styled.div`
   margin: 20px 10px 0px 0px;
   padding: 10px;
   border-radius: 10px;
+  @media (max-width: 600px) {
+    width: 100vw;
+    max-width: 100vw;
+    flex-grow: 1;
+  }
   width: 35%;
   background-color: #0b2227;
   height: calc(100vh - 129px);
@@ -139,8 +149,11 @@ export function AgentProfiles() {
   return (
     <>
       <AgentProfileContainer className="d-flex">
-        <AgentProfileSubContainer className="d-flex flex-column ">
-          <Controller></Controller>
+        <AgentProfileSubContainer
+          $selcted={selectedAgent != null}
+          className="d-flex flex-column "
+        >
+          <Controller selected={selectedAgent != null}></Controller>
           <GridContainer
             $selected={selectedAgent != null}
             className="gap-5  px-4"
