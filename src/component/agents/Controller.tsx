@@ -3,6 +3,8 @@ import { DropdownButton } from "./DropDown";
 import styled from "styled-components";
 import CenteredModal from "../modals/Modal";
 import CustomInput from "../CustomInput";
+import PromptEditor from "./PromptEditor";
+import { useNavigate, useNavigation } from "react-router-dom";
 
 const HMod = styled.h5`
   color: #c9d5d8;
@@ -54,10 +56,10 @@ export function Controller() {
   const [showEditingMethodModal, setshowEditingMethodModal] = useState(false);
   const [showCreatePrompModal, setShowCreatePrompModal] = useState(false);
   const [showGeneratePromptModal, setShowGeneratePromptModal] = useState(false);
-  const [showEditor,setShowEditor]=useState(false)
+  const navigate = useNavigate();
   return (
     <>
-      <div className="d-flex flex-row justify-content-between py-4 px-4">
+      <div className="d-flex flex-xl-row flex-column justify-content-between py-4 px-4">
         <div className="d-flex flex-column">
           <HMod>Click any agent to select</HMod>
           <PMode>
@@ -242,71 +244,8 @@ export function Controller() {
         onContinue={() => {
           setShowCreatePrompModal(false);
           setTimeout(() => {}, 2000);
-          setShowGeneratePromptModal(true);
+          navigate("/agent/prompt_editor");
         }}
-      ></CenteredModal>
-      <CenteredModal
-        title="How do you magically generate a prompt?"
-        id="flexible"
-        children={
-          <>
-            <div className="d-flex flex-column gap-2 ">
-              <CustomInput
-                children={
-                  <div className="d-flex flex-column">
-                    <div className="d-flex mb-2 align-items-center gap-2">
-                      <img src="/magic.svg" alt="Magic" />
-                      <Paragraph className="w-full">
-                        Magically generate prompt with AI
-                      </Paragraph>
-                    </div>
-
-                    <FullParagraph className="w-full">
-                      Lorem ipsum dolor sit amet consectetur. Et rhoncus rutrum
-                      neque nulla sit velit adipiscing magna viverra. Eget sit
-                      et ornare gravida duis sapien. Pellentesque ac eget netus
-                      sapien. Amet ultrices quis suspendisse aliquet suspendisse
-                      ac.
-                    </FullParagraph>
-                  </div>
-                }
-                name="type"
-                label="Sales"
-                value="Sales"
-                active={""}
-              ></CustomInput>
-              <CustomInput
-                children={
-                  <div className="d-flex flex-column">
-                    <Paragraph className="mb-2">
-                      Create prompt from scratch
-                    </Paragraph>
-                    <FullParagraph className="">
-                      Lorem ipsum dolor sit amet consectetur. Et rhoncus rutrum
-                      neque nulla sit velit adipiscing magna viverra. Eget sit
-                      et ornare gravida duis sapien. Pellentesque ac eget netus
-                      sapien. Amet ultrices quis suspendisse aliquet suspendisse
-                      ac.
-                    </FullParagraph>
-                  </div>
-                }
-                name="type"
-                label="Sales"
-                value="Sales"
-                active={""}
-              ></CustomInput>
-            </div>
-          </>
-        }
-        show={showGeneratePromptModal}
-        btnText="Choose selected method"
-        onHide={() => setShowGeneratePromptModal(false)}
-        onBack={() => {
-          setShowGeneratePromptModal(false);
-          setTimeout(() => {}, 2000);
-          setShowCreatePrompModal(true);
-        }}
-        onContinue={() => {}}
       ></CenteredModal>
     </>
   );

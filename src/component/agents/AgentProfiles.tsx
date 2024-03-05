@@ -68,10 +68,21 @@ const OnGoingCall = styled.div`
   background-color: #051316;
   padding: 16px, 12px;
   border-radius: 16px;
+  padding: 10px;
   gap: 64px;
+  margin-bottom: 20px;
+`;
+const OnGoingCallRow = styled.div`
+  display: flex;
+  gap: 10px;
+  border-radius: 20px;
+  padding: 10px;
+  background: linear-gradient(93.55deg, #096348 13.97%, #25955f 89.16%);
+`;
+const OnGoingCallRowParagraph = styled.div`
+  color: white;
 `;
 export function AgentProfiles() {
-
   const [selectedAgent, setSelectedAgent] = useState<agentType | null>(null);
   return (
     <>
@@ -111,7 +122,19 @@ export function AgentProfiles() {
               agent={selectedAgent}
             ></AgentModal>
             <Paragraph className="text-white bold">Ongoing call</Paragraph>
-            <OnGoingCall></OnGoingCall>
+            <OnGoingCall className="p">
+              <Paragraph>Ongoing call with +84965482487</Paragraph>
+              <Row className="py-2">
+                <Row className="gap-2">
+                  <img src="/wave.svg" alt="" />
+                  <Paragraph>00:40:01</Paragraph>
+                </Row>
+                <OnGoingCallRow className="p-2">
+                  <OnGoingCallRowParagraph>Listen in</OnGoingCallRowParagraph>
+                  <img src="/resume.svg"></img>
+                </OnGoingCallRow>
+              </Row>
+            </OnGoingCall>
             <InputRow>
               <Input
                 id="paste"
@@ -124,7 +147,6 @@ export function AgentProfiles() {
           </AgentProfileLeft>
         )}
       </AgentProfileContainer>
-      
     </>
   );
 }

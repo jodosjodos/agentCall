@@ -12,6 +12,7 @@ import { AgentPage } from "./pages/AgentPage";
 import { CallPage } from "./pages/CallPage";
 import { ContactPage } from "./pages/ContactPage";
 import CampaignPage from "./pages/CampaignPage";
+import PromptEditor from "./component/agents/PromptEditor";
 
 const SideBarDiv = styled.div`
   background-color: #0b2227;
@@ -41,6 +42,7 @@ function App() {
               <Routes>
                 <Route path="/" element={<HomePage />} />
                 <Route path="/agent" element={<AgentPage />} />
+                <Route path="/agent/prompt_editor" element={<PromptEditor />} />
                 <Route path="/call" element={<CallPage />} />
                 <Route path="/contact" element={<ContactPage />} />
                 <Route path="/campaign" element={<CampaignPage />} />

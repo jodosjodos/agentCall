@@ -4,6 +4,7 @@ import styled from "styled-components";
 
 const StyledLink = styled(Link)`
   color: #96adb3;
+  border-radius: 20px;
 `;
 const StyledMenu = styled("img")`
   color: #96adb3;
@@ -55,7 +56,7 @@ export function SideBar() {
             id="link"
             aria-current="page"
           >
-            <img src="/callIcon.png" alt="" />
+            <img src="/agentIcon.png" alt="" />
             {(isSidebarOpened || activeMobile) && (
               <span className="ms-2  d-lg-inline-block ">Agent</span>
             )}
