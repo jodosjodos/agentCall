@@ -20,12 +20,11 @@ const AgentContainer = styled.div<{ $isLeft?: boolean }>`
   border-radius: 16px;
   padding: 12px;
   color: white;
-  min-width: 320px;
-  width: ${(props) => (props.$isLeft ? "35%" : "")};
-  max-width: ${(props) => (props.$isLeft ? "25%" : "400px")};
+  max-width: ${(props) => (props.$isLeft ? "500px" : "550px")};
   height: fit-content;
+  width:${(props) => (props.$isLeft ? "50%" : "320px")}
 
-  min-width: ${(props) => (props.$isLeft ? "35%" : "320px")};
+  min-width: ${(props) => (props.$isLeft ? "380px" : "320px")};
   background: ${(props) =>
     props.$isLeft
       ? "transparent"

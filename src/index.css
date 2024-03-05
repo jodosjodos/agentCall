@@ -133,3 +133,6 @@ img.cursor-pointer {
   border-bottom-right-radius: 30px;
   padding-right: 10px !important;
 }
+.w-full{
+  width: 100%;
+}
