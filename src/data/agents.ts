@@ -1,6 +1,6 @@
 export const agents:agentType[] = [
   {
-    profile: "../../public/userProfile.png",
+    profile: "/userProfile.png",
     name: "AgentSmith",
     minutesTalked: "00:40:01",
     completedLeads: "64/100",
@@ -12,7 +12,7 @@ export const agents:agentType[] = [
     id: 1,
   },
   {
-    profile: "../../public/userProfile.png",
+    profile: "/userProfile.png",
     name: "AgentSmith2",
     time: "4 mins",
     minutesTalked: "00:40:01",
@@ -24,7 +24,7 @@ export const agents:agentType[] = [
     id: 2,
   },
   {
-    profile: "../../public/userProfile.png",
+    profile: "/userProfile.png",
     name: "AgentSmith3",
     time: "4 mins",
     minutesTalked: "00:40:01",
