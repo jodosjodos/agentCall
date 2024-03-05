@@ -130,7 +130,7 @@ export function SideBar() {
             id="link"
             aria-current="page"
           >
-            <img src="/companyIcon.png" alt="" />
+            <img src="/knowledgeIcon.png" alt="" />
             {(isSidebarOpened || activeMobile) && (
               <span className="ms-2 d-md-none d-lg-inline-block ">
                 Knowledge

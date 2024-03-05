@@ -109,8 +109,8 @@ const UnderLineSpan = styled.span`
 export function KnowledgePage() {
   const [modalShow, setModalShow] = useState(false);
   const [nextModalShow, setNextModalShow] = useState(false);
-  const [activeButton,setActiveButton]=useState("inbound")
-  
+  const [activeButton, setActiveButton] = useState("inbound");
+
   return (
     <>
       <Col>
@@ -190,13 +190,22 @@ export function KnowledgePage() {
 
             <div className="d-flex flex-column gap-3">
               <div className="d-flex flex-row gap-3">
-                <ComponentRender onClick={()=>setActiveButton("Inbound")} className="py-2 px-3">
+                <ComponentRender
+                  onClick={() => setActiveButton("Inbound")}
+                  className="py-2 px-3"
+                >
                   Sales Pitches
                 </ComponentRender>
-                <ComponentRender onClick={()=>setActiveButton("Outbound")} className="py-2 px-3">
+                <ComponentRender
+                  onClick={() => setActiveButton("Outbound")}
+                  className="py-2 px-3"
+                >
                   Product Knowledge
                 </ComponentRender>
-                <ComponentRender onClick={()=>setActiveButton("Inbound and Outbound")} className="py-2 px-3">
+                <ComponentRender
+                  onClick={() => setActiveButton("Inbound and Outbound")}
+                  className="py-2 px-3"
+                >
                   Service guidelines
                 </ComponentRender>
               </div>
@@ -226,7 +235,6 @@ export function KnowledgePage() {
               name="type"
               label="Service guidelines"
               value="service_guideline"
-              
             ></CustomInput>
           </div>
         }
