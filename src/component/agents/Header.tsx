@@ -10,6 +10,9 @@ const DivStyled = styled(Row)`
   border-bottom: 1px solid #0f2e35;
   display: flex;
   flex-direction: column;
+  @media (max-width: 993px) {
+    padding-top: 40px !important;
+  }
 `;
 
 const PModified = styled.p`
@@ -20,7 +23,7 @@ const PModified = styled.p`
 const ImgMod = styled.img`
   width: 23px;
   position: absolute;
-  right: 45px;
+  right: 20px;
   top: 17px;
 `;
 const InputMod = styled.input`
@@ -28,7 +31,7 @@ const InputMod = styled.input`
   padding: 6px 6px;
   border: none;
   margin-top: 8px;
-  margin-right: 16px;
+
   font-size: 17px;
   background-color: #0a2328;
   outline: none;
@@ -37,6 +40,8 @@ const InputMod = styled.input`
   @media (max-width: 600px) {
     width: 100%;
   }
+  border-radius: 8px;
+  color: #96adb3;
 `;
 export function Header() {
   return (
@@ -46,7 +51,7 @@ export function Header() {
         <PModified>September 12, 2024</PModified>
       </Col>
 
-      <Col lg={2} className="position-relative">
+      <Col lg={2} className="position-relative ">
         <InputMod type="text" placeholder="search" />
         <ImgMod src="/searchIcons.png" />
       </Col>

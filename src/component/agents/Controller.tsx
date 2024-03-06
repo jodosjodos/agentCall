@@ -33,6 +33,7 @@ const CreateButton = styled.button`
   border-radius: 20px;
   min-width: fit-content;
   height: 45px;
+  font-size: 14px;
   border: none;
   &:hover {
     background-color: #0f2e35;
@@ -42,8 +43,12 @@ const CreateButton = styled.button`
 const ParentButton = styled.div`
   background-color: #0b2227;
   height: fit-content;
+  width: fit-content;
   flex-wrap: wrap;
   border-radius: 20px;
+  @media (max-width: 600px) {
+    width: 100%;
+  }
   padding: 0.5rem;
 `;
 const Paragraph = styled.p`
@@ -52,9 +57,14 @@ const Paragraph = styled.p`
 `;
 const ControllerContainer = styled.div<{ $selected?: boolean }>`
   display: ${(props) => (props.$selected ? "none" : "block")};
+  @media (min-width: 1500px) {
+    flex-direction: row !important;
+  }
 `;
 
 export function Controller({ selected }: { selected?: boolean }) {
+  console.log(selected);
+
   const [showCreateAgentModal, setShowCreateAgentModal] = useState(false);
   const [showEditingMethodModal, setshowEditingMethodModal] = useState(false);
   const [showCreatePrompModal, setShowCreatePrompModal] = useState(false);
@@ -65,7 +75,7 @@ export function Controller({ selected }: { selected?: boolean }) {
       {
         <ControllerContainer
           $selected
-          className="d-flex flex-xl-row gap-2 flex-column justify-content-between py-4 px-4"
+          className="d-flex  gap-2 flex-column flex-wrap justify-content-between py-4 px-4 "
         >
           <div className="d-flex flex-column">
             <HMod>Click any agent to select</HMod>
@@ -73,7 +83,7 @@ export function Controller({ selected }: { selected?: boolean }) {
               any agent selected would be displayed on the right of panel
             </PMode>
           </div>
-          <ParentButton className="d-flex flex-row  gap-3">
+          <ParentButton className="d-flex  gap-2">
             <CreateButton
               className=""
               onClick={() => setShowCreateAgentModal(true)}

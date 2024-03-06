@@ -11,16 +11,18 @@ const GridContainer = styled.div<{ $selected?: boolean }>`
   grid-template-columns: ${(props) =>
     props.$selected ? "repeat(1, 1fr)" : "repeat(1, 2fr)"};
 
-  @media (max-width: 600px) {
-    display: ${(props) => (props.$selected ? "none" : "block")};
+  @media (max-width: 714px) {
+    display: ${(props) => (props.$selected ? "none" : "flex")};
+    flex-direction: column;
+    gap: 20px;
   }
 
-  @media (min-width: 600px) and (max-width: 1199px) {
+  @media (min-width: 714px) and (max-width: 1499px) {
     grid-template-columns: ${(props) =>
       props.$selected ? "repeat(1, 1fr)" : "repeat(2, 1fr)"};
   }
 
-  @media (min-width: 1200px) and (max-width: 1999px) {
+  @media (min-width: 1500px) and (max-width: 1999px) {
     grid-template-columns: ${(props) =>
       props.$selected ? "repeat(2, 1fr)" : "repeat(3, 1fr)"};
   }
@@ -32,16 +34,18 @@ const GridContainer = styled.div<{ $selected?: boolean }>`
 
 const AgentProfileContainer = styled.div`
   width: 100%;
+  padding: 20px;
 `;
 const AgentProfileSubContainer = styled.div<{ $selcted?: boolean }>`
   display: flex;
   width: 100%;
-  @media (max-width: 600px) {
+
+  @media (max-width: 714px) {
     width: ${(props) => (props.$selcted ? "0" : "100vw")};
-    max-width: 100vw;
+    max-width: 100%;
     flex-grow: 1;
   }
-  height: calc(100vh - 94px);
+  height: calc(100vh - 96px);
   overflow: auto;
 `;
 const Input = styled.input`
@@ -53,17 +57,19 @@ const Input = styled.input`
 `;
 const AgentProfileLeft = styled.div`
   max-width: 600px;
-  margin: 20px 10px 0px 0px;
+  margin: 20px 10px 0px px;
   padding: 10px;
   border-radius: 10px;
-  @media (max-width: 600px) {
-    width: 100vw;
-    max-width: 100vw;
+  @media (max-width: 714px) {
+    width: 100%;
+    max-width: 100%;
     flex-grow: 1;
   }
   width: 35%;
+  min-width: 395px;
   background-color: #0b2227;
   height: calc(100vh - 129px);
+
 `;
 const Scroll = styled.div`
   height: 100%;
@@ -116,6 +122,9 @@ const CallStep = styled.div<{
   text-align: end;
   color: black;
   margin-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: end;
   background-color: ${(props) =>
     props.$background ? props.$background : "white"};
   border-top-left-radius: ${(props) => (props.$isFirst ? "20px" : "")};

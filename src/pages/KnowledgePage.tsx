@@ -15,6 +15,10 @@ const DivStyled = styled.div`
   border-bottom: 1px solid #0f2e35;
   display: flex;
   flex-direction: column;
+
+  @media (max-width: 600px) {
+    margin-top: 40px;
+  }
 `;
 
 const PModified = styled.p`
@@ -118,7 +122,7 @@ export function KnowledgePage() {
           <H1Styled>Welcome Raam , Adi</H1Styled>
           <PModified>September 12, 2024</PModified>
         </DivStyled>
-        <Row className="pt-3 gap-5   px-lg-5 px-4  ">
+        <Row className="pt-3 gap-5   px-lg-5 mx-lg-0 mx-4 ">
           <FileCol lg={3} className="p-2 w-fit  d-flex  flex-column gap-3">
             <StyledH4>All files</StyledH4>
             {/* parental one */}

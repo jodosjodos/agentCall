@@ -11,7 +11,7 @@ const AgentPageContainer = styled.div`
 export function AgentPage() {
   return (
     <AgentPageContainer>
-      <Col>
+      <Col className="px-0 ">
         <Header />
 
         <AgentProfiles />

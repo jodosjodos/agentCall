@@ -19,16 +19,20 @@ const EditIcon = styled.img`
 const AgentContainer = styled.div<{ $isLeft?: boolean }>`
   border-radius: 16px;
   padding: 12px;
+  flex-grow: 1;
   color: white;
   max-width: ${(props) => (props.$isLeft ? "500px" : "550px")};
   height: fit-content;
   width: ${(props) => (props.$isLeft ? "50%" : "320px")};
-  @media (max-width: 993px) {
-    max-width: 100%;
-    min-width: 100%;
+  @media (max-width: 1456px) {
+    max-width: 98%;
+    min-width: 98%;
     margin-bottom: 10px;
   }
-  min-width: ${(props) => (props.$isLeft ? "380px" : "380px")};
+  @media (min-width: 1500px) and (max-width: 1999px) {
+    width: 100%;
+  }
+  min-width: ${(props) => (props.$isLeft ? "395px" : "395px")};
   background: ${(props) =>
     props.$isLeft
       ? "transparent"

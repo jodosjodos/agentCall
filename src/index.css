@@ -4,6 +4,13 @@
 
 }
 
+@media (max-width:600px) {
+  #parentM {
+    width: 100%;
+  }
+}
+
+
 
 
 #link {

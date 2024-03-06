@@ -13,20 +13,23 @@ const StyledMenu = styled("img")`
   padding: 5px 0;
   cursor: pointer;
 `;
+const Li = styled.li<{ $isSidebarOpened?: boolean }>`
+  display: flex;
+  width: 100%;
+  justify-content: ${(props) => (props.$isSidebarOpened ? "" : "center")};
+  padding-left: ${(props) => (props.$isSidebarOpened ? "20px" : "")};
+  @media (max-width: 992px) {
+    justify-content: start;
+  }
+`;
 export function SideBar() {
   const [isSidebarOpened, setIsSidebarOpen] = useState(false);
   const [activeMobile, setActiveMobile] = useState(false);
   useEffect(() => {}, [window.innerWidth]);
   return (
-    <div className="mt-2 ">
-      <ul className={`nav fixed  flex-column `} id="parentM">
-        <li
-          className={`${
-            window.innerWidth > 993 &&
-            !isSidebarOpened &&
-            "align-items-start     justify-content-center"
-          }  d-flex `}
-        >
+    <div className="mt-2   ">
+      <ul className={`nav fixed   flex-column z-3`} id="parentM">
+        <Li $isSidebarOpened={window.innerWidth > 992 && isSidebarOpened}>
           <StyledMenu
             src="/menu.svg"
             onClick={() =>
@@ -35,7 +38,7 @@ export function SideBar() {
                 : setActiveMobile(!activeMobile)
             }
           ></StyledMenu>
-        </li>
+        </Li>
         <li className={`nav-item ${activeMobile ? "mobile_active" : ""}  my-1`}>
           <StyledLink
             to="/"
