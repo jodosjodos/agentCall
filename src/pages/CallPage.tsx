@@ -6,6 +6,9 @@ import RecordingTable from "../component/call/RecordingTable";
 const CallPageContainer = styled.div`
   display: flex;
   justify-content: space-between;
+  @media (max-width: 600px) {
+    flex-direction: column;
+  }
 `;
 const H1Styled = styled.h4`
   color: #96adb3;

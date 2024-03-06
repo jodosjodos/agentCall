@@ -5,11 +5,16 @@ import { AgentCallSetting } from "./AgentCallSetting";
 const AgentRowContainer = styled.div`
   padding: 24px 26px;
   background-color: #040f12;
-  height:calc(100vh - 100px);
+  height: calc(100vh - 100px);
   overflow: scroll;
-  @media (max-width: 600px) {
+
+  min-width: 380px;
+  width: fit-content;
+
+  @media (max-width: 992px) {
     width: 100%;
-    max-width: 100%;
+
+    min-width: fit-content;
   }
 `;
 
@@ -36,6 +41,12 @@ const InputMod = styled.input`
   color: #96adb3;
 `;
 
+const AgentCallSettingContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  flex-wrap: wrap;
+`;
 function AgentRow() {
   return (
     <AgentRowContainer className="d-flex flex-column gap-5 ">
@@ -47,11 +58,11 @@ function AgentRow() {
         />
         <ImgMod src="/searchIcons.png" />
       </div>
-      <div className="d-flex flex-column gap-5">
+      <AgentCallSettingContainer className=" gap-5">
         {agentCallSetting.map((agent) => (
           <AgentCallSetting agent={agent} />
         ))}
-      </div>
+      </AgentCallSettingContainer>
     </AgentRowContainer>
   );
 }

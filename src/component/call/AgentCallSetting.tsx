@@ -1,6 +1,7 @@
 import styled from "styled-components";
 const Paragraph = styled.div`
   margin-bottom: 0;
+  font-size: 16px;
   color: #96adb3;
 `;
 const ParagraphBold = styled(Paragraph)`
@@ -11,7 +12,7 @@ const EditIcon = styled.img`
   width: 20px;
 `;
 const AgentCallSettingCol = styled.div`
-  background:linear-gradient(to bottom, #0F2E35, #17454F) ;
+  background: linear-gradient(to bottom, #0f2e35, #17454f);
   border-radius: 16px;
 `;
 
@@ -52,7 +53,7 @@ export function AgentCallSetting({ agent }: { agent: agentCalls }) {
           <Paragraph>{agent.missedCalls}</Paragraph>
         </div>
       </div>
-      <div className="d-flex flex-row justify-content-between gap-5 ">
+      <div className="d-flex flex-row justify-content-between gap-2 ">
         <Row
           $minute_container
           className="d-flex flex-row align-items-center gap-2"
@@ -64,7 +65,7 @@ export function AgentCallSetting({ agent }: { agent: agentCalls }) {
         <div className="d-flex flex-row justify-content-center gap-2 py-2">
           <Row
             $minute_container
-            className="d-flex flex-row align-items-center gap-2"
+            className="d-flex flex-row align-items-center gap-1"
           >
             <img src="/profile_delete.svg" alt="" />
             <Paragraph className="text-bold">{agent.client1}</Paragraph>
@@ -74,7 +75,7 @@ export function AgentCallSetting({ agent }: { agent: agentCalls }) {
 
           <Row
             $minute_container
-            className="d-flex flex-row align-items-center gap-2"
+            className="d-flex flex-row align-items-center gap-1"
           >
             <img src="/profile_checked.svg" alt="" />
             <Paragraph className="text-bold">{agent.client2}</Paragraph>
