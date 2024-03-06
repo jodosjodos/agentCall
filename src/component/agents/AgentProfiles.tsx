@@ -12,7 +12,9 @@ const GridContainer = styled.div<{ $selected?: boolean }>`
     props.$selected ? "repeat(1, 1fr)" : "repeat(1, 2fr)"};
 
   @media (max-width: 600px) {
-    display: ${(props) => (props.$selected ? "none" : "block")};
+    display: ${(props) => (props.$selected ? "none" : "flex")};
+    flex-direction:column;
+    gap:20px;
   }
 
   @media (min-width: 600px) and (max-width: 1199px) {

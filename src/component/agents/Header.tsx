@@ -35,6 +35,7 @@ const InputMod = styled.input`
   border-radius:8px;
   color:#96ADB3;
 
+
 `;
 export function Header() {
   return (
@@ -46,7 +47,7 @@ export function Header() {
 
       <Col lg={2} className="position-relative">
         <InputMod type="text" placeholder="search" />
-        <ImgMod src="/searchIcons.png" />
+        <ImgMod  src="/searchIcons.png" />
       </Col>
     </DivStyled>
   );

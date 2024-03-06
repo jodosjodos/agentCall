@@ -18,8 +18,8 @@ export function SideBar() {
   const [activeMobile, setActiveMobile] = useState(false);
   useEffect(() => {}, [window.innerWidth]);
   return (
-    <div className="mt-2 ">
-      <ul className={`nav fixed  flex-column `} id="parentM">
+    <div className="mt-2  ">
+      <ul className={`nav fixed  flex-column z-3`} id="parentM">
         <li
           className={`${
             window.innerWidth > 993 &&
