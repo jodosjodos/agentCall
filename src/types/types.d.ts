@@ -11,6 +11,18 @@ interface agentType{
   id: number,
 }
 
+interface agentCalls{
+  name: string,
+  minutesTalked: string,
+  receivedCalls: string,
+  missedCalls: string,
+  message:string
+  time: string,
+  client1: number,
+  client2: number,
+  id: number,
+}
+
 
 interface callPart{
   name:string,

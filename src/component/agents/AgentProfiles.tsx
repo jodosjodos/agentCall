@@ -26,9 +26,7 @@ const GridContainer = styled.div<{ $selected?: boolean }>`
     grid-template-columns: ${(props) =>
       props.$selected ? "repeat(2, 1fr)" : "repeat(3, 1fr)"};
   }
-
-  @media (min-width: 2000px) {
-    grid-template-columns: repeat(4, 1fr);
+  editProfilelate-columns: repeat(4, 1fr);
   }
 `;
 
@@ -213,7 +211,7 @@ export function AgentProfiles() {
                 </Row>
                 <Row>
                   {callSteps.map((item, i) => (
-                    <CallContainer>
+                    <CallContainer key={i}>
                       <CallProfile
                         src="/userProfile.png"
                         $isHidden={item.active}
