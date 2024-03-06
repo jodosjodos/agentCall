@@ -1,155 +1,137 @@
 import {
+  PaginationState,
   createColumnHelper,
   flexRender,
   getCoreRowModel,
+  getPaginationRowModel,
   useReactTable,
 } from "@tanstack/react-table";
-import { useReducer, useState } from "react";
+import { useState } from "react";
 import "./table.css";
 import styled from "styled-components";
+import { Row } from "react-bootstrap";
+import { defaultData } from "../../data/call";
 
-type Person = {
-  firstName: string;
-  lastName: string;
-  age: number;
-  visits: number;
-  status: string;
-  progress: number;
-};
+const Th = styled.th<{ $width?: number }>`
+  width: ${(props) => (props.$width ? `${props.$width}%` : "fit-content")};
+  min-width: 100px;
+`;
+const PaginationButton = styled.button`
+  padding: 8px;
+  background-color: #0a2328;
+  border: none;
+  min-width: 40px;
 
-const defaultData: RecordingTableType[] = [
-  {
-    contact: "Raam A",
-    number: "3093578590",
-    campaign: "Long list",
-    call: "Incoming",
-    Date: "24-11-23",
-    duration: "00:05:50",
-    outcome: "Follow up",
-  },
-  {
-    contact: "Raam A",
-    number: "3093578590",
-    campaign: "Long list",
-    call: "Incoming",
-    Date: "24-11-23",
-    duration: "00:05:50",
-    outcome: "Follow up",
-  },
-  {
-    contact: "Raam A",
-    number: "3093578590",
-    campaign: "Long list",
-    call: "Incoming",
-    Date: "24-11-23",
-    duration: "00:05:50",
-    outcome: "Follow up",
-  },
-  {
-    contact: "Raam A",
-    number: "3093578590",
-    campaign: "Long list",
-    call: "Incoming",
-    Date: "24-11-23",
-    duration: "00:05:50",
-    outcome: "Follow up",
-  },
-  {
-    contact: "Raam A",
-    number: "3093578590",
-    campaign: "Long list",
-    call: "Incoming",
-    Date: "24-11-23",
-    duration: "00:05:50",
-    outcome: "Follow up",
-  },
-  {
-    contact: "Raam A",
-    number: "3093578590",
-    campaign: "Long list",
-    call: "Incoming",
-    Date: "24-11-23",
-    duration: "00:05:50",
-    outcome: "Follow up",
-  },
-  {
-    contact: "Raam A",
-    number: "3093578590",
-    campaign: "Long list",
-    call: "Incoming",
-    Date: "24-11-23",
-    duration: "00:05:50",
-    outcome: "Follow up",
-  },
-  {
-    contact: "Raam A",
-    number: "3093578590",
-    campaign: "Long list",
-    call: "Incoming",
-    Date: "24-11-23",
-    duration: "00:05:50",
-    outcome: "Follow up",
-  },
-  {
-    contact: "Raam A",
-    number: "3093578590",
-    campaign: "Long list",
-    call: "Incoming",
-    Date: "24-11-23",
-    duration: "00:05:50",
-    outcome: "Follow up",
-  },
-];
+  border-radius: 12px;
+  gap: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #c9d5d8;
+`;
 
+const PaginationContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  gap: 10px;
+`;
+const ActionContainer = styled.div`
+  border-radius: 8px;
+  border: 1px;
+  display: flex;
+  width: fit-content;
+  justify-content: center;
+  background-color: #0f2e35;
+  width: 30px;
+  padding: 5px 0;
+`;
+const ActionImage = styled.img`
+  width: 20px;
+`;
+const TableContainer = styled.div`
+  width: 100%;
+  overflow: scroll;
+`;
 const columnHelper = createColumnHelper<RecordingTableType>();
 
 const columns = [
   columnHelper.accessor("contact", {
-    cell: (info) => info.getValue(),
-    footer: (info) => info.column.id,
+    cell: (info) => info.getValue()
   }),
   columnHelper.accessor((row) => row.number, {
     id: "lastName",
     cell: (info) => <span>{info.getValue()}</span>,
-    header: () => <span>Number</span>,
-    footer: (info) => info.column.id,
+    header: () => <span>Number</span>
   }),
   columnHelper.accessor("campaign", {
     header: () => "Campaign",
-    cell: (info) => info.renderValue(),
-    footer: (info) => info.column.id,
+    cell: (info) => info.renderValue()
   }),
   columnHelper.accessor("call", {
-    header: () => <span>Call</span>,
-    footer: (info) => info.column.id,
+    header: () => <span>Call</span>
   }),
   columnHelper.accessor("Date", {
-    header: "Date",
-    footer: (info) => info.column.id,
+    header: "Date"
   }),
   columnHelper.accessor("duration", {
-    header: "Duration",
-    footer: (info) => info.column.id,
+    header: "Duration"
   }),
   columnHelper.accessor("outcome", {
-    header: "Outcome",
-    footer: (info) => info.column.id,
+    header: "Outcome"
+  }),
+
+  columnHelper.display({
+    id: "actions",
+    header: () => (
+      <Row className="gap-1  px-1">
+        <ActionContainer>
+          <ActionImage src="/resume_outline.svg" alt="" />
+        </ActionContainer>
+        <ActionContainer>
+          <ActionImage src="/date.svg" alt="" />
+        </ActionContainer>
+        <ActionContainer>
+          <ActionImage src="/contactIcon.svg" alt="" />
+        </ActionContainer>
+      </Row>
+    ),
+    cell: () => (
+      <Row className="gap-1  px-2">
+        <ActionContainer>
+          <ActionImage src="/resume_outline.svg" alt="" />
+        </ActionContainer>
+        <ActionContainer>
+          <ActionImage src="/date.svg" alt="" />
+        </ActionContainer>
+        <ActionContainer>
+          <ActionImage src="/contactIcon.svg" alt="" />
+        </ActionContainer>
+      </Row>
+    ),
   }),
 ];
-const Th = styled.th<{ $width?: number }>`
-  width: ${(props) => (props.$width ? `${props.$width}%` : "fit-content")};
-`;
-function CustomTable() {
-  const [data, setData] = useState(() => [...defaultData]);
 
+function CustomTable() {
+  // const [data, setData] = useState(() => [...defaultData]);
+  const [pagination, setPagination] = useState<PaginationState>({
+    pageIndex: 0,
+    pageSize: 10,
+  });
   const table = useReactTable({
-    data,
+    data:defaultData,
     columns,
+    onPaginationChange: setPagination,
+    getPaginationRowModel: getPaginationRowModel(),
+    rowCount: defaultData?.length,
+    state: {
+      pagination,
+    },
     getCoreRowModel: getCoreRowModel(),
   });
 
   return (
-    <div className="p-2">
+    <TableContainer className="p-2">
       <table>
         <thead>
           {table.getHeaderGroups().map((headerGroup) => (
@@ -185,7 +167,42 @@ function CustomTable() {
           ))}
         </tbody>
       </table>
-    </div>
+      <PaginationContainer>
+        <PaginationButton
+          onClick={() => table.previousPage()}
+          disabled={!table.getCanPreviousPage()}
+        >
+          <img src="/prev.svg" alt="" />
+          Previous
+        </PaginationButton>
+        <PaginationButton onClick={() => table.setPageIndex(1)}>
+          <p className="m-0 text-center">1</p>
+        </PaginationButton>
+        <PaginationButton onClick={() => table.setPageIndex(2)}>
+          2
+        </PaginationButton>
+        <PaginationButton onClick={() => table.setPageIndex(3)}>
+          3
+        </PaginationButton>
+        <PaginationButton>...</PaginationButton>
+        <PaginationButton onClick={() => table.setPageIndex(3)}>
+          8
+        </PaginationButton>
+        <PaginationButton onClick={() => table.setPageIndex(3)}>
+          9
+        </PaginationButton>
+        <PaginationButton onClick={() => table.setPageIndex(3)}>
+          10
+        </PaginationButton>
+        <PaginationButton
+          onClick={() => table.nextPage()}
+          disabled={!table.getCanNextPage()}
+        >
+          Next
+          <img src="/next.svg" alt="" />
+        </PaginationButton>
+      </PaginationContainer>
+    </TableContainer>
   );
 }
 

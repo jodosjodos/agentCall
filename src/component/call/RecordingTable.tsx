@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import CustomTable from "../CustomTable/Table";
-import { Col, Row } from "react-bootstrap";
+import { Row } from "react-bootstrap";
 import { DropdownButton } from "../DropDown";
 
 const RecordingTableContainer = styled.div`
@@ -77,26 +77,7 @@ const DateContainer = styled.div`
 const DateParagraph = styled.p`
   margin: 0px;
 `;
-const PaginationButton = styled.button`
-  padding: 8px;
-  background-color: #0a2328;
-  border: none;
-  min-width: 40px;
 
-  border-radius: 12px;
-  gap: 4px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #c9d5d8;
-`;
-
-const PaginationContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  gap: 10px;
-`;
 function RecordingTable() {
   return (
     <RecordingTableContainer className="">
@@ -117,25 +98,7 @@ function RecordingTable() {
         </Relative>
       </RecordingTableHeader>
       <CustomTable></CustomTable>
-      <PaginationContainer>
-        <PaginationButton>
-          <img src="/prev.svg" alt="" />
-          Previous
-        </PaginationButton>
-        <PaginationButton>
-          <p className="m-0 text-center">1</p>
-        </PaginationButton>
-        <PaginationButton>2</PaginationButton>
-        <PaginationButton>3</PaginationButton>
-        <PaginationButton>...</PaginationButton>
-        <PaginationButton>8</PaginationButton>
-        <PaginationButton>9</PaginationButton>
-        <PaginationButton>10</PaginationButton>
-        <PaginationButton>
-          Next
-          <img src="/next.svg" alt="" />
-        </PaginationButton>
-      </PaginationContainer>
+     
     </RecordingTableContainer>
   );
 }
