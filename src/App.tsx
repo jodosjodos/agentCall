@@ -12,33 +12,44 @@ import { AgentPage } from "./pages/AgentPage";
 import { CallPage } from "./pages/CallPage";
 import { ContactPage } from "./pages/ContactPage";
 import CampaignPage from "./pages/CampaignPage";
+import PromptEditor from "./component/agents/PromptEditor";
 
-const SideBarDiv = styled(Col)`
+const SideBarDiv = styled.div`
   background-color: #0b2227;
+`;
+const ParentCol = styled(Col)`
+  background-color: #051316;
+  padding-inline: 0px;
+  border-left: 2px solid #0f2e35;
+  overflow-x: hidden;
 `;
 function App() {
   return (
     <div>
       <Router>
         <Container fluid>
+          <div className="d-lg-none d-block">
+            <SideBar></SideBar>
+          </div>
           <Row>
             <SideBarDiv
-              sm={2}
-              className="col-auto col-sm-2  d-flex flex-column justify-content-between min-vh-100 gap"
+              // sm={2}
+              className="col-auto d-none d-lg-flex  flex-column justify-content-between min-vh-100 gap "
             >
               <SideBar />
             </SideBarDiv>
-            <Col>
+            <ParentCol>
               <Routes>
                 <Route path="/" element={<HomePage />} />
                 <Route path="/agent" element={<AgentPage />} />
+                <Route path="/agent/prompt_editor" element={<PromptEditor />} />
                 <Route path="/call" element={<CallPage />} />
                 <Route path="/contact" element={<ContactPage />} />
                 <Route path="/campaign" element={<CampaignPage />} />
                 <Route path="/company" element={<CompanyPage />} />
                 <Route path="/knowledge" element={<KnowledgePage />} />
               </Routes>
-            </Col>
+            </ParentCol>
           </Row>
         </Container>
       </Router>
