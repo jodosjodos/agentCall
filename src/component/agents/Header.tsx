@@ -1,5 +1,5 @@
 import React from "react";
-import {  Col, Row } from "react-bootstrap";
+import { Col, Row } from "react-bootstrap";
 import styled from "styled-components";
 
 const H1Styled = styled.h4`
@@ -32,9 +32,11 @@ const InputMod = styled.input`
   font-size: 17px;
   background-color: #0a2328;
   outline: none;
-  border-radius:8px;
-  color:#96ADB3;
-
+  border-radius: 8px;
+  color: #96adb3;
+  @media (max-width: 600px) {
+    width: 100%;
+  }
 `;
 export function Header() {
   return (

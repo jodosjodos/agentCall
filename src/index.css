@@ -81,6 +81,16 @@
 
 }
 
+@media screen and (max-width:992px) {
+  .centered_modal .modal-dialog {
+    width: 100% !important;
+
+
+
+  }
+
+}
+
 #flexible .modal-content {
   width: fit-content;
   max-width: 750px !important;
@@ -90,7 +100,7 @@
 
   text-align: center;
   flex-grow: 1;
-  
+
 
 }
 
