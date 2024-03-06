@@ -51,10 +51,10 @@ export function Header() {
         <PModified>September 12, 2024</PModified>
       </Col>
 
-      <Col lg={2} className="position-relative ">
-        <InputMod type="text" placeholder="search" />
-        <ImgMod src="/searchIcons.png" />
-      </Col>
+        <Col lg={2} className="position-relative ">
+          <InputMod type="text" placeholder="search" />
+          <ImgMod src="/searchIcons.png" />
+        </Col>
     </DivStyled>
   );
 }
