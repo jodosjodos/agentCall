@@ -5,6 +5,7 @@ import { Col, Row } from "react-bootstrap";
 import { DropdownButton } from "../DropDown";
 import { createColumnHelper } from "@tanstack/react-table";
 import { campaignTableTypeData } from "../../data/campaign";
+import MaterialDesignSwitch from "../switch";
 
 const CampaignTableContainer = styled.div`
   flex-grow: 1;
@@ -12,7 +13,7 @@ const CampaignTableContainer = styled.div`
   overflow: hidden;
 `;
 const CampaignTableHeader = styled(Row)`
-  flex-wrap: wrap;
+  flex-wrap: wrap;Date & Time
   display: flex;
   gap: 20px;
   align-items: center;
@@ -103,6 +104,11 @@ const ActionImage = styled.img`
 const columnHelper = createColumnHelper<CampaignTableType>();
 
 const columns = [
+  columnHelper.display({
+    id: "switch",
+    header: "Off/On",
+    cell: () => <MaterialDesignSwitch />,
+  }),
   columnHelper.accessor("campaign", {
     cell: (info) => info.getValue(),
   }),
@@ -199,12 +205,12 @@ const UnderLineSpan = styled.span`
 function CampaignTable() {
   return (
     <CampaignTableContainer className="">
-      <div className="d-flex items-center justify-content-between">
+      <div className="d-flex flex-lg-row flex-column items-center justify-content-between">
         <Col>
           <Title>Campaigns</Title>
           <Paragraph>Here are the calls currently running</Paragraph>
         </Col>
-        <LinkP className="text-end ">
+        <LinkP className="text-lg-end text-center py-2 mb-lg-0 mb-2">
           + <UnderLineSpan>Add a new campaign</UnderLineSpan>
         </LinkP>
       </div>
@@ -233,7 +239,7 @@ function CampaignTable() {
         <CustomTable
           data={campaignTableTypeData}
           columns={columns}
-          maxWidth={1400}
+          maxWidth={1430}
         ></CustomTable>
       </CustomTableContainer>
     </CampaignTableContainer>
