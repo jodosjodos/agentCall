@@ -9,8 +9,8 @@ import {
 import { useState } from "react";
 import "./table.css";
 import styled from "styled-components";
-
-import { defaultData } from "../../data/call";
+import { Row } from "react-bootstrap";
+import { defaultContactData } from "../../../data/contactCall";
 const Th = styled.th<{ $width?: number }>`
   width: ${(props) => (props.$width ? `${props.$width}%` : "fit-content")};
   min-width: 100px;
@@ -36,25 +36,101 @@ const PaginationContainer = styled.div`
   width: 100%;
   gap: 10px;
 `;
+const ActionContainer = styled.button`
+  border-radius: 8px;
+  border: 1px;
+  display: flex;
+  width: fit-content;
+  justify-content: center;
+  background-color: #0f2e35;
+  width: 30px;
+  padding: 5px 0;
+  &:active {
+    background-color: #17454f;
+  }
+  &:hover{
+    background-color: #17454f;
+  }
+`;
+const ActionImage = styled.img`
+  width: 20px;
+`;
 const TableContainer = styled.div`
   width: 100%;
   overflow: hidden;
   min-width: 800px;
 `;
+const columnHelper = createColumnHelper<RecordingTableType>();
 
+const columns = [
+  columnHelper.accessor("contact", {
+    cell: (info) => info.getValue(),
+  }),
+  columnHelper.accessor((row) => row.number, {
+    id: "lastName",
+    cell: (info) => <span>{info.getValue()}</span>,
+    header: () => <span>Number</span>,
+  }),
+  columnHelper.accessor("campaign", {
+    header: () => "Campaign",
+    cell: (info) => info.renderValue(),
+  }),
+  columnHelper.accessor("call", {
+    header: () => <span>Call</span>,
+  }),
+  columnHelper.accessor("Date", {
+    header: "Date",
+  }),
+  columnHelper.accessor("duration", {
+    header: "Duration",
+  }),
+  columnHelper.accessor("outcome", {
+    header: "Outcome",
+  }),
 
-function CustomTable({columns}:{columns:any}) {
-  
+  columnHelper.display({
+    id: "actions",
+    header: () => (
+      <Row className="gap-1  px-1">
+        <ActionContainer>
+          <ActionImage src="/resume_outline.svg" alt="" />
+        </ActionContainer>
+        <ActionContainer>
+          <ActionImage src="/date.svg" alt="" />
+        </ActionContainer>
+        <ActionContainer>
+          <ActionImage src="/contactIcon.svg" alt="" />
+        </ActionContainer>
+      </Row>
+    ),
+    cell: () => (
+      <Row className="gap-1  px-2">
+        <ActionContainer>
+          <ActionImage src="/resume_outline.svg" alt="" />
+        </ActionContainer>
+        <ActionContainer>
+          <ActionImage src="/date.svg" alt="" />
+        </ActionContainer>
+        <ActionContainer>
+          <ActionImage src="/contactIcon.svg" alt="" />
+        </ActionContainer>
+      </Row>
+    ),
+  }),
+];
+
+export function CustomContactTable() {
+  // const [data, setData] = useState(() => [...defaultContactData]);
   const [pagination, setPagination] = useState<PaginationState>({
     pageIndex: 0,
     pageSize: 10,
   });
   const table = useReactTable({
-    data: defaultData,
+    data: defaultContactData,
     columns,
     onPaginationChange: setPagination,
     getPaginationRowModel: getPaginationRowModel(),
-    rowCount: defaultData?.length,
+    rowCount: defaultContactData?.length,
     state: {
       pagination,
     },
@@ -62,7 +138,7 @@ function CustomTable({columns}:{columns:any}) {
   });
 
   return (
-    <TableContainer className="p-2  ">
+    <TableContainer className="p-2  d-flex flex-column gap-5">
       <table>
         <thead>
           {table.getHeaderGroups().map((headerGroup) => (
@@ -90,7 +166,7 @@ function CustomTable({columns}:{columns:any}) {
           {table.getRowModel().rows.map((row) => (
             <tr key={row.id}>
               {row.getVisibleCells().map((cell) => (
-                <td className="py-2" key={cell.id}>
+                <td className="py-2 " key={cell.id}>
                   {flexRender(cell.column.columnDef.cell, cell.getContext())}
                 </td>
               ))}
@@ -132,5 +208,3 @@ function CustomTable({columns}:{columns:any}) {
     </TableContainer>
   );
 }
-
-export default CustomTable

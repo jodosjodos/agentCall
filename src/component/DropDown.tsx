@@ -9,6 +9,7 @@ const DropMod = styled(Dropdown.Toggle)`
   color: #96adb3;
   height: 40px;
   font-size: 14px;
+  font-weight:bold;
   &:hover {
     background-color: #00b7df;
     color: black;
@@ -33,7 +34,7 @@ export function DropdownButton({ name }: { name: string }) {
   return (
     <DropDownContainer>
       <Dropdown className="">
-        <DropMod className="px-3" id="dropdown-basic">
+        <DropMod className="px-3 " id="dropdown-basic">
           {name}
         </DropMod>
 

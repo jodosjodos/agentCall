@@ -2,8 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { Row } from "react-bootstrap";
 import { DropdownButton } from "../DropDown";
-import { createColumnHelper } from "@tanstack/react-table";
-import CustomTable from "../CustomTable/Table";
+import { CustomContactTable } from "./CustomContactTable/ContactTable";
 
 const RecordingTableContainer = styled.div`
   flex-grow: 1;
@@ -86,83 +85,37 @@ const CustomTableContainer = styled.div`
   overflow: auto;
 `;
 
-const ActionContainer = styled.div`
-  border-radius: 8px;
-  border: 1px;
-  display: flex;
-  width: fit-content;
-  justify-content: center;
-  background-color: #0f2e35;
-  width: 30px;
-  padding: 5px 0;
+const LinkP = styled.div`
+  color: #C9D5D8;
+  background-color:#0A2328;
+  padding: 5px 8px ;
+  border-radius:18px;
+  &:hover {
+    cursor: pointer;
+  }
 `;
-const ActionImage = styled.img`
-  width: 20px;
+const UnderLineSpan = styled.span`
+  text-decoration: none;
+  font-weight: semi-bold;
 `;
-const columnHelper = createColumnHelper<RecordingTableType>();
-
-const columns = [
-  columnHelper.accessor("contact", {
-    cell: (info) => info.getValue(),
-  }),
-  columnHelper.accessor((row) => row.number, {
-    id: "lastName",
-    cell: (info) => <span>{info.getValue()}</span>,
-    header: () => <span>Number</span>,
-  }),
-  columnHelper.accessor("campaign", {
-    header: () => "Campaign",
-    cell: (info) => info.renderValue(),
-  }),
-  columnHelper.accessor("call", {
-    header: () => <span>Call</span>,
-  }),
-  columnHelper.accessor("Date", {
-    header: "Date",
-  }),
-  columnHelper.accessor("duration", {
-    header: "Duration",
-  }),
-  columnHelper.accessor("outcome", {
-    header: "Outcome",
-  }),
-
-  columnHelper.display({
-    id: "actions",
-    header: () => (
-      <Row className="gap-1  px-1">
-        <ActionContainer>
-          <ActionImage src="/resume_outline.svg" alt="" />
-        </ActionContainer>
-        <ActionContainer>
-          <ActionImage src="/date.svg" alt="" />
-        </ActionContainer>
-        <ActionContainer>
-          <ActionImage src="/contactIcon.svg" alt="" />
-        </ActionContainer>
-      </Row>
-    ),
-    cell: () => (
-      <Row className="gap-1  px-2">
-        <ActionContainer>
-          <ActionImage src="/resume_outline.svg" alt="" />
-        </ActionContainer>
-        <ActionContainer>
-          <ActionImage src="/date.svg" alt="" />
-        </ActionContainer>
-        <ActionContainer>
-          <ActionImage src="/contactIcon.svg" alt="" />
-        </ActionContainer>
-      </Row>
-    ),
-  }),
-];
-function RecordingTable() {
+export function ContactRecordTable() {
   return (
     <RecordingTableContainer className="">
-      <Title>Recordings</Title>
-      <Paragraph>Here are the calls currently running</Paragraph>
+      <div className="d-flex flex-row justify-content-between align-items-center">
+        <div>
+          <Title>Contacts</Title>
+          <Paragraph>Here are the current contacts</Paragraph>
+        </div>
+        <LinkP className="text-end ">
+          + <UnderLineSpan>Import new Contact</UnderLineSpan>
+        </LinkP>
+      </div>
+
       <RecordingTableHeader>
+        <Relative>
+          <InputMod type="text" placeholder="search" />
+          <ImgMod src="/searchIcons.png" />
+        </Relative>
         <DropdownButton name="Compaign"></DropdownButton>
         <DropdownButton name="Outcome"></DropdownButton>
         <DropdownButton name="Call duration"></DropdownButton>
@@ -177,16 +130,10 @@ function RecordingTable() {
             <img src="/date.svg" alt="" />
           </DateButton>
         </DateContainer>
-        <Relative>
-          <InputMod type="text" placeholder="search" />
-          <ImgMod src="/searchIcons.png" />
-        </Relative>
       </RecordingTableHeader>
       <CustomTableContainer className="table_container">
-        <CustomTable columns={columns}></CustomTable>
+        <CustomContactTable></CustomContactTable>
       </CustomTableContainer>
     </RecordingTableContainer>
   );
 }
-
-export default RecordingTable;
