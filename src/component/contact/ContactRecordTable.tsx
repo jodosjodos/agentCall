@@ -42,6 +42,9 @@ const ImgMod = styled.img`
 const Relative = styled.div`
   position: relative;
   width: fit-content;
+  @media (max-width: 600px) {
+    width: 100%;
+  }
 `;
 const Title = styled.div`
   font-size: 18px;
