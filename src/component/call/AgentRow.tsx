@@ -60,7 +60,7 @@ function AgentRow() {
       </div>
       <AgentCallSettingContainer className=" gap-5">
         {agentCallSetting.map((agent) => (
-          <AgentCallSetting agent={agent} />
+          <AgentCallSetting key={agent.id} agent={agent} />
         ))}
       </AgentCallSettingContainer>
     </AgentRowContainer>

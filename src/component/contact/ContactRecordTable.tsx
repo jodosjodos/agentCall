@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { Row } from "react-bootstrap";
 import { DropdownButton } from "../DropDown";
-import { CustomTable } from "../CustomTable/Table";
+import { CustomContactTable } from "./CustomContactTable/ContactTable";
 
 const RecordingTableContainer = styled.div`
   flex-grow: 1;
@@ -85,12 +85,37 @@ const CustomTableContainer = styled.div`
   overflow: auto;
 `;
 
-function RecordingTable() {
+const LinkP = styled.div`
+  color: #C9D5D8;
+  background-color:#0A2328;
+  padding: 5px 8px ;
+  border-radius:18px;
+  &:hover {
+    cursor: pointer;
+  }
+`;
+const UnderLineSpan = styled.span`
+  text-decoration: none;
+  font-weight: semi-bold;
+`;
+export function ContactRecordTable() {
   return (
     <RecordingTableContainer className="">
-      <Title>Recordings</Title>
-      <Paragraph>Here are the calls currently running</Paragraph>
+      <div className="d-flex flex-row justify-content-between align-items-center">
+        <div>
+          <Title>Contacts</Title>
+          <Paragraph>Here are the current contacts</Paragraph>
+        </div>
+        <LinkP className="text-end ">
+          + <UnderLineSpan>Import new Contact</UnderLineSpan>
+        </LinkP>
+      </div>
+
       <RecordingTableHeader>
+        <Relative>
+          <InputMod type="text" placeholder="search" />
+          <ImgMod src="/searchIcons.png" />
+        </Relative>
         <DropdownButton name="Compaign"></DropdownButton>
         <DropdownButton name="Outcome"></DropdownButton>
         <DropdownButton name="Call duration"></DropdownButton>
@@ -105,16 +130,10 @@ function RecordingTable() {
             <img src="/date.svg" alt="" />
           </DateButton>
         </DateContainer>
-        <Relative>
-          <InputMod type="text" placeholder="search" />
-          <ImgMod src="/searchIcons.png" />
-        </Relative>
       </RecordingTableHeader>
       <CustomTableContainer className="table_container">
-        <CustomTable></CustomTable>
+        <CustomContactTable></CustomContactTable>
       </CustomTableContainer>
     </RecordingTableContainer>
   );
 }
-
-export default RecordingTable;

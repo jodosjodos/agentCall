@@ -10,7 +10,7 @@ import { useState } from "react";
 import "./table.css";
 import styled from "styled-components";
 import { Row } from "react-bootstrap";
-import { defaultData } from "../../data/call";
+import { defaultContactData } from "../../../data/contactCall";
 const Th = styled.th<{ $width?: number }>`
   width: ${(props) => (props.$width ? `${props.$width}%` : "fit-content")};
   min-width: 100px;
@@ -119,18 +119,18 @@ const columns = [
   }),
 ];
 
-export function CustomTable() {
-  // const [data, setData] = useState(() => [...defaultData]);
+export function CustomContactTable() {
+  // const [data, setData] = useState(() => [...defaultContactData]);
   const [pagination, setPagination] = useState<PaginationState>({
     pageIndex: 0,
     pageSize: 10,
   });
   const table = useReactTable({
-    data: defaultData,
+    data: defaultContactData,
     columns,
     onPaginationChange: setPagination,
     getPaginationRowModel: getPaginationRowModel(),
-    rowCount: defaultData?.length,
+    rowCount: defaultContactData?.length,
     state: {
       pagination,
     },
@@ -138,7 +138,7 @@ export function CustomTable() {
   });
 
   return (
-    <TableContainer className="p-2  ">
+    <TableContainer className="p-2  d-flex flex-column gap-5">
       <table>
         <thead>
           {table.getHeaderGroups().map((headerGroup) => (
@@ -166,7 +166,7 @@ export function CustomTable() {
           {table.getRowModel().rows.map((row) => (
             <tr key={row.id}>
               {row.getVisibleCells().map((cell) => (
-                <td className="py-2" key={cell.id}>
+                <td className="py-2 " key={cell.id}>
                   {flexRender(cell.column.columnDef.cell, cell.getContext())}
                 </td>
               ))}
