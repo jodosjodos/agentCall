@@ -179,7 +179,7 @@ function CustomTable() {
           Previous
         </PaginationButton>
 
-        {Array.from({ length: table.getPageCount() - 1 }, (_, index) => (
+        {Array.from({ length: table.getPageCount() }, (_, index) => (
           <PaginationButton
             $active={
               table.getState().pagination.pageIndex != 0

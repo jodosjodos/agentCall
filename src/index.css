@@ -181,7 +181,10 @@
 
 }
 
-.custom_table_container::-webkit-scrollbar {}
+.custom_table_container::-webkit-scrollbar {
+  display: none;
+
+}
 
 
 
