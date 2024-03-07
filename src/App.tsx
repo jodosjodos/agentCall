@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { HomePage } from "./pages/HomePage";
 import { KnowledgePage } from "./pages/KnowledgePage";
-import { CompanyPage } from "./pages/CompanyPage";
+
 import { SideBar } from "./component/SideBar";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/js/dist/dropdown";
@@ -14,6 +14,7 @@ import { ContactPage } from "./pages/ContactPage";
 import CampaignPage from "./pages/CampaignPage";
 import PromptEditor from "./component/agents/PromptEditor";
 import { useEffect, useState } from "react";
+import CompanyPage from "./pages/CompanyPage";
 
 const SideBarDiv = styled.div`
   background-color: #0b2227;

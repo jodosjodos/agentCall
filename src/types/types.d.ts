@@ -60,3 +60,18 @@ interface CampaignTableType {
   amountspent: number;
   list: string;
 }
+interface CompanyTableType {
+  emailAddress: string;
+  companyName: string;
+  costOutcome: number;
+  outcome: string;
+  id?: string;
+  phoneNumber: string;
+  registeredTime: string;
+  dials: number;
+  pickups: number;
+  failed: number;
+  busy: number;
+  amountspent: number;
+  registeredTime: string;
+}

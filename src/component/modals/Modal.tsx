@@ -43,7 +43,7 @@ function CenteredModal(props: any) {
         <button onClick={props.onContinue} className="modal_button">
           <div className="d-flex align-items-center">
             {props.btnText}
-            <img src="/nextIcon.svg" alt="" />
+            {props.btnText != "save" && <img src="/nextIcon.svg" alt="" />}
           </div>
         </button>
       </div>

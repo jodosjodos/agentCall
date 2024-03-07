@@ -12,6 +12,9 @@ const StyledMenu = styled("img")`
   height: 40px;
   padding: 5px 0;
   cursor: pointer;
+  @media (min-width: 992px) {
+    display: none;
+  }
 `;
 const Li = styled.li<{ $isSidebarOpened?: boolean }>`
   display: flex;
@@ -21,6 +24,15 @@ const Li = styled.li<{ $isSidebarOpened?: boolean }>`
   @media (max-width: 992px) {
     justify-content: start;
   }
+`;
+const BackImage = styled.img<{ $isVisible?: boolean }>`
+position:absolute;
+display:${(props) => (props.$isVisible ? "block" : "none")}
+top:20px;
+right:-50px;
+width:20px;
+
+
 `;
 export function SideBar({
   activePage,
@@ -70,17 +82,20 @@ export function SideBar({
   ];
   useEffect(() => {}, [window.innerWidth]);
   return (
-    <div className="mt-2   ">
-      <ul className={`nav fixed   flex-column z-3`} id="parentM">
+    <div className="mt-2   position-relative">
+      {isSidebarOpened && (
+        <BackImage
+          src="/back.svg"
+          onClick={() => setIsSidebarOpen(false)}
+        ></BackImage>
+      )}
+      <ul
+        className={`nav fixed   flex-column z-3`}
+        id="parentM"
+        onMouseEnter={() => setIsSidebarOpen(true)}
+      >
         <Li $isSidebarOpened={window.innerWidth > 992 && isSidebarOpened}>
-          <StyledMenu
-            src="/menu.svg"
-            onClick={() =>
-              window.innerWidth > 993
-                ? setIsSidebarOpen(!isSidebarOpened)
-                : setActiveMobile(!activeMobile)
-            }
-          ></StyledMenu>
+          <StyledMenu src="/menu.svg"></StyledMenu>
         </Li>
         {headers.map((header) => (
           <li
