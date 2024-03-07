@@ -94,7 +94,7 @@ export function SideBar({
         id="parentM"
         onMouseEnter={() => setIsSidebarOpen(true)}
       >
-        <Li $isSidebarOpened={window.innerWidth > 992 && isSidebarOpened}>
+        <Li onClick={()=>setActiveMobile(true)}>
           <StyledMenu src="/menu.svg"></StyledMenu>
         </Li>
         {headers.map((header) => (
