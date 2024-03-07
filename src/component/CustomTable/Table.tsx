@@ -1,6 +1,5 @@
 import {
   PaginationState,
-
   flexRender,
   getCoreRowModel,
   getPaginationRowModel,

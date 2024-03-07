@@ -85,8 +85,7 @@ const CustomTableContainer = styled.div`
   height: calc(100vh - 340px);
   overflow: auto;
 `;
-
-const ActionContainer = styled.div`
+const ActionContainer = styled.button`
   border-radius: 8px;
   border: 1px;
   display: flex;
@@ -95,6 +94,12 @@ const ActionContainer = styled.div`
   background-color: #0f2e35;
   width: 30px;
   padding: 5px 0;
+  &:active {
+    background-color: #17454f;
+  }
+  &:hover{
+    background-color: #17454f;
+  }
 `;
 const ActionImage = styled.img`
   width: 20px;
