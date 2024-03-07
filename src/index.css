@@ -3,7 +3,8 @@
   color: #96ADB3;
 
 }
-.active-link{
+
+.active-link {
   background-color: #17454F;
 }
 
@@ -180,22 +181,15 @@
 
 }
 
-.custom_table_container::-webkit-scrollbar {
-  display: none;
-}
+.custom_table_container::-webkit-scrollbar {}
 
-.agent-row::-webkit-scrollbar-button {
-  display: none;
-}
 
-.agent-row::-webkit-scrollbar-thumb {
+
+.agent-row::-webkit-scrollbar-thumb,
+.custom_table_container::-webkit-scrollbar-thumb {
   background-color: #224D57;
   border-radius: 5px;
   height: 20px !important;
   background-clip: content-box;
 
-}
-
-::-webkit-scrollbar {
-  display: none;
 }

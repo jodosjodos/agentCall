@@ -133,7 +133,7 @@ function CustomTable() {
   });
 
   return (
-    <TableContainer className="p-2">
+    <TableContainer className="p-2 ">
       <table>
         <thead>
           {table.getHeaderGroups().map((headerGroup) => (
@@ -178,46 +178,19 @@ function CustomTable() {
           <img src="/prev.svg" alt="" />
           Previous
         </PaginationButton>
-        <PaginationButton
-          $active={
-            table.getState().pagination.pageIndex == 1 ||
-            table.getState().pagination.pageIndex == 0
-          }
-          onClick={() => table.setPageIndex(1)}
-        >
-          <p className="m-0 text-center">1</p>
-        </PaginationButton>
-        <PaginationButton
-          $active={table.getState().pagination.pageIndex == 2}
-          onClick={() => table.setPageIndex(2)}
-        >
-          2
-        </PaginationButton>
-        <PaginationButton
-          $active={table.getState().pagination.pageIndex == 3}
-          onClick={() => table.setPageIndex(3)}
-        >
-          3
-        </PaginationButton>
-        <PaginationButton>...</PaginationButton>
-        <PaginationButton
-          $active={table.getState().pagination.pageIndex == 8}
-          onClick={() => table.setPageIndex(3)}
-        >
-          8
-        </PaginationButton>
-        <PaginationButton
-          $active={table.getState().pagination.pageIndex == 9}
-          onClick={() => table.setPageIndex(3)}
-        >
-          9
-        </PaginationButton>
-        <PaginationButton
-          $active={table.getState().pagination.pageIndex + 1 == 10}
-          onClick={() => table.setPageIndex(3)}
-        >
-          10
-        </PaginationButton>
+
+        {Array.from({ length: table.getPageCount() - 1 }, (_, index) => (
+          <PaginationButton
+            $active={
+              table.getState().pagination.pageIndex != 0
+                ? table.getState().pagination.pageIndex == index
+                : index == 0
+            }
+            onClick={() => table.setPageIndex(index)}
+          >
+            <p className="m-0 text-center">{index + 1}</p>
+          </PaginationButton>
+        ))}
         <PaginationButton
           $active
           onClick={() => table.nextPage()}
