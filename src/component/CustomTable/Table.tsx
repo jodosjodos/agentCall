@@ -1,6 +1,5 @@
 import {
   PaginationState,
-
   flexRender,
   getCoreRowModel,
   getPaginationRowModel,
@@ -10,7 +9,6 @@ import { useState } from "react";
 import "./table.css";
 import styled from "styled-components";
 
-import { defaultData } from "../../data/call";
 const Th = styled.th<{ $width?: number }>`
   width: ${(props) => (props.$width ? `${props.$width}%` : "fit-content")};
   min-width: 100px;
@@ -36,25 +34,31 @@ const PaginationContainer = styled.div`
   width: 100%;
   gap: 10px;
 `;
-const TableContainer = styled.div`
+const TableContainer = styled.div<{ $maxwidth?: number }>`
   width: 100%;
   overflow: hidden;
-  min-width: 800px;
+  min-width: ${(props) => (props.$maxwidth ? `${props.$maxwidth}px` : "800px")};
 `;
 
-
-function CustomTable({columns}:{columns:any}) {
-  
+function CustomTable({
+  columns,
+  data,
+  maxWidth,
+}: {
+  columns: any;
+  data: any;
+  maxWidth?: number;
+}) {
   const [pagination, setPagination] = useState<PaginationState>({
     pageIndex: 0,
     pageSize: 10,
   });
   const table = useReactTable({
-    data: defaultData,
+    data: data,
     columns,
     onPaginationChange: setPagination,
     getPaginationRowModel: getPaginationRowModel(),
-    rowCount: defaultData?.length,
+    rowCount: data?.length,
     state: {
       pagination,
     },
@@ -62,7 +66,7 @@ function CustomTable({columns}:{columns:any}) {
   });
 
   return (
-    <TableContainer className="p-2  ">
+    <TableContainer $maxwidth={maxWidth} className="p-2  ">
       <table>
         <thead>
           {table.getHeaderGroups().map((headerGroup) => (
@@ -133,4 +137,4 @@ function CustomTable({columns}:{columns:any}) {
   );
 }
 
-export default CustomTable
+export default CustomTable;

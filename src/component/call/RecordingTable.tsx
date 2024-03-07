@@ -4,6 +4,7 @@ import { Row } from "react-bootstrap";
 import { DropdownButton } from "../DropDown";
 import { createColumnHelper } from "@tanstack/react-table";
 import CustomTable from "../CustomTable/Table";
+import { defaultData } from "../../data/call";
 
 const RecordingTableContainer = styled.div`
   flex-grow: 1;
@@ -183,7 +184,7 @@ function RecordingTable() {
         </Relative>
       </RecordingTableHeader>
       <CustomTableContainer className="table_container">
-        <CustomTable columns={columns}></CustomTable>
+        <CustomTable data={defaultData} columns={columns}></CustomTable>
       </CustomTableContainer>
     </RecordingTableContainer>
   );

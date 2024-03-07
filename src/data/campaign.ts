@@ -1,4 +1,4 @@
-export const campaignTableType: CampaignTableType[] = [
+export const campaignTableTypeData: CampaignTableType[] = [
   {
     campaign: "3093578590",
     type: "Inbound",

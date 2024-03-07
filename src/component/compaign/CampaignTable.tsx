@@ -1,9 +1,10 @@
 import React from "react";
 import styled from "styled-components";
 import CustomTable from "../CustomTable/Table";
-import { Row } from "react-bootstrap";
+import { Col, Row } from "react-bootstrap";
 import { DropdownButton } from "../DropDown";
 import { createColumnHelper } from "@tanstack/react-table";
+import { campaignTableTypeData } from "../../data/campaign";
 
 const CampaignTableContainer = styled.div`
   flex-grow: 1;
@@ -82,7 +83,7 @@ const DateParagraph = styled.p`
   margin: 0px;
 `;
 const CustomTableContainer = styled.div`
-  height: calc(100vh - 340px);
+  height: calc(100vh - 260px);
   overflow: auto;
 `;
 
@@ -116,27 +117,39 @@ const columns = [
   }),
   columnHelper.accessor("list", {
     header: () => <span>List</span>,
+    cell: (info) => info.renderValue(),
   }),
   columnHelper.accessor("agents", {
     header: "Agents",
+    cell: (info) => info.renderValue(),
   }),
   columnHelper.accessor("dials", {
     header: "Dials",
+    cell: (info) => info.renderValue(),
   }),
   columnHelper.accessor("pickups", {
     header: "Pickups",
+    cell: (info) => info.renderValue(),
   }),
   columnHelper.accessor("failed", {
     header: "Failed",
+    cell: (info) => info.renderValue(),
   }),
   columnHelper.accessor("busy", {
-    header: "Pickups",
+    header: "Busy",
+    cell: (info) => info.renderValue(),
   }),
   columnHelper.accessor("amountspent", {
-    header: "Pickups",
+    header: "Amount spent",
+    cell: (info) => info.renderValue(),
   }),
   columnHelper.accessor("outcome", {
     header: "Outcomes",
+    cell: (info) => info.renderValue(),
+  }),
+  columnHelper.accessor("costOutcome", {
+    header: "Cost / outcome",
+    cell: (info) => info.renderValue(),
   }),
 
   columnHelper.display({
@@ -144,36 +157,58 @@ const columns = [
     header: () => (
       <Row className="gap-1  px-1">
         <ActionContainer>
-          <ActionImage src="/resume_outline.svg" alt="" />
+          <ActionImage src="/table-paste.svg" alt="" />
         </ActionContainer>
         <ActionContainer>
-          <ActionImage src="/date.svg" alt="" />
+          <ActionImage src="/delete.svg" alt="" />
         </ActionContainer>
         <ActionContainer>
-          <ActionImage src="/contactIcon.svg" alt="" />
+          <ActionImage src="/table-menu.svg" alt="" />
         </ActionContainer>
       </Row>
     ),
     cell: () => (
       <Row className="gap-1  px-2">
         <ActionContainer>
-          <ActionImage src="/resume_outline.svg" alt="" />
+          <ActionImage src="/table-paste.svg" alt="" />
         </ActionContainer>
         <ActionContainer>
-          <ActionImage src="/date.svg" alt="" />
+          <ActionImage src="/delete.svg" alt="" />
         </ActionContainer>
         <ActionContainer>
-          <ActionImage src="/contactIcon.svg" alt="" />
+          <ActionImage src="/table-menu.svg" alt="" />
         </ActionContainer>
       </Row>
     ),
   }),
 ];
+const LinkP = styled.div`
+  color: #c9d5d8;
+  background-color: #0a2328;
+  height: fit-content;
+  padding: 5px 8px;
+  border-radius: 18px;
+  &:hover {
+    cursor: pointer;
+  }
+`;
+const UnderLineSpan = styled.span`
+  text-decoration: none;
+  font-weight: semi-bold;
+`;
 function CampaignTable() {
   return (
     <CampaignTableContainer className="">
-      <Title>Campaigns</Title>
-      <Paragraph>Here are the calls currently running</Paragraph>
+      <div className="d-flex items-center justify-content-between">
+        <Col>
+          <Title>Campaigns</Title>
+          <Paragraph>Here are the calls currently running</Paragraph>
+        </Col>
+        <LinkP className="text-end ">
+          + <UnderLineSpan>Add a new campaign</UnderLineSpan>
+        </LinkP>
+      </div>
+
       <CampaignTableHeader>
         <Relative>
           <InputMod type="text" placeholder="search" />
@@ -195,7 +230,11 @@ function CampaignTable() {
         </DateContainer>
       </CampaignTableHeader>
       <CustomTableContainer className="table_container">
-        <CustomTable columns={columns}></CustomTable>
+        <CustomTable
+          data={campaignTableTypeData}
+          columns={columns}
+          maxWidth={1400}
+        ></CustomTable>
       </CustomTableContainer>
     </CampaignTableContainer>
   );
