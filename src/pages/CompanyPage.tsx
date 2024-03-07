@@ -1,7 +1,6 @@
 import { Col, Row } from "react-bootstrap";
 import styled from "styled-components";
 
-import CampaignTable from "../component/compaign/CampaignTable";
 import CampanyTable from "../component/company/companyTable";
 
 const CompanyPageContainer = styled.div`
