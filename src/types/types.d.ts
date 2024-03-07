@@ -14,18 +14,17 @@ interface agentType {
 interface callPart {
   name: string;
 }
-interface agentCalls{
-  name: string,
-  minutesTalked: string,
-  receivedCalls: string,
-  missedCalls: string,
-  message:string
-  time: string,
-  client1: number,
-  client2: number,
-  id: number,
+interface agentCalls {
+  name: string;
+  minutesTalked: string;
+  receivedCalls: string;
+  missedCalls: string;
+  message: string;
+  time: string;
+  client1: number;
+  client2: number;
+  id: number;
 }
-
 
 interface Person {
   firstName: string;
@@ -45,4 +44,19 @@ interface RecordingTableType {
   duration: string;
   outcome: string;
   id?: string;
+}
+interface CampaignTableType {
+  type: string;
+  campaign: string;
+  costOutcome: number;
+  outcome: string;
+  id?: string;
+  budget: number;
+  agents: string;
+  dials: number;
+  pickups: number;
+  failed: number;
+  busy: number;
+  amountspent: number;
+  list: string;
 }

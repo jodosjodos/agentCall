@@ -9,7 +9,7 @@ import {
 import { useState } from "react";
 import "./table.css";
 import styled from "styled-components";
-import { Row } from "react-bootstrap";
+
 import { defaultData } from "../../data/call";
 const Th = styled.th<{ $width?: number }>`
   width: ${(props) => (props.$width ? `${props.$width}%` : "fit-content")};
@@ -36,91 +36,15 @@ const PaginationContainer = styled.div`
   width: 100%;
   gap: 10px;
 `;
-const ActionContainer = styled.button`
-  border-radius: 8px;
-  border: 1px;
-  display: flex;
-  width: fit-content;
-  justify-content: center;
-  background-color: #0f2e35;
-  width: 30px;
-  padding: 5px 0;
-  &:active {
-    background-color: #17454f;
-  }
-  &:hover{
-    background-color: #17454f;
-  }
-`;
-const ActionImage = styled.img`
-  width: 20px;
-`;
 const TableContainer = styled.div`
   width: 100%;
   overflow: hidden;
   min-width: 800px;
 `;
-const columnHelper = createColumnHelper<RecordingTableType>();
 
-const columns = [
-  columnHelper.accessor("contact", {
-    cell: (info) => info.getValue(),
-  }),
-  columnHelper.accessor((row) => row.number, {
-    id: "lastName",
-    cell: (info) => <span>{info.getValue()}</span>,
-    header: () => <span>Number</span>,
-  }),
-  columnHelper.accessor("campaign", {
-    header: () => "Campaign",
-    cell: (info) => info.renderValue(),
-  }),
-  columnHelper.accessor("call", {
-    header: () => <span>Call</span>,
-  }),
-  columnHelper.accessor("Date", {
-    header: "Date",
-  }),
-  columnHelper.accessor("duration", {
-    header: "Duration",
-  }),
-  columnHelper.accessor("outcome", {
-    header: "Outcome",
-  }),
 
-  columnHelper.display({
-    id: "actions",
-    header: () => (
-      <Row className="gap-1  px-1">
-        <ActionContainer>
-          <ActionImage src="/resume_outline.svg" alt="" />
-        </ActionContainer>
-        <ActionContainer>
-          <ActionImage src="/date.svg" alt="" />
-        </ActionContainer>
-        <ActionContainer>
-          <ActionImage src="/contactIcon.svg" alt="" />
-        </ActionContainer>
-      </Row>
-    ),
-    cell: () => (
-      <Row className="gap-1  px-2">
-        <ActionContainer>
-          <ActionImage src="/resume_outline.svg" alt="" />
-        </ActionContainer>
-        <ActionContainer>
-          <ActionImage src="/date.svg" alt="" />
-        </ActionContainer>
-        <ActionContainer>
-          <ActionImage src="/contactIcon.svg" alt="" />
-        </ActionContainer>
-      </Row>
-    ),
-  }),
-];
-
-export function CustomTable() {
-  // const [data, setData] = useState(() => [...defaultData]);
+function CustomTable({columns}:{columns:any}) {
+  
   const [pagination, setPagination] = useState<PaginationState>({
     pageIndex: 0,
     pageSize: 10,
@@ -208,3 +132,5 @@ export function CustomTable() {
     </TableContainer>
   );
 }
+
+export default CustomTable

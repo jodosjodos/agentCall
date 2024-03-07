@@ -1,16 +1,16 @@
 import React from "react";
 import styled from "styled-components";
+import CustomTable from "../CustomTable/Table";
 import { Row } from "react-bootstrap";
 import { DropdownButton } from "../DropDown";
 import { createColumnHelper } from "@tanstack/react-table";
-import CustomTable from "../CustomTable/Table";
 
-const RecordingTableContainer = styled.div`
+const CampaignTableContainer = styled.div`
   flex-grow: 1;
   padding: 24px 26px;
   overflow: hidden;
 `;
-const RecordingTableHeader = styled(Row)`
+const CampaignTableHeader = styled(Row)`
   flex-wrap: wrap;
   display: flex;
   gap: 20px;
@@ -99,32 +99,44 @@ const ActionContainer = styled.div`
 const ActionImage = styled.img`
   width: 20px;
 `;
-const columnHelper = createColumnHelper<RecordingTableType>();
+const columnHelper = createColumnHelper<CampaignTableType>();
 
 const columns = [
-  columnHelper.accessor("contact", {
+  columnHelper.accessor("campaign", {
     cell: (info) => info.getValue(),
   }),
-  columnHelper.accessor((row) => row.number, {
-    id: "lastName",
+  columnHelper.accessor((row) => row.type, {
+    id: "type",
     cell: (info) => <span>{info.getValue()}</span>,
-    header: () => <span>Number</span>,
+    header: () => <span>Type</span>,
   }),
-  columnHelper.accessor("campaign", {
-    header: () => "Campaign",
+  columnHelper.accessor("budget", {
+    header: () => "Budget",
     cell: (info) => info.renderValue(),
   }),
-  columnHelper.accessor("call", {
-    header: () => <span>Call</span>,
+  columnHelper.accessor("list", {
+    header: () => <span>List</span>,
   }),
-  columnHelper.accessor("Date", {
-    header: "Date",
+  columnHelper.accessor("agents", {
+    header: "Agents",
   }),
-  columnHelper.accessor("duration", {
-    header: "Duration",
+  columnHelper.accessor("dials", {
+    header: "Dials",
+  }),
+  columnHelper.accessor("pickups", {
+    header: "Pickups",
+  }),
+  columnHelper.accessor("failed", {
+    header: "Failed",
+  }),
+  columnHelper.accessor("busy", {
+    header: "Pickups",
+  }),
+  columnHelper.accessor("amountspent", {
+    header: "Pickups",
   }),
   columnHelper.accessor("outcome", {
-    header: "Outcome",
+    header: "Outcomes",
   }),
 
   columnHelper.display({
@@ -157,12 +169,16 @@ const columns = [
     ),
   }),
 ];
-function RecordingTable() {
+function CampaignTable() {
   return (
-    <RecordingTableContainer className="">
-      <Title>Recordings</Title>
+    <CampaignTableContainer className="">
+      <Title>Campaigns</Title>
       <Paragraph>Here are the calls currently running</Paragraph>
-      <RecordingTableHeader>
+      <CampaignTableHeader>
+        <Relative>
+          <InputMod type="text" placeholder="search" />
+          <ImgMod src="/searchIcons.png" />
+        </Relative>
         <DropdownButton name="Compaign"></DropdownButton>
         <DropdownButton name="Outcome"></DropdownButton>
         <DropdownButton name="Call duration"></DropdownButton>
@@ -177,16 +193,12 @@ function RecordingTable() {
             <img src="/date.svg" alt="" />
           </DateButton>
         </DateContainer>
-        <Relative>
-          <InputMod type="text" placeholder="search" />
-          <ImgMod src="/searchIcons.png" />
-        </Relative>
-      </RecordingTableHeader>
+      </CampaignTableHeader>
       <CustomTableContainer className="table_container">
         <CustomTable columns={columns}></CustomTable>
       </CustomTableContainer>
-    </RecordingTableContainer>
+    </CampaignTableContainer>
   );
 }
 
-export default RecordingTable;
+export default CampaignTable;
