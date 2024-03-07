@@ -3,6 +3,7 @@ import styled from "styled-components";
 import CustomTable from "../CustomTable/Table";
 import { Row } from "react-bootstrap";
 import { DropdownButton } from "../DropDown";
+import { createColumnHelper } from "@tanstack/react-table";
 
 const RecordingTableContainer = styled.div`
   flex-grow: 1;
@@ -85,6 +86,77 @@ const CustomTableContainer = styled.div`
   overflow: auto;
 `;
 
+const ActionContainer = styled.div`
+  border-radius: 8px;
+  border: 1px;
+  display: flex;
+  width: fit-content;
+  justify-content: center;
+  background-color: #0f2e35;
+  width: 30px;
+  padding: 5px 0;
+`;
+const ActionImage = styled.img`
+  width: 20px;
+`;
+const columnHelper = createColumnHelper<RecordingTableType>();
+
+const columns = [
+  columnHelper.accessor("contact", {
+    cell: (info) => info.getValue(),
+  }),
+  columnHelper.accessor((row) => row.number, {
+    id: "lastName",
+    cell: (info) => <span>{info.getValue()}</span>,
+    header: () => <span>Number</span>,
+  }),
+  columnHelper.accessor("campaign", {
+    header: () => "Campaign",
+    cell: (info) => info.renderValue(),
+  }),
+  columnHelper.accessor("call", {
+    header: () => <span>Call</span>,
+  }),
+  columnHelper.accessor("Date", {
+    header: "Date",
+  }),
+  columnHelper.accessor("duration", {
+    header: "Duration",
+  }),
+  columnHelper.accessor("outcome", {
+    header: "Outcome",
+  }),
+
+  columnHelper.display({
+    id: "actions",
+    header: () => (
+      <Row className="gap-1  px-1">
+        <ActionContainer>
+          <ActionImage src="/resume_outline.svg" alt="" />
+        </ActionContainer>
+        <ActionContainer>
+          <ActionImage src="/date.svg" alt="" />
+        </ActionContainer>
+        <ActionContainer>
+          <ActionImage src="/contactIcon.svg" alt="" />
+        </ActionContainer>
+      </Row>
+    ),
+    cell: () => (
+      <Row className="gap-1  px-2">
+        <ActionContainer>
+          <ActionImage src="/resume_outline.svg" alt="" />
+        </ActionContainer>
+        <ActionContainer>
+          <ActionImage src="/date.svg" alt="" />
+        </ActionContainer>
+        <ActionContainer>
+          <ActionImage src="/contactIcon.svg" alt="" />
+        </ActionContainer>
+      </Row>
+    ),
+  }),
+];
 function RecordingTable() {
   return (
     <RecordingTableContainer className="">
@@ -111,7 +183,7 @@ function RecordingTable() {
         </Relative>
       </RecordingTableHeader>
       <CustomTableContainer className="table_container">
-        <CustomTable></CustomTable>
+        <CustomTable columns={columns}></CustomTable>
       </CustomTableContainer>
     </RecordingTableContainer>
   );
