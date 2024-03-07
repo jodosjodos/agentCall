@@ -5,8 +5,9 @@ import RecordingTable from "../component/call/RecordingTable";
 
 const CallPageContainer = styled.div`
   display: flex;
+  overflow: hidden;
   justify-content: space-between;
-  @media (max-width: 600px) {
+  @media (max-width: 625px) {
     flex-direction: column;
   }
 `;
@@ -26,7 +27,10 @@ const PModified = styled.p`
   color: #384b4f;
   font-weight: bold;
 `;
-
+const CallPageTopCont = styled.div`
+  height: 100vh;
+  overflow: hidden;
+`;
 export function CallPage() {
   return (
     <Col>

@@ -3,6 +3,9 @@
   color: #96ADB3;
 
 }
+.active-link{
+  background-color: #17454F;
+}
 
 @media (max-width:600px) {
   #parentM {
@@ -163,6 +166,34 @@
 
 .w-full {
   width: 100% !important;
+}
+
+.agent-row {
+  overflow-x: hidden;
+}
+
+.agent-row::-webkit-scrollbar {
+  display: block;
+  background-color: transparent;
+  width: 6px;
+
+
+}
+
+.custom_table_container::-webkit-scrollbar {
+  display: none;
+}
+
+.agent-row::-webkit-scrollbar-button {
+  display: none;
+}
+
+.agent-row::-webkit-scrollbar-thumb {
+  background-color: #224D57;
+  border-radius: 5px;
+  height: 20px !important;
+  background-clip: content-box;
+
 }
 
 ::-webkit-scrollbar {

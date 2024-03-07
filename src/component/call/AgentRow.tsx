@@ -6,7 +6,7 @@ const AgentRowContainer = styled.div`
   padding: 24px 26px;
   background-color: #040f12;
   height: calc(100vh - 100px);
-  overflow: scroll;
+  overflow-y: scroll;
 
   min-width: 380px;
   width: fit-content;
@@ -49,7 +49,7 @@ const AgentCallSettingContainer = styled.div`
 `;
 function AgentRow() {
   return (
-    <AgentRowContainer className="d-flex flex-column gap-5 ">
+    <AgentRowContainer className="d-flex agent-row flex-column gap-5 ">
       <div className="position-relative  w-100">
         <InputMod
           type="text"

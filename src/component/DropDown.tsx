@@ -27,6 +27,7 @@ const DropItem = styled(Dropdown.Item)`
 `;
 const DropDownContainer = styled.div`
   width: 235px;
+  flex-grow: 1;
 `;
 export function DropdownButton({ name }: { name: string }) {
   return (

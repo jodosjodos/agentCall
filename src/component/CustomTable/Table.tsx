@@ -16,11 +16,12 @@ const Th = styled.th<{ $width?: number }>`
   width: ${(props) => (props.$width ? `${props.$width}%` : "fit-content")};
   min-width: 100px;
 `;
-const PaginationButton = styled.button`
+const PaginationButton = styled.button<{ $active?: boolean }>`
   padding: 8px;
-  background-color: #0a2328;
+  background-color: ${(props) => (props.$active ? "#0a2328" : "transparent")};
   border: none;
-  min-width: 40px;
+  width: 40px;
+  min-width: fit-content;
 
   border-radius: 12px;
   gap: 4px;
@@ -51,34 +52,35 @@ const ActionImage = styled.img`
 `;
 const TableContainer = styled.div`
   width: 100%;
-  overflow: scroll;
+  overflow: auto;
+  min-width: 800px;
 `;
 const columnHelper = createColumnHelper<RecordingTableType>();
 
 const columns = [
   columnHelper.accessor("contact", {
-    cell: (info) => info.getValue()
+    cell: (info) => info.getValue(),
   }),
   columnHelper.accessor((row) => row.number, {
     id: "lastName",
     cell: (info) => <span>{info.getValue()}</span>,
-    header: () => <span>Number</span>
+    header: () => <span>Number</span>,
   }),
   columnHelper.accessor("campaign", {
     header: () => "Campaign",
-    cell: (info) => info.renderValue()
+    cell: (info) => info.renderValue(),
   }),
   columnHelper.accessor("call", {
-    header: () => <span>Call</span>
+    header: () => <span>Call</span>,
   }),
   columnHelper.accessor("Date", {
-    header: "Date"
+    header: "Date",
   }),
   columnHelper.accessor("duration", {
-    header: "Duration"
+    header: "Duration",
   }),
   columnHelper.accessor("outcome", {
-    header: "Outcome"
+    header: "Outcome",
   }),
 
   columnHelper.display({
@@ -119,7 +121,7 @@ function CustomTable() {
     pageSize: 10,
   });
   const table = useReactTable({
-    data:defaultData,
+    data: defaultData,
     columns,
     onPaginationChange: setPagination,
     getPaginationRowModel: getPaginationRowModel(),
@@ -169,32 +171,52 @@ function CustomTable() {
       </table>
       <PaginationContainer>
         <PaginationButton
+          $active
           onClick={() => table.previousPage()}
           disabled={!table.getCanPreviousPage()}
         >
           <img src="/prev.svg" alt="" />
           Previous
         </PaginationButton>
-        <PaginationButton onClick={() => table.setPageIndex(1)}>
+        <PaginationButton
+          $active={table.getState().pagination.pageIndex == 1}
+          onClick={() => table.setPageIndex(1)}
+        >
           <p className="m-0 text-center">1</p>
         </PaginationButton>
-        <PaginationButton onClick={() => table.setPageIndex(2)}>
+        <PaginationButton
+          $active={table.getState().pagination.pageIndex == 2}
+          onClick={() => table.setPageIndex(2)}
+        >
           2
         </PaginationButton>
-        <PaginationButton onClick={() => table.setPageIndex(3)}>
+        <PaginationButton
+          $active={table.getState().pagination.pageIndex == 3}
+          onClick={() => table.setPageIndex(3)}
+        >
           3
         </PaginationButton>
         <PaginationButton>...</PaginationButton>
-        <PaginationButton onClick={() => table.setPageIndex(3)}>
+        <PaginationButton
+          $active={table.getState().pagination.pageIndex == 8}
+          onClick={() => table.setPageIndex(3)}
+        >
           8
         </PaginationButton>
-        <PaginationButton onClick={() => table.setPageIndex(3)}>
+        <PaginationButton
+          $active={table.getState().pagination.pageIndex == 9}
+          onClick={() => table.setPageIndex(3)}
+        >
           9
         </PaginationButton>
-        <PaginationButton onClick={() => table.setPageIndex(3)}>
+        <PaginationButton
+          $active={table.getState().pagination.pageIndex + 1 == 10}
+          onClick={() => table.setPageIndex(3)}
+        >
           10
         </PaginationButton>
         <PaginationButton
+          $active
           onClick={() => table.nextPage()}
           disabled={!table.getCanNextPage()}
         >

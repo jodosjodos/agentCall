@@ -13,6 +13,7 @@ import { CallPage } from "./pages/CallPage";
 import { ContactPage } from "./pages/ContactPage";
 import CampaignPage from "./pages/CampaignPage";
 import PromptEditor from "./component/agents/PromptEditor";
+import { useEffect, useState } from "react";
 
 const SideBarDiv = styled.div`
   background-color: #0b2227;
@@ -24,19 +25,29 @@ const ParentCol = styled(Col)`
   overflow-x: hidden;
 `;
 function App() {
+  const findActiveLink = () => {
+    return window.location.pathname;
+  };
+  const [activePage, setActivePage] = useState("/");
+  useEffect(() => {
+    setActivePage(findActiveLink());
+  }, [window.location]);
   return (
     <div>
       <Router>
         <Container fluid>
-          <div className="d-lg-none d-block">
-            <SideBar></SideBar>
+          <div className="d-lg-none p-0 m-0 d-block">
+            <SideBar
+              activePage={activePage}
+              setActivePage={setActivePage}
+            ></SideBar>
           </div>
           <Row>
             <SideBarDiv
               // sm={2}
               className="col-auto d-none d-lg-flex  flex-column justify-content-between min-vh-100 gap "
             >
-              <SideBar />
+              <SideBar activePage={activePage} setActivePage={setActivePage} />
             </SideBarDiv>
             <ParentCol>
               <Routes>
