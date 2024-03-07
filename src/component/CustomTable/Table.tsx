@@ -179,7 +179,10 @@ function CustomTable() {
           Previous
         </PaginationButton>
         <PaginationButton
-          $active={table.getState().pagination.pageIndex == 1}
+          $active={
+            table.getState().pagination.pageIndex == 1 ||
+            table.getState().pagination.pageIndex == 0
+          }
           onClick={() => table.setPageIndex(1)}
         >
           <p className="m-0 text-center">1</p>
