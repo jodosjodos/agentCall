@@ -5,7 +5,11 @@ import RecordingTable from "../component/call/RecordingTable";
 
 const CallPageContainer = styled.div`
   display: flex;
+  overflow: hidden;
   justify-content: space-between;
+  @media (max-width: 625px) {
+    flex-direction: column;
+  }
 `;
 const H1Styled = styled.h4`
   color: #96adb3;

@@ -44,4 +44,5 @@ interface RecordingTableType {
   Date: string;
   duration: string;
   outcome: string;
+  id?: string;
 }

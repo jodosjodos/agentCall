@@ -26,6 +26,10 @@ const GridContainer = styled.div<{ $selected?: boolean }>`
     grid-template-columns: ${(props) =>
       props.$selected ? "repeat(2, 1fr)" : "repeat(3, 1fr)"};
   }
+  @media (min-width:1992px){
+    grid-template-columns: ${(props) =>
+      props.$selected ? "repeat(3, 1fr)" : "repeat(4, 1fr)"};
+  }
   editProfilelate-columns: repeat(4, 1fr);
   }
 `;
@@ -67,7 +71,6 @@ const AgentProfileLeft = styled.div`
   min-width: 395px;
   background-color: #0b2227;
   height: calc(100vh - 129px);
-
 `;
 const Scroll = styled.div`
   height: 100%;

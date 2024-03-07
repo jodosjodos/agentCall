@@ -22,9 +22,52 @@ const Li = styled.li<{ $isSidebarOpened?: boolean }>`
     justify-content: start;
   }
 `;
-export function SideBar() {
+export function SideBar({
+  activePage,
+  setActivePage,
+}: {
+  activePage: string;
+  setActivePage: any;
+}) {
   const [isSidebarOpened, setIsSidebarOpen] = useState(false);
   const [activeMobile, setActiveMobile] = useState(false);
+  const headers = [
+    {
+      name: "Home",
+      icon: "/HomeIcon.png",
+      to: "/",
+    },
+    {
+      name: "Agent",
+      icon: "/agentIcon.png",
+      to: "/agent",
+    },
+    {
+      name: "Calls",
+      icon: "/callIcon.png",
+      to: "/call",
+    },
+    {
+      name: "Contacts",
+      icon: "/contactIcon.png",
+      to: "/contact",
+    },
+    {
+      name: "Campaign",
+      icon: "/campaignIcon.png",
+      to: "/campaign",
+    },
+    {
+      name: "Companies",
+      icon: "/companyIcon.png",
+      to: "/company",
+    },
+    {
+      name: "Knowledge",
+      icon: "/knowledgeIcon.png",
+      to: "/knowledge",
+    },
+  ];
   useEffect(() => {}, [window.innerWidth]);
   return (
     <div className="mt-2   ">
@@ -39,101 +82,26 @@ export function SideBar() {
             }
           ></StyledMenu>
         </Li>
-        <li className={`nav-item ${activeMobile ? "mobile_active" : ""}  my-1`}>
-          <StyledLink
-            to="/"
-            className={`nav-link ${activeMobile ? "mobile_active" : ""}`}
-            id="link"
-            aria-current="page"
+        {headers.map((header) => (
+          <li
+            className={`nav-item ${activeMobile ? "mobile_active" : ""}  my-1`}
           >
-            <img src="/HomeIcon.png" alt="" />
-            {(isSidebarOpened || activeMobile) && (
-              <span className="ms-2  d-lg-inline-block ">Home</span>
-            )}
-          </StyledLink>
-        </li>
-        <li className={`nav-item ${activeMobile ? "mobile_active" : ""}  my-1`}>
-          <StyledLink
-            to="/agent"
-            className={`nav-link ${activeMobile ? "mobile_active" : ""}`}
-            id="link"
-            aria-current="page"
-          >
-            <img src="/agentIcon.png" alt="" />
-            {(isSidebarOpened || activeMobile) && (
-              <span className="ms-2  d-lg-inline-block ">Agent</span>
-            )}
-          </StyledLink>
-        </li>
-
-        <li className={`nav-item ${activeMobile ? "mobile_active" : ""}  my-1`}>
-          <StyledLink
-            to="/call"
-            className={`nav-link ${
-              activeMobile && window.innerWidth <= 993 ? "mobile_active" : ""
-            }`}
-            id="link"
-            aria-current="page"
-          >
-            <img src="/callIcon.png" alt="" />
-            {(isSidebarOpened || activeMobile) && (
-              <span className="ms-2  d-lg-inline-block ">Calls</span>
-            )}
-          </StyledLink>
-        </li>
-        <li className={`nav-item ${activeMobile ? "mobile_active" : ""}  my-1`}>
-          <StyledLink
-            to="/contact"
-            className={`nav-link ${activeMobile ? "mobile_active" : ""}`}
-            id="link"
-            aria-current="page"
-          >
-            <img src="/contactIcon.png" alt="" />
-            {(isSidebarOpened || activeMobile) && (
-              <span className="ms-2  d-lg-inline-block ">Contacts</span>
-            )}
-          </StyledLink>
-        </li>
-        <li className={`nav-item ${activeMobile ? "mobile_active" : ""}  my-1`}>
-          <StyledLink
-            to="/campaign"
-            className={`nav-link ${activeMobile ? "mobile_active" : ""}`}
-            id="link"
-            aria-current="page"
-          >
-            <img src="/campaignIcon.png" alt="" />
-            {(isSidebarOpened || activeMobile) && (
-              <span className="ms-2  d-lg-inline-block ">Compaigns</span>
-            )}
-          </StyledLink>
-        </li>
-        <li className={`nav-item ${activeMobile ? "mobile_active" : ""}  my-1`}>
-          <StyledLink
-            to="/company"
-            className={`nav-link ${activeMobile ? "mobile_active" : ""}`}
-            id="link"
-            aria-current="page"
-          >
-            <img src="/companyIcon.png" alt="" />
-
-            {(isSidebarOpened || activeMobile) && (
-              <span className="ms-2  d-lg-inline-block ">Companies</span>
-            )}
-          </StyledLink>
-        </li>
-        <li className={`nav-item ${activeMobile ? "mobile_active" : ""}  my-1`}>
-          <StyledLink
-            to="/knowledge"
-            className={`nav-link ${activeMobile ? "mobile_active" : ""}`}
-            id="link"
-            aria-current="page"
-          >
-            <img src="/knowledgeIcon.png" alt="" />
-            {(isSidebarOpened || activeMobile) && (
-              <span className="ms-2  d-lg-inline-block ">Knowledge</span>
-            )}
-          </StyledLink>
-        </li>
+            <StyledLink
+              to={header.to}
+              onClick={() => setActivePage(header.to)}
+              className={`nav-link ${activeMobile ? "mobile_active" : ""}  ${
+                activePage == header.to ? "active-link" : ""
+              }`}
+              id="link"
+              aria-current="page"
+            >
+              <img src={header.icon} alt="" />
+              {(isSidebarOpened || activeMobile) && (
+                <span className="ms-2  d-lg-inline-block ">{header.name}</span>
+              )}
+            </StyledLink>
+          </li>
+        ))}
       </ul>
     </div>
   );

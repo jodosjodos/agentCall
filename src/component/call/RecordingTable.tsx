@@ -1,16 +1,18 @@
 import React from "react";
 import styled from "styled-components";
 import CustomTable from "../CustomTable/Table";
-import { Col, Row } from "react-bootstrap";
+import { Row } from "react-bootstrap";
 import { DropdownButton } from "../DropDown";
 
 const RecordingTableContainer = styled.div`
   flex-grow: 1;
   padding: 24px 26px;
+  overflow: hidden;
 `;
 const RecordingTableHeader = styled(Row)`
   flex-wrap: wrap;
   display: flex;
+  gap: 20px;
   align-items: center;
   flex-direction: row;
   padding-bottom: 10px;
@@ -56,7 +58,7 @@ const Paragraph = styled.div`
 `;
 const DateButton = styled.div`
   width: 134.5px;
-
+  flex-grow: 1;
   padding: 4px;
   border-radius: 8px;
   border: 1px;
@@ -65,7 +67,7 @@ const DateButton = styled.div`
   font-size: 14px;
   display: flex;
   color: #c9d5d8;
-  gap: 4px;
+  gap: 10px;
 `;
 const DateContainer = styled.div`
   display: flex;
@@ -73,30 +75,16 @@ const DateContainer = styled.div`
   gap: 15px;
   padding: 5px 13px;
   width: fit-content;
+  flex-wrap: wrap;
 `;
 const DateParagraph = styled.p`
   margin: 0px;
 `;
-const PaginationButton = styled.button`
-  padding: 8px;
-  background-color: #0a2328;
-  border: none;
-  min-width: 40px;
-
-  border-radius: 12px;
-  gap: 4px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #c9d5d8;
+const CustomTableContainer = styled.div`
+  height: calc(100vh - 340px);
+  overflow: auto;
 `;
 
-const PaginationContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  gap: 10px;
-`;
 function RecordingTable() {
   return (
     <RecordingTableContainer className="">
@@ -107,35 +95,24 @@ function RecordingTable() {
         <DropdownButton name="Outcome"></DropdownButton>
         <DropdownButton name="Call duration"></DropdownButton>
         <DateContainer>
-          <DateButton>Date & Time</DateButton>
+          <DateButton>
+            Date & Time
+            <img src="/date.svg" alt="" />
+          </DateButton>
           <DateParagraph className="">To</DateParagraph>
-          <DateButton>Date & Time</DateButton>
+          <DateButton>
+            Date & Time
+            <img src="/date.svg" alt="" />
+          </DateButton>
         </DateContainer>
         <Relative>
           <InputMod type="text" placeholder="search" />
           <ImgMod src="/searchIcons.png" />
         </Relative>
       </RecordingTableHeader>
-      <CustomTable></CustomTable>
-      <PaginationContainer>
-        <PaginationButton>
-          <img src="/prev.svg" alt="" />
-          Previous
-        </PaginationButton>
-        <PaginationButton>
-          <p className="m-0 text-center">1</p>
-        </PaginationButton>
-        <PaginationButton>2</PaginationButton>
-        <PaginationButton>3</PaginationButton>
-        <PaginationButton>...</PaginationButton>
-        <PaginationButton>8</PaginationButton>
-        <PaginationButton>9</PaginationButton>
-        <PaginationButton>10</PaginationButton>
-        <PaginationButton>
-          Next
-          <img src="/next.svg" alt="" />
-        </PaginationButton>
-      </PaginationContainer>
+      <CustomTableContainer className="table_container">
+        <CustomTable></CustomTable>
+      </CustomTableContainer>
     </RecordingTableContainer>
   );
 }

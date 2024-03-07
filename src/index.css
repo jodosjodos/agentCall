@@ -4,6 +4,10 @@
 
 }
 
+.active-link {
+  background-color: #17454F;
+}
+
 @media (max-width:600px) {
   #parentM {
     width: 100%;
@@ -165,6 +169,43 @@
   width: 100% !important;
 }
 
-::-webkit-scrollbar {
-  display: none;
+.agent-row {
+  overflow-x: hidden;
+}
+
+.agent-row::-webkit-scrollbar {
+  display: block;
+  background-color: transparent;
+  width: 6px;
+
+
+}
+
+.table_container {
+  overflow: auto;
+}
+
+.table_container::-webkit-scrollbar {
+  display: block;
+  width: 6px;
+
+}
+
+
+
+.agent-row::-webkit-scrollbar-thumb,
+.table_container::-webkit-scrollbar-thumb {
+  background-color: #224D57;
+  border-radius: 5px;
+  height: 20px !important;
+  background-clip: content-box;
+
+}
+
+.table_container::-webkit-scrollbar-thumb {
+  background-color: #224D57;
+  border-radius: 5px;
+  height: 20px !important;
+  background-clip: content-box;
+
 }
