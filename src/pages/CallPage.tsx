@@ -28,7 +28,7 @@ const PModified = styled.p`
   font-weight: bold;
 `;
 
-export function CallPage() {
+export function CallPage({isSidebarOpened}:{isSidebarOpened:boolean}) {
   return (
     <Col>
       <DivStyled className="px-5 py-1">
@@ -36,7 +36,7 @@ export function CallPage() {
         <PModified>September 12, 2024</PModified>
       </DivStyled>
       <CallPageContainer>
-        <AgentRow></AgentRow>
+        {isSidebarOpened && <AgentRow></AgentRow>}
         <RecordingTable></RecordingTable>
       </CallPageContainer>
     </Col>

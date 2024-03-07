@@ -33,14 +33,16 @@ function App() {
   useEffect(() => {
     setActivePage(findActiveLink());
   }, [window.location]);
+  const [isSidebarOpened, setIsSidebarOpen] = useState(false);
+  const [activeMobile, setActiveMobile] = useState(false);
   return (
     <div>
       <Router>
         <Container fluid>
           <div className="d-lg-none p-0 m-0 d-block">
             <SideBar
-              activePage={activePage}
-              setActivePage={setActivePage}
+              activeMobile={activeMobile} setIsSidebarOpen={setIsSidebarOpen} setActiveMobile={setActiveMobile} isSidebarOpened={isSidebarOpened}  activePage={activePage} setActivePage={setActivePage}
+              
             ></SideBar>
           </div>
           <Row>
@@ -48,14 +50,14 @@ function App() {
               // sm={2}
               className="col-auto d-none d-lg-flex  flex-column justify-content-between min-vh-100 gap "
             >
-              <SideBar activePage={activePage} setActivePage={setActivePage} />
+              <SideBar activeMobile={activeMobile} setIsSidebarOpen={setIsSidebarOpen} setActiveMobile={setActiveMobile} isSidebarOpened={isSidebarOpened}  activePage={activePage} setActivePage={setActivePage} />
             </SideBarDiv>
             <ParentCol>
               <Routes>
                 <Route path="/" element={<HomePage />} />
                 <Route path="/agent" element={<AgentPage />} />
                 <Route path="/agent/prompt_editor" element={<PromptEditor />} />
-                <Route path="/call" element={<CallPage />} />
+                <Route path="/call" element={<CallPage isSidebarOpened={isSidebarOpened}  />} />
                 <Route path="/contact" element={<ContactPage />} />
                 <Route path="/campaign" element={<CampaignPage />} />
                 <Route path="/company" element={<CompanyPage />} />

@@ -36,13 +36,20 @@ width:20px;
 `;
 export function SideBar({
   activePage,
+  isSidebarOpened,
+  activeMobile,
+  setActiveMobile,
+  setIsSidebarOpen,
   setActivePage,
 }: {
   activePage: string;
-  setActivePage: any;
+    setActivePage: any;
+    activeMobile:boolean;
+    setActiveMobile:any;
+    setIsSidebarOpen: any;
+    isSidebarOpened: boolean;
 }) {
-  const [isSidebarOpened, setIsSidebarOpen] = useState(false);
-  const [activeMobile, setActiveMobile] = useState(false);
+ 
   const headers = [
     {
       name: "Home",
