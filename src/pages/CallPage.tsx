@@ -27,10 +27,7 @@ const PModified = styled.p`
   color: #384b4f;
   font-weight: bold;
 `;
-const CallPageTopCont = styled.div`
-  height: 100vh;
-  overflow: hidden;
-`;
+
 export function CallPage() {
   return (
     <Col>
