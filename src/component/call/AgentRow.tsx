@@ -5,7 +5,6 @@ import { AgentCallSetting } from "./AgentCallSetting";
 const AgentRowContainer = styled.div`
   padding: 24px 26px;
   background-color: #040f12;
-  height:calc(100vh - 100px);
   overflow: scroll;
   @media (max-width: 600px) {
     width: 100%;
