@@ -52,7 +52,7 @@ const ActionImage = styled.img`
 `;
 const TableContainer = styled.div`
   width: 100%;
-  overflow: auto;
+  overflow: hidden;
   min-width: 800px;
 `;
 const columnHelper = createColumnHelper<RecordingTableType>();
@@ -133,7 +133,7 @@ function CustomTable() {
   });
 
   return (
-    <TableContainer className="p-2 ">
+    <TableContainer className="p-2  ">
       <table>
         <thead>
           {table.getHeaderGroups().map((headerGroup) => (

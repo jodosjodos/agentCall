@@ -110,7 +110,7 @@ function RecordingTable() {
           <ImgMod src="/searchIcons.png" />
         </Relative>
       </RecordingTableHeader>
-      <CustomTableContainer className="custom_table_container">
+      <CustomTableContainer className="table_container">
         <CustomTable></CustomTable>
       </CustomTableContainer>
     </RecordingTableContainer>

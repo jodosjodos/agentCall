@@ -181,15 +181,27 @@
 
 }
 
-.custom_table_container::-webkit-scrollbar {
-  display: none;
+.table_container {
+  overflow: auto;
+}
+
+.table_container::-webkit-scrollbar {
+  display: block;
 
 }
 
 
 
 .agent-row::-webkit-scrollbar-thumb,
-.custom_table_container::-webkit-scrollbar-thumb {
+.table_container::-webkit-scrollbar-thumb {
+  background-color: #224D57;
+  border-radius: 5px;
+  height: 20px !important;
+  background-clip: content-box;
+
+}
+
+.table_container::-webkit-scrollbar-thumb {
   background-color: #224D57;
   border-radius: 5px;
   height: 20px !important;
