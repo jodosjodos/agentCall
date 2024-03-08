@@ -1,6 +1,6 @@
 import { createColumnHelper } from "@tanstack/react-table";
 import React, { useState } from "react";
-import { Col, FormCheck, Row } from "react-bootstrap";
+import {  FormCheck, Row } from "react-bootstrap";
 import styled from "styled-components";
 
 import CustomButton from "./CustomButton";

@@ -1,6 +1,6 @@
 import { createColumnHelper } from "@tanstack/react-table";
 import React, { useState } from "react";
-import { Col, FormCheck, Row } from "react-bootstrap";
+import { FormCheck, Row } from "react-bootstrap";
 import styled from "styled-components";
 
 import CustomButton from "./CustomButton";
@@ -168,7 +168,7 @@ function ImportStep2({ setActiveTopBar }: { setActiveTopBar?: any }) {
       lastName: "Leads phone number",
     },
   ];
-  const [showEditTable, setShowEditTable] = useState(false);
+ 
   return (
     <ImportStep2Container>
       <ImportStep2SubContainer>
@@ -192,7 +192,7 @@ function ImportStep2({ setActiveTopBar }: { setActiveTopBar?: any }) {
       </TableContainer>
 
       <UploadContainer className="p-2">
-        <InputManuallyButton onClick={() => setShowEditTable(true)}>
+        <InputManuallyButton onClick={() => {}}>
           Input contacts manually
         </InputManuallyButton>
         <p className="primary-text">Or</p>
