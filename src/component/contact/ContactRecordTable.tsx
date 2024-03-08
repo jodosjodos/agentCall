@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import {  Row } from "react-bootstrap";
+import { Row } from "react-bootstrap";
 import { DropdownButton } from "../DropDown";
 import { CustomContactTable } from "./CustomContactTable/ContactTable";
 import CenteredModal from "../modals/Modal";
 import Search from "../Search";
+import { useNavigate } from "react-router-dom";
 
 const RecordingTableContainer = styled.div`
   flex-grow: 1;
@@ -122,6 +123,7 @@ const CheckBox = styled.input`
 `;
 export function ContactRecordTable() {
   const [showImportLead, setShowImportLead] = useState(false);
+  const navigate=useNavigate()
   return (
     <>
       <RecordingTableContainer className="">
@@ -166,7 +168,8 @@ export function ContactRecordTable() {
         onHide={() => setShowImportLead(false)}
         onContinue={() => {
           setShowImportLead(false);
-          setTimeout(() => {}, 2000);
+          setTimeout(() => { }, 2000);
+          navigate("/import")
         }}
         children={
           <ModalContainer>

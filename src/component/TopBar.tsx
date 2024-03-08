@@ -1,8 +1,10 @@
 import React, { useState } from "react";
-// import { Row } from "react-bootstrap";
 import styled from "styled-components";
 import ImportStep1 from "./import/ImportStep1";
-// import ImportStep2 from "./import/ImportStep2";
+import ImportStep2 from "./import/ImportStep2";
+import ImportStep3 from "./import/ImportStep3";
+import Search from "./Search";
+import CenteredModal from "./modals/Modal";
 const TopBarContainer = styled.div`
   display: flex;
   justify-content: center;
@@ -53,7 +55,25 @@ function TopBar() {
     "Match column",
     "Import data",
   ];
+  const ModalContainer = styled.div`
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    flex-grow: 1;
+    width: 100%;
+    gap: 3px;
+  `;
+  const CustomRow = styled.div`
+    display: flex;
+    align-items: start;
+    gap: 10px;
+    padding-top: 20px;
+  `;
+  const CheckBox = styled.input`
+    width: 40px;
+  `;
   const [activeTopBar, setActiveTopBar] = useState(1);
+  const [showImportLead, setShowImportLead] = useState(false);
   return (
     <>
       <TopBarContainer>
@@ -79,9 +99,36 @@ function TopBar() {
       {activeTopBar == 1 && (
         <ImportStep1 setActiveTopBar={setActiveTopBar}></ImportStep1>
       )}
-      {/* {activeTopBar == 2 && (
+      {activeTopBar == 2 && (
         <ImportStep2 setActiveTopBar={setActiveTopBar}></ImportStep2>
-      )} */}
+      )}
+      {activeTopBar == 3 && (
+        <ImportStep3 setActiveTopBar={setActiveTopBar}></ImportStep3>
+      )}
+      <CenteredModal
+        show={showImportLead}
+        btnText="Done"
+        onHide={() => setShowImportLead(false)}
+        onContinue={() => {
+          setShowImportLead(false);
+          setTimeout(() => {}, 2000);
+        }}
+        children={
+          <ModalContainer>
+            <Search></Search>
+            <CustomRow>
+              <CheckBox type="checkbox" />
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem
+                aliquam quam nesciunt quisquam iusto vel, dolorum quaerat error
+                facere itaque fugiat quae, ex voluptates nisi ipsa, omnis eius
+                veniam ab.
+              </p>
+            </CustomRow>
+          </ModalContainer>
+        }
+        title="Select a list to import leads into"
+      ></CenteredModal>
     </>
   );
 }

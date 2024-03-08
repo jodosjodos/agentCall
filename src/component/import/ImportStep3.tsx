@@ -22,7 +22,7 @@ const DownloadButton = styled.button`
   border-radius: 16px;
   gap: 2px;
 `;
-const ImportStep2Container = styled(Row)`
+const ImportStep3Container = styled(Row)`
   padding: 48px;
   width: 100%;
   flex-grow: 1;
@@ -36,7 +36,7 @@ const ButtonContainer = styled.div`
   gap: 20px;
   display: flex;
 `;
-const ImportStep2SubContainer = styled(Row)`
+const ImportStep3SubContainer = styled(Row)`
   width: 100%;
   flex-grow: 1;
   display: flex;
@@ -86,7 +86,7 @@ const InputManuallyButton = styled.button`
   background-color: rgba(5, 19, 22, 1);
   border: 1px solid rgba(0, 183, 223, 1);
 `;
-function ImportStep2({ setActiveTopBar }: { setActiveTopBar?: any }) {
+function ImportStep3({ setActiveTopBar }: { setActiveTopBar?: any }) {
 
 
   const columnHelper = createColumnHelper<contactEditType>();
@@ -149,8 +149,8 @@ function ImportStep2({ setActiveTopBar }: { setActiveTopBar?: any }) {
   ];
   const [showEditTable, setShowEditTable] = useState(false);
   return (
-    <ImportStep2Container>
-      <ImportStep2SubContainer>
+    <ImportStep3Container>
+      <ImportStep3SubContainer>
         <Col></Col>
         <ButtonContainer className="d-flex mb-2 ">
           <DownloadButton>
@@ -162,7 +162,7 @@ function ImportStep2({ setActiveTopBar }: { setActiveTopBar?: any }) {
             <p className="primary-text mb-0">Encoding format</p>
           </DownloadButton>
         </ButtonContainer>
-      </ImportStep2SubContainer>
+      </ImportStep3SubContainer>
       {showEditTable && (
         <CustomTable
           columns={columns}
@@ -193,8 +193,8 @@ function ImportStep2({ setActiveTopBar }: { setActiveTopBar?: any }) {
           ></CustomButton>
         </div>
       </UploadContainer>
-    </ImportStep2Container>
+    </ImportStep3Container>
   );
 }
 
-export default ImportStep2;
+export default ImportStep3;
