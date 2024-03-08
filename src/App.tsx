@@ -56,12 +56,12 @@ function App() {
             <ParentCol>
               <Routes>
                 <Route path="/" element={<HomePage />} />
-                <Route path="/agent" element={<AgentPage />} />
+                <Route path="/agnavigateent" element={<AgentPage />} />
                 <Route path="/agent/prompt_editor" element={<PromptEditor />} />
                 <Route path="/call" element={<CallPage isSidebarOpened={isSidebarOpened}  />} />
                 <Route path="/contact" element={<ContactPage />} />
                 <Route path="/campaign" element={<CampaignPage />} />
-                <Route path="/import"  element={<ImportContact></ImportContact>}/>
+                <Route path="/contact"  element={<ImportContact></ImportContact>}/>
                 <Route path="/company" element={<CompanyPage />} />
                 <Route path="/knowledge" element={<KnowledgePage />} />
               </Routes>

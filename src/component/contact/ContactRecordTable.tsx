@@ -169,7 +169,7 @@ export function ContactRecordTable() {
         onContinue={() => {
           setShowImportLead(false);
           setTimeout(() => { }, 2000);
-          navigate("/import")
+          // navigate("/import")
         }}
         children={
           <ModalContainer>
