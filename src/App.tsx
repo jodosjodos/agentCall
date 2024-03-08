@@ -26,6 +26,13 @@ const ParentCol = styled(Col)`
   border-left: 2px solid #0f2e35;
   overflow-x: hidden;
 `;
+const AppContainer = styled.div`
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+`;
 function App() {
   const findActiveLink = () => {
     return window.location.pathname;
@@ -37,13 +44,17 @@ function App() {
   const [isSidebarOpened, setIsSidebarOpen] = useState(false);
   const [activeMobile, setActiveMobile] = useState(false);
   return (
-    <div>
+    <AppContainer>
       <Router>
         <Container fluid>
           <div className="d-lg-none p-0 m-0 d-block">
             <SideBar
-              activeMobile={activeMobile} setIsSidebarOpen={setIsSidebarOpen} setActiveMobile={setActiveMobile} isSidebarOpened={isSidebarOpened}  activePage={activePage} setActivePage={setActivePage}
-              
+              activeMobile={activeMobile}
+              setIsSidebarOpen={setIsSidebarOpen}
+              setActiveMobile={setActiveMobile}
+              isSidebarOpened={isSidebarOpened}
+              activePage={activePage}
+              setActivePage={setActivePage}
             ></SideBar>
           </div>
           <Row>
@@ -51,17 +62,30 @@ function App() {
               // sm={2}
               className="col-auto d-none d-lg-flex  flex-column justify-content-between min-vh-100 gap "
             >
-              <SideBar activeMobile={activeMobile} setIsSidebarOpen={setIsSidebarOpen} setActiveMobile={setActiveMobile} isSidebarOpened={isSidebarOpened}  activePage={activePage} setActivePage={setActivePage} />
+              <SideBar
+                activeMobile={activeMobile}
+                setIsSidebarOpen={setIsSidebarOpen}
+                setActiveMobile={setActiveMobile}
+                isSidebarOpened={isSidebarOpened}
+                activePage={activePage}
+                setActivePage={setActivePage}
+              />
             </SideBarDiv>
             <ParentCol>
               <Routes>
                 <Route path="/" element={<HomePage />} />
                 <Route path="/agent" element={<AgentPage />} />
                 <Route path="/agent/prompt_editor" element={<PromptEditor />} />
-                <Route path="/call" element={<CallPage isSidebarOpened={isSidebarOpened}  />} />
+                <Route
+                  path="/call"
+                  element={<CallPage isSidebarOpened={isSidebarOpened} />}
+                />
                 <Route path="/contact" element={<ContactPage />} />
                 <Route path="/campaign" element={<CampaignPage />} />
-                <Route path="/import"  element={<ImportContact></ImportContact>}/>
+                <Route
+                  path="/import"
+                  element={<ImportContact></ImportContact>}
+                />
                 <Route path="/company" element={<CompanyPage />} />
                 <Route path="/knowledge" element={<KnowledgePage />} />
               </Routes>
@@ -69,7 +93,7 @@ function App() {
           </Row>
         </Container>
       </Router>
-    </div>
+    </AppContainer>
   );
 }
 

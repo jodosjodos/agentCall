@@ -31,6 +31,10 @@ display:${(props) => (props.$isVisible ? "block" : "none")}
 top:20px;
 right:-50px;
 width:20px;
+@media (max-width: 992px){
+  display:none !important;
+}
+
 
 
 `;
@@ -43,13 +47,12 @@ export function SideBar({
   setActivePage,
 }: {
   activePage: string;
-    setActivePage: any;
-    activeMobile:boolean;
-    setActiveMobile:any;
-    setIsSidebarOpen: any;
-    isSidebarOpened: boolean;
+  setActivePage: any;
+  activeMobile: boolean;
+  setActiveMobile: any;
+  setIsSidebarOpen: any;
+  isSidebarOpened: boolean;
 }) {
- 
   const headers = [
     {
       name: "Home",
@@ -94,6 +97,7 @@ export function SideBar({
         <BackImage
           src="/back.svg"
           onClick={() => setIsSidebarOpen(false)}
+          $isVisible={isSidebarOpened}
         ></BackImage>
       )}
       <ul
@@ -101,7 +105,7 @@ export function SideBar({
         id="parentM"
         onMouseEnter={() => setIsSidebarOpen(true)}
       >
-        <Li onClick={()=>setActiveMobile(!activeMobile)}>
+        <Li onClick={() => setActiveMobile(!activeMobile)}>
           <StyledMenu src="/menu.svg"></StyledMenu>
         </Li>
         {headers.map((header) => (

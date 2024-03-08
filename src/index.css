@@ -194,9 +194,12 @@
 }
 
 .primary-text {
-  color:rgba(57, 75, 79, 1);
+  color: rgba(57, 75, 79, 1);
 }
 
+.titles {
+  min-width: 280px;
+}
 
 
 .agent-row::-webkit-scrollbar-thumb,

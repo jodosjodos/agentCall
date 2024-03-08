@@ -21,28 +21,45 @@ const DownloadButton = styled.button`
   padding: 8px;
   border-radius: 16px;
   gap: 2px;
+  @media (max-width: 600px) {
+    width: 100%;
+  }
 `;
 const ImportStep2Container = styled(Row)`
-  padding: 48px;
+  padding: 48px 40px;
+  margin: 0;
   width: 100%;
   flex-grow: 1;
   display: flex;
   flex-direction: column;
-
+  align-items: center;
   justify-content: space-between;
 `;
+const ImportStep2SubContainer = styled(Row)`
+  margin: 0px;
+  width: 100%;
+  padding: 0px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: end;
+  @media (max-width: 600px) {
+    justify-content: center;
+  }
+`;
+
 const ButtonContainer = styled.div`
   width: fit-content;
   gap: 20px;
+  margin: 0px;
+  padding: 0px;
   display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  @media (max-width: 600px) {
+    width: 100%;
+  }
 `;
-const ImportStep2SubContainer = styled(Row)`
-  width: 100%;
-  flex-grow: 1;
-  display: flex;
 
-  justify-content: space-between;
-`;
 const DownloadImage = styled.img`
   width: 30px;
 `;
@@ -71,6 +88,12 @@ const CustomRow = styled.div`
 
   display: flex;
   justify-content: end;
+`;
+const TableContainer = styled.div`
+  width: 100%;
+  overflow: auto;
+  padding: 0;
+  margin: 0px;
 `;
 const Input = styled.input`
   background-color: transparent;
@@ -149,7 +172,6 @@ function ImportStep2({ setActiveTopBar }: { setActiveTopBar?: any }) {
   return (
     <ImportStep2Container>
       <ImportStep2SubContainer>
-        <Col></Col>
         <ButtonContainer className="d-flex mb-2 ">
           <DownloadButton>
             <DownloadImage src="/download.svg" alt="Download" />
@@ -162,11 +184,13 @@ function ImportStep2({ setActiveTopBar }: { setActiveTopBar?: any }) {
         </ButtonContainer>
       </ImportStep2SubContainer>
       {showEditTable && (
-        <CustomTable
-          columns={columns}
-          data={sampleData}
-          hidePagination={true}
-        ></CustomTable>
+        <TableContainer>
+          <CustomTable
+            columns={columns}
+            data={sampleData}
+            hidePagination={true}
+          ></CustomTable>
+        </TableContainer>
       )}
       <UploadContainer className="p-2">
         <InputManuallyButton onClick={() => setShowEditTable(true)}>
@@ -174,14 +198,14 @@ function ImportStep2({ setActiveTopBar }: { setActiveTopBar?: any }) {
         </InputManuallyButton>
         <p className="primary-text">Or</p>
         <DragAndDrop color="rgba(5, 19, 22, 1)"></DragAndDrop>
-        <div className="justify-content-end mt-2 gap-3 d-flex">
-          <div className="d-flex gap-2 align-items-center">
+        <div className="justify-content-end mt-2 gap-3 flex-wrap d-flex">
+          <div className="d-flex  gap-2 align-items-center">
             <FormCheck></FormCheck>
             {/* <input type="checkbox"></input> */}
             <p className=" mb-0 primary-text">First row is a header</p>
           </div>
           <CustomButton
-            onclick={() => setActiveTopBar(2.5)}
+            onclick={() => setActiveTopBar(2.3)}
             child={
               <div className="d-flex gap-2">
                 Next step

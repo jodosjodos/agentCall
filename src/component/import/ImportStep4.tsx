@@ -7,6 +7,7 @@ import CenteredModal from "../modals/Modal";
 import CustomButton from "./CustomButton";
 import DragAndDrop from "../DragAndDrop";
 import CustomTable from "../CustomTable/Table";
+import { useNavigate } from "react-router-dom";
 
 const UploadContainer = styled.div`
   background-color: rgba(10, 35, 40, 1);
@@ -15,23 +16,33 @@ const UploadContainer = styled.div`
 
 const ImportStep4Container = styled(Row)`
   padding: 48px;
+  margin: 0px;
   width: 100%;
   flex-grow: 1;
   display: flex;
   flex-direction: column;
 
   justify-content: space-between;
+  @media (max-width: 600px) {
+    padding: 20px;
+  }
 `;
 const ButtonContainer = styled.div`
   width: fit-content;
+
   gap: 20px;
   display: flex;
+  flex-wrap: wrap;
+  @ media(max-width:600px){
+    width:100%;
+  }
 `;
 const ImportStep4SubContainer = styled(Row)`
   width: 100%;
   flex-grow: 1;
   display: flex;
-
+  margin: 0;
+  padding: 0;
   justify-content: space-between;
 `;
 
@@ -83,8 +94,14 @@ const CheckedContainer = styled.div`
   display: flex;
   height: 36px;
   align-items: center;
+  @media (max-width: 600px) {
+    width: 100%;
+    height: fit-content;
+    align-items: center;
+  }
 `;
 function ImportStep4() {
+  const navigate = useNavigate();
   const columnHelper = createColumnHelper<contactEditType>();
 
   const columns = [
@@ -202,6 +219,7 @@ function ImportStep4() {
         onContinue={() => {
           setShowModal(false);
           setTimeout(() => {}, 2000);
+          navigate("/contact");
         }}
         children={
           <div>
