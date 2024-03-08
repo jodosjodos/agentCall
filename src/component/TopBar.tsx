@@ -5,6 +5,7 @@ import ImportStep2 from "./import/ImportStep2";
 import ImportStep3 from "./import/ImportStep3";
 import Search from "./Search";
 import CenteredModal from "./modals/Modal";
+import ImportStep4 from "./import/ImportStep4";
 const TopBarContainer = styled.div`
   display: flex;
   justify-content: center;
@@ -79,7 +80,11 @@ function TopBar() {
       <TopBarContainer>
         {steps.map((item, index) => (
           <div className=" ">
-            <StepContainer onClick={() => setActiveTopBar(index + 1)}>
+            <StepContainer
+              onClick={() =>
+                activeTopBar==2.5?setActiveTopBar(3):setActiveTopBar(index + 1)
+              }
+            >
               <Column>
                 <Circle $isActive={activeTopBar == index + 1}>
                   {activeTopBar == index + 1 ? (
@@ -102,9 +107,13 @@ function TopBar() {
       {activeTopBar == 2 && (
         <ImportStep2 setActiveTopBar={setActiveTopBar}></ImportStep2>
       )}
-      {activeTopBar == 3 && (
+      {activeTopBar == 2.5 && (
         <ImportStep3 setActiveTopBar={setActiveTopBar}></ImportStep3>
       )}
+      {activeTopBar == 3 && (
+        <ImportStep4 setActiveTopBar={setActiveTopBar}></ImportStep4>
+      )}
+
       <CenteredModal
         show={showImportLead}
         btnText="Done"

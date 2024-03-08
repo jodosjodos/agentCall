@@ -2,6 +2,7 @@ import { createColumnHelper } from "@tanstack/react-table";
 import React, { useState } from "react";
 import { Col, FormCheck, Row } from "react-bootstrap";
 import styled from "styled-components";
+import CenteredModal from "../modals/Modal";
 
 import CustomButton from "./CustomButton";
 import DragAndDrop from "../DragAndDrop";
@@ -87,8 +88,6 @@ const InputManuallyButton = styled.button`
   border: 1px solid rgba(0, 183, 223, 1);
 `;
 function ImportStep3({ setActiveTopBar }: { setActiveTopBar?: any }) {
-
-
   const columnHelper = createColumnHelper<contactEditType>();
 
   const columns = [
@@ -147,53 +146,55 @@ function ImportStep3({ setActiveTopBar }: { setActiveTopBar?: any }) {
       lastName: "Leads phone number",
     },
   ];
-  const [showEditTable, setShowEditTable] = useState(false);
+
   return (
-    <ImportStep3Container>
-      <ImportStep3SubContainer>
-        <Col></Col>
-        <ButtonContainer className="d-flex mb-2 ">
-          <DownloadButton>
-            <DownloadImage src="/download.svg" alt="Download" />
-            <p className="primary-text mb-0">Download email</p>
-          </DownloadButton>
-          <DownloadButton>
-            <DownloadImage src="/down.svg" alt="Download" />
-            <p className="primary-text mb-0">Encoding format</p>
-          </DownloadButton>
-        </ButtonContainer>
-      </ImportStep3SubContainer>
-      {showEditTable && (
-        <CustomTable
-          columns={columns}
-          data={sampleData}
-          hidePagination={true}
-        ></CustomTable>
-      )}
-      <UploadContainer className="p-2">
-        <InputManuallyButton onClick={() => setShowEditTable(true)}>
-          Input contacts manually
-        </InputManuallyButton>
-        <p className="primary-text">Or</p>
-        <DragAndDrop color="rgba(5, 19, 22, 1)"></DragAndDrop>
-        <div className="justify-content-end mt-2 gap-3 d-flex">
-          <div className="d-flex gap-2 align-items-center">
-            <FormCheck></FormCheck>
-            {/* <input type="checkbox"></input> */}
-            <p className=" mb-0 primary-text">First row is a header</p>
+    <>
+      <ImportStep3Container>
+        <ImportStep3SubContainer>
+          <Col></Col>
+          <ButtonContainer className="d-flex mb-2 ">
+            <DownloadButton>
+              <DownloadImage src="/download.svg" alt="Download" />
+              <p className="primary-text mb-0">Download email</p>
+            </DownloadButton>
+            <DownloadButton>
+              <DownloadImage src="/down.svg" alt="Download" />
+              <p className="primary-text mb-0">ASCII</p>
+            </DownloadButton>
+          </ButtonContainer>
+        </ImportStep3SubContainer>
+        {
+          <CustomTable
+            columns={columns}
+            data={sampleData}
+            hidePagination={true}
+          ></CustomTable>
+        }
+        <UploadContainer className="p-2">
+          <InputManuallyButton onClick={() => {}}>
+            Input contacts manually
+          </InputManuallyButton>
+          <p className="primary-text">Or</p>
+          <DragAndDrop color="rgba(5, 19, 22, 1)"></DragAndDrop>
+          <div className="justify-content-end mt-2 gap-3 d-flex">
+            <div className="d-flex gap-2 align-items-center">
+              <FormCheck></FormCheck>
+              {/* <input type="checkbox"></input> */}
+              <p className=" mb-0 primary-text">First row is a header</p>
+            </div>
+            <CustomButton
+              onclick={() => setActiveTopBar(3)}
+              child={
+                <div className="d-flex gap-2">
+                  Next step
+                  <img src="/nextIcon.svg" alt="" />
+                </div>
+              }
+            ></CustomButton>
           </div>
-          <CustomButton
-            onclick={() => setActiveTopBar(3)}
-            child={
-              <div className="d-flex gap-2">
-                Next step
-                <img src="/nextIcon.svg" alt="" />
-              </div>
-            }
-          ></CustomButton>
-        </div>
-      </UploadContainer>
-    </ImportStep3Container>
+        </UploadContainer>
+      </ImportStep3Container>
+    </>
   );
 }
 

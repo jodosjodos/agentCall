@@ -2,6 +2,7 @@ import { createColumnHelper } from "@tanstack/react-table";
 import React, { useState } from "react";
 import { Col, FormCheck, Row } from "react-bootstrap";
 import styled from "styled-components";
+import CenteredModal from "../modals/Modal";
 
 import CustomButton from "./CustomButton";
 import DragAndDrop from "../DragAndDrop";
@@ -11,18 +12,8 @@ const UploadContainer = styled.div`
   background-color: rgba(10, 35, 40, 1);
   border-radius: 10px;
 `;
-const DownloadButton = styled.button`
-  width: fit-content;
-  height: fit-content;
-  display: flex;
-  background-color: rgba(10, 35, 40, 1);
-  border: none;
-  align-items: center;
-  padding: 8px;
-  border-radius: 16px;
-  gap: 2px;
-`;
-const ImportStep2Container = styled(Row)`
+
+const ImportStep4Container = styled(Row)`
   padding: 48px;
   width: 100%;
   flex-grow: 1;
@@ -36,16 +27,14 @@ const ButtonContainer = styled.div`
   gap: 20px;
   display: flex;
 `;
-const ImportStep2SubContainer = styled(Row)`
+const ImportStep4SubContainer = styled(Row)`
   width: 100%;
   flex-grow: 1;
   display: flex;
 
   justify-content: space-between;
 `;
-const DownloadImage = styled.img`
-  width: 30px;
-`;
+
 const ActionContainer = styled.button`
   border-radius: 8px;
 
@@ -86,7 +75,16 @@ const InputManuallyButton = styled.button`
   background-color: rgba(5, 19, 22, 1);
   border: 1px solid rgba(0, 183, 223, 1);
 `;
-function ImportStep2({ setActiveTopBar }: { setActiveTopBar?: any }) {
+const CheckedContainer = styled.div`
+  background-color: rgba(38, 246, 96, 0.15);
+  padding: 4px 10px;
+  border-radius: 10px;
+  color: rgba(16, 122, 71, 1);
+  display: flex;
+  height: 36px;
+  align-items: center;
+`;
+function ImportStep4() {
   const columnHelper = createColumnHelper<contactEditType>();
 
   const columns = [
@@ -145,54 +143,75 @@ function ImportStep2({ setActiveTopBar }: { setActiveTopBar?: any }) {
       lastName: "Leads phone number",
     },
   ];
-  const [showEditTable, setShowEditTable] = useState(false);
+  const [showModal, setShowModal] = useState(false);
   return (
-    <ImportStep2Container>
-      <ImportStep2SubContainer>
-        <Col></Col>
-        <ButtonContainer className="d-flex mb-2 ">
-          <DownloadButton>
-            <DownloadImage src="/download.svg" alt="Download" />
-            <p className="primary-text mb-0">Download email</p>
-          </DownloadButton>
-          <DownloadButton>
-            <DownloadImage src="/down.svg" alt="Download" />
-            <p className="primary-text mb-0">Encoding format</p>
-          </DownloadButton>
-        </ButtonContainer>
-      </ImportStep2SubContainer>
-      {showEditTable && (
-        <CustomTable
-          columns={columns}
-          data={sampleData}
-          hidePagination={true}
-        ></CustomTable>
-      )}
-      <UploadContainer className="p-2">
-        <InputManuallyButton onClick={() => setShowEditTable(true)}>
-          Input contacts manually
-        </InputManuallyButton>
-        <p className="primary-text">Or</p>
-        <DragAndDrop color="rgba(5, 19, 22, 1)"></DragAndDrop>
-        <div className="justify-content-end mt-2 gap-3 d-flex">
-          <div className="d-flex gap-2 align-items-center">
-            <FormCheck></FormCheck>
-            {/* <input type="checkbox"></input> */}
-            <p className=" mb-0 primary-text">First row is a header</p>
+    <>
+      <ImportStep4Container>
+        <ImportStep4SubContainer>
+          <Col>
+            <div className="d-flex gap-2 mb-2">
+              <FormCheck></FormCheck>
+              <p className="mb-0 primary-text">Only show rows with error</p>
+            </div>
+            <div className="d-flex gap-2 mb-2">
+              <FormCheck></FormCheck>
+              <p className="mb-0 primary-text">Only show rows with error</p>
+            </div>
+          </Col>
+          <ButtonContainer className="d-flex mb-2 ">
+            <CheckedContainer className="gap-2">
+              <img src="/green-checked.svg" alt="" />
+              <p className="mb-0">All required columns have been matched</p>
+            </CheckedContainer>
+            <CheckedContainer className="gap-2">
+              <img src="/green-checked.svg" alt="" />
+              <p className="mb-0">All required row have been matched</p>
+            </CheckedContainer>
+          </ButtonContainer>
+        </ImportStep4SubContainer>
+        {
+          <CustomTable
+            columns={columns}
+            data={sampleData}
+            hidePagination={true}
+          ></CustomTable>
+        }
+        <UploadContainer className="p-2">
+          <InputManuallyButton onClick={() => {}}>
+            Input contacts manually
+          </InputManuallyButton>
+          <p className="primary-text">Or</p>
+          <DragAndDrop color="rgba(5, 19, 22, 1)"></DragAndDrop>
+          <div className="justify-content-end mt-2 gap-3 d-flex">
+            <CustomButton
+              onclick={() => setShowModal(true)}
+              child={
+                <div className="d-flex gap-2">
+                  Next step
+                  <img src="/nextIcon.svg" alt="" />
+                </div>
+              }
+            ></CustomButton>
           </div>
-          <CustomButton
-            onclick={() => setActiveTopBar(2.5)}
-            child={
-              <div className="d-flex gap-2">
-                Next step
-                <img src="/nextIcon.svg" alt="" />
-              </div>
-            }
-          ></CustomButton>
-        </div>
-      </UploadContainer>
-    </ImportStep2Container>
+        </UploadContainer>
+      </ImportStep4Container>
+      <CenteredModal
+        show={showModal}
+        btnText="Upload"
+        onHide={() => setShowModal(false)}
+        onContinue={() => {
+          setShowModal(false);
+          setTimeout(() => {}, 2000);
+        }}
+        children={
+          <div>
+            <DragAndDrop></DragAndDrop>
+          </div>
+        }
+        title="Select a list to import leads into"
+      ></CenteredModal>
+    </>
   );
 }
 
-export default ImportStep2;
+export default ImportStep4;
