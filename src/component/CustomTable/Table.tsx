@@ -44,10 +44,12 @@ function CustomTable({
   columns,
   data,
   maxWidth,
+  hidePagination
 }: {
   columns: any;
   data: any;
-  maxWidth?: number;
+    maxWidth?: number;
+    hidePagination?:boolean
 }) {
   const [pagination, setPagination] = useState<PaginationState>({
     pageIndex: 0,
@@ -102,7 +104,7 @@ function CustomTable({
           ))}
         </tbody>
       </table>
-      <PaginationContainer>
+      {!hidePagination && <PaginationContainer>
         <PaginationButton
           $active
           onClick={() => table.previousPage()}
@@ -133,6 +135,9 @@ function CustomTable({
           <img src="/next.svg" alt="" />
         </PaginationButton>
       </PaginationContainer>
+      }
+     
+     
     </TableContainer>
   );
 }

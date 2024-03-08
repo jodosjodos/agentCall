@@ -15,6 +15,7 @@ import CampaignPage from "./pages/CampaignPage";
 import PromptEditor from "./component/agents/PromptEditor";
 import { useEffect, useState } from "react";
 import CompanyPage from "./pages/CompanyPage";
+import ImportContact from "./pages/ImportContact";
 
 const SideBarDiv = styled.div`
   background-color: #0b2227;
@@ -60,6 +61,7 @@ function App() {
                 <Route path="/call" element={<CallPage isSidebarOpened={isSidebarOpened}  />} />
                 <Route path="/contact" element={<ContactPage />} />
                 <Route path="/campaign" element={<CampaignPage />} />
+                <Route path="/import"  element={<ImportContact></ImportContact>}/>
                 <Route path="/company" element={<CompanyPage />} />
                 <Route path="/knowledge" element={<KnowledgePage />} />
               </Routes>

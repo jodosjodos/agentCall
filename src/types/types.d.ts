@@ -75,3 +75,10 @@ interface CompanyTableType {
   amountspent: number;
   registeredTime: string;
 }
+
+interface contactType {
+  columnName: string;
+  example: string;
+  list: string;
+  description: string;
+}

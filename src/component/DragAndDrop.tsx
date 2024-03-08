@@ -4,10 +4,12 @@ function DragAndDrop({
   className,
   children,
   key,
+  color,
 }: {
   className?: string;
   children?: ReactNode;
   key?: string;
+  color: string;
 }) {
   const [isDragging, setIsDragging] = useState(false);
   const [file, setFile] = useState<File | null | undefined>(null);
@@ -82,7 +84,7 @@ function DragAndDrop({
         {!children ? (
           <div
             style={{
-              backgroundColor: "#0A2328",
+              backgroundColor: color ? color : "#0A2328",
               width: "100%",
               padding: "32px 0",
               borderRadius: "6px",

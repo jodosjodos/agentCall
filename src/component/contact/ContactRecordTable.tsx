@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
-import { Row } from "react-bootstrap";
+import { Col, Row } from "react-bootstrap";
 import { DropdownButton } from "../DropDown";
 import { CustomContactTable } from "./CustomContactTable/ContactTable";
+import CenteredModal from "../modals/Modal";
+import Search from "../Search";
 
 const RecordingTableContainer = styled.div`
   flex-grow: 1;
@@ -89,10 +91,10 @@ const CustomTableContainer = styled.div`
 `;
 
 const LinkP = styled.div`
-  color: #C9D5D8;
-  background-color:#0A2328;
-  padding: 5px 8px ;
-  border-radius:18px;
+  color: #c9d5d8;
+  background-color: #0a2328;
+  padding: 5px 8px;
+  border-radius: 18px;
   &:hover {
     cursor: pointer;
   }
@@ -101,42 +103,87 @@ const UnderLineSpan = styled.span`
   text-decoration: none;
   font-weight: semi-bold;
 `;
+const ModalContainer = styled.div`
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  flex-grow: 1;
+  width: 100%;
+  gap: 3px;
+`;
+const CustomRow = styled.div`
+  display: flex;
+  align-items: start;
+  gap: 10px;
+  padding-top: 20px;
+`;
+const CheckBox = styled.input`
+  width: 40px;
+`;
 export function ContactRecordTable() {
+  const [showImportLead, setShowImportLead] = useState(false);
   return (
-    <RecordingTableContainer className="">
-      <div className="d-flex flex-row justify-content-between align-items-center">
-        <div>
-          <Title>Contacts</Title>
-          <Paragraph>Here are the current contacts</Paragraph>
+    <>
+      <RecordingTableContainer className="">
+        <div className="d-flex flex-row justify-content-between align-items-center">
+          <div>
+            <Title>Contacts</Title>
+            <Paragraph>Here are the current contacts</Paragraph>
+          </div>
+          <LinkP className="text-end " onClick={() => setShowImportLead(true)}>
+            + <UnderLineSpan>Import new Contact</UnderLineSpan>
+          </LinkP>
         </div>
-        <LinkP className="text-end ">
-          + <UnderLineSpan>Import new Contact</UnderLineSpan>
-        </LinkP>
-      </div>
 
-      <RecordingTableHeader>
-        <Relative>
-          <InputMod type="text" placeholder="search" />
-          <ImgMod src="/searchIcons.png" />
-        </Relative>
-        <DropdownButton name="Compaign"></DropdownButton>
-        <DropdownButton name="Outcome"></DropdownButton>
-        <DropdownButton name="Call duration"></DropdownButton>
-        <DateContainer>
-          <DateButton>
-            Date & Time
-            <img src="/date.svg" alt="" />
-          </DateButton>
-          <DateParagraph className="">To</DateParagraph>
-          <DateButton>
-            Date & Time
-            <img src="/date.svg" alt="" />
-          </DateButton>
-        </DateContainer>
-      </RecordingTableHeader>
-      <CustomTableContainer className="table_container">
-        <CustomContactTable></CustomContactTable>
-      </CustomTableContainer>
-    </RecordingTableContainer>
+        <RecordingTableHeader>
+          <Relative>
+            <InputMod type="text" placeholder="search" />
+            <ImgMod src="/searchIcons.png" />
+          </Relative>
+          <DropdownButton name="Compaign"></DropdownButton>
+          <DropdownButton name="Outcome"></DropdownButton>
+          <DropdownButton name="Call duration"></DropdownButton>
+          <DateContainer>
+            <DateButton>
+              Date & Time
+              <img src="/date.svg" alt="" />
+            </DateButton>
+            <DateParagraph className="">To</DateParagraph>
+            <DateButton>
+              Date & Time
+              <img src="/date.svg" alt="" />
+            </DateButton>
+          </DateContainer>
+        </RecordingTableHeader>
+        <CustomTableContainer className="table_container">
+          <CustomContactTable></CustomContactTable>
+        </CustomTableContainer>
+      </RecordingTableContainer>
+
+      <CenteredModal
+        show={showImportLead}
+        btnText="Done"
+        onHide={() => setShowImportLead(false)}
+        onContinue={() => {
+          setShowImportLead(false);
+          setTimeout(() => {}, 2000);
+        }}
+        children={
+          <ModalContainer>
+            <Search></Search>
+            <CustomRow>
+              <CheckBox type="checkbox" />
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem
+                aliquam quam nesciunt quisquam iusto vel, dolorum quaerat error
+                facere itaque fugiat quae, ex voluptates nisi ipsa, omnis eius
+                veniam ab.
+              </p>
+            </CustomRow>
+          </ModalContainer>
+        }
+        title="Select a list to import leads into"
+      ></CenteredModal>
+    </>
   );
 }
