@@ -27,7 +27,7 @@ const InputMod = styled.input`
 
 function Search() {
   return (
-    <Column lg={2} className="position-relative ">
+    <Column  className="position-relative ">
       <InputMod type="text" placeholder="search" />
       <ImgMod src="/searchIcons.png" />
     </Column>

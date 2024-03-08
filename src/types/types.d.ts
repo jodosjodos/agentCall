@@ -82,3 +82,10 @@ interface contactType {
   list: string;
   description: string;
 }
+
+interface contactEditType {
+  phone: string;
+  email: string;
+  firstName: string;
+  lastName: string;
+}

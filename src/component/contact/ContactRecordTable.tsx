@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { Col, Row } from "react-bootstrap";
+import {  Row } from "react-bootstrap";
 import { DropdownButton } from "../DropDown";
 import { CustomContactTable } from "./CustomContactTable/ContactTable";
 import CenteredModal from "../modals/Modal";

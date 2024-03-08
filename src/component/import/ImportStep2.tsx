@@ -1,10 +1,11 @@
 import { createColumnHelper } from "@tanstack/react-table";
-import React from "react";
-import { Col, Row } from "react-bootstrap";
+import React, { useState } from "react";
+import { Col, FormCheck, Row } from "react-bootstrap";
 import styled from "styled-components";
 
 import CustomButton from "./CustomButton";
 import DragAndDrop from "../DragAndDrop";
+import CustomTable from "../CustomTable/Table";
 
 const UploadContainer = styled.div`
   background-color: rgba(10, 35, 40, 1);
@@ -71,6 +72,12 @@ const CustomRow = styled.div`
   display: flex;
   justify-content: end;
 `;
+const Input = styled.input`
+  background-color: transparent;
+  border: none;
+  color: rgba(150, 173, 179, 1);
+  outline: none;
+`;
 const InputManuallyButton = styled.button`
   padding: 10px;
   border-radius: 10px;
@@ -80,24 +87,29 @@ const InputManuallyButton = styled.button`
   border: 1px solid rgba(0, 183, 223, 1);
 `;
 function ImportStep2({ setActiveTopBar }: { setActiveTopBar?: any }) {
-  const columnHelper = createColumnHelper<contactType>();
+  const [phone, setPhone] = useState("+135792468");
+  const [email, setEmail] = useState("email@email.com");
+  const [firstName, setFirstName] = useState("Raam");
+  const [lastName, setLastName] = useState("Roni");
+
+  const columnHelper = createColumnHelper<contactEditType>();
 
   const columns = [
-    columnHelper.accessor("columnName", {
-      cell: (info) => info.getValue(),
+    columnHelper.accessor("phone", {
+      cell: () => <Input value={phone} onChange={(e:React.ChangeEvent<HTMLInputElement>) => setPhone(e.target.value)}></Input>,
     }),
-    columnHelper.accessor((row) => row.example, {
+    columnHelper.accessor((row) => row.email, {
       id: "Example",
-      cell: (info) => <span>{info.getValue()}</span>,
+      cell:  ()=><Input value={email} onChange={(e:React.ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)}></Input>,
       header: () => <span>Example</span>,
     }),
-    columnHelper.accessor("list", {
+    columnHelper.accessor("firstName", {
       header: () => "Example",
-      cell: (info) => info.renderValue(),
+      cell: () => <Input value={firstName} onChange={(e:React.ChangeEvent<HTMLInputElement>) => setFirstName(e.target.value)}></Input>,
     }),
-    columnHelper.accessor("description", {
-      header: () => "Description",
-      cell: (info) => info.renderValue(),
+    columnHelper.accessor("lastName", {
+      header: () => "LastName",
+      cell: () => <Input value={lastName} onChange={(e:React.ChangeEvent<HTMLInputElement>) => setLastName(e.target.value)}></Input>,
     }),
 
     columnHelper.display({
@@ -130,32 +142,15 @@ function ImportStep2({ setActiveTopBar }: { setActiveTopBar?: any }) {
       ),
     }),
   ];
-  const sampleData: contactType[] = [
+  const sampleData: contactEditType[] = [
     {
-      columnName: "Phone",
-      example: "3093578590",
-      list: "Long list",
-      description: "Leads phone number",
-    },
-    {
-      columnName: "Email",
-      example: "email@email.com",
-      list: "Long list",
-      description: "Leads email",
-    },
-    {
-      columnName: "first_name",
-      example: "John",
-      list: "Long list",
-      description: "Leads First name",
-    },
-    {
-      columnName: "last_name",
-      example: "Doe",
-      list: "Long list",
-      description: "Leads Last name",
+      phone: "Phone",
+      email: "3093578590",
+      firstName: "Long firstName",
+      lastName: "Leads phone number",
     },
   ];
+  const [showEditTable, setShowEditTable] = useState(false);
   return (
     <ImportStep2Container>
       <ImportStep2SubContainer>
@@ -163,7 +158,7 @@ function ImportStep2({ setActiveTopBar }: { setActiveTopBar?: any }) {
         <ButtonContainer className="d-flex mb-2 ">
           <DownloadButton>
             <DownloadImage src="/download.svg" alt="Download" />
-            <p className="primary-text mb-0">Download example</p>
+            <p className="primary-text mb-0">Download email</p>
           </DownloadButton>
           <DownloadButton>
             <DownloadImage src="/down.svg" alt="Download" />
@@ -171,13 +166,23 @@ function ImportStep2({ setActiveTopBar }: { setActiveTopBar?: any }) {
           </DownloadButton>
         </ButtonContainer>
       </ImportStep2SubContainer>
+      {showEditTable && (
+        <CustomTable
+          columns={columns}
+          data={sampleData}
+          hidePagination={true}
+        ></CustomTable>
+      )}
       <UploadContainer className="p-2">
-        <InputManuallyButton>Input contacts manually</InputManuallyButton>
+        <InputManuallyButton onClick={() => setShowEditTable(true)}>
+          Input contacts manually
+        </InputManuallyButton>
         <p className="primary-text">Or</p>
         <DragAndDrop color="rgba(5, 19, 22, 1)"></DragAndDrop>
         <div className="justify-content-end mt-2 gap-3 d-flex">
           <div className="d-flex gap-2 align-items-center">
-            <input type="checkbox"></input>
+            <FormCheck></FormCheck>
+            {/* <input type="checkbox"></input> */}
             <p className=" mb-0 primary-text">First row is a header</p>
           </div>
           <CustomButton

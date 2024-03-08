@@ -9,7 +9,7 @@ function DragAndDrop({
   className?: string;
   children?: ReactNode;
   key?: string;
-  color: string;
+  color?: string;
 }) {
   const [isDragging, setIsDragging] = useState(false);
   const [file, setFile] = useState<File | null | undefined>(null);

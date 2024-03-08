@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { Row } from "react-bootstrap";
+// import { Row } from "react-bootstrap";
 import styled from "styled-components";
 import ImportStep1 from "./import/ImportStep1";
-import ImportStep2 from "./import/ImportStep2";
+// import ImportStep2 from "./import/ImportStep2";
 const TopBarContainer = styled.div`
   display: flex;
   justify-content: center;
@@ -39,13 +39,7 @@ const StepContainer = styled.div`
   gap: 2;
   justify-content: start;
 `;
-const TopParagraph = styled.div`
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 18px;
-  letter-spacing: 0em;
-  text-align: left;
-`;
+
 const Column = styled.div`
   display: flex;
   align-items: center;
@@ -85,9 +79,9 @@ function TopBar() {
       {activeTopBar == 1 && (
         <ImportStep1 setActiveTopBar={setActiveTopBar}></ImportStep1>
       )}
-      {activeTopBar == 2 && (
+      {/* {activeTopBar == 2 && (
         <ImportStep2 setActiveTopBar={setActiveTopBar}></ImportStep2>
-      )}
+      )} */}
     </>
   );
 }
