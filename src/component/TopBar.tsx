@@ -111,7 +111,7 @@ function TopBar() {
         <ImportStep3 setActiveTopBar={setActiveTopBar}></ImportStep3>
       )}
       {activeTopBar == 3 && (
-        <ImportStep4 setActiveTopBar={setActiveTopBar}></ImportStep4>
+        <ImportStep4 ></ImportStep4>
       )}
 
       <CenteredModal

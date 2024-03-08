@@ -1,8 +1,8 @@
 import { createColumnHelper } from "@tanstack/react-table";
-import React, { useState } from "react";
+import React from "react";
 import { Col, FormCheck, Row } from "react-bootstrap";
 import styled from "styled-components";
-import CenteredModal from "../modals/Modal";
+
 
 import CustomButton from "./CustomButton";
 import DragAndDrop from "../DragAndDrop";
