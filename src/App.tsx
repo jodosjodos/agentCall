@@ -82,10 +82,7 @@ function App() {
                 />
                 <Route path="/contact" element={<ContactPage />} />
                 <Route path="/campaign" element={<CampaignPage />} />
-                <Route
-                  path="/import"
-                  element={<ImportContact></ImportContact>}
-                />
+
                 <Route path="/company" element={<CompanyPage />} />
                 <Route path="/knowledge" element={<KnowledgePage />} />
               </Routes>

@@ -5,7 +5,6 @@ import { DropdownButton } from "../DropDown";
 import { CustomContactTable } from "./CustomContactTable/ContactTable";
 import CenteredModal from "../modals/Modal";
 import Search from "../Search";
-import { useNavigate } from "react-router-dom";
 
 const RecordingTableContainer = styled.div`
   flex-grow: 1;
@@ -121,9 +120,9 @@ const CustomRow = styled.div`
 const CheckBox = styled.input`
   width: 40px;
 `;
-export function ContactRecordTable() {
+export function ContactRecordTable({ onContinue }: { onContinue: any }) {
   const [showImportLead, setShowImportLead] = useState(false);
-  const navigate=useNavigate()
+
   return (
     <>
       <RecordingTableContainer className="">
@@ -168,8 +167,8 @@ export function ContactRecordTable() {
         onHide={() => setShowImportLead(false)}
         onContinue={() => {
           setShowImportLead(false);
-          setTimeout(() => { }, 2000);
-          navigate("/import")
+          setTimeout(() => {}, 2000);
+          onContinue();
         }}
         children={
           <ModalContainer>

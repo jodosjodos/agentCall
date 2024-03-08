@@ -1,6 +1,8 @@
 import { Col, Row } from "react-bootstrap";
 import styled from "styled-components";
 import { ContactRecordTable } from "../component/contact/ContactRecordTable";
+import { useEffect, useState } from "react";
+import ImportContact from "./ImportContact";
 
 const CallPageContainer = styled.div`
   display: flex;
@@ -28,15 +30,25 @@ const PModified = styled.p`
 `;
 
 export function ContactPage() {
+  const [showImport, setShowImport] = useState(false);
+
   return (
-    <Col>
-      <DivStyled className="px-5 py-1">
-        <H1Styled>Welcome Raam , Adi</H1Styled>
-        <PModified>September 12, 2024</PModified>
-      </DivStyled>
-      <CallPageContainer>
-        <ContactRecordTable></ContactRecordTable>
-      </CallPageContainer>
-    </Col>
+    <>
+      {!showImport ? (
+        <Col>
+          <DivStyled className="px-5 py-1">
+            <H1Styled>Welcome Raam , Adi</H1Styled>
+            <PModified>September 12, 2024</PModified>
+          </DivStyled>
+          <CallPageContainer>
+            <ContactRecordTable
+              onContinue={() => setShowImport(true)}
+            ></ContactRecordTable>
+          </CallPageContainer>
+        </Col>
+      ) : (
+        <ImportContact />
+      )}
+    </>
   );
 }
