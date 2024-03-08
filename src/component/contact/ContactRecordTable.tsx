@@ -98,10 +98,18 @@ const LinkP = styled.div`
   &:hover {
     cursor: pointer;
   }
+  @media (max-width: 445px) {
+    margin-bottom: 20px;
+    flex-grow: 1;
+    align-text: center;
+  }
 `;
 const UnderLineSpan = styled.span`
   text-decoration: none;
   font-weight: semi-bold;
+  @media (max-width: 445px) {
+    align-text: center;
+  }
 `;
 const ModalContainer = styled.div`
   display: flex;
@@ -120,18 +128,24 @@ const CustomRow = styled.div`
 const CheckBox = styled.input`
   width: 40px;
 `;
+const OverAllContainer = styled.div`
+  height: 100lvh;
+`;
 export function ContactRecordTable({ onContinue }: { onContinue: any }) {
   const [showImportLead, setShowImportLead] = useState(false);
 
   return (
-    <>
+    <OverAllContainer>
       <RecordingTableContainer className="">
-        <div className="d-flex flex-row justify-content-between align-items-center">
+        <div className="d-flex flex-row flex-wrap justify-content-between align-items-center">
           <div>
             <Title>Contacts</Title>
             <Paragraph>Here are the current contacts</Paragraph>
           </div>
-          <LinkP className="text-end " onClick={() => setShowImportLead(true)}>
+          <LinkP
+            className=" text-center "
+            onClick={() => setShowImportLead(true)}
+          >
             + <UnderLineSpan>Import new Contact</UnderLineSpan>
           </LinkP>
         </div>
@@ -186,6 +200,6 @@ export function ContactRecordTable({ onContinue }: { onContinue: any }) {
         }
         title="Select a list to import leads into"
       ></CenteredModal>
-    </>
+    </OverAllContainer>
   );
 }

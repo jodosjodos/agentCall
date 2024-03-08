@@ -27,7 +27,7 @@ const DownloadButton = styled.button`
 `;
 const ImportStep2Container = styled(Row)`
   padding: 48px 40px;
-  min-height:100vh;
+
   margin: 0;
   width: 100%;
   flex-grow: 1;
@@ -169,7 +169,7 @@ function ImportStep2({ setActiveTopBar }: { setActiveTopBar?: any }) {
       lastName: "Leads phone number",
     },
   ];
- 
+
   return (
     <ImportStep2Container>
       <ImportStep2SubContainer>

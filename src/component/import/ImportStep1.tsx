@@ -32,7 +32,6 @@ const DownloadButton = styled.button`
 `;
 const ImportStep1Container = styled(Row)`
   padding: 48px 40px;
-  min-height:100vh;
   margin: 0;
   width: 100%;
   flex-grow: 1;
@@ -50,7 +49,7 @@ const ImportStep1SubContainer = styled(Row)`
   @media (max-width: 600px) {
     flex-direction: column;
     min-width: 100%;
-    gap: 2;
+
     justify-content: center;
     align-items: center;
   }

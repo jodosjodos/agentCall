@@ -1,6 +1,6 @@
 import { createColumnHelper } from "@tanstack/react-table";
 import React, { useState } from "react";
-import {  FormCheck, Row } from "react-bootstrap";
+import { FormCheck, Row } from "react-bootstrap";
 import styled from "styled-components";
 
 import CustomButton from "./CustomButton";
@@ -28,7 +28,7 @@ const DownloadButton = styled.button`
 const ImportStep2Container = styled(Row)`
   padding: 48px 40px;
   margin: 0;
-  min-height:100vh;
+
   width: 100%;
   flex-grow: 1;
   display: flex;
