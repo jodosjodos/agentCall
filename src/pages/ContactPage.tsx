@@ -1,7 +1,7 @@
 import { Col, Row } from "react-bootstrap";
 import styled from "styled-components";
 import { ContactRecordTable } from "../component/contact/ContactRecordTable";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import ImportContact from "./ImportContact";
 
 const CallPageContainer = styled.div`

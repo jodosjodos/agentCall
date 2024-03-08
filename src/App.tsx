@@ -15,7 +15,7 @@ import CampaignPage from "./pages/CampaignPage";
 import PromptEditor from "./component/agents/PromptEditor";
 import { useEffect, useState } from "react";
 import CompanyPage from "./pages/CompanyPage";
-import ImportContact from "./pages/ImportContact";
+
 
 const SideBarDiv = styled.div`
   background-color: #0b2227;
