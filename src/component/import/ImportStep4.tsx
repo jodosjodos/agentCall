@@ -16,6 +16,7 @@ const UploadContainer = styled.div`
 
 const ImportStep4Container = styled(Row)`
   padding: 48px;
+  min-height: 100vh;
   margin: 0px;
   width: 100%;
   flex-grow: 1;

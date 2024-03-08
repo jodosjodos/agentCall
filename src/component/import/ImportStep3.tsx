@@ -27,6 +27,7 @@ const DownloadButton = styled.button`
 `;
 const ImportStep2Container = styled(Row)`
   padding: 48px 40px;
+  min-height:100vh;
   margin: 0;
   width: 100%;
   flex-grow: 1;
