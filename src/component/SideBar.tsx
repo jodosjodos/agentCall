@@ -45,7 +45,7 @@ export function SideBar({
   setActiveMobile,
   setIsSidebarOpen,
   setActivePage,
-  showImport,
+
   setShowImport,
 }: {
   activePage: string;
