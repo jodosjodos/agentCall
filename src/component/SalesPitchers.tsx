@@ -5,6 +5,7 @@ const ParentProgressBar = styled.div`
   border-radius: 20px;
   background-color: #0b2227;
   padding: 5px;
+  min-width: 140px;
 `;
 const ChildProgressBar = styled.div`
   background-color: #09d799;

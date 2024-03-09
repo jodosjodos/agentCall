@@ -123,7 +123,7 @@ export function KnowledgePage() {
           <PModified>September 12, 2024</PModified>
         </DivStyled>
         <Row className="pt-3 gap-5   px-lg-5 mx-lg-0 mx-4 ">
-          <FileCol lg={3} className="p-2 w-fit  d-flex  flex-column gap-3">
+          <FileCol className="p-2 w-fit   d-flex  flex-column gap-3">
             <StyledH4>All files</StyledH4>
             {/* parental one */}
             <div className="d-flex flex-column gap-4">
@@ -193,22 +193,22 @@ export function KnowledgePage() {
             </LinkP>
 
             <div className="d-flex flex-column gap-3">
-              <div className="d-flex flex-lg-row flex-column gap-3">
+              <div className="d-flex flex-wrap flex-lg-row flex-column gap-3">
                 <ComponentRender
                   onClick={() => setActiveButton("Inbound")}
-                  className="py-2 px-3"
+                  className="py-2 flex-grow-1 px-3"
                 >
                   Sales Pitches
                 </ComponentRender>
                 <ComponentRender
                   onClick={() => setActiveButton("Outbound")}
-                  className="py-2 px-3"
+                  className="py-2  flex-grow-1 px-3"
                 >
                   Product Knowledge
                 </ComponentRender>
                 <ComponentRender
                   onClick={() => setActiveButton("Inbound and Outbound")}
-                  className="py-2 px-3"
+                  className="py-2 flex-grow-1 px-3"
                 >
                   Service guidelines
                 </ComponentRender>
