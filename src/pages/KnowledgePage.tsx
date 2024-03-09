@@ -110,13 +110,16 @@ const ComponentRender = styled.button`
 const UnderLineSpan = styled.span`
   text-decoration: underline;
 `;
+const KnowledgeContainer = styled.div`
+  height: 100vh;
+`;
 export function KnowledgePage() {
   const [modalShow, setModalShow] = useState(false);
   const [nextModalShow, setNextModalShow] = useState(false);
   const [activeButton, setActiveButton] = useState("inbound");
 
   return (
-    <>
+    <KnowledgeContainer>
       <Col>
         <DivStyled className="px-5 py-1">
           <H1Styled>Welcome Raam , Adi</H1Styled>
@@ -207,7 +210,7 @@ export function KnowledgePage() {
                   Product Knowledge
                 </ComponentRender>
                 <ComponentRender
-                  onClick={() => setActiveButton("Inbound and Outbound")}
+                  onClick={() => setActiveButton("Inbound")}
                   className="py-2 flex-grow-1 px-3"
                 >
                   Service guidelines
@@ -272,6 +275,6 @@ export function KnowledgePage() {
         onHide={() => setNextModalShow(false)}
         onContinue={() => setNextModalShow(false)}
       ></CenteredModal>
-    </>
+    </KnowledgeContainer>
   );
 }
