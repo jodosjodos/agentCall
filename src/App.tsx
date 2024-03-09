@@ -34,6 +34,8 @@ const AppContainer = styled.div`
   padding: 0;
 `;
 function App() {
+  const [showImport, setShowImport] = useState(false);
+  useEffect(() => {}, [showImport]);
   const findActiveLink = () => {
     return window.location.pathname;
   };
@@ -49,6 +51,7 @@ function App() {
         <Container fluid>
           <div className="d-lg-none p-0 m-0 d-block">
             <SideBar
+              showImport={showImport}
               activeMobile={activeMobile}
               setIsSidebarOpen={setIsSidebarOpen}
               setActiveMobile={setActiveMobile}
@@ -63,6 +66,7 @@ function App() {
               className="col-auto d-none d-lg-flex  flex-column justify-content-between min-vh-100 gap "
             >
               <SideBar
+                showImport={showImport}
                 activeMobile={activeMobile}
                 setIsSidebarOpen={setIsSidebarOpen}
                 setActiveMobile={setActiveMobile}
@@ -80,7 +84,7 @@ function App() {
                   path="/call"
                   element={<CallPage isSidebarOpened={isSidebarOpened} />}
                 />
-                <Route path="/contact" element={<ContactPage />} />
+                <Route path="/contact" element={<ContactPage showImport={showImport} setShowImport={setShowImport} />} />
                 <Route path="/campaign" element={<CampaignPage />} />
 
                 <Route path="/company" element={<CompanyPage />} />

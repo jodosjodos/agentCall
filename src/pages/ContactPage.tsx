@@ -1,7 +1,7 @@
 import { Col, Row } from "react-bootstrap";
 import styled from "styled-components";
 import { ContactRecordTable } from "../component/contact/ContactRecordTable";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ImportContact from "./ImportContact";
 
 const CallPageContainer = styled.div`
@@ -29,8 +29,8 @@ const PModified = styled.p`
   font-weight: bold;
 `;
 
-export function ContactPage() {
-  const [showImport, setShowImport] = useState(false);
+export function ContactPage({showImport,setShowImport}:{showImport:boolean,setShowImport:any}) {
+
 
   return (
     <>
@@ -38,7 +38,7 @@ export function ContactPage() {
         <Col>
           <DivStyled className="px-5 py-1">
             <H1Styled>Welcome Raam , Adi</H1Styled>
-            <PModified>September 12, 2024</PModified>
+            <PModified>September 12, 2024</PModified> 
           </DivStyled>
           <CallPageContainer>
             <ContactRecordTable
