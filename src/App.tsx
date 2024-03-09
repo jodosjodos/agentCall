@@ -52,6 +52,7 @@ function App() {
           <div className="d-lg-none p-0 m-0 d-block">
             <SideBar
               showImport={showImport}
+              setShowImport={setShowImport}
               activeMobile={activeMobile}
               setIsSidebarOpen={setIsSidebarOpen}
               setActiveMobile={setActiveMobile}
@@ -67,6 +68,7 @@ function App() {
             >
               <SideBar
                 showImport={showImport}
+                setShowImport={setShowImport}
                 activeMobile={activeMobile}
                 setIsSidebarOpen={setIsSidebarOpen}
                 setActiveMobile={setActiveMobile}

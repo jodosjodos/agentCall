@@ -46,6 +46,7 @@ export function SideBar({
   setIsSidebarOpen,
   setActivePage,
   showImport,
+  setShowImport,
 }: {
   activePage: string;
   setActivePage: any;
@@ -53,7 +54,8 @@ export function SideBar({
   setActiveMobile: any;
   setIsSidebarOpen: any;
     isSidebarOpened: boolean;
-  showImport:boolean
+    showImport: boolean;
+    setShowImport: any;
 }) {
   const headers = [
     {
@@ -114,9 +116,12 @@ export function SideBar({
           <li
             className={`nav-item ${activeMobile ? "mobile_active" : ""}  my-1`}
           >
-            <StyledLink reloadDocument={showImport&&window.location.pathname=="/contact"}
+            <StyledLink 
               to={header.to}
-              onClick={() => setActivePage(header.to)}
+              onClick={() => {
+                setActivePage(header.to)
+                window.location.pathname=="/contact"&&setShowImport(false)
+              }}
               className={`nav-link ${activeMobile ? "mobile_active" : ""}  ${
                 activePage == header.to ? "active-link" : ""
               }`}
