@@ -3,6 +3,7 @@ import { agents } from "../../data/agents";
 import AgentModal from "./AgentModal";
 import { useState } from "react";
 import { Controller } from "./Controller";
+import { agentType } from "../../types/types";
 
 const GridContainer = styled.div<{ $selected?: boolean }>`
   display: grid;

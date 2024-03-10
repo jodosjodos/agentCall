@@ -8,6 +8,7 @@ import CustomButton from "./CustomButton";
 import DragAndDrop from "../DragAndDrop";
 import CustomTable from "../CustomTable/Table";
 import { useNavigate } from "react-router-dom";
+import { contactEditType } from "../../types/types";
 
 const UploadContainer = styled.div`
   background-color: rgba(10, 35, 40, 1);
