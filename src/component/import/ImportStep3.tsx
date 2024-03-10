@@ -6,6 +6,7 @@ import styled from "styled-components";
 import CustomButton from "./CustomButton";
 import DragAndDrop from "../DragAndDrop";
 import CustomTable from "../CustomTable/Table";
+import { contactEditType } from "../../types/types";
 
 const UploadContainer = styled.div`
   background-color: rgba(10, 35, 40, 1);
@@ -27,7 +28,6 @@ const DownloadButton = styled.button`
 `;
 const ImportStep2Container = styled(Row)`
   padding: 48px 40px;
-
   margin: 0;
   width: 100%;
   flex-grow: 1;

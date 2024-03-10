@@ -26,8 +26,8 @@ const DropItem = styled(Dropdown.Item)`
 `;
 export function DropdownHome({ name }: { name: string }) {
   return (
-    <Dropdown className="">
-      <DropMod className="px-3" id="dropdown-basic">
+    <Dropdown className="drop-down-home">
+      <DropMod className="px-3 flex-grow-1" id="dropdown-basic">
         {name}
       </DropMod>
 

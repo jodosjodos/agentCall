@@ -218,3 +218,7 @@
   background-clip: content-box;
 
 }
+
+.drop-down-home button#dropdown-basic {
+  width: 100%;
+}

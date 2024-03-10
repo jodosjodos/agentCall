@@ -19,7 +19,7 @@ width:24%;
   padding: 6px, 12px;width
   text-align: end;
   color: black;
-//   margin-top: 20px;
+  font-size:12px; 
   display: flex;
   align-items: center;
   justify-content: end;
@@ -36,7 +36,7 @@ const SectionParent = styled.div`
   background: linear-gradient(180deg, #0b2227 0%, #09181b 77.4%);
   border-radius: 20px;
   color: #96adb3;
-  border:1px solid #0F2E35;
+  border: 1px solid #0f2e35;
 `;
 const DataRow = styled(Row)`
   padding: 3px;
