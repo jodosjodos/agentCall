@@ -4,6 +4,7 @@ import { Col, Row } from "react-bootstrap";
 import styled from "styled-components";
 import CustomTable from "../CustomTable/Table";
 import CustomButton from "./CustomButton";
+import { contactType } from "../../types/types";
 const ParagraphTitle = styled.p`
   font-size: 20px;
   font-weight: 600;
