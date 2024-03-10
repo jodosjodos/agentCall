@@ -25,8 +25,9 @@ const NotificationIcon = styled.img`
 `;
 const ControllerContainer = styled.div<{ $selected?: boolean }>`
   display: ${(props) => (props.$selected ? "none" : "block")};
-  width: calc(100vw - 30px);
+
   @media (max-width: 992px) {
+    width: calc(100vw - 30px);
     padding: 0px;
   }
   @media (max-width: 500px) {
