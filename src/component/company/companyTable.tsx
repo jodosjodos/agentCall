@@ -275,7 +275,9 @@ function CampanyTable() {
       </CampanyTableContainer>
       {showCreateCompany && (
         <CenteredModal
-          show={setShowCreateCompany}
+          onHide={() => setShowCreateCompany(false)}
+        onContinue={() => setShowCreateCompany(false)}
+          show={showCreateCompany}
           title="Create a new Company"
           btnText="save"
           children={
