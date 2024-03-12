@@ -7,7 +7,7 @@ height:100vh;
 
 `
 
-function ImportContact() {
+function ImportContact({isSidebarOpened}:{isSidebarOpened:boolean}) {
   return (
     <ImportContactContainer>
       <Header hideSearch={true}></Header>

@@ -6,6 +6,7 @@ import { useState } from "react";
 import CenteredModal from "../component/modals/Modal";
 import CustomInput from "../component/CustomInput";
 import DragAndDrop from "../component/DragAndDrop";
+import AgentRow from "../component/call/AgentRow";
 
 const H1Styled = styled.h4`
   color: #96adb3;
@@ -113,7 +114,19 @@ const UnderLineSpan = styled.span`
 const KnowledgeContainer = styled.div`
   height: 100vh;
 `;
-export function KnowledgePage() {
+const PageContainer = styled.div`
+  display: flex;
+  overflow: hidden;
+  justify-content: space-between;
+  @media (max-width: 625px) {
+    flex-direction: column;
+  }
+`;
+export function KnowledgePage({
+  isSidebarOpened,
+}: {
+  isSidebarOpened: boolean;
+}) {
   const [modalShow, setModalShow] = useState(false);
   const [nextModalShow, setNextModalShow] = useState(false);
   const [activeButton, setActiveButton] = useState("inbound");
@@ -125,101 +138,104 @@ export function KnowledgePage() {
           <H1Styled>Welcome Raam , Adi</H1Styled>
           <PModified>September 12, 2024</PModified>
         </DivStyled>
-        <Row className="pt-3 gap-5   px-lg-5 mx-lg-0 mx-4 ">
-          <FileCol className="p-2 w-fit   d-flex  flex-column gap-3">
-            <StyledH4>All files</StyledH4>
-            {/* parental one */}
-            <div className="d-flex flex-column gap-4">
-              {/* one component */}
-              <ComponentDiv className="d-flex  justify-content-between  pb-2">
-                <div className="d-flex flex-row align-items-baseline gap-2">
-                  <CircledD></CircledD>
-                  <p>Documents</p>
-                </div>
+        <PageContainer>
+          {isSidebarOpened && <AgentRow></AgentRow>}
+          <Row className="pt-3 gap-5   px-lg-5 mx-lg-0 mx-4 ">
+            <FileCol className="p-2 w-fit   d-flex  flex-column gap-3">
+              <StyledH4>All files</StyledH4>
+              {/* parental one */}
+              <div className="d-flex flex-column gap-4">
+                {/* one component */}
+                <ComponentDiv className="d-flex  justify-content-between  pb-2">
+                  <div className="d-flex flex-row align-items-baseline gap-2">
+                    <CircledD></CircledD>
+                    <p>Documents</p>
+                  </div>
 
-                <div className="d-flex flex-column gap-0 align-items-center">
-                  <p className="p-0 m-0">20 documents</p>
-                  <p className="p-0 m-0">200m tokens</p>
-                </div>
-              </ComponentDiv>
-              <ComponentDiv className="d-flex  justify-content-between ">
-                <div className="d-flex flex-row align-items-baseline gap-2">
-                  <CircledS></CircledS>
-                  <p>SpreadSheet</p>
-                </div>
+                  <div className="d-flex flex-column gap-0 align-items-center">
+                    <p className="p-0 m-0">20 documents</p>
+                    <p className="p-0 m-0">200m tokens</p>
+                  </div>
+                </ComponentDiv>
+                <ComponentDiv className="d-flex  justify-content-between ">
+                  <div className="d-flex flex-row align-items-baseline gap-2">
+                    <CircledS></CircledS>
+                    <p>SpreadSheet</p>
+                  </div>
 
-                <div className="d-flex flex-column gap-0 align-items-center">
-                  <p className="p-0 m-0 text-end" style={{ width: "100%" }}>
-                    3 sheets
-                  </p>
-                  <p className="p-0 m-0">200m tokens</p>
-                </div>
-              </ComponentDiv>
-              <ComponentDiv className="d-flex  justify-content-between ">
-                <div className="d-flex flex-row align-items-baseline gap-2">
-                  <CircledA></CircledA>
-                  <p>Audio</p>
-                </div>
+                  <div className="d-flex flex-column gap-0 align-items-center">
+                    <p className="p-0 m-0 text-end" style={{ width: "100%" }}>
+                      3 sheets
+                    </p>
+                    <p className="p-0 m-0">200m tokens</p>
+                  </div>
+                </ComponentDiv>
+                <ComponentDiv className="d-flex  justify-content-between ">
+                  <div className="d-flex flex-row align-items-baseline gap-2">
+                    <CircledA></CircledA>
+                    <p>Audio</p>
+                  </div>
 
-                <div className="d-flex flex-column gap-0 align-items-center">
-                  <p className="p-0 m-0 text-end" style={{ width: "100%" }}>
-                    38 files
-                  </p>
-                  <p className="p-0 m-0"> 956.5 minutes</p>
-                </div>
-              </ComponentDiv>
-              <ComponentDiv className="d-flex  justify-content-between ">
-                <div className="d-flex flex-row align-items-baseline gap-2">
-                  <CircledV></CircledV>
-                  <p>Video</p>
-                </div>
+                  <div className="d-flex flex-column gap-0 align-items-center">
+                    <p className="p-0 m-0 text-end" style={{ width: "100%" }}>
+                      38 files
+                    </p>
+                    <p className="p-0 m-0"> 956.5 minutes</p>
+                  </div>
+                </ComponentDiv>
+                <ComponentDiv className="d-flex  justify-content-between ">
+                  <div className="d-flex flex-row align-items-baseline gap-2">
+                    <CircledV></CircledV>
+                    <p>Video</p>
+                  </div>
 
-                <div className="d-flex flex-column gap-0 align-items-center">
-                  <p className="p-0 m-0  text-end" style={{ width: "100%" }}>
-                    38 files
-                  </p>
-                  <p className="p-0 m-0 "> 956.5 minutes</p>
-                </div>
-              </ComponentDiv>
-            </div>
-            <div>
-              <p>90/100files</p>
-
-              <ParentProgressBar>
-                <ChildProgressBar className="text-end">90%</ChildProgressBar>
-              </ParentProgressBar>
-            </div>
-          </FileCol>
-          <SalesCol className="d-flex flex-column gap-5 pt-3">
-            <LinkP className="text-end" onClick={() => setModalShow(true)}>
-              + <UnderLineSpan> upload Document</UnderLineSpan>
-            </LinkP>
-
-            <div className="d-flex flex-column gap-3">
-              <div className="d-flex flex-wrap flex-lg-row flex-column gap-3">
-                <ComponentRender
-                  onClick={() => setActiveButton("Inbound")}
-                  className="py-2 flex-grow-1 px-3"
-                >
-                  Sales Pitches
-                </ComponentRender>
-                <ComponentRender
-                  onClick={() => setActiveButton("Outbound")}
-                  className="py-2  flex-grow-1 px-3"
-                >
-                  Product Knowledge
-                </ComponentRender>
-                <ComponentRender
-                  onClick={() => setActiveButton("Inbound")}
-                  className="py-2 flex-grow-1 px-3"
-                >
-                  Service guidelines
-                </ComponentRender>
+                  <div className="d-flex flex-column gap-0 align-items-center">
+                    <p className="p-0 m-0  text-end" style={{ width: "100%" }}>
+                      38 files
+                    </p>
+                    <p className="p-0 m-0 "> 956.5 minutes</p>
+                  </div>
+                </ComponentDiv>
               </div>
-              <SalesPitchers activeButton={activeButton} />
-            </div>
-          </SalesCol>
-        </Row>
+              <div>
+                <p>90/100files</p>
+
+                <ParentProgressBar>
+                  <ChildProgressBar className="text-end">90%</ChildProgressBar>
+                </ParentProgressBar>
+              </div>
+            </FileCol>
+            <SalesCol className="d-flex flex-column gap-5 pt-3">
+              <LinkP className="text-end" onClick={() => setModalShow(true)}>
+                + <UnderLineSpan> upload Document</UnderLineSpan>
+              </LinkP>
+
+              <div className="d-flex flex-column gap-3">
+                <div className="d-flex flex-wrap flex-lg-row flex-column gap-3">
+                  <ComponentRender
+                    onClick={() => setActiveButton("Inbound")}
+                    className="py-2 flex-grow-1 px-3"
+                  >
+                    Sales Pitches
+                  </ComponentRender>
+                  <ComponentRender
+                    onClick={() => setActiveButton("Outbound")}
+                    className="py-2  flex-grow-1 px-3"
+                  >
+                    Product Knowledge
+                  </ComponentRender>
+                  <ComponentRender
+                    onClick={() => setActiveButton("Inbound")}
+                    className="py-2 flex-grow-1 px-3"
+                  >
+                    Service guidelines
+                  </ComponentRender>
+                </div>
+                <SalesPitchers activeButton={activeButton} />
+              </div>
+            </SalesCol>
+          </Row>
+        </PageContainer>
       </Col>
       <CenteredModal
         children={

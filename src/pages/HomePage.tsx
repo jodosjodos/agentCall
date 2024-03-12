@@ -5,10 +5,12 @@ const HomeContainer = styled.div`
   width: 100%;
 `;
 
-export const HomePage = () => {
+
+export const HomePage = ({isSidebarOpened}:{isSidebarOpened:boolean}) => {
   return (
     <HomeContainer>
       <HeaderHome />
+      
       <SectionHome />
     </HomeContainer>
   );

@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { ContactRecordTable } from "../component/contact/ContactRecordTable";
 
 import ImportContact from "./ImportContact";
+import AgentRow from "../component/call/AgentRow";
 
 const CallPageContainer = styled.div`
   display: flex;
@@ -29,7 +30,7 @@ const PModified = styled.p`
   font-weight: bold;
 `;
 
-export function ContactPage({showImport,setShowImport}:{showImport:boolean,setShowImport:any}) {
+export function ContactPage({showImport,setShowImport,isSidebarOpened}:{showImport:boolean,setShowImport:any,isSidebarOpened:boolean}) {
 
 
   return (
@@ -41,13 +42,14 @@ export function ContactPage({showImport,setShowImport}:{showImport:boolean,setSh
             <PModified>September 12, 2024</PModified> 
           </DivStyled>
           <CallPageContainer>
+            {isSidebarOpened&&<AgentRow></AgentRow>}
             <ContactRecordTable
               onContinue={() => setShowImport(true)}
             ></ContactRecordTable>
           </CallPageContainer>
         </Col>
       ) : (
-        <ImportContact />
+        <ImportContact isSidebarOpened={isSidebarOpened} />
       )}
     </>
   );

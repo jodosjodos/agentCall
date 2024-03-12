@@ -16,7 +16,6 @@ import PromptEditor from "./component/agents/PromptEditor";
 import { useEffect, useState } from "react";
 import CompanyPage from "./pages/CompanyPage";
 
-
 const SideBarDiv = styled.div`
   background-color: #0b2227;
 `;
@@ -79,18 +78,42 @@ function App() {
             </SideBarDiv>
             <ParentCol>
               <Routes>
-                <Route path="/" element={<HomePage />} />
-                <Route path="/agent" element={<AgentPage />} />
+                <Route
+                  path="/"
+                  element={<HomePage isSidebarOpened={isSidebarOpened} />}
+                />
+                <Route
+                  path="/agent"
+                  element={<AgentPage isSidebarOpened={isSidebarOpened} />}
+                />
                 <Route path="/agent/prompt_editor" element={<PromptEditor />} />
                 <Route
                   path="/call"
                   element={<CallPage isSidebarOpened={isSidebarOpened} />}
                 />
-                <Route path="/contact" element={<ContactPage showImport={showImport} setShowImport={setShowImport} />} />
-                <Route path="/campaign" element={<CampaignPage />} />
+                <Route
+                  path="/contact"
+                  element={
+                    <ContactPage
+                      showImport={showImport}
+                      setShowImport={setShowImport}
+                      isSidebarOpened={isSidebarOpened}
+                    />
+                  }
+                />
+                <Route
+                  path="/campaign"
+                  element={<CampaignPage isSidebarOpened={isSidebarOpened} />}
+                />
 
-                <Route path="/company" element={<CompanyPage />} />
-                <Route path="/knowledge" element={<KnowledgePage />} />
+                <Route
+                  path="/company"
+                  element={<CompanyPage isSidebarOpened={isSidebarOpened} />}
+                />
+                <Route
+                  path="/knowledge"
+                  element={<KnowledgePage isSidebarOpened={isSidebarOpened} />}
+                />
               </Routes>
             </ParentCol>
           </Row>
