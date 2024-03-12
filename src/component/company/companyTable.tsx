@@ -231,7 +231,7 @@ function CampanyTable() {
   }, [showCreateCompany]);
   return (
     <>
-      <CampanyTableContainer className="">
+      <CampanyTableContainer className="flex-grow-1">
         <div className="d-flex flex-lg-row flex-column items-center justify-content-between">
           <Col>
             <Title>Campanys</Title>
@@ -276,7 +276,7 @@ function CampanyTable() {
       {showCreateCompany && (
         <CenteredModal
           onHide={() => setShowCreateCompany(false)}
-        onContinue={() => setShowCreateCompany(false)}
+          onContinue={() => setShowCreateCompany(false)}
           show={showCreateCompany}
           title="Create a new Company"
           btnText="save"
