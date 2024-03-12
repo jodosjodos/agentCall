@@ -5,6 +5,7 @@ import { DropdownButton } from "../DropDown";
 import { createColumnHelper } from "@tanstack/react-table";
 import CustomTable from "../CustomTable/Table";
 import { defaultData } from "../../data/call";
+import { RecordingTableType } from "../../types/types";
 
 const RecordingTableContainer = styled.div`
   flex-grow: 1;
