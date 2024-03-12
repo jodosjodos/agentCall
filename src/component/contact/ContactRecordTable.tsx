@@ -136,7 +136,7 @@ export function ContactRecordTable({ onContinue }: { onContinue: any }) {
 
   return (
     <OverAllContainer className="flex-grow-1">
-      <RecordingTableContainer className="">
+      <RecordingTableContainer className="flex-grow-1">
         <div className="d-flex flex-row flex-wrap justify-content-between align-items-center">
           <div>
             <Title>Contacts</Title>
