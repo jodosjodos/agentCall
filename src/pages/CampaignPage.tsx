@@ -1,7 +1,8 @@
 import { Col, Row } from "react-bootstrap";
 import styled from "styled-components";
 
-import CampaignTable from "../component/compaign/CampaignTable";
+// import CampaignTable from "../component/compaign/CampaignTable";
+import AgentRow from "../component/call/AgentRow";
 
 const CampaignPageContainer = styled.div`
   display: flex;
@@ -28,7 +29,8 @@ const PModified = styled.p`
   font-weight: bold;
 `;
 
-function CampaignPage() {
+
+function CampaignPage({isSidebarOpened}:{isSidebarOpened:boolean}) {
   return (
     <Col>
       <DivStyled className="px-5 py-1">
@@ -36,7 +38,9 @@ function CampaignPage() {
         <PModified>September 12, 2024</PModified>
       </DivStyled>
       <CampaignPageContainer>
-        <CampaignTable></CampaignTable>
+        {isSidebarOpened&&<AgentRow></AgentRow>}
+        {/* <CampaignTable></CampaignTable> */}
+        <h1>campaign page</h1>
       </CampaignPageContainer>
     </Col>
   );

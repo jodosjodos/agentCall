@@ -1,6 +1,8 @@
 import { Col, Row } from "react-bootstrap";
 import styled from "styled-components";
 
+// import CampanyTable from "../component/company/companyTable";
+import AgentRow from "../component/call/AgentRow";
 import CampanyTable from "../component/company/companyTable";
 
 const CompanyPageContainer = styled.div`
@@ -28,7 +30,7 @@ const PModified = styled.p`
   font-weight: bold;
 `;
 
-function CompanyPage() {
+function CompanyPage({ isSidebarOpened }: { isSidebarOpened: boolean }) {
   return (
     <Col>
       <DivStyled className="px-5 py-1">
@@ -36,9 +38,11 @@ function CompanyPage() {
         <PModified>September 12, 2024</PModified>
       </DivStyled>
       <CompanyPageContainer>
+        {isSidebarOpened && <AgentRow></AgentRow>}
         <CampanyTable></CampanyTable>
+        {/* <h1>company page</h1> */}
       </CompanyPageContainer>
     </Col>
   );
 }
-export default CompanyPage
+export default CompanyPage;

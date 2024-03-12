@@ -43,7 +43,7 @@ const InputMod = styled.input`
   border-radius: 8px;
   color: #96adb3;
 `;
-export function Header({hideSearch}:{hideSearch?:boolean}) {
+export function Header({ hideSearch }: { hideSearch?: boolean }) {
   return (
     <DivStyled className="px-5 py-1 d-flex flex-row justify-content-between">
       <Col lg={10}>
@@ -51,11 +51,12 @@ export function Header({hideSearch}:{hideSearch?:boolean}) {
         <PModified>September 12, 2024</PModified>
       </Col>
 
-      {!hideSearch&&<Col lg={2} className="position-relative ">
-  <InputMod type="text" placeholder="search" />
-  <ImgMod src="/searchIcons.png" />
-</Col>
-      }
+      {!hideSearch && (
+        <Col lg={2} className="position-relative ">
+          <InputMod type="text" placeholder="search" />
+          <ImgMod src="/searchIcons.png" />
+        </Col>
+      )}
     </DivStyled>
   );
 }

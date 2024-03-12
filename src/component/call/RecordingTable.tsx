@@ -5,6 +5,7 @@ import { DropdownButton } from "../DropDown";
 import { createColumnHelper } from "@tanstack/react-table";
 import CustomTable from "../CustomTable/Table";
 import { defaultData } from "../../data/call";
+import { RecordingTableType } from "../../types/types";
 
 const RecordingTableContainer = styled.div`
   flex-grow: 1;
@@ -95,10 +96,13 @@ const ActionContainer = styled.button`
   background-color: #0f2e35;
   width: 30px;
   padding: 5px 0;
+  &:hover {
+    cursor: pointer;
+  }
   &:active {
     background-color: #17454f;
   }
-  &:hover{
+  &:hover {
     background-color: #17454f;
   }
 `;

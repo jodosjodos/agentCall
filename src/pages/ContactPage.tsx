@@ -2,6 +2,9 @@ import { Col, Row } from "react-bootstrap";
 import styled from "styled-components";
 import { ContactRecordTable } from "../component/contact/ContactRecordTable";
 
+import ImportContact from "./ImportContact";
+import AgentRow from "../component/call/AgentRow";
+
 const CallPageContainer = styled.div`
   display: flex;
   overflow: hidden;
@@ -27,16 +30,27 @@ const PModified = styled.p`
   font-weight: bold;
 `;
 
-export function ContactPage() {
+export function ContactPage({showImport,setShowImport,isSidebarOpened}:{showImport:boolean,setShowImport:any,isSidebarOpened:boolean}) {
+
+
   return (
-    <Col>
-      <DivStyled className="px-5 py-1">
-        <H1Styled>Welcome Raam , Adi</H1Styled>
-        <PModified>September 12, 2024</PModified>
-      </DivStyled>
-      <CallPageContainer>
-        <ContactRecordTable></ContactRecordTable>
-      </CallPageContainer>
-    </Col>
+    <>
+      {!showImport ? (
+        <Col>
+          <DivStyled className="px-5 py-1">
+            <H1Styled>Welcome Raam , Adi</H1Styled>
+            <PModified>September 12, 2024</PModified> 
+          </DivStyled>
+          <CallPageContainer>
+            {isSidebarOpened&&<AgentRow></AgentRow>}
+            <ContactRecordTable
+              onContinue={() => setShowImport(true)}
+            ></ContactRecordTable>
+          </CallPageContainer>
+        </Col>
+      ) : (
+        <ImportContact isSidebarOpened={isSidebarOpened} />
+      )}
+    </>
   );
 }

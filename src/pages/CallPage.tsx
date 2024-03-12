@@ -36,7 +36,7 @@ export function CallPage({isSidebarOpened}:{isSidebarOpened:boolean}) {
         <PModified>September 12, 2024</PModified>
       </DivStyled>
       <CallPageContainer>
-        {isSidebarOpened && <AgentRow></AgentRow>}
+      {isSidebarOpened && <AgentRow></AgentRow>}
         <RecordingTable></RecordingTable>
       </CallPageContainer>
     </Col>

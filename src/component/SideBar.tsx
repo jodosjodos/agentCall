@@ -27,10 +27,18 @@ const Li = styled.li<{ $isSidebarOpened?: boolean }>`
 `;
 const BackImage = styled.img<{ $isVisible?: boolean }>`
 position:absolute;
+
 display:${(props) => (props.$isVisible ? "block" : "none")}
 top:20px;
 right:-50px;
 width:20px;
+&:hover{
+  cursor:pointer;
+}
+@media (max-width: 992px){
+  display:none !important;
+}
+
 
 
 `;
@@ -41,15 +49,18 @@ export function SideBar({
   setActiveMobile,
   setIsSidebarOpen,
   setActivePage,
+
+  setShowImport,
 }: {
   activePage: string;
-    setActivePage: any;
-    activeMobile:boolean;
-    setActiveMobile:any;
-    setIsSidebarOpen: any;
-    isSidebarOpened: boolean;
+  setActivePage: any;
+  activeMobile: boolean;
+  setActiveMobile: any;
+  setIsSidebarOpen: any;
+  isSidebarOpened: boolean;
+  showImport: boolean;
+  setShowImport: any;
 }) {
- 
   const headers = [
     {
       name: "Home",
@@ -89,19 +100,19 @@ export function SideBar({
   ];
   useEffect(() => {}, [window.innerWidth]);
   return (
-    <div className="mt-2   position-relative">
+    <div
+      className="mt-2   position-relative"
+     
+    >
       {isSidebarOpened && (
         <BackImage
           src="/back.svg"
           onClick={() => setIsSidebarOpen(false)}
+          $isVisible={isSidebarOpened}
         ></BackImage>
       )}
-      <ul
-        className={`nav fixed   flex-column z-3`}
-        id="parentM"
-        onMouseEnter={() => setIsSidebarOpen(true)}
-      >
-        <Li onClick={()=>setActiveMobile(!activeMobile)}>
+      <ul className={`nav fixed   flex-column z-3`} id="parentM">
+        <Li onClick={() => setActiveMobile(!activeMobile)}>
           <StyledMenu src="/menu.svg"></StyledMenu>
         </Li>
         {headers.map((header) => (
@@ -110,7 +121,10 @@ export function SideBar({
           >
             <StyledLink
               to={header.to}
-              onClick={() => setActivePage(header.to)}
+              onClick={() => {
+                setActivePage(header.to);
+                window.location.pathname == "/contact" && setShowImport(false);
+              }}
               className={`nav-link ${activeMobile ? "mobile_active" : ""}  ${
                 activePage == header.to ? "active-link" : ""
               }`}

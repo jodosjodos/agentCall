@@ -36,6 +36,7 @@ const PaginationContainer = styled.div`
 `;
 const TableContainer = styled.div<{ $maxwidth?: number }>`
   width: 100%;
+  flex-grow: 1;
   overflow: hidden;
   min-width: ${(props) => (props.$maxwidth ? `${props.$maxwidth}px` : "800px")};
 `;
@@ -44,12 +45,12 @@ function CustomTable({
   columns,
   data,
   maxWidth,
-  hidePagination
+  hidePagination,
 }: {
   columns: any;
   data: any;
-    maxWidth?: number;
-    hidePagination?:boolean
+  maxWidth?: number;
+  hidePagination?: boolean;
 }) {
   const [pagination, setPagination] = useState<PaginationState>({
     pageIndex: 0,
@@ -104,40 +105,39 @@ function CustomTable({
           ))}
         </tbody>
       </table>
-      {!hidePagination && <PaginationContainer>
-        <PaginationButton
-          $active
-          onClick={() => table.previousPage()}
-          disabled={!table.getCanPreviousPage()}
-        >
-          <img src="/prev.svg" alt="" />
-          Previous
-        </PaginationButton>
-
-        {Array.from({ length: table.getPageCount() }, (_, index) => (
+      {!hidePagination && (
+        <PaginationContainer>
           <PaginationButton
-            $active={
-              table.getState().pagination.pageIndex != 0
-                ? table.getState().pagination.pageIndex == index
-                : index == 0
-            }
-            onClick={() => table.setPageIndex(index)}
+            $active
+            onClick={() => table.previousPage()}
+            disabled={!table.getCanPreviousPage()}
           >
-            <p className="m-0 text-center">{index + 1}</p>
+            <img src="/prev.svg" alt="" />
+            Previous
           </PaginationButton>
-        ))}
-        <PaginationButton
-          $active
-          onClick={() => table.nextPage()}
-          disabled={!table.getCanNextPage()}
-        >
-          Next
-          <img src="/next.svg" alt="" />
-        </PaginationButton>
-      </PaginationContainer>
-      }
-     
-     
+
+          {Array.from({ length: table.getPageCount() }, (_, index) => (
+            <PaginationButton
+              $active={
+                table.getState().pagination.pageIndex != 0
+                  ? table.getState().pagination.pageIndex == index
+                  : index == 0
+              }
+              onClick={() => table.setPageIndex(index)}
+            >
+              <p className="m-0 text-center">{index + 1}</p>
+            </PaginationButton>
+          ))}
+          <PaginationButton
+            $active
+            onClick={() => table.nextPage()}
+            disabled={!table.getCanNextPage()}
+          >
+            Next
+            <img src="/next.svg" alt="" />
+          </PaginationButton>
+        </PaginationContainer>
+      )}
     </TableContainer>
   );
 }

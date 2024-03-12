@@ -11,6 +11,7 @@ import "./table.css";
 import styled from "styled-components";
 import { Row } from "react-bootstrap";
 import { defaultContactData } from "../../../data/contactCall";
+import { RecordingTableType } from "../../../types/types";
 const Th = styled.th<{ $width?: number }>`
   width: ${(props) => (props.$width ? `${props.$width}%` : "fit-content")};
   min-width: 100px;
@@ -45,10 +46,13 @@ const ActionContainer = styled.button`
   background-color: #0f2e35;
   width: 30px;
   padding: 5px 0;
+  &:hover {
+    cursor: pointer;
+  }
   &:active {
     background-color: #17454f;
   }
-  &:hover{
+  &:hover {
     background-color: #17454f;
   }
 `;

@@ -8,9 +8,13 @@ import CenteredModal from "./modals/Modal";
 import ImportStep4 from "./import/ImportStep4";
 const TopBarContainer = styled.div`
   display: flex;
+
   justify-content: center;
 
   gap: 40px;
+  @media (max-width: 784px) {
+    gap: 3px !important;
+  }
   padding: 20px 0;
 `;
 const Circle = styled.div<{ $isActive?: boolean }>`
@@ -28,13 +32,24 @@ const Circle = styled.div<{ $isActive?: boolean }>`
 
   background-color: ${(props) =>
     props.$isActive ? "rgba(34, 77, 87, 1)" : "transparent"};
+  @media (max-width: 784px) {
+    margin-right: 0 !important;
+    max-width: 30px;
+    height: 30px;
+    min-width: 30px;
+  }
 `;
+
 const Divider = styled.div`
   height: 2px;
   margin-top: 30px;
   width: 100px;
+
   background-color: rgba(34, 77, 87, 1);
   flex-grow: 1;
+  @media (max-width: 784px) {
+    width: 30px !important;
+  }
 `;
 const StepContainer = styled.div`
   display: flex;
@@ -45,6 +60,7 @@ const StepContainer = styled.div`
 
 const Column = styled.div`
   display: flex;
+
   align-items: center;
   flex-direction: column;
 `;
@@ -63,6 +79,7 @@ function TopBar() {
     flex-grow: 1;
     width: 100%;
     gap: 3px;
+    flex-wrap: wrap;
   `;
   const CustomRow = styled.div`
     display: flex;
@@ -80,20 +97,18 @@ function TopBar() {
       <TopBarContainer>
         {steps.map((item, index) => (
           <div className=" ">
-            <StepContainer
-              onClick={() =>
-                activeTopBar==2.5?setActiveTopBar(3):setActiveTopBar(index + 1)
-              }
-            >
+            <StepContainer onClick={() => setActiveTopBar(index + 1)}>
               <Column>
-                <Circle $isActive={activeTopBar == index + 1}>
-                  {activeTopBar == index + 1 ? (
+                <Circle
+                  $isActive={Math.floor(activeTopBar) == Math.floor(index + 1)}
+                >
+                  {Math.floor(activeTopBar) == index + 1 ? (
                     <img src="/check.svg"></img>
                   ) : (
                     index + 1
                   )}
                 </Circle>
-                <StepParagraph>{item}</StepParagraph>
+                <StepParagraph className="text-center">{item}</StepParagraph>
               </Column>
 
               {index != steps.length - 1 && <Divider></Divider>}
@@ -107,12 +122,10 @@ function TopBar() {
       {activeTopBar == 2 && (
         <ImportStep2 setActiveTopBar={setActiveTopBar}></ImportStep2>
       )}
-      {activeTopBar == 2.5 && (
+      {activeTopBar == 2.3 && (
         <ImportStep3 setActiveTopBar={setActiveTopBar}></ImportStep3>
       )}
-      {activeTopBar == 3 && (
-        <ImportStep4 ></ImportStep4>
-      )}
+      {activeTopBar == 3 && <ImportStep4></ImportStep4>}
 
       <CenteredModal
         show={showImportLead}

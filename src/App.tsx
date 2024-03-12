@@ -15,7 +15,6 @@ import CampaignPage from "./pages/CampaignPage";
 import PromptEditor from "./component/agents/PromptEditor";
 import { useEffect, useState } from "react";
 import CompanyPage from "./pages/CompanyPage";
-import ImportContact from "./pages/ImportContact";
 
 const SideBarDiv = styled.div`
   background-color: #0b2227;
@@ -26,7 +25,16 @@ const ParentCol = styled(Col)`
   border-left: 2px solid #0f2e35;
   overflow-x: hidden;
 `;
+const AppContainer = styled.div`
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+`;
 function App() {
+  const [showImport, setShowImport] = useState(false);
+  useEffect(() => {}, [showImport]);
   const findActiveLink = () => {
     return window.location.pathname;
   };
@@ -37,39 +45,82 @@ function App() {
   const [isSidebarOpened, setIsSidebarOpen] = useState(false);
   const [activeMobile, setActiveMobile] = useState(false);
   return (
-    <div>
+    <AppContainer>
       <Router>
         <Container fluid>
           <div className="d-lg-none p-0 m-0 d-block">
             <SideBar
-              activeMobile={activeMobile} setIsSidebarOpen={setIsSidebarOpen} setActiveMobile={setActiveMobile} isSidebarOpened={isSidebarOpened}  activePage={activePage} setActivePage={setActivePage}
-              
+              showImport={showImport}
+              setShowImport={setShowImport}
+              activeMobile={activeMobile}
+              setIsSidebarOpen={setIsSidebarOpen}
+              setActiveMobile={setActiveMobile}
+              isSidebarOpened={isSidebarOpened}
+              activePage={activePage}
+              setActivePage={setActivePage}
             ></SideBar>
           </div>
           <Row>
             <SideBarDiv
+               onMouseEnter={() => setIsSidebarOpen(true)}
               // sm={2}
               className="col-auto d-none d-lg-flex  flex-column justify-content-between min-vh-100 gap "
             >
-              <SideBar activeMobile={activeMobile} setIsSidebarOpen={setIsSidebarOpen} setActiveMobile={setActiveMobile} isSidebarOpened={isSidebarOpened}  activePage={activePage} setActivePage={setActivePage} />
+              <SideBar
+                showImport={showImport}
+                setShowImport={setShowImport}
+                activeMobile={activeMobile}
+                setIsSidebarOpen={setIsSidebarOpen}
+                setActiveMobile={setActiveMobile}
+                isSidebarOpened={isSidebarOpened}
+                activePage={activePage}
+                setActivePage={setActivePage}
+              />
             </SideBarDiv>
             <ParentCol>
               <Routes>
-                <Route path="/" element={<HomePage />} />
-                <Route path="/agnavigateent" element={<AgentPage />} />
+                <Route
+                  path="/"
+                  element={<HomePage isSidebarOpened={isSidebarOpened} />}
+                />
+                <Route
+                  path="/agent"
+                  element={<AgentPage isSidebarOpened={isSidebarOpened} />}
+                />
                 <Route path="/agent/prompt_editor" element={<PromptEditor />} />
-                <Route path="/call" element={<CallPage isSidebarOpened={isSidebarOpened}  />} />
-                <Route path="/contact" element={<ContactPage />} />
-                <Route path="/campaign" element={<CampaignPage />} />
-                <Route path="/contact"  element={<ImportContact></ImportContact>}/>
-                <Route path="/company" element={<CompanyPage />} />
-                <Route path="/knowledge" element={<KnowledgePage />} />
+                <Route
+                  path="/call"
+                  element={<CallPage isSidebarOpened={isSidebarOpened} />}
+                />
+                <Route
+                  path="/contact"
+                  element={
+                    <ContactPage
+                      showImport={showImport}
+                      setShowImport={setShowImport}
+                      isSidebarOpened={isSidebarOpened}
+                    />
+                  }
+                />
+                <Route
+                  path="/campaign"
+                  element={<CampaignPage isSidebarOpened={isSidebarOpened} />}
+                />
+
+                <Route
+                  path="/company"
+                  element={<CompanyPage isSidebarOpened={isSidebarOpened} />}
+                />
+                <Route
+                  path="/knowledge"
+                  element={<KnowledgePage isSidebarOpened={isSidebarOpened} />}
+                />
               </Routes>
             </ParentCol>
           </Row>
         </Container>
       </Router>
-    </div>
+    </AppContainer>
   );
 }
 

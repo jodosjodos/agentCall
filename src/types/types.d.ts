@@ -89,3 +89,19 @@ interface contactEditType {
   firstName: string;
   lastName: string;
 }
+interface CallStep {
+  name: string;
+  color: string;
+  active: boolean;
+  value: number;
+}
+
+export interface HomeDataType {
+  id: number;
+  name: string;
+  contact: string;
+  averageTime: string;
+  followUp: string;
+  closing: string;
+  callSteps: CallStep[];
+}
