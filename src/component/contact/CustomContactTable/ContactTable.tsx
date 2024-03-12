@@ -11,6 +11,7 @@ import "./table.css";
 import styled from "styled-components";
 import { Row } from "react-bootstrap";
 import { defaultContactData } from "../../../data/contactCall";
+import { RecordingTableType } from "../../../types/types";
 const Th = styled.th<{ $width?: number }>`
   width: ${(props) => (props.$width ? `${props.$width}%` : "fit-content")};
   min-width: 100px;

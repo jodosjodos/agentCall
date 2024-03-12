@@ -6,6 +6,7 @@ import { DropdownButton } from "../DropDown";
 import { createColumnHelper } from "@tanstack/react-table";
 import { campaignTableTypeData } from "../../data/campaign";
 import MaterialDesignSwitch from "../switch";
+import { CampaignTableType } from "../../types/types";
 
 const CampaignTableContainer = styled.div`
   flex-grow: 1;
