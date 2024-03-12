@@ -57,9 +57,9 @@ export function SideBar({
   activeMobile: boolean;
   setActiveMobile: any;
   setIsSidebarOpen: any;
-    isSidebarOpened: boolean;
-    showImport: boolean;
-    setShowImport: any;
+  isSidebarOpened: boolean;
+  showImport: boolean;
+  setShowImport: any;
 }) {
   const headers = [
     {
@@ -100,7 +100,10 @@ export function SideBar({
   ];
   useEffect(() => {}, [window.innerWidth]);
   return (
-    <div className="mt-2   position-relative">
+    <div
+      className="mt-2   position-relative"
+     
+    >
       {isSidebarOpened && (
         <BackImage
           src="/back.svg"
@@ -108,11 +111,7 @@ export function SideBar({
           $isVisible={isSidebarOpened}
         ></BackImage>
       )}
-      <ul
-        className={`nav fixed   flex-column z-3`}
-        id="parentM"
-        onMouseEnter={() => setIsSidebarOpen(true)}
-      >
+      <ul className={`nav fixed   flex-column z-3`} id="parentM">
         <Li onClick={() => setActiveMobile(!activeMobile)}>
           <StyledMenu src="/menu.svg"></StyledMenu>
         </Li>
@@ -120,11 +119,11 @@ export function SideBar({
           <li
             className={`nav-item ${activeMobile ? "mobile_active" : ""}  my-1`}
           >
-            <StyledLink 
+            <StyledLink
               to={header.to}
               onClick={() => {
-                setActivePage(header.to)
-                window.location.pathname=="/contact"&&setShowImport(false)
+                setActivePage(header.to);
+                window.location.pathname == "/contact" && setShowImport(false);
               }}
               className={`nav-link ${activeMobile ? "mobile_active" : ""}  ${
                 activePage == header.to ? "active-link" : ""

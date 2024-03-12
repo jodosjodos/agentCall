@@ -8,6 +8,7 @@ import { createColumnHelper } from "@tanstack/react-table";
 import MaterialDesignSwitch from "../switch";
 import { CompanyTableData } from "../../data/company";
 import CenteredModal from "../modals/Modal";
+import { CompanyTableType } from "../../types/types";
 
 const CampanyTableContainer = styled.div`
   flex-grow: 1;
@@ -99,6 +100,12 @@ const ActionContainer = styled.div`
   background-color: #0f2e35;
   width: 30px;
   padding: 5px 0;
+  &:hover {
+    cursor: pointer;
+  }
+  &:hover {
+    cursor: pointer;
+  }
 `;
 const ActionImage = styled.img`
   width: 20px;
@@ -266,19 +273,58 @@ function CampanyTable() {
           ></CustomTable>
         </CustomTableContainer>
       </CampanyTableContainer>
-      {showCreateCompany && (<CenteredModal
+      {showCreateCompany && (
+        <CenteredModal
+          show={setShowCreateCompany}
           title="Create a new Company"
           btnText="save"
           children={
-            <InputRow>
-              <Input
-                id="paste"
-                type="text"
-                className=""
-                placeholder="Start typing ..."
-              />
-              <img src="/record.svg" alt="" />
-            </InputRow>
+            <div className="d-flex flex-column gap-1">
+              <div className="d-flex gap-0 flex-column">
+                <p className="mb-0">Company Name</p>
+                <InputRow>
+                  <Input
+                    id="paste"
+                    type="text"
+                    className=""
+                    placeholder="Input agent name..."
+                  />
+                </InputRow>
+              </div>
+              <div className="d-flex gap-0 flex-column">
+                <p className="mb-0">Email address</p>
+                <InputRow>
+                  <Input
+                    id="paste"
+                    type="text"
+                    className=""
+                    placeholder="Company email address..."
+                  />
+                </InputRow>
+              </div>
+              <div className="d-flex gap-0 flex-column">
+                <p className="mb-0">Phone number</p>
+                <InputRow>
+                  <Input
+                    id="paste"
+                    type="text"
+                    className=""
+                    placeholder="Company phone number..."
+                  />
+                </InputRow>
+              </div>
+              <div className="d-flex gap-0 flex-column">
+                <p className="mb-0">Amount spent</p>
+                <InputRow>
+                  <Input
+                    id="paste"
+                    type="text"
+                    className=""
+                    placeholder="Start typing ..."
+                  />
+                </InputRow>
+              </div>
+            </div>
           }
         ></CenteredModal>
       )}

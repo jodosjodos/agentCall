@@ -62,6 +62,7 @@ function App() {
           </div>
           <Row>
             <SideBarDiv
+               onMouseEnter={() => setIsSidebarOpen(true)}
               // sm={2}
               className="col-auto d-none d-lg-flex  flex-column justify-content-between min-vh-100 gap "
             >

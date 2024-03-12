@@ -39,6 +39,7 @@ function CompanyPage({ isSidebarOpened }: { isSidebarOpened: boolean }) {
       <CompanyPageContainer>
         {isSidebarOpened && <AgentRow></AgentRow>}
         <CampanyTable></CampanyTable>
+        {/* <h1>company page</h1> */}
       </CompanyPageContainer>
     </Col>
   );
