@@ -27,10 +27,14 @@ const Li = styled.li<{ $isSidebarOpened?: boolean }>`
 `;
 const BackImage = styled.img<{ $isVisible?: boolean }>`
 position:absolute;
+
 display:${(props) => (props.$isVisible ? "block" : "none")}
 top:20px;
 right:-50px;
 width:20px;
+&:hover{
+  cursor:pointer;
+}
 @media (max-width: 992px){
   display:none !important;
 }
