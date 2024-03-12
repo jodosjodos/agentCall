@@ -135,7 +135,7 @@ export function ContactRecordTable({ onContinue }: { onContinue: any }) {
   const [showImportLead, setShowImportLead] = useState(false);
 
   return (
-    <OverAllContainer>
+    <OverAllContainer className="flex-grow-1">
       <RecordingTableContainer className="">
         <div className="d-flex flex-row flex-wrap justify-content-between align-items-center">
           <div>
