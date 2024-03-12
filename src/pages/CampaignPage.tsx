@@ -1,7 +1,7 @@
 import { Col, Row } from "react-bootstrap";
 import styled from "styled-components";
 
-import CampaignTable from "../component/compaign/CampaignTable";
+// import CampaignTable from "../component/compaign/CampaignTable";
 import AgentRow from "../component/call/AgentRow";
 
 const CampaignPageContainer = styled.div`
@@ -39,7 +39,8 @@ function CampaignPage({isSidebarOpened}:{isSidebarOpened:boolean}) {
       </DivStyled>
       <CampaignPageContainer>
         {isSidebarOpened&&<AgentRow></AgentRow>}
-        <CampaignTable></CampaignTable>
+        {/* <CampaignTable></CampaignTable> */}
+        <h1>campaign page</h1>
       </CampaignPageContainer>
     </Col>
   );

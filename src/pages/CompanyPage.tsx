@@ -1,7 +1,7 @@
 import { Col, Row } from "react-bootstrap";
 import styled from "styled-components";
 
-import CampanyTable from "../component/company/companyTable";
+// import CampanyTable from "../component/company/companyTable";
 import AgentRow from "../component/call/AgentRow";
 
 const CompanyPageContainer = styled.div`
@@ -38,7 +38,8 @@ function CompanyPage({ isSidebarOpened }: { isSidebarOpened: boolean }) {
       </DivStyled>
       <CompanyPageContainer>
         {isSidebarOpened && <AgentRow></AgentRow>}
-        <CampanyTable></CampanyTable>
+        {/* <CampanyTable></CampanyTable> */}
+        <h1>company page</h1>
       </CompanyPageContainer>
     </Col>
   );
