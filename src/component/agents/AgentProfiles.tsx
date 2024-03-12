@@ -12,24 +12,24 @@ const GridContainer = styled.div<{ $selected?: boolean }>`
   grid-template-columns: ${(props) =>
     props.$selected ? "repeat(1, 1fr)" : "repeat(1, 2fr)"};
 
-  @media (max-width: 714px) {
+  @media (max-width: 1449px) {
     display: ${(props) => (props.$selected ? "none" : "flex")};
     flex-direction: column;
     gap: 20px;
   }
 
-  @media (min-width: 714px) and (max-width: 1499px) {
+  @media (min-width: 1450px) and (max-width: 1460px) {
     grid-template-columns: ${(props) =>
       props.$selected ? "repeat(1, 1fr)" : "repeat(2, 1fr)"};
   }
 
   @media (min-width: 1500px) and (max-width: 1999px) {
     grid-template-columns: ${(props) =>
-      props.$selected ? "repeat(2, 1fr)" : "repeat(3, 1fr)"};
+      props.$selected ? "repeat(1, 1fr)" : "repeat(2, 1fr)"};
   }
   @media (min-width:1992px){
     grid-template-columns: ${(props) =>
-      props.$selected ? "repeat(3, 1fr)" : "repeat(4, 1fr)"};
+      props.$selected ? "repeat(2, 1fr)" : "repeat(3, 1fr)"};
   }
   editProfilelate-columns: repeat(4, 1fr);
   }
