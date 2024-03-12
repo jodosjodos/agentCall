@@ -75,6 +75,9 @@ const ActionContainer = styled.button`
   background-color: #0f2e35;
   width: 30px;
   padding: 5px 0;
+  &:hover {
+    cursor: pointer;
+  }
   &:active {
     background-color: #17454f;
   }

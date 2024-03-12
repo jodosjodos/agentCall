@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 // import CampanyTable from "../component/company/companyTable";
 import AgentRow from "../component/call/AgentRow";
+import CampanyTable from "../component/company/companyTable";
 
 const CompanyPageContainer = styled.div`
   display: flex;
@@ -38,8 +39,8 @@ function CompanyPage({ isSidebarOpened }: { isSidebarOpened: boolean }) {
       </DivStyled>
       <CompanyPageContainer>
         {isSidebarOpened && <AgentRow></AgentRow>}
-        {/* <CampanyTable></CampanyTable> */}
-        <h1>company page</h1>
+        <CampanyTable></CampanyTable>
+        {/* <h1>company page</h1> */}
       </CompanyPageContainer>
     </Col>
   );

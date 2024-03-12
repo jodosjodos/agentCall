@@ -97,6 +97,9 @@ const ActionContainer = styled.div`
   background-color: #0f2e35;
   width: 30px;
   padding: 5px 0;
+  &:hover {
+    cursor: pointer;
+  }
 `;
 const ActionImage = styled.img`
   width: 20px;

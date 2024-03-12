@@ -5,7 +5,10 @@ import { useState } from "react";
 import { Controller } from "./Controller";
 import { agentType } from "../../types/types";
 
-const GridContainer = styled.div<{ $selected?: boolean }>`
+const GridContainer = styled.div<{
+  $selected?: boolean;
+  $isSidebarOpened?: boolean;
+}>`
   display: grid;
   flex-grow: 1;
 
@@ -16,13 +19,17 @@ const GridContainer = styled.div<{ $selected?: boolean }>`
     display: ${(props) => (props.$selected ? "none" : "flex")};
     flex-direction: column;
     gap: 20px;
-  }
-
+   }
+  
+ 
   @media (min-width: 1450px) and (max-width: 1460px) {
     grid-template-columns: ${(props) =>
       props.$selected ? "repeat(1, 1fr)" : "repeat(2, 1fr)"};
   }
-
+  @media (min-width: 712px) and (max-width: 1450px) {
+    grid-template-columns: ${(props) =>
+      props.$isSidebarOpened ? "repeat(1, 1fr)" : "repeat(2, 1fr)"};
+  }
   @media (min-width: 1500px) and (max-width: 1999px) {
     grid-template-columns: ${(props) =>
       props.$selected ? "repeat(1, 1fr)" : "repeat(2, 1fr)"};
@@ -31,6 +38,7 @@ const GridContainer = styled.div<{ $selected?: boolean }>`
     grid-template-columns: ${(props) =>
       props.$selected ? "repeat(2, 1fr)" : "repeat(3, 1fr)"};
   }
+  
   editProfilelate-columns: repeat(4, 1fr);
   }
 `;
@@ -149,7 +157,7 @@ const CallProfile = styled.img<{ $isHidden?: boolean }>`
   border-radius: 20px;
   display: ${(props) => (!props.$isHidden ? "none" : "block")};
 `;
-export function AgentProfiles() {
+export function AgentProfiles({isSidebarOpened}:{isSidebarOpened:boolean}) {
   const [selectedAgent, setSelectedAgent] = useState<agentType | null>(null);
   const callSteps = [
     { name: "Intro", color: "#F0B723", active: true },
@@ -162,11 +170,13 @@ export function AgentProfiles() {
       <AgentProfileContainer className="d-flex">
         <AgentProfileSubContainer
           $selcted={selectedAgent != null}
+        
           className="d-flex flex-column "
         >
           <Controller selected={selectedAgent != null}></Controller>
           <GridContainer
             $selected={selectedAgent != null}
+            $isSidebarOpened={isSidebarOpened}
             className="gap-5  px-4"
           >
             {agents.map((agent) => (
