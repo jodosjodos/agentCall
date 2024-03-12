@@ -140,7 +140,7 @@ export function KnowledgePage({
         </DivStyled>
         <PageContainer>
           {isSidebarOpened && <AgentRow></AgentRow>}
-          <Row className="pt-3 gap-5   px-lg-5 mx-lg-0 mx-4 ">
+          <Row className="pt-3 gap-5 flex-grow-1   px-lg-5 mx-lg-0 mx-4 ">
             <FileCol className="p-2 w-fit   d-flex  flex-column gap-3">
               <StyledH4>All files</StyledH4>
               {/* parental one */}

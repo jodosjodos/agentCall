@@ -8,6 +8,7 @@ import CenteredModal from "./modals/Modal";
 import ImportStep4 from "./import/ImportStep4";
 const TopBarContainer = styled.div`
   display: flex;
+
   justify-content: center;
 
   gap: 40px;
