@@ -27,7 +27,7 @@ function SuccessMessage(props: any) {
         <div className="d-flex gap-2 align-items-center justify-content-center pb-2 px-3 flex-column">
           <img src="/success.svg"></img>
           <GreenParagraph>Call redirected successfully</GreenParagraph>
-          <ContinueButton>Continue</ContinueButton>
+          <ContinueButton onClick={props.onHide}>Continue</ContinueButton>
         </div>
       </Modal.Body>
     </Modal>
