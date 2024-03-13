@@ -7,6 +7,7 @@ import { agentType } from "../../types/types";
 import OngoingCallModal from "./OnGoingCall";
 import CenteredModal from "../modals/Modal";
 import Search from "../Search";
+import SuccessMessage from "./successMessage";
 
 const GridContainer = styled.div<{
   $selected?: boolean;
@@ -193,6 +194,7 @@ export function AgentProfiles({
   ];
   const [showModal, setShowModal] = useState(false);
   const [showRedirect, setShowRedirect] = useState(false);
+  const [success, setSuccess] = useState(false);
   return (
     <>
       <AgentProfileContainer className="d-flex">
@@ -303,8 +305,17 @@ export function AgentProfiles({
         show={showRedirect}
         onHide={() => setShowRedirect(false)}
         btnText="Redirect call"
+        onContinue={() => {
+          setShowRedirect(false);
+          setTimeout(() => {}, 2000);
+          setSuccess(true);
+        }}
         children={<Search placeholder="e.g +442345678"></Search>}
       ></CenteredModal>
+      <SuccessMessage
+        show={success}
+        onHide={() => setSuccess(false)}
+      ></SuccessMessage>
     </>
   );
 }

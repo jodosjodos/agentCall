@@ -226,3 +226,10 @@
 .modal_center {
   width: 400px;
 }
+.success-message{
+  background-color: rgba(10, 35, 40, 1);
+  padding: 20px, 16px, 20px, 16px;
+  display:flex;
+  align-items:center;
+  flex-direction:column;
+}
