@@ -1,3 +1,5 @@
+import { agentCalls, agentType } from "../types/types";
+
 export const agents: agentType[] = [
   {
     profile: "/userProfile.png",
