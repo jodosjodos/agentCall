@@ -72,6 +72,7 @@ const Input = styled.input`
 `;
 const AgentProfileLeft = styled.div`
   max-width: 600px;
+
   margin: 20px 10px 0px px;
   padding: 10px;
   border-radius: 10px;
@@ -180,11 +181,20 @@ const CallProfile = styled.img<{ $isHidden?: boolean }>`
   border-radius: 20px;
   display: ${(props) => (!props.$isHidden ? "none" : "block")};
 `;
+const CallOnQueParagraph = styled.p`
+  font-size: 20px;
+  color: rgba(201, 213, 216, 1);
+  font-weight: 600;
+  line-height: 25px;
+  letter-spacing: 0em;
+  text-align: left;
+`;
 const SeAllButton = styled.button`
   background-color: rgba(15, 46, 53, 1);
   border-radius: 24px;
-  padding: 4px 6px;
+  padding: 4px 10px;
   border: none;
+  color: rgba(201, 213, 216, 1);
   height: 37px;
 `;
 export function AgentProfiles({
@@ -291,9 +301,9 @@ export function AgentProfiles({
                   ))}
                 </Row>
               </OnGoingCall>
-              <div className="d-flex items-center">
+              <div className="d-flex align-items-center justify-content-between">
                 <div>
-                  <p>Calls on queue</p>
+                  <CallOnQueParagraph>Calls on queue</CallOnQueParagraph>
                   <p className="primary-text">
                     Drag numbers to re-arrange numbers on queue
                   </p>
