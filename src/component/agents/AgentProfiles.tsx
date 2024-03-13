@@ -19,28 +19,32 @@ const GridContainer = styled.div<{
   grid-template-columns: ${(props) =>
     props.$selected ? "repeat(1, 1fr)" : "repeat(1, 2fr)"};
 
-  @media (max-width: 1449px) {
-    display: ${(props) => (props.$selected ? "none" : "flex")};
+  @media (max-width: 712px) {
+    display: ${(props) => (props.$selected ? "none" : "grid")};
     flex-direction: column;
+    grid-template-columns: ${(props) =>
+      props.$selected ? "repeat(1, 1fr)" : "repeat(2, 1fr)"};
+    
     gap: 20px;
    }
   
  
   @media (min-width: 1450px) and (max-width: 1460px) {
     grid-template-columns: ${(props) =>
-      props.$selected ? "repeat(1, 1fr)" : "repeat(2, 1fr)"};
+      props.$selected ? "repeat(2, 1fr)" : "repeat(3, 1fr)"};
   }
   @media (min-width: 712px) and (max-width: 1450px) {
     grid-template-columns: ${(props) =>
-      props.$isSidebarOpened ? "repeat(1, 1fr)" : "repeat(2, 1fr)"};
+      props.$isSidebarOpened ? "repeat(2, 1fr)" : "repeat(3, 1fr)"};
   }
   @media (min-width: 1500px) and (max-width: 1999px) {
     grid-template-columns: ${(props) =>
       props.$selected ? "repeat(1, 1fr)" : "repeat(2, 1fr)"};
   }
   @media (min-width:1992px){
-    grid-template-columns: ${(props) =>
-      props.$selected ? "repeat(2, 1fr)" : "repeat(3, 1fr)"};
+    display:flex;
+    flex-direction:row;
+    flex-wrap:wrap;
   }
   
   editProfilelate-columns: repeat(4, 1fr);
@@ -82,7 +86,8 @@ const AgentProfileLeft = styled.div`
     flex-grow: 1;
   }
   width: 35%;
-  min-width: 395px;
+
+  min-width: 470px;
   background-color: #0b2227;
   height: calc(100vh - 129px);
 `;
@@ -95,14 +100,7 @@ const Row = styled.div`
   align-items: center;
   justify-content: space-between;
 `;
-const InputRow = styled.div`
-  display: flex;
-  padding: 10px 20px;
-  border-radius: 10px;
-  align-items: center;
-  justify-content: space-between;
-  background-color: #051316;
-`;
+
 
 const Paragraph = styled.p`
   color: #96adb3;
