@@ -7,6 +7,7 @@ const CallQueContainer = styled.div`
   justify-content: space-between;
   padding: 8px;
   flex-grow: 1;
+  border: 1px solid rgba(15, 46, 53, 1);
   border-radius: 10px;
 `;
 const GreenContainer = styled.div`

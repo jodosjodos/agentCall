@@ -35,7 +35,7 @@ function OngoingCallModal(props: any) {
       <Modal.Body>
         <p>All calls on queue</p>
         <p>Drag numbers to re-arrange numbers on queue</p>
-        <div className="d-flex gap-2">
+        <div className="d-flex flex-column gap-2">
           <CallQue></CallQue>
           <CallQue></CallQue>
           <CallQue></CallQue>
