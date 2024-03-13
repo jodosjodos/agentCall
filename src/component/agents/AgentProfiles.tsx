@@ -4,6 +4,7 @@ import AgentModal from "./AgentModal";
 import { useState } from "react";
 import { Controller } from "./Controller";
 import { agentType } from "../../types/types";
+import OngoingCallModal from "./OnGoingCall";
 
 const GridContainer = styled.div<{
   $selected?: boolean;
@@ -165,6 +166,7 @@ export function AgentProfiles({isSidebarOpened}:{isSidebarOpened:boolean}) {
     { name: "Info", color: "#00B7DF26", active: false },
     { name: "Closing", color: "#0FBC0C26", active: false },
   ];
+  const [showModal,setShowModal]=useState(true)
   return (
     <>
       <AgentProfileContainer className="d-flex">
@@ -254,6 +256,11 @@ export function AgentProfiles({isSidebarOpened}:{isSidebarOpened:boolean}) {
           </AgentProfileLeft>
         )}
       </AgentProfileContainer>
+      <OngoingCallModal
+        show={showModal}
+        
+        onHide={() => setShowModal(false)} ></OngoingCallModal>
     </>
+   
   );
 }
