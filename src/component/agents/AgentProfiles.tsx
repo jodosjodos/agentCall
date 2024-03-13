@@ -19,28 +19,32 @@ const GridContainer = styled.div<{
   grid-template-columns: ${(props) =>
     props.$selected ? "repeat(1, 1fr)" : "repeat(1, 2fr)"};
 
-  @media (max-width: 1449px) {
-    display: ${(props) => (props.$selected ? "none" : "flex")};
+  @media (max-width: 712px) {
+    display: ${(props) => (props.$selected ? "none" : "grid")};
     flex-direction: column;
+    grid-template-columns: ${(props) =>
+      props.$selected ? "repeat(1, 1fr)" : "repeat(2, 1fr)"};
+    
     gap: 20px;
    }
   
  
   @media (min-width: 1450px) and (max-width: 1460px) {
     grid-template-columns: ${(props) =>
-      props.$selected ? "repeat(1, 1fr)" : "repeat(2, 1fr)"};
+      props.$selected ? "repeat(2, 1fr)" : "repeat(3, 1fr)"};
   }
   @media (min-width: 712px) and (max-width: 1450px) {
     grid-template-columns: ${(props) =>
-      props.$isSidebarOpened ? "repeat(1, 1fr)" : "repeat(2, 1fr)"};
+      props.$isSidebarOpened ? "repeat(2, 1fr)" : "repeat(3, 1fr)"};
   }
   @media (min-width: 1500px) and (max-width: 1999px) {
     grid-template-columns: ${(props) =>
       props.$selected ? "repeat(1, 1fr)" : "repeat(2, 1fr)"};
   }
   @media (min-width:1992px){
-    grid-template-columns: ${(props) =>
-      props.$selected ? "repeat(2, 1fr)" : "repeat(3, 1fr)"};
+    display:flex;
+    flex-direction:row;
+    flex-wrap:wrap;
   }
   
   editProfilelate-columns: repeat(4, 1fr);
@@ -72,6 +76,7 @@ const Input = styled.input`
 `;
 const AgentProfileLeft = styled.div`
   max-width: 600px;
+
   margin: 20px 10px 0px px;
   padding: 10px;
   border-radius: 10px;
@@ -81,7 +86,8 @@ const AgentProfileLeft = styled.div`
     flex-grow: 1;
   }
   width: 35%;
-  min-width: 395px;
+
+  min-width: 470px;
   background-color: #0b2227;
   height: calc(100vh - 129px);
 `;
@@ -94,14 +100,7 @@ const Row = styled.div`
   align-items: center;
   justify-content: space-between;
 `;
-const InputRow = styled.div`
-  display: flex;
-  padding: 10px 20px;
-  border-radius: 10px;
-  align-items: center;
-  justify-content: space-between;
-  background-color: #051316;
-`;
+
 
 const Paragraph = styled.p`
   color: #96adb3;
@@ -179,6 +178,22 @@ const CallProfile = styled.img<{ $isHidden?: boolean }>`
   height: 32px;
   border-radius: 20px;
   display: ${(props) => (!props.$isHidden ? "none" : "block")};
+`;
+const CallOnQueParagraph = styled.p`
+  font-size: 20px;
+  color: rgba(201, 213, 216, 1);
+  font-weight: 600;
+  line-height: 25px;
+  letter-spacing: 0em;
+  text-align: left;
+`;
+const SeAllButton = styled.button`
+  background-color: rgba(15, 46, 53, 1);
+  border-radius: 24px;
+  padding: 4px 10px;
+  border: none;
+  color: rgba(201, 213, 216, 1);
+  height: 37px;
 `;
 export function AgentProfiles({
   isSidebarOpened,
@@ -284,15 +299,17 @@ export function AgentProfiles({
                   ))}
                 </Row>
               </OnGoingCall>
-              <InputRow>
-                <Input
-                  id="paste"
-                  type="text"
-                  className=""
-                  placeholder="Start typing ..."
-                />
-                <img src="/record.svg" alt="" />
-              </InputRow>
+              <div className="d-flex align-items-center justify-content-between">
+                <div>
+                  <CallOnQueParagraph>Calls on queue</CallOnQueParagraph>
+                  <p className="primary-text">
+                    Drag numbers to re-arrange numbers on queue
+                  </p>
+                </div>
+                <SeAllButton onClick={() => setShowModal(true)}>
+                  See all
+                </SeAllButton>
+              </div>
             </Scroll>
           </AgentProfileLeft>
         )}

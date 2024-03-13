@@ -10,12 +10,19 @@ const GreenContainer = styled.div`
 
   color: rgba(16, 122, 71, 1);
 `;
-
+const CallOnQueParagraph = styled.p`
+  font-size: 20px;
+  color: rgba(201, 213, 216, 1);
+  font-weight: 600;
+  line-height: 25px;
+  letter-spacing: 0em;
+  text-align: left;
+`;
 function OngoingCallModal(props: any) {
   return (
     <Modal
       {...props}
-      className="centered_modal "
+      className="centered_modal modal_center "
       size="lg"
       id={props.id ? "flexible" : ""}
       aria-labelledby="contained-modal-title-vcenter"
@@ -40,7 +47,9 @@ function OngoingCallModal(props: any) {
         </div>
       </div>
       <Modal.Body>
-        <p>All calls on queue</p>
+        <CallOnQueParagraph className="mb-0">
+          All calls on queue
+        </CallOnQueParagraph>
         <p>Drag numbers to re-arrange numbers on queue</p>
         <div className="d-flex flex-column gap-2">
           <CallQue></CallQue>

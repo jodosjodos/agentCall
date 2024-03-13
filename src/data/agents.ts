@@ -37,6 +37,18 @@ export const agents: agentType[] = [
     client2: 24,
     id: 3,
   },
+  {
+    profile: "/userProfile.png",
+    name: "AgentSmith3",
+    time: "4 mins",
+    minutesTalked: "00:40:01",
+    completedLeads: "64/100",
+    IncomingCalls: "250",
+    FinishedCalls: "3000",
+    client1: 21,
+    client2: 24,
+    id: 4,
+  },
 ];
 
 export const agentCallSetting: agentCalls[] = [
