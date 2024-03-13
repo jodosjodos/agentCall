@@ -4,6 +4,7 @@ import AgentModal from "./AgentModal";
 import { useState } from "react";
 import { Controller } from "./Controller";
 import { agentType } from "../../types/types";
+import OngoingCallModal from "./OnGoingCall";
 
 const GridContainer = styled.div<{
   $selected?: boolean;
@@ -113,10 +114,29 @@ const OnGoingCall = styled.div`
 `;
 const OnGoingCallRow = styled.div`
   display: flex;
+  flex-grow: 1;
   gap: 10px;
   border-radius: 20px;
   padding: 10px;
   background: linear-gradient(93.55deg, #096348 13.97%, #25955f 89.16%);
+`;
+const OnGoingCallRow1 = styled.button`
+  display: flex;
+  flex-grow: 1;
+  gap: 10px;
+  border-radius: 20px;
+  padding: 10px;
+  background: rgba(11, 34, 39, 1);
+  border: 1px solid rgba(14, 43, 49, 1);
+`;
+const GreenContainer = styled.div`
+  border-radius: 16px;
+  background-color: rgba(38, 246, 96, 0.15);
+  padding: 4px 8px;
+  display: flex;
+  max-width: fit-content;
+
+  color: rgba(16, 122, 71, 1);
 `;
 const OnGoingCallRowParagraph = styled.div`
   color: white;
@@ -157,7 +177,11 @@ const CallProfile = styled.img<{ $isHidden?: boolean }>`
   border-radius: 20px;
   display: ${(props) => (!props.$isHidden ? "none" : "block")};
 `;
-export function AgentProfiles({isSidebarOpened}:{isSidebarOpened:boolean}) {
+export function AgentProfiles({
+  isSidebarOpened,
+}: {
+  isSidebarOpened: boolean;
+}) {
   const [selectedAgent, setSelectedAgent] = useState<agentType | null>(null);
   const callSteps = [
     { name: "Intro", color: "#F0B723", active: true },
@@ -165,12 +189,12 @@ export function AgentProfiles({isSidebarOpened}:{isSidebarOpened:boolean}) {
     { name: "Info", color: "#00B7DF26", active: false },
     { name: "Closing", color: "#0FBC0C26", active: false },
   ];
+  const [showModal, setShowModal] = useState(false);
   return (
     <>
       <AgentProfileContainer className="d-flex">
         <AgentProfileSubContainer
           $selcted={selectedAgent != null}
-        
           className="d-flex flex-column "
         >
           <Controller selected={selectedAgent != null}></Controller>
@@ -212,17 +236,31 @@ export function AgentProfiles({isSidebarOpened}:{isSidebarOpened:boolean}) {
                 Ongoing call
               </Paragraph>
               <OnGoingCall className="p">
-                <Paragraph>Ongoing call with +84965482487</Paragraph>
+                <GreenContainer className="gap-1">
+                  <img src="/green-wave.svg" alt="" />
+                  Ongoing call with +84965482487
+                </GreenContainer>
                 <Row className="py-2">
                   <Row className="gap-2">
-                    <img src="/wave.svg" alt="" />
                     <Paragraph>00:40:01</Paragraph>
+                    <img src="/wave.svg" alt="" />
                   </Row>
+                </Row>
+                <div className="d-flex flex-grow-1 gap-2">
+                  <OnGoingCallRow1
+                    onClick={() => setShowModal(true)}
+                    className="p-2"
+                  >
+                    <OnGoingCallRowParagraph>
+                      Redirect call
+                    </OnGoingCallRowParagraph>
+                    <img src="/forward.svg"></img>
+                  </OnGoingCallRow1>
                   <OnGoingCallRow className="p-2">
                     <OnGoingCallRowParagraph>Listen in</OnGoingCallRowParagraph>
                     <img src="/resume.svg"></img>
                   </OnGoingCallRow>
-                </Row>
+                </div>
                 <Row>
                   {callSteps.map((item, i) => (
                     <CallContainer key={i}>
@@ -254,6 +292,10 @@ export function AgentProfiles({isSidebarOpened}:{isSidebarOpened:boolean}) {
           </AgentProfileLeft>
         )}
       </AgentProfileContainer>
+      <OngoingCallModal
+        show={showModal}
+        onHide={() => setShowModal(false)}
+      ></OngoingCallModal>
     </>
   );
 }

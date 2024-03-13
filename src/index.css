@@ -222,3 +222,7 @@
 .drop-down-home button#dropdown-basic {
   width: 100%;
 }
+
+.modal_center {
+  width: 400px;
+}
