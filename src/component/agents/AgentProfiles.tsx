@@ -67,13 +67,6 @@ const AgentProfileSubContainer = styled.div<{ $selcted?: boolean }>`
   height: calc(100vh - 96px);
   overflow: auto;
 `;
-const Input = styled.input`
-  flex-grow: 1;
-  background-color: transparent;
-  border: none;
-  outline: none;
-  color: white;
-`;
 const AgentProfileLeft = styled.div`
   max-width: 600px;
 
