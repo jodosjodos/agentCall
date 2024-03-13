@@ -13,13 +13,13 @@ function OngoingCallModal(props: any) {
   return (
     <Modal
       {...props}
-      className="centered_modal"
+      className="centered_modal "
       size="lg"
       id={props.id ? "flexible" : ""}
       aria-labelledby="contained-modal-title-vcenter"
       centered
     >
-      <div>
+      <div className="">
         <div className="d-flex p-2  justify-content-between align-items-center">
           <GreenContainer>Ongoing call with +84965482487</GreenContainer>
           <img
