@@ -25,10 +25,10 @@ const InputMod = styled.input`
   color: #96adb3;
 `;
 
-function Search() {
+function Search(props:any) {
   return (
     <Column  className="position-relative ">
-      <InputMod type="text" placeholder="search" />
+      <InputMod type="text" placeholder={props.placeholder?props.placeholder:"search"} />
       <ImgMod src="/searchIcons.png" />
     </Column>
   );

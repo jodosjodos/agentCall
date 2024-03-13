@@ -5,6 +5,9 @@ import { useState } from "react";
 import { Controller } from "./Controller";
 import { agentType } from "../../types/types";
 import OngoingCallModal from "./OnGoingCall";
+import CenteredModal from "../modals/Modal";
+import Search from "../Search";
+import SuccessMessage from "./successMessage";
 
 const GridContainer = styled.div<{
   $selected?: boolean;
@@ -190,6 +193,8 @@ export function AgentProfiles({
     { name: "Closing", color: "#0FBC0C26", active: false },
   ];
   const [showModal, setShowModal] = useState(false);
+  const [showRedirect, setShowRedirect] = useState(false);
+  const [success, setSuccess] = useState(false);
   return (
     <>
       <AgentProfileContainer className="d-flex">
@@ -248,7 +253,7 @@ export function AgentProfiles({
                 </Row>
                 <div className="d-flex flex-grow-1 gap-2">
                   <OnGoingCallRow1
-                    onClick={() => setShowModal(true)}
+                    onClick={() => setShowRedirect(true)}
                     className="p-2"
                   >
                     <OnGoingCallRowParagraph>
@@ -296,6 +301,21 @@ export function AgentProfiles({
         show={showModal}
         onHide={() => setShowModal(false)}
       ></OngoingCallModal>
+      <CenteredModal
+        show={showRedirect}
+        onHide={() => setShowRedirect(false)}
+        btnText="Redirect call"
+        onContinue={() => {
+          setShowRedirect(false);
+          setTimeout(() => {}, 2000);
+          setSuccess(true);
+        }}
+        children={<Search placeholder="e.g +442345678"></Search>}
+      ></CenteredModal>
+      <SuccessMessage
+        show={success}
+        onHide={() => setSuccess(false)}
+      ></SuccessMessage>
     </>
   );
 }
