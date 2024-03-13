@@ -180,6 +180,13 @@ const CallProfile = styled.img<{ $isHidden?: boolean }>`
   border-radius: 20px;
   display: ${(props) => (!props.$isHidden ? "none" : "block")};
 `;
+const SeAllButton = styled.button`
+  background-color: rgba(15, 46, 53, 1);
+  border-radius: 24px;
+  padding: 4px 6px;
+  border: none;
+  height: 37px;
+`;
 export function AgentProfiles({
   isSidebarOpened,
 }: {
@@ -284,15 +291,17 @@ export function AgentProfiles({
                   ))}
                 </Row>
               </OnGoingCall>
-              <InputRow>
-                <Input
-                  id="paste"
-                  type="text"
-                  className=""
-                  placeholder="Start typing ..."
-                />
-                <img src="/record.svg" alt="" />
-              </InputRow>
+              <div className="d-flex items-center">
+                <div>
+                  <p>Calls on queue</p>
+                  <p className="primary-text">
+                    Drag numbers to re-arrange numbers on queue
+                  </p>
+                </div>
+                <SeAllButton onClick={() => setShowModal(true)}>
+                  See all
+                </SeAllButton>
+              </div>
             </Scroll>
           </AgentProfileLeft>
         )}
