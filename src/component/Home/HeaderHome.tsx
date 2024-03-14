@@ -2,13 +2,16 @@ import React from "react";
 
 import styled from "styled-components";
 import { HomeController } from "./HomeController";
+import { useSelector } from "react-redux";
+import { RootState } from "../../store";
 
-const H1Styled = styled.h4`
-  color: #96adb3;
+const H1Styled = styled.h4<{ theme: string }>`
+  color: ${(props) => (props.theme === "light" ? "#051316" : "#96adb3")};
   font-weight: bold;
 `;
-const DivStyled = styled.div`
-  border-bottom: 1px solid #0f2e35;
+const DivStyled = styled.div<{ theme: string }>`
+  border-bottom: ${(props) =>
+    props.theme === "light" ? "1px solid #9ABCC4" : "1px solid #0f2e35"};
   width: 100%;
   padding: 0px 0px 0px 50px;
   @media (max-width: 993px) {
@@ -17,8 +20,8 @@ const DivStyled = styled.div`
   }
 `;
 
-const PModified = styled.p`
-  color: #384b4f;
+const PModified = styled.p<{ theme: string }>`
+  color: ${(props) => (props.theme == "light" ? "#0F2E35" : "#384b4f")};
   font-weight: bold;
 `;
 const CustomRow = styled.div`
@@ -26,11 +29,15 @@ const CustomRow = styled.div`
 `;
 
 export function HeaderHome() {
+  const theme = useSelector((state: RootState) => state.theme.theme);
   return (
-    <DivStyled className="d-flex flex-wrap  align-items-center justify-content-between">
+    <DivStyled
+      theme={theme}
+      className="d-flex flex-wrap  align-items-center justify-content-between"
+    >
       <CustomRow className="">
-        <H1Styled>Welcome Raam , Adi</H1Styled>
-        <PModified>September 12, 2024</PModified>
+        <H1Styled theme={theme}>Welcome Raam , Adi</H1Styled>
+        <PModified theme={theme}>September 12, 2024</PModified>
       </CustomRow>
 
       <HomeController />

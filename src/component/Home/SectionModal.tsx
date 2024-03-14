@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import { HomeDataType } from "../../types/types";
 import { Row } from "react-bootstrap";
+import { useSelector } from "react-redux";
+import { RootState } from "../../store";
 const callSteps = [
   { name: "Intro", color: "#F0B723", active: true },
   { name: "Interest", color: "#E4F150", active: true },
@@ -32,23 +34,30 @@ width:24%;
   gap: 8px;
 `;
 
-const SectionParent = styled.div`
-  background: linear-gradient(180deg, #0b2227 0%, #09181b 77.4%);
+const SectionParent = styled.div<{ theme: string }>`
+  background: ${(props) =>
+    props.theme === "light"
+      ? "linear-gradient(#E6EDEF, #EDEFE6)"
+      : "linear-gradient(180deg, #0b2227 0%, #09181b 77.4%)"};
   border-radius: 20px;
-  color: #96adb3;
-  border: 1px solid #0f2e35;
+  color: ${(props) => (props.theme === "light" ? "#0F2E35" : "#96adb3")};
+  border: ${(props) =>
+    props.theme === "light" ? "1px solid #9ABCC4" : "1px solid #0f2e35"};
 `;
-const DataRow = styled(Row)`
+const DataRow = styled(Row)<{ theme: string }>`
   padding: 3px;
-  border: 3px solid #0f2e35;
+    border:${(props) =>
+      props.theme === "light" ? "3px solid #9ABCC4" : "3px solid #0f2e35"};
   border-radius: 30px;
   display: flex;
   flex-direction: row;
   gap: 3px;
 `;
 export function SectionModal({ home }: { home: HomeDataType }) {
+  const theme = useSelector((state: RootState) => state.theme.theme);
+
   return (
-    <SectionParent className="px-4 py-2">
+    <SectionParent theme={theme} className="px-4 py-2">
       <h5 className="fw-bold ">{home?.name}</h5>
       <p>{home?.contact}</p>
       <div className="d-flex flex-row justify-content-between ">
@@ -65,7 +74,7 @@ export function SectionModal({ home }: { home: HomeDataType }) {
           <p className="fs-1">{home?.closing}</p>
         </div>
       </div>
-      <DataRow className="">
+      <DataRow theme={theme} className="">
         {home.callSteps.map((item, i) => (
           <CallStep
             key={i}

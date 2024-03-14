@@ -16,13 +16,13 @@ import PromptEditor from "./component/agents/PromptEditor";
 import { useEffect, useState } from "react";
 import CompanyPage from "./pages/CompanyPage";
 import { useSelector } from "react-redux";
-import { RootState } from "@reduxjs/toolkit/query";
+import { RootState } from "./store";
 
 const SideBarDiv = styled.div<{theme:string}>`
   background-color:${(props)=>(props.theme=== "light"?"#FEFEFE":"#0b2227")} ;
 `;
-const ParentCol = styled(Col)`
-  background-color: #051316;
+const ParentCol = styled(Col)<{theme:string}>`
+  background-color:${(props)=>props.theme === "light"?"#FEFEFE":"#051316"} ;
   padding-inline: 0px;
   border-left: 2px solid #0f2e35;
   overflow-x: hidden;
@@ -82,7 +82,7 @@ function App() {
                 setActivePage={setActivePage}
               />
             </SideBarDiv>
-            <ParentCol>
+            <ParentCol theme={theme}>
               <Routes>
                 <Route
                   path="/"
