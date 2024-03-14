@@ -17,7 +17,7 @@ const GridContainer = styled.div<{
   flex-grow: 1;
 
   grid-template-columns: ${(props) =>
-    props.$selected ? "repeat(1, 1fr)" : "repeat(1, 2fr)"};
+    props.$selected ? "repeat(1, 1fr)" : "repeat(1, 1fr)"};
 
   @media (max-width: 712px) {
     display: ${(props) => (props.$selected ? "none" : "grid")};
@@ -28,20 +28,27 @@ const GridContainer = styled.div<{
     gap: 20px;
    }
   
- 
-  @media (min-width: 1450px) and (max-width: 1460px) {
-    grid-template-columns: ${(props) =>
-      props.$selected ? "repeat(2, 1fr)" : "repeat(3, 1fr)"};
-  }
-  @media (min-width: 712px) and (max-width: 1450px) {
-    grid-template-columns: ${(props) =>
-      props.$isSidebarOpened ? "repeat(2, 1fr)" : "repeat(3, 1fr)"};
-  }
-  @media (min-width: 1500px) and (max-width: 1999px) {
+   @media (min-width: 712px) and (max-width:1449px) {
+    
     grid-template-columns: ${(props) =>
       props.$selected ? "repeat(1, 1fr)" : "repeat(2, 1fr)"};
+    
+    gap: 20px;
+   }
+  
+ 
+  @media (min-width: 1450px) and (max-width: 1999px) {
+    grid-template-columns: ${(props) =>
+      props.$selected && !props.$isSidebarOpened
+        ? "repeat(2, 1fr)"
+        : props.$selected && props.$isSidebarOpened
+        ? "repeat(1, 1fr)"
+        : "repeat(3, 1fr)"};
+      
   }
-  @media (min-width:1992px){
+
+ 
+  @media (min-width:1999px){
     display:flex;
     flex-direction:row;
     flex-wrap:wrap;
@@ -55,11 +62,16 @@ const AgentProfileContainer = styled.div`
   width: 100%;
   padding: 20px;
 `;
-const AgentProfileSubContainer = styled.div<{ $selcted?: boolean }>`
+const AgentProfileSubContainer = styled.div<{
+  $selcted?: boolean;
+  $isSidebarOpened?: boolean;
+}>`
   display: flex;
   width: 100%;
 
-  @media (max-width: 714px) {
+  @media (max-width: 1534px) {
+    display: ${(props) =>
+      props.$selcted ? "none !important" : "block !important"};
     width: ${(props) => (props.$selcted ? "0" : "100vw")};
     max-width: 100%;
     flex-grow: 1;
@@ -67,20 +79,14 @@ const AgentProfileSubContainer = styled.div<{ $selcted?: boolean }>`
   height: calc(100vh - 96px);
   overflow: auto;
 `;
-const Input = styled.input`
-  flex-grow: 1;
-  background-color: transparent;
-  border: none;
-  outline: none;
-  color: white;
-`;
+
 const AgentProfileLeft = styled.div`
   max-width: 600px;
 
   margin: 20px 10px 0px px;
   padding: 10px;
   border-radius: 10px;
-  @media (max-width: 714px) {
+  @media (max-width: 1534px) {
     width: 100%;
     max-width: 100%;
     flex-grow: 1;
@@ -100,7 +106,6 @@ const Row = styled.div`
   align-items: center;
   justify-content: space-between;
 `;
-
 
 const Paragraph = styled.p`
   color: #96adb3;
@@ -212,10 +217,10 @@ export function AgentProfiles({
   const [success, setSuccess] = useState(false);
   return (
     <>
-      <AgentProfileContainer className="d-flex">
+      <AgentProfileContainer className="d-flex agent-profile">
         <AgentProfileSubContainer
           $selcted={selectedAgent != null}
-          className="d-flex flex-column "
+          className="d-flex agent-profile flex-column "
         >
           <Controller selected={selectedAgent != null}></Controller>
           <GridContainer
@@ -237,7 +242,7 @@ export function AgentProfiles({
 
         {selectedAgent != null && (
           <AgentProfileLeft>
-            <Scroll>
+            <Scroll className="agent-profile">
               <Row className="gap-2 w-full justify-content-end ">
                 <Row
                   className="gap-2 align-items-center cursor-pointer"

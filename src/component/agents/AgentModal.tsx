@@ -23,7 +23,7 @@ const AgentContainer = styled.div<{ $isLeft?: boolean }>`
   color: white;
   max-width: ${(props) => (props.$isLeft ? "500px" : "550px")};
   height: fit-content;
-  width: ${(props) => (props.$isLeft ? "50%" : "320px")};
+
   @media (max-width: 1456px) {
     max-width: 98%;
     min-width: 98%;
@@ -32,7 +32,7 @@ const AgentContainer = styled.div<{ $isLeft?: boolean }>`
   @media (min-width: 1500px) and (max-width: 1999px) {
     width: 100%;
   }
-  min-width: ${(props) => (props.$isLeft ? "395px" : "395px")};
+  min-width: ${(props) => (props.$isLeft ? "400px" : "400px")};
   background: ${(props) =>
     props.$isLeft
       ? "transparent"

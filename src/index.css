@@ -204,7 +204,8 @@
   overflow: auto;
 }
 
-.table_container::-webkit-scrollbar {
+.table_container,
+.agent-profile::-webkit-scrollbar {
   display: block;
   width: 6px;
   height: 6px;
@@ -221,7 +222,8 @@
 
 
 .agent-row::-webkit-scrollbar-thumb,
-.table_container::-webkit-scrollbar-thumb {
+.table_container,
+.agent-profile::-webkit-scrollbar-thumb {
   background-color: #224D57;
   border-radius: 5px;
   height: 20px !important;
@@ -229,7 +231,8 @@
 
 }
 
-.table_container::-webkit-scrollbar-thumb {
+.table_container,
+.agent-profile::-webkit-scrollbar-thumb {
   background-color: #224D57;
   border-radius: 5px;
   height: 20px !important;
