@@ -32,11 +32,24 @@ const MoveButton = styled.div`
   display: flex;
   align-items: center;
   padding: 3px 8px;
+  &:hover {
+    cursor: pointer;
+  }
+
   border-radius: 20px;
   background-color: rgba(15, 46, 53, 1);
 `;
-function CallQue() {
-  const [showUpDown,setShowUpDown]=useState(false)
+const MoveUpDownContainer = styled.div`
+  width: 130px;
+  font-size: 14px;
+  top: 40px;
+  display: flex;
+  align-items: end;
+  padding: 3px 8px;
+  border-radius: 7px;
+  background-color: rgba(15, 46, 53, 1);
+`;
+function CallQue(props: any) {
   return (
     <CallQueContainer>
       <div className="d-flex flex-column">
@@ -48,14 +61,32 @@ function CallQue() {
           </GreenContainer>
         </div>
       </div>
-      <div className="d-flex gap-2">
+      <div className="d-flex position-relative gap-2">
         <DeleteContainer>
           <img src="/delete2.svg"></img>
         </DeleteContainer>
-        <MoveButton className="gap-2">
+        <MoveButton
+          onClick={() => {
+            props.setShowUpDown(!props.showUpDown);
+            props.setActiveCallQue(props.index);
+          }}
+          className="gap-2"
+        >
           <p className="mb-0 ">Move</p>
           <img src="/move.svg"></img>
         </MoveButton>
+        {props.activeCallQue == props.index && props.showUpDown && (
+          <MoveUpDownContainer className="position-absolute flex-column  left-0 ">
+            <MoveButton className="gap-2">
+              <p className="mb-0 "> move up</p>
+              <img src="/move.svg"></img>
+            </MoveButton>
+            <MoveButton className="gap-2">
+              <p className="mb-0 ">move down</p>
+              <img src="/move.svg"></img>
+            </MoveButton>
+          </MoveUpDownContainer>
+        )}
       </div>
     </CallQueContainer>
   );

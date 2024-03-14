@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Modal } from "react-bootstrap";
 import styled from "styled-components";
 import CallQue from "./CallQue";
@@ -19,6 +19,8 @@ const CallOnQueParagraph = styled.p`
   text-align: left;
 `;
 function OngoingCallModal(props: any) {
+  const [showUpDown, setShowUpDown] = useState(false);
+  const [activeCallQue, setActiveCallQue] = useState(0);
   return (
     <Modal
       {...props}
@@ -52,11 +54,17 @@ function OngoingCallModal(props: any) {
         </CallOnQueParagraph>
         <p>Drag numbers to re-arrange numbers on queue</p>
         <div className="d-flex flex-column gap-2">
-          <CallQue></CallQue>
-          <CallQue></CallQue>
-          <CallQue></CallQue>
-          <CallQue></CallQue>
-          <CallQue></CallQue>
+          {[1, 2, 3, 4, 5].map((item, index) =>
+            <CallQue
+              index={index}
+              activeCallQue={activeCallQue}
+              setActiveCallQue={setActiveCallQue}
+          showUpDown={showUpDown}
+          setShowUpDown={setShowUpDown}
+        ></CallQue>
+          )}
+          
+         
         </div>
       </Modal.Body>
     </Modal>

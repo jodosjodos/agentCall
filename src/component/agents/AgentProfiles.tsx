@@ -215,6 +215,7 @@ export function AgentProfiles({
   const [showModal, setShowModal] = useState(false);
   const [showRedirect, setShowRedirect] = useState(false);
   const [success, setSuccess] = useState(false);
+  const [showUpDown, setShowUpDown] = useState(false);
   return (
     <>
       <AgentProfileContainer className="d-flex agent-profile">
