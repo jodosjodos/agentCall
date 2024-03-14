@@ -1,10 +1,15 @@
 import { useEffect } from "react";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { toggleTheme } from "../store/themeSlice";
+import { useSelector } from "react-redux";
+import { RootState } from "../store";
 
-const StyledLink = styled(Link)`
-  color: #96adb3;
+const StyledLink = styled(Link)<{theme:string}>`
+  color:${(props)=>(props.theme === "light"?"#051316":"#96adb3")} ;
   border-radius: 20px;
+  font-weight:bold;
 `;
 const StyledMenu = styled("img")`
   color: #96adb3;
@@ -16,7 +21,7 @@ const StyledMenu = styled("img")`
     display: none;
   }
 `;
-const Li = styled.li<{ $isSidebarOpened?: boolean }>`
+const Li = styled.li<{ $isSidebarOpened?: boolean}>`
   display: flex;
   width: 100%;
   justify-content: ${(props) => (props.$isSidebarOpened ? "" : "center")};
@@ -99,11 +104,18 @@ export function SideBar({
     },
   ];
   useEffect(() => {}, [window.innerWidth]);
+  const dispatch = useDispatch();
+  const handleTheme = () => {
+    dispatch(toggleTheme());
+  };
+  const theme = useSelector((state: RootState) => state.theme.theme);
   return (
-    <div
-      className="mt-2   position-relative"
-     
-    >
+    <div className="mt-2   position-relative">
+      <div>
+        <button className=" border-none bg-gradient" onClick={handleTheme}>
+          theme
+        </button>
+      </div>
       {isSidebarOpened && (
         <BackImage
           src="/back.svg"
@@ -120,6 +132,7 @@ export function SideBar({
             className={`nav-item ${activeMobile ? "mobile_active" : ""}  my-1`}
           >
             <StyledLink
+            theme={theme}
               to={header.to}
               onClick={() => {
                 setActivePage(header.to);
