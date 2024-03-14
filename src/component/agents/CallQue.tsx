@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 const CallQueContainer = styled.div`
   background: linear-gradient(180deg, #0b2227 0%, #09181b 77.4%);

@@ -54,17 +54,15 @@ function OngoingCallModal(props: any) {
         </CallOnQueParagraph>
         <p>Drag numbers to re-arrange numbers on queue</p>
         <div className="d-flex flex-column gap-2">
-          {[1, 2, 3, 4, 5].map((item, index) =>
+          {[1, 2, 3, 4, 5].map((item) => (
             <CallQue
-              index={index}
+              index={item - 1}
               activeCallQue={activeCallQue}
               setActiveCallQue={setActiveCallQue}
-          showUpDown={showUpDown}
-          setShowUpDown={setShowUpDown}
-        ></CallQue>
-          )}
-          
-         
+              showUpDown={showUpDown}
+              setShowUpDown={setShowUpDown}
+            ></CallQue>
+          ))}
         </div>
       </Modal.Body>
     </Modal>
