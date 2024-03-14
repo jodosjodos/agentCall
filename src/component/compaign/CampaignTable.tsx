@@ -7,6 +7,8 @@ import { createColumnHelper } from "@tanstack/react-table";
 import { campaignTableTypeData } from "../../data/campaign";
 import MaterialDesignSwitch from "../switch";
 import { CampaignTableType } from "../../types/types";
+import { useSelector } from "react-redux";
+import { RootState } from "../../store";
 
 const CampaignTableContainer = styled.div`
   flex-grow: 1;
@@ -21,13 +23,14 @@ const CampaignTableHeader = styled(Row)`
   flex-direction: row;
   padding-bottom: 10px;
 `;
-const InputMod = styled.input`
+const InputMod = styled.input<{ theme: string }>`
   float: right;
   padding: 6px 6px;
   border: none;
 
   font-size: 17px;
-  background-color: #0a2328;
+  background-color: ${(props) =>
+    props.theme === "light" ? "#C9D5D8" : "#0a2328"};
   outline: none;
   border-radius: 8px;
   color: #96adb3;
@@ -47,12 +50,12 @@ const Relative = styled.div`
   position: relative;
   width: fit-content;
 `;
-const Title = styled.div`
+const Title = styled.div<{ theme: string }>`
   font-size: 18px;
   font-weight: 600;
   line-height: 23px;
   letter-spacing: 0em;
-  color: #c9d5d8;
+  color: ${(props) => (props.theme === "light" ? "" : "#c9d5d8")};
   padding-bottom: 8px;
   text-align: left;
 `;
@@ -60,18 +63,19 @@ const Paragraph = styled.div`
   color: #394b4f;
   padding-bottom: 20px;
 `;
-const DateButton = styled.div`
+const DateButton = styled.div<{ theme: string }>`
   width: 134.5px;
   flex-grow: 1;
   padding: 4px;
   border-radius: 8px;
   border: 1px;
-  background-color: #0f2e35;
+  background-color: ${(props) =>
+    props.theme === "light" ? "#C9D5D8" : "#0f2e35"};
   padding: 9px;
   font-size: 14px;
   display: flex;
-  color: #c9d5d8;
   gap: 10px;
+  color: ${(props) => (props.theme === "light" ? "#0F2E35" : "#c9d5d8")};
 `;
 const DateContainer = styled.div`
   display: flex;
@@ -207,11 +211,13 @@ const UnderLineSpan = styled.span`
   font-weight: semi-bold;
 `;
 function CampaignTable() {
+  const theme = useSelector((state: RootState) => state.theme.theme);
+
   return (
     <CampaignTableContainer className="">
       <div className="d-flex flex-lg-row flex-column items-center justify-content-between">
         <Col>
-          <Title>Campaigns</Title>
+          <Title theme={theme}>Campaigns</Title>
           <Paragraph>Here are the calls currently running</Paragraph>
         </Col>
         <LinkP className="text-lg-end text-center py-2 mb-lg-0 mb-2">
@@ -221,19 +227,19 @@ function CampaignTable() {
 
       <CampaignTableHeader>
         <Relative>
-          <InputMod type="text" placeholder="search" />
+          <InputMod theme={theme} type="text" placeholder="search" />
           <ImgMod src="/searchIcons.png" />
         </Relative>
         <DropdownButton name="Compaign"></DropdownButton>
         <DropdownButton name="Outcome"></DropdownButton>
         <DropdownButton name="Call duration"></DropdownButton>
         <DateContainer>
-          <DateButton>
+          <DateButton theme={theme}>
             Date & Time
             <img src="/date.svg" alt="" />
           </DateButton>
           <DateParagraph className="">To</DateParagraph>
-          <DateButton>
+          <DateButton theme={theme}>
             Date & Time
             <img src="/date.svg" alt="" />
           </DateButton>
@@ -244,6 +250,7 @@ function CampaignTable() {
           data={campaignTableTypeData}
           columns={columns}
           maxWidth={1430}
+          theme={theme}
         ></CustomTable>
       </CustomTableContainer>
     </CampaignTableContainer>

@@ -9,23 +9,24 @@ import { useState } from "react";
 import "./table.css";
 import styled from "styled-components";
 
-const Th = styled.th<{ $width?: number }>`
+const Th = styled.th<{ $width?: number; theme: string }>`
   width: ${(props) => (props.$width ? `${props.$width}%` : "fit-content")};
   min-width: 100px;
+  background-color: ${(props) => (props.theme === "light" ? "#C9D5D8" : "")};
+  color: ${(props) => (props.theme === "light" ? "#0F2E35" : "")};
 `;
-const PaginationButton = styled.button<{ $active?: boolean }>`
+const PaginationButton = styled.button<{ $active?: boolean,theme:string }>`
   padding: 8px;
-  background-color: ${(props) => (props.$active ? "#0a2328" : "transparent")};
+  background-color: ${(props) => (props.$active ? (props.theme == "light"?"#C9D5D8":"#0a2328" ) : "transparent")};
   border: none;
   width: 40px;
   min-width: fit-content;
-
+  color: ${(props) => (props.theme === "light" ? "#0F2E35" : " #c9d5d8")};
   border-radius: 12px;
   gap: 4px;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #c9d5d8;
 `;
 
 const PaginationContainer = styled.div`
@@ -42,16 +43,21 @@ const TableContainer = styled.div<{ $maxwidth?: number }>`
   min-width: ${(props) => (props.$maxwidth ? `${props.$maxwidth}px` : "800px")};
 `;
 
+const Td = styled.tr<{ theme: string }>`
+  color: ${(props) => (props.theme === "light" ? "#0F2E35" : "")};
+`;
 function CustomTable({
   columns,
   data,
   maxWidth,
   hidePagination,
+  theme,
 }: {
   columns: any;
   data: any;
   maxWidth?: number;
   hidePagination?: boolean;
+  theme: string;
 }) {
   const [pagination, setPagination] = useState<PaginationState>({
     pageIndex: 0,
@@ -69,6 +75,7 @@ function CustomTable({
     getCoreRowModel: getCoreRowModel(),
   });
 
+  //TODO:change icons for dark
   return (
     <TableContainer $maxwidth={maxWidth} className="p-2  ">
       <table>
@@ -77,6 +84,7 @@ function CustomTable({
             <tr key={headerGroup.id}>
               {headerGroup.headers.map((header, index) => (
                 <Th
+                  theme={theme}
                   $width={100 / headerGroup.headers.length + 1}
                   className={`${index == 0 ? "first-thead" : ""} ${
                     index == headerGroup.headers.length - 1 ? "last-thead" : ""
@@ -96,19 +104,19 @@ function CustomTable({
         </thead>
         <tbody>
           {table.getRowModel().rows.map((row) => (
-            <tr key={row.id}>
+            <Td key={row.id} theme={theme}>
               {row.getVisibleCells().map((cell) => (
                 <td className="py-2" key={cell.id}>
                   {flexRender(cell.column.columnDef.cell, cell.getContext())}
                 </td>
               ))}
-            </tr>
+            </Td>
           ))}
         </tbody>
       </table>
       {!hidePagination && (
         <PaginationContainer>
-          <PaginationButton
+          <PaginationButton theme={theme}
             $active
             onClick={() => table.previousPage()}
             disabled={!table.getCanPreviousPage()}
@@ -119,6 +127,7 @@ function CustomTable({
 
           {Array.from({ length: table.getPageCount() }, (_, index) => (
             <PaginationButton
+            theme={theme}
               key={index}
               $active={
                 table.getState().pagination.pageIndex != 0
@@ -131,6 +140,7 @@ function CustomTable({
             </PaginationButton>
           ))}
           <PaginationButton
+          theme={theme}
             $active
             onClick={() => table.nextPage()}
             disabled={!table.getCanNextPage()}
