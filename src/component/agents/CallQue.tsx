@@ -53,9 +53,9 @@ function CallQue(props: any) {
   return (
     <CallQueContainer>
       <div className="d-flex flex-column">
-        <p>Raam Adi</p>
+        <p>{props.callItem.name}</p>
         <div className="d-flex gap-2">
-          <p>+44786355278</p>
+          <p>{props.callItem.number}</p>
           <GreenContainer>
             <p className="mb-0">New Lead</p>
           </GreenContainer>
@@ -72,17 +72,31 @@ function CallQue(props: any) {
           }}
           className="gap-2"
         >
-          <p className="mb-0 ">Move</p>
+          <p className="mb-0 ">Move </p>
           <img src="/move.svg"></img>
         </MoveButton>
         {props.activeCallQue == props.index && props.showUpDown && (
           <MoveUpDownContainer className="position-absolute flex-column  left-0 ">
-            <MoveButton className="gap-2">
-              <p className="mb-0 "> move up</p>
+            <MoveButton
+              className="gap-2"
+              onClick={() => {
+                props.onMoveUp();
+                props.setShowUpDown(!props.showUpDown);
+                props.setActiveCallQue(props.index);
+              }}
+            >
+              <p className="mb-0 "> move up </p>
               <img src="/move.svg"></img>
             </MoveButton>
-            <MoveButton className="gap-2">
-              <p className="mb-0 ">move down</p>
+            <MoveButton
+              className="gap-2"
+              onClick={() => {
+                props.onMoveDown();
+                props.setShowUpDown(!props.showUpDown);
+                props.setActiveCallQue(props.index);
+              }}
+            >
+              <p className="mb-0 ">move down </p>
               <img src="/move.svg"></img>
             </MoveButton>
           </MoveUpDownContainer>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { Modal } from "react-bootstrap";
 import styled from "styled-components";
 import CallQue from "./CallQue";
@@ -21,6 +21,34 @@ const CallOnQueParagraph = styled.p`
 function OngoingCallModal(props: any) {
   const [showUpDown, setShowUpDown] = useState(false);
   const [activeCallQue, setActiveCallQue] = useState(0);
+  const [call, setCall] = useState([
+    { name: "Raam 1 adi", number: "+4476363636363" },
+    { name: "Raam 2 adi", number: "+4476363636363" },
+    { name: "Raam 3 adi", number: "+4476363636363" },
+    { name: "Raam 4 adi", number: "+4476363636363" },
+    { name: "Raam  5 adi", number: "+4476363636363" },
+  ]);
+  const dragCall = useRef<number>(0);
+  const draggedOverCall = useRef<number>(0);
+  const moveDown = (index: number) => {
+    if (index < call.length - 1) {
+      const updatedCalls = [...call];
+      const temp = updatedCalls[index];
+      updatedCalls[index] = updatedCalls[index + 1];
+      updatedCalls[index + 1] = temp;
+      setCall(updatedCalls);
+    }
+  };
+  const moveUp = (index: number) => {
+    if (index < call.length + 1) {
+      const updatedCalls = [...call];
+      const temp = updatedCalls[index];
+      updatedCalls[index] = updatedCalls[index + 1];
+      updatedCalls[index + 1] = temp;
+      setCall(updatedCalls);
+    }
+  };
+
   return (
     <Modal
       {...props}
@@ -54,14 +82,29 @@ function OngoingCallModal(props: any) {
         </CallOnQueParagraph>
         <p>Drag numbers to re-arrange numbers on queue</p>
         <div className="d-flex flex-column gap-2">
-          {[1, 2, 3, 4, 5].map((item) => (
-            <CallQue
-              index={item - 1}
-              activeCallQue={activeCallQue}
-              setActiveCallQue={setActiveCallQue}
-              showUpDown={showUpDown}
-              setShowUpDown={setShowUpDown}
-            ></CallQue>
+          {call.map((i, item) => (
+            <>
+              <CallQue
+                callItem={i}
+                index={item - 1}
+                onMoveDown={() => {
+                  dragCall.current = item;
+                  draggedOverCall.current = item;
+
+                  moveDown(item);
+                }}
+                onMoveUp={() => {
+                  dragCall.current = item;
+                  draggedOverCall.current = item;
+
+                  moveDown(item);
+                }}
+                activeCallQue={activeCallQue}
+                setActiveCallQue={setActiveCallQue}
+                showUpDown={showUpDown}
+                setShowUpDown={setShowUpDown}
+              ></CallQue>
+            </>
           ))}
         </div>
       </Modal.Body>
