@@ -40,11 +40,11 @@ function OngoingCallModal(props: any) {
     }
   };
   const moveUp = (index: number) => {
-    if (index < call.length + 1) {
+    if (index > 0) {
       const updatedCalls = [...call];
       const temp = updatedCalls[index];
-      updatedCalls[index] = updatedCalls[index + 1];
-      updatedCalls[index + 1] = temp;
+      updatedCalls[index] = updatedCalls[index - 1];
+      updatedCalls[index - 1] = temp;
       setCall(updatedCalls);
     }
   };
@@ -97,7 +97,7 @@ function OngoingCallModal(props: any) {
                   dragCall.current = item;
                   draggedOverCall.current = item;
 
-                  moveDown(item);
+                  moveUp(item);
                 }}
                 activeCallQue={activeCallQue}
                 setActiveCallQue={setActiveCallQue}
