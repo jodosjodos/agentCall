@@ -1,3 +1,5 @@
+import { CompanyTableType } from "../types/types";
+
 export const CompanyTableData: CompanyTableType[] = [
   {
     companyName: "Agentsmith",

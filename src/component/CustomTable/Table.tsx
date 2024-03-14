@@ -37,6 +37,7 @@ const PaginationContainer = styled.div`
 const TableContainer = styled.div<{ $maxwidth?: number }>`
   width: 100%;
   flex-grow: 1;
+  heigh: 100%;
   overflow: hidden;
   min-width: ${(props) => (props.$maxwidth ? `${props.$maxwidth}px` : "800px")};
 `;
@@ -118,6 +119,7 @@ function CustomTable({
 
           {Array.from({ length: table.getPageCount() }, (_, index) => (
             <PaginationButton
+              key={index}
               $active={
                 table.getState().pagination.pageIndex != 0
                   ? table.getState().pagination.pageIndex == index
