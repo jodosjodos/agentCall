@@ -1,3 +1,5 @@
+import { CampaignTableType } from "../types/types";
+
 export const campaignTableTypeData: CampaignTableType[] = [
   {
     campaign: "3093578590",

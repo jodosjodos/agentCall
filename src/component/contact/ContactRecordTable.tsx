@@ -86,7 +86,7 @@ const DateParagraph = styled.p`
   margin: 0px;
 `;
 const CustomTableContainer = styled.div`
-  height: calc(100vh - 340px);
+  height: calc(100vh - 340px) !important;
   overflow: auto;
 `;
 
