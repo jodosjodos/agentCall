@@ -37,7 +37,7 @@ const GridContainer = styled.div<{
    }
   
  
-  @media (min-width: 1450px) and (max-width: 1999px) {
+  @media (min-width: 1460px) and (max-width: 1999px) {
     grid-template-columns: ${(props) =>
       props.$selected && !props.$isSidebarOpened
         ? "repeat(2, 1fr)"
@@ -215,7 +215,7 @@ export function AgentProfiles({
   const [showModal, setShowModal] = useState(false);
   const [showRedirect, setShowRedirect] = useState(false);
   const [success, setSuccess] = useState(false);
- 
+
   return (
     <>
       <AgentProfileContainer className="d-flex agent-profile">
