@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 const CallQueContainer = styled.div`
   background: linear-gradient(180deg, #0b2227 0%, #09181b 77.4%);
@@ -36,6 +36,7 @@ const MoveButton = styled.div`
   background-color: rgba(15, 46, 53, 1);
 `;
 function CallQue() {
+  const [showUpDown,setShowUpDown]=useState(false)
   return (
     <CallQueContainer>
       <div className="d-flex flex-column">

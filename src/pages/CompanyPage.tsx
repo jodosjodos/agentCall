@@ -1,9 +1,8 @@
 import { Col, Row } from "react-bootstrap";
 import styled from "styled-components";
 
-// import CampanyTable from "../component/company/companyTable";
-import AgentRow from "../component/call/AgentRow";
 import CampanyTable from "../component/company/companyTable";
+import AgentRow from "../component/call/AgentRow";
 
 const CompanyPageContainer = styled.div`
   display: flex;
