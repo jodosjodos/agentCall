@@ -1,4 +1,4 @@
-import { Col, Row } from "react-bootstrap";
+import { Col } from "react-bootstrap";
 import styled from "styled-components";
 import { ContactRecordTable } from "../component/contact/ContactRecordTable";
 
