@@ -1,25 +1,30 @@
-
 import styled from "styled-components";
 import { Header } from "./Header";
 import { Col } from "react-bootstrap";
+import { RootState } from "../../store";
+import { useSelector } from "react-redux";
 
 const Row = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
 `;
-const Menu = styled.div`
+const Menu = styled.div<{ $theme?: string }>`
   border-radius: 16px;
   padding: 24px;
   min-width: 394px;
-  background-color: #0b2227;
+  border: ${(props) =>
+    props.$theme == "light" ? "1px solid #9ABCC4" : "none"};
+  color: ${(props) => (props.$theme == "light" ? "#0F2E35" : "")};
+  background-color: ${(props) =>
+    props.$theme == "light" ? "#E4EBED" : "#0b2227"};
 `;
 const Paragraph = styled.div`
   margin-bottom: 0px;
   color: #96adb3;
 `;
-const EditorContainer = styled.div`
-  color: white;
+const EditorContainer = styled.div<{ $theme?: string }>`
+  color: ${(props) => (props.$theme == "light" ? "#384B4F" : "white")};
 `;
 const PromptContainer = styled.div`
   padding: 20px;
@@ -33,7 +38,7 @@ const Head = styled.div`
   text-align: left;
 `;
 function PromptEditor() {
-  
+  const theme = useSelector((state: RootState) => state.theme.theme);
 
   return (
     <Col>
@@ -41,7 +46,7 @@ function PromptEditor() {
 
       <PromptContainer>
         <Row className="align-items-start gap-3">
-          <EditorContainer>
+          <EditorContainer $theme={theme}>
             <Head>Test</Head>
             <p>Advanced editor</p>
             <p>Hello my name is agent smith, pleased to meet you</p>
@@ -94,7 +99,7 @@ function PromptEditor() {
               egestas fusce.
             </p>
           </EditorContainer>
-          <Menu>
+          <Menu $theme={theme}>
             <Row className="justify-content-start gap-2 py-2 ">
               <img src="/knowledge_base.svg" alt="" width={20} />
               <Paragraph>Connect a knowledge base</Paragraph>

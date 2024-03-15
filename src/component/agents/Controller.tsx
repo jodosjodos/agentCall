@@ -156,7 +156,7 @@ export function Controller({ selected }: { selected?: boolean }) {
         id="flexible"
         children={
           <>
-            <div className="d-flex gap-2 ">
+            <div className={`d-flex gap-2 ${theme == "light" && "light-mode"}`}>
               <CustomInput
                 children={
                   <div className="d-flex flex-column">

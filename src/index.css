@@ -157,6 +157,7 @@
 }
 
 
+
 .modal_title {
 
   font-size: 20px;
@@ -286,6 +287,20 @@
   flex-direction: column;
 }
 
-.light-mode p {
+.light-mode p,
+.light-mode label {
   color: #0a2328;
+}
+
+
+.light-mode .back_button {
+  background-color: #E5ECEE !important;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 18px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: #101010 !important;
+
+
 }

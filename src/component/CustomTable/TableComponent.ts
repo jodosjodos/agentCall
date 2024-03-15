@@ -2,7 +2,8 @@ import styled from "styled-components";
 
 export const ActionContainer = styled.button<{ $theme?: string }>`
   border-radius: 8px;
-  border: ${(props) => (props.$theme == "light" ? "1px solid #000000" : "")};
+  border: ${(props) =>
+    props.$theme == "light" ? "1px solid #0F2E35" : "0px solid transparent"};
   background-color: ${(props) =>
     props.$theme == "light" ? "#FEFEFE" : "#0f2e35"};
   display: flex;
