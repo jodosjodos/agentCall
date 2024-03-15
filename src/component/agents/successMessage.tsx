@@ -1,6 +1,8 @@
 import React from "react";
 import { Modal } from "react-bootstrap";
+import { useSelector } from "react-redux";
 import styled from "styled-components";
+import { RootState } from "../../store";
 const ContinueButton = styled.div`
   background-color: rgba(16, 122, 71, 1);
   color: white;
@@ -11,10 +13,11 @@ const GreenParagraph = styled.p`
   color: rgba(16, 122, 71, 1);
 `;
 function SuccessMessage(props: any) {
+  const theme = useSelector((state: RootState) => state.theme.theme);
   return (
     <Modal
       {...props}
-      className="centered_modal"
+      className={`centered_modal ${theme=="light"&&"light-mode"}`}
       size="lg"
       id={props.id ? "flexible" : ""}
       aria-labelledby="contained-modal-title-vcenter"

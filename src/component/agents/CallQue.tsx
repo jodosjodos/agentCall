@@ -1,7 +1,12 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import styled from "styled-components";
-const CallQueContainer = styled.div`
-  background: linear-gradient(180deg, #0b2227 0%, #09181b 77.4%);
+import { RootState } from "../../store";
+const CallQueContainer = styled.div<{ $theme?: string }>`
+  background: ${(props) =>
+    props.$theme == "light"
+      ? "transparent"
+      : "linear-gradient(180deg, #0b2227 0%, #09181b 77.4%)"};
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -17,8 +22,9 @@ const GreenContainer = styled.div`
   height: fit-content;
   color: rgba(16, 122, 71, 1);
 `;
-const DeleteContainer = styled.div`
-  background-color: rgba(10, 35, 40, 1);
+const DeleteContainer = styled.div<{ $theme?: string }>`
+  background-color: ${(props) =>
+    props.$theme == "light" ? "#E5ECEE" : "rgba(10, 35, 40, 1)"};
   border: 1px solid rgba(15, 46, 53, 1);
   width: 40px;
   height: 40px;
@@ -28,16 +34,19 @@ const DeleteContainer = styled.div`
   border-radius: 8px;
 `;
 
-const MoveButton = styled.div`
+const MoveButton = styled.div<{ $theme?: string }>`
   display: flex;
   align-items: center;
   padding: 3px 8px;
+  color: ${(props) =>
+    props.$theme == "light" ? "rgba(10, 35, 40, 1)" : "white"};
   &:hover {
     cursor: pointer;
   }
 
   border-radius: 20px;
-  background-color: rgba(15, 46, 53, 1);
+  background-color: ${(props) =>
+    props.$theme == "light" ? "#E5ECEE" : "rgba(10, 35, 40, 1)"};
 `;
 const MoveUpDownContainer = styled.div`
   width: 130px;
@@ -50,8 +59,9 @@ const MoveUpDownContainer = styled.div`
   background-color: rgba(15, 46, 53, 1);
 `;
 function CallQue(props: any) {
+  const theme = useSelector((state: RootState) => state.theme.theme);
   return (
-    <CallQueContainer>
+    <CallQueContainer $theme={theme}>
       <div className="d-flex flex-column">
         <p>{props.callItem.name}</p>
         <div className="d-flex gap-2">
@@ -62,10 +72,11 @@ function CallQue(props: any) {
         </div>
       </div>
       <div className="d-flex position-relative gap-2">
-        <DeleteContainer>
+        <DeleteContainer $theme={theme}>
           <img src="/delete2.svg"></img>
         </DeleteContainer>
         <MoveButton
+          $theme={theme}
           onClick={() => {
             props.setShowUpDown(!props.showUpDown);
             props.setActiveCallQue(props.index);

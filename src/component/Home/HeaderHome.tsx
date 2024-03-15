@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { HomeController } from "./HomeController";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store";
+import Toggle from "../Toggle";
 
 const H1Styled = styled.h4<{ theme: string }>`
   color: ${(props) => (props.theme === "light" ? "#051316" : "#96adb3")};
@@ -39,8 +40,10 @@ export function HeaderHome() {
         <H1Styled theme={theme}>Welcome Raam , Adi</H1Styled>
         <PModified theme={theme}>September 12, 2024</PModified>
       </CustomRow>
-
-      <HomeController />
+      <div className="d-flex flex-row gap-2 align-items-center px-3">
+        <HomeController />
+        <Toggle></Toggle>
+      </div>
     </DivStyled>
   );
 }

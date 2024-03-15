@@ -319,7 +319,7 @@ export function KnowledgePage({
               />
             </div>
 
-            <DragAndDrop></DragAndDrop>
+            <DragAndDrop color={theme=="light"?"#E5ECEE":`rgba(5, 19, 22, 1)`}></DragAndDrop>
           </div>
         }
         show={nextModalShow}

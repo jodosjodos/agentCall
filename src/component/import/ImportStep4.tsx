@@ -197,7 +197,7 @@ function ImportStep4() {
         </ImportStep4SubContainer>
         {
           <CustomTable
-          theme={theme}
+            theme={theme}
             columns={columns}
             data={sampleData}
             hidePagination={true}
@@ -208,7 +208,9 @@ function ImportStep4() {
             Input contacts manually
           </InputManuallyButton>
           <p className="primary-text">Or</p>
-          <DragAndDrop color="rgba(5, 19, 22, 1)"></DragAndDrop>
+          <DragAndDrop
+            color={theme == "light" ? "#E5ECEE" : `rgba(5, 19, 22, 1)`}
+          ></DragAndDrop>
           <div className="justify-content-end mt-2 gap-3 d-flex">
             <CustomButton
               onclick={() => setShowModal(true)}
@@ -233,7 +235,9 @@ function ImportStep4() {
         }}
         children={
           <div>
-            <DragAndDrop></DragAndDrop>
+            <DragAndDrop
+              color={theme == "light" ? "#E5ECEE" : `rgba(5, 19, 22, 1)`}
+            ></DragAndDrop>
           </div>
         }
         title="Select a list to import leads into"

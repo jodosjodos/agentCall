@@ -1,4 +1,5 @@
 import Dropdown from "react-bootstrap/Dropdown";
+import { useSelector } from "react-redux";
 import styled from "styled-components";
 
 const DropMod = styled(Dropdown.Toggle)`
@@ -25,6 +26,7 @@ const DropItem = styled(Dropdown.Item)`
   color: #96adb3;
 `;
 export function DropdownButton({ name }: { name: string }) {
+  const theme = useSelector((state: RootState) => state.theme.theme);
   return (
     <Dropdown className="">
       <DropMod className="px-3" id="dropdown-basic">

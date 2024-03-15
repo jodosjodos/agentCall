@@ -2,6 +2,8 @@ import React, { useState, useRef } from "react";
 import { Modal } from "react-bootstrap";
 import styled from "styled-components";
 import CallQue from "./CallQue";
+import { useSelector } from "react-redux";
+import { RootState } from "../../store";
 const GreenContainer = styled.div`
   border-radius: 16px;
   background-color: rgba(38, 246, 96, 0.15);
@@ -48,11 +50,11 @@ function OngoingCallModal(props: any) {
       setCall(updatedCalls);
     }
   };
-
+  const theme = useSelector((state: RootState) => state.theme.theme);
   return (
     <Modal
       {...props}
-      className="centered_modal modal_center "
+      className={`centered_modal ${theme=="light"&&"light-mode"} modal_center`}
       size="lg"
       id={props.id ? "flexible" : ""}
       aria-labelledby="contained-modal-title-vcenter"

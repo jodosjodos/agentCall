@@ -71,6 +71,13 @@
 
 }
 
+.custom_radio_light {
+  color: #0A2328;
+  background-color: #E5ECEE !important;
+
+
+}
+
 .flex img.cursor-pointer {
   cursor: pointer;
 }
@@ -178,7 +185,7 @@
 }
 
 .light-mode button {
-  background-color: #0A2328  !important;
+  background-color: #0A2328 !important;
   color: white !important;
 }
 

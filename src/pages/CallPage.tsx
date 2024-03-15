@@ -4,6 +4,7 @@ import AgentRow from "../component/call/AgentRow";
 import RecordingTable from "../component/call/RecordingTable";
 import { useSelector } from "react-redux";
 import { RootState } from "../store";
+import Toggle from "../component/Toggle";
 
 const CallPageContainer = styled.div`
   display: flex;
@@ -18,6 +19,7 @@ const H1Styled = styled.h4<{ theme: string }>`
   font-weight: bold;
 `;
 const DivStyled = styled.div<{ theme: string }>`
+  width: 100%;
   border-bottom: ${(props) =>
     props.theme === "light" ? "1px solid #9ABCC4" : "1px solid #0f2e35"};
   width: 100%;
@@ -31,17 +33,23 @@ const PModified = styled.p<{ theme: string }>`
   color: ${(props) => (props.theme == "light" ? "#0F2E35" : "#384b4f")};
   font-weight: bold;
 `;
-export function CallPage({isSidebarOpened}:{isSidebarOpened:boolean}) {
+export function CallPage({ isSidebarOpened }: { isSidebarOpened: boolean }) {
   const theme = useSelector((state: RootState) => state.theme.theme);
 
   return (
     <Col>
-      <DivStyled theme={theme} className="px-5 py-1">
-        <H1Styled theme={theme}>Welcome Raam , Adi</H1Styled>
-        <PModified theme={theme}>September 12, 2024</PModified>
+      <DivStyled
+        theme={theme}
+        className="px-5  justify-content-between d-flex align-items-center py-1"
+      >
+        <div>
+          <H1Styled theme={theme}>Welcome Raam , Adi</H1Styled>
+          <PModified theme={theme}>September 12, 2024</PModified>
+        </div>
+        <Toggle></Toggle>
       </DivStyled>
       <CallPageContainer>
-      {isSidebarOpened && <AgentRow></AgentRow>}
+        {isSidebarOpened && <AgentRow></AgentRow>}
         <RecordingTable></RecordingTable>
       </CallPageContainer>
     </Col>

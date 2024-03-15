@@ -4,6 +4,7 @@ import CampaignTable from "../component/compaign/CampaignTable";
 import AgentRow from "../component/call/AgentRow";
 import { useSelector } from "react-redux";
 import { RootState } from "../store";
+import Toggle from "../component/Toggle";
 
 const CampaignPageContainer = styled.div`
   display: flex;
@@ -37,9 +38,15 @@ function CampaignPage({ isSidebarOpened }: { isSidebarOpened: boolean }) {
 
   return (
     <Col>
-      <DivStyled theme={theme} className="px-5 py-1">
-        <H1Styled theme={theme}>Welcome Raam , Adi</H1Styled>
-        <PModified theme={theme}>September 12, 2024</PModified>
+           <DivStyled
+        theme={theme}
+        className="px-5  justify-content-between d-flex align-items-center py-1"
+      >
+        <div>
+          <H1Styled theme={theme}>Welcome Raam , Adi</H1Styled>
+          <PModified theme={theme}>September 12, 2024</PModified>
+        </div>
+        <Toggle></Toggle>
       </DivStyled>
       <CampaignPageContainer>
         {isSidebarOpened && <AgentRow></AgentRow>}

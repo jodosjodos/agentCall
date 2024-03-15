@@ -1,4 +1,6 @@
 import React, { ReactNode, useState } from "react";
+import { RootState } from "../store";
+import { useSelector } from "react-redux";
 
 function CustomInput({
   value,
@@ -15,13 +17,14 @@ function CustomInput({
 }) {
   const [selected, setSelected] = useState(active);
   console.log(selected);
+  const theme = useSelector((state: RootState) => state.theme.theme);
   return (
     <div
       onClick={() => setSelected(value)}
-      className={`d-flex gap-2  custom_radio   ${
+      className={`d-flex gap-2  custom_radio ${theme == "light" && "custom_radio_light"}   ${
         children ? "align-items-start py-2" : "align-items-center"
       } `}
-     >
+    >
       <input type="radio" name={name} id={value}></input>
       <div>
         <label htmlFor={value}>{children ? children : label}</label>

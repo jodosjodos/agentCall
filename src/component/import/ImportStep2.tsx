@@ -207,7 +207,7 @@ function ImportStep2({ setActiveTopBar }: { setActiveTopBar?: any }) {
           Input contacts manually
         </InputManuallyButton>
         <p className="primary-text">Or</p>
-        <DragAndDrop color="rgba(5, 19, 22, 1)"></DragAndDrop>
+        <DragAndDrop color={theme=="light"?"#E5ECEE":`rgba(5, 19, 22, 1)`}></DragAndDrop>
         <div className="justify-content-end mt-2 gap-3 flex-wrap d-flex">
           <div className="d-flex  gap-2 align-items-center">
             <FormCheck></FormCheck>

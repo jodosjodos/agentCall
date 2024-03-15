@@ -5,6 +5,8 @@ import CenteredModal from "../modals/Modal";
 import CustomInput from "../CustomInput";
 
 import { useNavigate } from "react-router-dom";
+import { RootState } from "../../store";
+import { useSelector } from "react-redux";
 
 const HMod = styled.h5`
   color: #c9d5d8;
@@ -28,20 +30,23 @@ const Input = styled.input`
   outline: none;
   color: white;
 `;
-const CreateButton = styled.button`
-  background-color: #00b7df;
+const CreateButton = styled.button<{ $theme?: string }>`
+  background-color: ${(props) =>
+    props.$theme == "light" ? "#0A2328" : "#00b7df"};
   border-radius: 20px;
   min-width: fit-content;
   height: 45px;
   font-size: 14px;
+  color: ${(props) => (props.$theme == "light" ? "#DCDCDC" : "white")};
   border: none;
   &:hover {
     background-color: #0f2e35;
     color: #96adb3;
   }
 `;
-const ParentButton = styled.div`
-  background-color: #0b2227;
+const ParentButton = styled.div<{ $theme?: string }>`
+  background-color: ${(props) =>
+    props.$theme == "light" ? "#C9D5D8" : "#0b2227"};
   height: fit-content;
   width: fit-content;
   flex-wrap: wrap;
@@ -68,7 +73,7 @@ export function Controller({ selected }: { selected?: boolean }) {
   const [showCreateAgentModal, setShowCreateAgentModal] = useState(false);
   const [showEditingMethodModal, setshowEditingMethodModal] = useState(false);
   const [showCreatePrompModal, setShowCreatePrompModal] = useState(false);
-
+  const theme = useSelector((state: RootState) => state.theme.theme);
   const navigate = useNavigate();
   return (
     <>
@@ -83,8 +88,9 @@ export function Controller({ selected }: { selected?: boolean }) {
               any agent selected would be displayed on the right of panel
             </PMode>
           </div>
-          <ParentButton className="d-flex  gap-2">
+          <ParentButton $theme={theme} className="d-flex  gap-2">
             <CreateButton
+              $theme={theme}
               className=""
               onClick={() => setShowCreateAgentModal(true)}
             >
