@@ -34,7 +34,8 @@ const Input = styled.input`
 const CreateButton = styled.button<{ $theme?: string }>`
   background-color: #00b7df;
   border-radius: 20px;
-  color: ${(props) => (props.$theme === "light" ? "#DCDCDC" : "#101010")};
+  background-color: ${(props) =>
+    props.$theme === "light" ? "#DCDCDC" : "#101010"};
   min-width: fit-content;
   height: 45px;
   font-size: 14px;
@@ -45,8 +46,10 @@ const CreateButton = styled.button<{ $theme?: string }>`
     color: #96adb3;
   }
 `;
-const ParentButton = styled.div`
-  background-color: #0b2227;
+const ParentButton = styled.div<{ $theme?: string }>`
+  background-color: ${(props) =>
+    props.$theme === "light" ? "#C9D5D8" : "#0b2227"};
+
   height: fit-content;
   width: fit-content;
   flex-wrap: wrap;
@@ -88,7 +91,7 @@ export function Controller({ selected }: { selected?: boolean }) {
               any agent selected would be displayed on the right of panel
             </PMode>
           </div>
-          <ParentButton className="d-flex  gap-2">
+          <ParentButton $theme={theme} className="d-flex  gap-2">
             <CreateButton
               className=""
               onClick={() => setShowCreateAgentModal(true)}
