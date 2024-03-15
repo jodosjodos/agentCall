@@ -17,6 +17,8 @@ const PageContainer = styled.div`
     flex-direction: column;
   }
 `;
+
+
 // agent page
 export function AgentPage({ isSidebarOpened }: { isSidebarOpened: boolean }) {
   return (

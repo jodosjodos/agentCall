@@ -18,13 +18,16 @@ import CompanyPage from "./pages/CompanyPage";
 import { useSelector } from "react-redux";
 import { RootState } from "./store";
 
-const SideBarDiv = styled.div<{theme:string}>`
-  background-color:${(props)=>(props.theme=== "light"?"#FEFEFE":"#0b2227")} ;
+const SideBarDiv = styled.div<{ theme: string }>`
+  background-color: ${(props) =>
+    props.theme === "light" ? "#FEFEFE" : "#0b2227"};
 `;
-const ParentCol = styled(Col)<{theme:string}>`
-  background-color:${(props)=>props.theme === "light"?"#FEFEFE":"#051316"} ;
+const ParentCol = styled(Col)<{ theme: string }>`
+  background-color: ${(props) =>
+    props.theme === "light" ? "#FEFEFE" : "#051316"};
   padding-inline: 0px;
-  border-left: 2px solid #0f2e35;
+  border-left: ${(props) =>
+    props.theme === "light" ? "2px solid #96ADB3" : "2px solid #0f2e35"};
   overflow-x: hidden;
 `;
 const AppContainer = styled.div`
@@ -47,7 +50,6 @@ function App() {
   const [isSidebarOpened, setIsSidebarOpen] = useState(false);
   const [activeMobile, setActiveMobile] = useState(false);
   const theme = useSelector((state: RootState) => state.theme.theme);
-  
 
   return (
     <AppContainer>
@@ -66,8 +68,9 @@ function App() {
             ></SideBar>
           </div>
           <Row>
-            <SideBarDiv theme={theme}
-               onMouseEnter={() => setIsSidebarOpen(true)}
+            <SideBarDiv
+              theme={theme}
+              onMouseEnter={() => setIsSidebarOpen(true)}
               // sm={2}
               className="col-auto d-none d-lg-flex  flex-column justify-content-between min-vh-100 gap "
             >

@@ -1,12 +1,13 @@
 import React from "react";
 import { Col } from "react-bootstrap";
+import { Col } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
 import { RootState } from "../../store";
 import Toggle from "../Toggle";
 
-const H1Styled = styled.h4`
-  color: #96adb3;
+const H1Styled = styled.h4<{ theme: string }>`
+  color: ${(props) => (props.theme === "light" ? "#051316" : "#96adb3")};
   font-weight: bold;
 `;
 const DivStyled = styled.div<{ theme: string }>`
@@ -20,8 +21,8 @@ const DivStyled = styled.div<{ theme: string }>`
   }
 `;
 
-const PModified = styled.p`
-  color: #384b4f;
+const PModified = styled.p<{ theme: string }>`
+  color: ${(props) => (props.theme == "light" ? "#0F2E35" : "#384b4f")};
   font-weight: bold;
 `;
 
@@ -42,8 +43,9 @@ const InputMod = styled.input<{ $theme?: string }>`
     props.$theme == "light" ? "#C9D5D8" : "#0a2328"};
   outline: none;
   border-radius: 8px;
-  color: #96adb3;
-  @media (max-width: 600px) {
+  color: ${(props) => (props.$theme == "light" ? "#0F2E35" : "#96adb3")};
+   @media
+    (max-width: 600px) {
     width: 100%;
   }
   border-radius: 8px;
@@ -52,8 +54,8 @@ const InputMod = styled.input<{ $theme?: string }>`
 export function Header({ hideSearch }: { hideSearch?: boolean }) {
   const theme = useSelector((state: RootState) => state.theme.theme);
   return (
-    <DivStyled className="px-5 align-items-center py-1 d-flex flex-row justify-content-between">
-      <Col>
+    <DivStyled className="px-5 py-1 d-flex flex-row justify-content-between">
+      <Col lg={10}>
         <H1Styled>Welcome Raam , Adi</H1Styled>
         <PModified>September 12, 2024</PModified>
       </Col>
