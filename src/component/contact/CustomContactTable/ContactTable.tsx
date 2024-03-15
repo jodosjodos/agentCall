@@ -12,6 +12,9 @@ import styled from "styled-components";
 import { Row } from "react-bootstrap";
 import { defaultContactData } from "../../../data/contactCall";
 import { RecordingTableType } from "../../../types/types";
+
+import { useSelector } from "react-redux";
+import { RootState } from "../../../store";
 const Th = styled.th<{ $width?: number }>`
   width: ${(props) => (props.$width ? `${props.$width}%` : "fit-content")};
   min-width: 100px;
@@ -37,7 +40,7 @@ const PaginationContainer = styled.div`
   width: 100%;
   gap: 10px;
 `;
-const ActionContainer = styled.button`
+const ActionContainer = styled.button <{$theme?:string}>`
   border-radius: 8px;
   border: 1px;
   display: flex;
@@ -65,6 +68,9 @@ const TableContainer = styled.div`
   min-width: 800px;
 `;
 const columnHelper = createColumnHelper<RecordingTableType>();
+
+
+export function CustomContactTable() {
 
 const columns = [
   columnHelper.accessor("contact", {
@@ -122,8 +128,7 @@ const columns = [
     ),
   }),
 ];
-
-export function CustomContactTable() {
+const theme = useSelector((state: RootState) => state.theme.theme);
   // const [data, setData] = useState(() => [...defaultContactData]);
   const [pagination, setPagination] = useState<PaginationState>({
     pageIndex: 0,
