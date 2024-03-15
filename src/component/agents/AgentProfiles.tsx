@@ -110,8 +110,8 @@ const Row = styled.div`
   justify-content: space-between;
 `;
 
-const Paragraph = styled.p`
-  color: #96adb3;
+const Paragraph = styled.p<{ $theme: string }>`
+  color: ${(props) => (props.$theme == "light" ? "#0F2E35" : "#96adb3")};
   margin-bottom: 0;
 `;
 const OnGoingCall = styled.div<{ $theme?: string }>`
@@ -188,9 +188,10 @@ const CallProfile = styled.img<{ $isHidden?: boolean }>`
   border-radius: 20px;
   display: ${(props) => (!props.$isHidden ? "none" : "block")};
 `;
-const CallOnQueParagraph = styled.p`
+const CallOnQueParagraph = styled.p<{ theme: string }>`
   font-size: 20px;
-  color: rgba(201, 213, 216, 1);
+  color: ${(props) =>
+    props.theme == "light" ? "#0F2E35" : "rgba(201, 213, 216, 1)"};
   font-weight: 600;
   line-height: 25px;
   letter-spacing: 0em;
@@ -257,7 +258,7 @@ export function AgentProfiles({
                   className="gap-2 align-items-center cursor-pointer"
                   onClick={() => setSelectedAgent(null)}
                 >
-                  <Paragraph>Close</Paragraph>
+                  <Paragraph $theme={theme}>Close</Paragraph>
                   <img src="/close.svg" alt="close" />
                 </Row>
               </Row>
@@ -267,7 +268,7 @@ export function AgentProfiles({
                 key={selectedAgent.id}
                 agent={selectedAgent}
               ></AgentModal>
-              <Paragraph className="text-white bold pb-3">
+              <Paragraph $theme={theme} className=" bold pb-3">
                 Ongoing call
               </Paragraph>
               <OnGoingCall $theme={theme} className="p">
@@ -277,8 +278,12 @@ export function AgentProfiles({
                 </GreenContainer>
                 <Row className="py-2">
                   <Row className="gap-2">
-                    <img src="/wave.svg" alt="" />
-                    <Paragraph>00:40:01</Paragraph>
+                    {theme === "light" ? (
+                      <img src="/waveLight.svg" alt="" />
+                    ) : (
+                      <img src="/wave.svg" alt="" />
+                    )}
+                    <Paragraph $theme={theme}>00:40:01</Paragraph>
                   </Row>
                 </Row>
                 <div className="d-flex flex-grow-1 gap-2">
@@ -316,7 +321,9 @@ export function AgentProfiles({
               </OnGoingCall>
               <div className="d-flex align-items-center justify-content-between">
                 <div>
-                  <CallOnQueParagraph>Calls on queue</CallOnQueParagraph>
+                  <CallOnQueParagraph theme={theme}>
+                    Calls on queue
+                  </CallOnQueParagraph>
                   <p className="primary-text">
                     Drag numbers to re-arrange numbers on queue
                   </p>
