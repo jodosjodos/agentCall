@@ -285,3 +285,7 @@
   align-items: center;
   flex-direction: column;
 }
+
+.light-mode p {
+  color: #0a2328;
+}

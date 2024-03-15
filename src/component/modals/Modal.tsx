@@ -22,8 +22,14 @@ function CenteredModal(props: any) {
       centered
     >
       <div>
-        <div className={`d-flex p-2  justify-content-between align-items-center`}>
-          <p className={`flex-grow h-fit text-center ${theme=="light"?"modal_title_light":"modal_title"} `}>
+        <div
+          className={`d-flex p-2  justify-content-between align-items-center`}
+        >
+          <p
+            className={`flex-grow h-fit text-center ${
+              theme == "light" ? "modal_title_light" : "modal_title"
+            } `}
+          >
             {props.title ? props.title : "Upload document"}
           </p>
           <img
@@ -46,7 +52,14 @@ function CenteredModal(props: any) {
         <button onClick={props.onContinue} className="modal_button">
           <div className="d-flex align-items-center">
             {props.btnText}
-            {props.btnText != "save" && <img src="/nextIcon.svg" alt="" />}
+            {props.btnText != "save" && (
+              <img
+                src={` ${
+                  theme == "light" ? "/next-light.svg" : "/nextIcon.svg"
+                }`}
+                alt=""
+              />
+            )}
           </div>
         </button>
       </div>

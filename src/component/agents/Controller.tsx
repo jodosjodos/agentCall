@@ -8,20 +8,21 @@ import { useNavigate } from "react-router-dom";
 import { RootState } from "../../store";
 import { useSelector } from "react-redux";
 
-const HMod = styled.h5<{theme:string}>`
+const HMod = styled.h5<{ theme: string }>`
   color: ${(props) => (props.theme === "light" ? "#051316" : "#c9d5d8")};
   font-weight: bold;
 `;
 const PMode = styled.p`
   color: #394b4f;
 `;
-const InputRow = styled.div`
+const InputRow = styled.div<{ $theme?: string }>`
   display: flex;
   padding: 10px 20px;
   border-radius: 10px;
   align-items: center;
   justify-content: space-between;
-  background-color: #051316;
+  background-color: ${(props) =>
+    props.$theme == "light" ? "#FEFEFE" : "#0f2e35"};
 `;
 const Input = styled.input`
   flex-grow: 1;
@@ -33,7 +34,7 @@ const Input = styled.input`
 const CreateButton = styled.button<{ $theme?: string }>`
   background-color: #00b7df;
   border-radius: 20px;
-  color:${(props) => (props.$theme === "light" ? "#DCDCDC" : "#101010")};
+  color: ${(props) => (props.$theme === "light" ? "#DCDCDC" : "#101010")};
   min-width: fit-content;
   height: 45px;
   font-size: 14px;
@@ -107,7 +108,7 @@ export function Controller({ selected }: { selected?: boolean }) {
         children={
           <>
             <label htmlFor="agent_name ">Agent name</label>
-            <InputRow>
+            <InputRow $theme={theme}>
               <Input
                 id="agent_name"
                 type="text"
