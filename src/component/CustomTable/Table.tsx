@@ -57,7 +57,7 @@ function CustomTable({
   data: any;
   maxWidth?: number;
   hidePagination?: boolean;
-  theme: string;
+  theme?: string;
 }) {
   const [pagination, setPagination] = useState<PaginationState>({
     pageIndex: 0,
