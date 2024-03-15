@@ -9,6 +9,8 @@ import DragAndDrop from "../DragAndDrop";
 import CustomTable from "../CustomTable/Table";
 import { useNavigate } from "react-router-dom";
 import { contactEditType } from "../../types/types";
+import { useSelector } from "react-redux";
+import { RootState } from "../../store";
 
 const UploadContainer = styled.div`
   background-color: rgba(10, 35, 40, 1);
@@ -166,6 +168,8 @@ function ImportStep4() {
     },
   ];
   const [showModal, setShowModal] = useState(false);
+  const theme = useSelector((state: RootState) => state.theme.theme);
+
   return (
     <>
       <ImportStep4Container>
@@ -193,6 +197,7 @@ function ImportStep4() {
         </ImportStep4SubContainer>
         {
           <CustomTable
+          theme={theme}
             columns={columns}
             data={sampleData}
             hidePagination={true}

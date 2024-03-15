@@ -7,6 +7,8 @@ import CustomButton from "./CustomButton";
 import DragAndDrop from "../DragAndDrop";
 import CustomTable from "../CustomTable/Table";
 import { contactEditType } from "../../types/types";
+import { useSelector } from "react-redux";
+import { RootState } from "../../store";
 
 const UploadContainer = styled.div`
   background-color: rgba(10, 35, 40, 1);
@@ -174,6 +176,8 @@ function ImportStep2({ setActiveTopBar }: { setActiveTopBar?: any }) {
     },
   ];
   const [showEditTable, setShowEditTable] = useState(false);
+  const theme = useSelector((state: RootState) => state.theme.theme);
+
   return (
     <ImportStep2Container>
       <ImportStep2SubContainer>
@@ -191,6 +195,7 @@ function ImportStep2({ setActiveTopBar }: { setActiveTopBar?: any }) {
       {showEditTable && (
         <TableContainer>
           <CustomTable
+            theme={theme}
             columns={columns}
             data={sampleData}
             hidePagination={true}
