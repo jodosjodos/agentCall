@@ -268,7 +268,7 @@ export function AgentProfiles({
                 key={selectedAgent.id}
                 agent={selectedAgent}
               ></AgentModal>
-              <Paragraph $theme={theme} className="text-white bold pb-3">
+              <Paragraph $theme={theme} className=" bold pb-3">
                 Ongoing call
               </Paragraph>
               <OnGoingCall $theme={theme} className="p">
