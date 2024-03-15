@@ -2,9 +2,12 @@ import React from "react";
 import styled from "styled-components";
 import { agentCallSetting } from "../../data/agents";
 import { AgentCallSetting } from "./AgentCallSetting";
-const AgentRowContainer = styled.div`
+import { useSelector } from "react-redux";
+import { RootState } from "../../store";
+const AgentRowContainer = styled.div<{ theme: string }>`
   padding: 24px 26px;
-  background-color: #040f12;
+  background-color: ${(props) =>
+    props.theme === "light" ? "#FEFEFE" : "#040f12"};
   height: calc(100vh - 100px);
   overflow-y: auto;
 
@@ -24,13 +27,13 @@ const ImgMod = styled.img`
   right: 8px;
   top: 18px;
 `;
-const InputMod = styled.input`
+const InputMod = styled.input<{ theme: string }>`
   float: right;
   padding: 6px 6px;
   border: none;
   margin-top: 8px;
   font-size: 17px;
-  background-color: #0a2328;
+  background-color: ${(props) => (props.theme === "light" ? "#C9D5D8" : "#0a2328")};
   outline: none;
   border-radius: 8px;
   color: #96adb3;
@@ -48,10 +51,16 @@ const AgentCallSettingContainer = styled.div`
   flex-wrap: wrap;
 `;
 function AgentRow() {
+  const theme = useSelector((state: RootState) => state.theme.theme);
+
   return (
-    <AgentRowContainer className="d-flex agent-row flex-column gap-5 ">
+    <AgentRowContainer
+      theme={theme}
+      className="d-flex agent-row flex-column gap-5 "
+    >
       <div className="position-relative  w-100">
         <InputMod
+          theme={theme}
           type="text"
           placeholder="search"
           className="pt-2 px-3 w-100"

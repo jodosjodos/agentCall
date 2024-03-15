@@ -1,9 +1,10 @@
-import { Col, Row } from "react-bootstrap";
+import { Col } from "react-bootstrap";
 import styled from "styled-components";
 
-// import CampanyTable from "../component/company/companyTable";
+import CompanyTable from "../component/company/companyTable";
 import AgentRow from "../component/call/AgentRow";
-import CampanyTable from "../component/company/companyTable";
+import { useSelector } from "react-redux";
+import { RootState } from "../store";
 
 const CompanyPageContainer = styled.div`
   display: flex;
@@ -13,33 +14,37 @@ const CompanyPageContainer = styled.div`
     flex-direction: column;
   }
 `;
-const H1Styled = styled.h4`
-  color: #96adb3;
+const H1Styled = styled.h4<{ theme: string }>`
+  color: ${(props) => (props.theme === "light" ? "#051316" : "#96adb3")};
   font-weight: bold;
 `;
-const DivStyled = styled(Row)`
-  border-bottom: 1px solid #0f2e35;
-  display: flex;
-  flex-direction: column;
+const DivStyled = styled.div<{ theme: string }>`
+  border-bottom: ${(props) =>
+    props.theme === "light" ? "1px solid #9ABCC4" : "1px solid #0f2e35"};
+  width: 100%;
+  padding: 0px 0px 0px 50px;
   @media (max-width: 993px) {
     padding-top: 40px !important;
+    padding: 0 30px;
   }
 `;
-const PModified = styled.p`
-  color: #384b4f;
+const PModified = styled.p<{ theme: string }>`
+  color: ${(props) => (props.theme == "light" ? "#0F2E35" : "#384b4f")};
   font-weight: bold;
 `;
 
 function CompanyPage({ isSidebarOpened }: { isSidebarOpened: boolean }) {
+  const theme = useSelector((state: RootState) => state.theme.theme);
+
   return (
     <Col>
-      <DivStyled className="px-5 py-1">
-        <H1Styled>Welcome Raam , Adi</H1Styled>
-        <PModified>September 12, 2024</PModified>
+      <DivStyled theme={theme} className="px-5 py-1">
+        <H1Styled theme={theme}>Welcome Raam , Adi</H1Styled>
+        <PModified theme={theme}>September 12, 2024</PModified>
       </DivStyled>
       <CompanyPageContainer>
         {isSidebarOpened && <AgentRow></AgentRow>}
-        <CampanyTable></CampanyTable>
+        <CompanyTable></CompanyTable>
         {/* <h1>company page</h1> */}
       </CompanyPageContainer>
     </Col>

@@ -5,6 +5,8 @@ import styled from "styled-components";
 import CustomTable from "../CustomTable/Table";
 import CustomButton from "./CustomButton";
 import { contactType } from "../../types/types";
+import { useSelector } from "react-redux";
+import { RootState } from "../../store";
 const ParagraphTitle = styled.p`
   font-size: 20px;
   font-weight: 600;
@@ -94,6 +96,8 @@ const TableContainer = styled.div`
   margin: 0px;
 `;
 function ImportStep1({ setActiveTopBar }: { setActiveTopBar?: any }) {
+  const theme = useSelector((state: RootState) => state.theme.theme);
+
   const columnHelper = createColumnHelper<contactType>();
 
   const columns = [
@@ -192,6 +196,7 @@ function ImportStep1({ setActiveTopBar }: { setActiveTopBar?: any }) {
           columns={columns}
           data={sampleData}
           maxWidth={600}
+          theme={theme}
         ></CustomTable>
         <div className="justify-content-end d-flex">
           <CustomButton

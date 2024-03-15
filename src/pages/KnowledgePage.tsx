@@ -7,13 +7,16 @@ import CenteredModal from "../component/modals/Modal";
 import CustomInput from "../component/CustomInput";
 import DragAndDrop from "../component/DragAndDrop";
 import AgentRow from "../component/call/AgentRow";
+import { useSelector } from "react-redux";
+import { RootState } from "../store";
 
-const H1Styled = styled.h4`
-  color: #96adb3;
+const H1Styled = styled.h4<{ theme: string }>`
   font-weight: bold;
+  color: ${(props) => (props.theme === "light" ? "#051316" : "#96adb3")};
 `;
-const DivStyled = styled.div`
-  border-bottom: 1px solid #0f2e35;
+const DivStyled = styled.div<{ theme: string }>`
+  border-bottom: ${(props) =>
+    props.theme === "light" ? "1px solid #9ABCC4" : "1px solid #0f2e35"};
   display: flex;
   flex-direction: column;
 
@@ -22,17 +25,19 @@ const DivStyled = styled.div`
   }
 `;
 
-const PModified = styled.p`
-  color: #384b4f;
+const PModified = styled.p<{ theme: string }>`
   font-weight: bold;
+  color: ${(props) => (props.theme == "light" ? "#0F2E35" : "#384b4f")};
 `;
 
-const FileCol = styled(Col)`
-  background-color: #0b2227;
-  color: White;
+const FileCol = styled(Col)<{ theme: string }>`
+  background: ${(props) =>
+    props.theme === "light" ? "linear-gradient(#E6EDEF, #EDEFE6)" : " #0b2227"};
+  color: ${(props) => (props.theme === "light" ? "#0F2E35" : "white")};
   height: fit-content;
   border-radius: 10px;
-  border: 1px solid #0f2e35;
+  border: ${(props) =>
+    props.theme == "light" ? "1px solid #96ADB3" : "1px solid #0f2e35"};
 `;
 
 const CircledD = styled.p`
@@ -62,12 +67,13 @@ const CircledV = styled.p`
   background-color: #0fbc0c;
 `;
 
-const StyledH4 = styled.h4`
-  color: #c9d5d8;
+const StyledH4 = styled.h4<{ theme: string }>`
+  color: ${(props) => (props.theme === "light" ? "#0F2E35" : "#c9d5d8")};
 `;
-const ComponentDiv = styled.div`
-  border-bottom: 1px solid #0f2e35;
-  color: #96adb3;
+const ComponentDiv = styled.div<{ theme: string }>`
+  border-bottom: ${(props) =>
+    props.theme == "light" ? "1px solid #96ADB3" : "1px solid #0f2e35"};
+  color: ${(props) => (props.theme === "light" ? "#0F2E35" : "#96adb3")};
 `;
 const ParentProgressBar = styled.div`
   border: 2px solid #09bed7;
@@ -83,24 +89,31 @@ const ChildProgressBar = styled.div`
 `;
 
 // sales
-const SalesCol = styled(Col)`
-  background-color: #0b2227;
+const SalesCol = styled(Col)<{ theme: string }>`
+  background: ${(props) =>
+    props.theme === "light" ? "linear-gradient(#E6EDEF, #EDEFE6)" : " #0b2227"};
   border-radius: 10px;
+  border: ${(props) =>
+    props.theme == "light" ? "1px solid #96ADB3" : "1px solid #0f2e35"};
 `;
 
-const LinkP = styled.p`
-  color: #c9d5d8;
+const LinkP = styled.p<{ theme: string }>`
+  color: ${(props) => (props.theme === "light" ? "#0F2E35" : "#c9d5d8")};
   &:hover {
     cursor: pointer;
   }
 `;
-const ComponentRender = styled.button`
+const ComponentRender = styled.button<{ theme: string }>`
   border: 2px solid #96adb3;
-  color: #96adb3;
-  background-color: transparent;
+  color: ${(props) => (props.theme === "light" ? "#0F2E35" : "#96adb3")};
+  background-color: ${(props) =>
+    props.theme === "light" ? "#FEFEFE" : "transparent"};
   border-radius: 25px;
   &:hover {
-    background-color: #4a666c;
+    background-color: ${(props) =>
+      props.theme === "light" ? "#0F2E35" : "#4a666c"};
+  color: ${(props) => (props.theme === "dark" ? "#0F2E35" : "#96adb3")};
+
     border-color: #96adb3;
   }
   &:active {
@@ -130,23 +143,30 @@ export function KnowledgePage({
   const [modalShow, setModalShow] = useState(false);
   const [nextModalShow, setNextModalShow] = useState(false);
   const [activeButton, setActiveButton] = useState("inbound");
+  const theme = useSelector((state: RootState) => state.theme.theme);
 
   return (
     <KnowledgeContainer>
       <Col>
-        <DivStyled className="px-5 py-1">
-          <H1Styled>Welcome Raam , Adi</H1Styled>
-          <PModified>September 12, 2024</PModified>
+        <DivStyled theme={theme} className="px-5 py-1">
+          <H1Styled theme={theme}>Welcome Raam , Adi</H1Styled>
+          <PModified theme={theme}>September 12, 2024</PModified>
         </DivStyled>
         <PageContainer>
           {isSidebarOpened && <AgentRow></AgentRow>}
           <Row className="pt-3 gap-5 flex-grow-1   px-lg-5 mx-lg-0 mx-4 ">
-            <FileCol className="p-2 w-fit   d-flex  flex-column gap-3">
-              <StyledH4>All files</StyledH4>
+            <FileCol
+              theme={theme}
+              className="p-2 w-fit   d-flex  flex-column gap-3"
+            >
+              <StyledH4 theme={theme}>All files</StyledH4>
               {/* parental one */}
               <div className="d-flex flex-column gap-4">
                 {/* one component */}
-                <ComponentDiv className="d-flex  justify-content-between  pb-2">
+                <ComponentDiv
+                  theme={theme}
+                  className="d-flex  justify-content-between  pb-2"
+                >
                   <div className="d-flex flex-row align-items-baseline gap-2">
                     <CircledD></CircledD>
                     <p>Documents</p>
@@ -157,7 +177,10 @@ export function KnowledgePage({
                     <p className="p-0 m-0">200m tokens</p>
                   </div>
                 </ComponentDiv>
-                <ComponentDiv className="d-flex  justify-content-between ">
+                <ComponentDiv
+                  theme={theme}
+                  className="d-flex  justify-content-between "
+                >
                   <div className="d-flex flex-row align-items-baseline gap-2">
                     <CircledS></CircledS>
                     <p>SpreadSheet</p>
@@ -170,7 +193,10 @@ export function KnowledgePage({
                     <p className="p-0 m-0">200m tokens</p>
                   </div>
                 </ComponentDiv>
-                <ComponentDiv className="d-flex  justify-content-between ">
+                <ComponentDiv
+                  theme={theme}
+                  className="d-flex  justify-content-between "
+                >
                   <div className="d-flex flex-row align-items-baseline gap-2">
                     <CircledA></CircledA>
                     <p>Audio</p>
@@ -183,7 +209,10 @@ export function KnowledgePage({
                     <p className="p-0 m-0"> 956.5 minutes</p>
                   </div>
                 </ComponentDiv>
-                <ComponentDiv className="d-flex  justify-content-between ">
+                <ComponentDiv
+                  theme={theme}
+                  className="d-flex  justify-content-between "
+                >
                   <div className="d-flex flex-row align-items-baseline gap-2">
                     <CircledV></CircledV>
                     <p>Video</p>
@@ -205,26 +234,33 @@ export function KnowledgePage({
                 </ParentProgressBar>
               </div>
             </FileCol>
-            <SalesCol className="d-flex flex-column gap-5 pt-3">
-              <LinkP className="text-end" onClick={() => setModalShow(true)}>
+            <SalesCol theme={theme} className="d-flex flex-column gap-5 pt-3">
+              <LinkP
+                theme={theme}
+                className="text-end"
+                onClick={() => setModalShow(true)}
+              >
                 + <UnderLineSpan> upload Document</UnderLineSpan>
               </LinkP>
 
               <div className="d-flex flex-column gap-3">
                 <div className="d-flex flex-wrap flex-lg-row flex-column gap-3">
                   <ComponentRender
+                    theme={theme}
                     onClick={() => setActiveButton("Inbound")}
                     className="py-2 flex-grow-1 px-3"
                   >
                     Sales Pitches
                   </ComponentRender>
                   <ComponentRender
+                    theme={theme}
                     onClick={() => setActiveButton("Outbound")}
                     className="py-2  flex-grow-1 px-3"
                   >
                     Product Knowledge
                   </ComponentRender>
                   <ComponentRender
+                    theme={theme}
                     onClick={() => setActiveButton("Inbound")}
                     className="py-2 flex-grow-1 px-3"
                   >

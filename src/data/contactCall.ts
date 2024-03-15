@@ -1,3 +1,5 @@
+import { RecordingTableType } from "../types/types";
+
 export const defaultContactData: RecordingTableType[] = [
     {
       contact: "Raam A",

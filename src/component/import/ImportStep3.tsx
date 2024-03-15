@@ -7,6 +7,8 @@ import CustomButton from "./CustomButton";
 import DragAndDrop from "../DragAndDrop";
 import CustomTable from "../CustomTable/Table";
 import { contactEditType } from "../../types/types";
+import { useSelector } from "react-redux";
+import { RootState } from "../../store";
 
 const UploadContainer = styled.div`
   background-color: rgba(10, 35, 40, 1);
@@ -115,7 +117,7 @@ const InputManuallyButton = styled.button`
 `;
 function ImportStep2({ setActiveTopBar }: { setActiveTopBar?: any }) {
   const columnHelper = createColumnHelper<contactEditType>();
-
+  const theme = useSelector((state: RootState) => state.theme.theme);
   const columns = [
     columnHelper.accessor("phone", {
       cell: () => <Input placeholder="+135792468"></Input>,
@@ -192,6 +194,7 @@ function ImportStep2({ setActiveTopBar }: { setActiveTopBar?: any }) {
           columns={columns}
           data={sampleData}
           hidePagination={true}
+          theme={theme}
         ></CustomTable>
       </TableContainer>
 

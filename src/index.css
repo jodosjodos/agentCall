@@ -96,6 +96,24 @@
 
 }
 
+.modal-center {
+  height: 100vh;
+}
+
+.modal_center .modal-dialog {
+  width: 600px !important;
+
+
+}
+
+.modal_center {
+  background-color: rgba(0, 0, 0, 0.89);
+}
+
+.modal_center .modal-dialog::-webkit-scrollbar {
+  display: none;
+}
+
 @media screen and (max-width:992px) {
   .centered_modal .modal-dialog {
     width: 100% !important;
@@ -183,10 +201,13 @@
 }
 
 .table_container {
+  width: 100% !important;
+  height: calc(100vh - 340px) !important;
   overflow: auto;
 }
 
-.table_container::-webkit-scrollbar {
+.table_container::-webkit-scrollbar,
+.agent-profile::-webkit-scrollbar {
   display: block;
   width: 6px;
   height: 6px;
@@ -203,7 +224,8 @@
 
 
 .agent-row::-webkit-scrollbar-thumb,
-.table_container::-webkit-scrollbar-thumb {
+.table_container::-webkit-scrollbar-thumb,
+.agent-profile::-webkit-scrollbar-thumb {
   background-color: #224D57;
   border-radius: 5px;
   height: 20px !important;
@@ -211,7 +233,8 @@
 
 }
 
-.table_container::-webkit-scrollbar-thumb {
+.table_container::-webkit-slider-thumb,
+.agent-profile::-webkit-scrollbar-thumb {
   background-color: #224D57;
   border-radius: 5px;
   height: 20px !important;
@@ -221,4 +244,14 @@
 
 .drop-down-home button#dropdown-basic {
   width: 100%;
+}
+
+
+
+.success-message {
+  background-color: rgba(10, 35, 40, 1);
+  padding: 20px, 16px, 20px, 16px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }

@@ -16,14 +16,14 @@ interface AgentProfile {
 const EditIcon = styled.img`
   with: 10px;
 `;
-const AgentContainer = styled.div<{ $isLeft?: boolean }>`
+const AgentContainer = styled.div<{ $isLeft?: boolean; $theme?: string }>`
   border-radius: 16px;
   padding: 12px;
   flex-grow: 1;
   color: white;
   max-width: ${(props) => (props.$isLeft ? "500px" : "550px")};
   height: fit-content;
-  width: ${(props) => (props.$isLeft ? "50%" : "320px")};
+
   @media (max-width: 1456px) {
     max-width: 98%;
     min-width: 98%;
@@ -32,17 +32,24 @@ const AgentContainer = styled.div<{ $isLeft?: boolean }>`
   @media (min-width: 1500px) and (max-width: 1999px) {
     width: 100%;
   }
-  min-width: ${(props) => (props.$isLeft ? "395px" : "395px")};
+  min-width: ${(props) => (props.$isLeft ? "400px" : "400px")};
   background: ${(props) =>
     props.$isLeft
       ? "transparent"
+      : props.$theme == "light"
+      ? "linear-gradient(180deg, #E6EDEF 0%, #E3EAEC 77.4%)"
       : "linear-gradient(180deg, #092227 0%, #17434d 110.97%)"};
 `;
-const Row = styled.div<{ $minute_container?: boolean }>`
+const Row = styled.div<{ $minute_container?: boolean; $theme?: string }>`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: ${(props) => (props.$minute_container ? "#224D57" : "")};
+  background: ${(props) =>
+    props.$minute_container && props.$theme == "light"
+      ? "rgba(201, 213, 216, 1)"
+      : !props.$minute_container
+      ? ""
+      : "#224D57"};
   border-radius: ${(props) => (props.$minute_container ? "20px" : "0px")};
   padding: ${(props) => (props.$minute_container ? "2px 6px" : "0px")};
 `;
@@ -54,13 +61,15 @@ function AgentModal({
   agent,
   onclick,
   isLeft,
+  theme,
 }: {
   agent: AgentProfile;
   onclick?: React.MouseEventHandler<HTMLDivElement> | undefined;
   isLeft?: boolean;
+  theme?: string;
 }) {
   return (
-    <AgentContainer $isLeft={isLeft} onClick={onclick}>
+    <AgentContainer $isLeft={isLeft} onClick={onclick} $theme={theme}>
       <Row className="d-flex flex-row">
         <div>
           <img src={agent.profile} alt="" />
@@ -81,7 +90,7 @@ function AgentModal({
       </Row>
       <Row>
         <Paragraph>Minutes talked</Paragraph>
-        <Row $minute_container className="gap-1">
+        <Row $minute_container $theme={theme} className="gap-1">
           <img src="/clockIcon.svg" alt="" />
 
           <Paragraph>{agent.minutesTalked}</Paragraph>
@@ -114,14 +123,14 @@ function AgentModal({
           <Paragraph className="text-center">Follow up container</Paragraph>
 
           <Row className="justify-content-center gap-2 py-2">
-            <Row $minute_container>
+            <Row $theme={theme} $minute_container>
               <img src="/profile_delete.svg" alt="" width={20} />
               <Paragraph className="text-bold">21</Paragraph>
             </Row>
 
             <img src="/transfer.svg" alt="" width={20} />
 
-            <Row $minute_container>
+            <Row $theme={theme} $minute_container>
               <img src="/profile_checked.svg" alt="" width={20} />
               <Paragraph className="text-bold">21</Paragraph>
             </Row>

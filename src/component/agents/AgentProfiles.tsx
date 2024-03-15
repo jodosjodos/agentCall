@@ -4,6 +4,12 @@ import AgentModal from "./AgentModal";
 import { useState } from "react";
 import { Controller } from "./Controller";
 import { agentType } from "../../types/types";
+import OngoingCallModal from "./OnGoingCall";
+import CenteredModal from "../modals/Modal";
+import Search from "../Search";
+import SuccessMessage from "./successMessage";
+import { useSelector } from "react-redux";
+import { RootState } from "../../store";
 
 const GridContainer = styled.div<{
   $selected?: boolean;
@@ -13,30 +19,41 @@ const GridContainer = styled.div<{
   flex-grow: 1;
 
   grid-template-columns: ${(props) =>
-    props.$selected ? "repeat(1, 1fr)" : "repeat(1, 2fr)"};
+    props.$selected ? "repeat(1, 1fr)" : "repeat(1, 1fr)"};
 
-  @media (max-width: 1449px) {
-    display: ${(props) => (props.$selected ? "none" : "flex")};
+  @media (max-width: 712px) {
+    display: ${(props) => (props.$selected ? "none" : "grid")};
     flex-direction: column;
+    grid-template-columns: ${(props) =>
+      props.$selected ? "repeat(1, 1fr)" : "repeat(2, 1fr)"};
+    
+    gap: 20px;
+   }
+  
+   @media (min-width: 712px) and (max-width:1449px) {
+    
+    grid-template-columns: ${(props) =>
+      props.$selected ? "repeat(1, 1fr)" : "repeat(2, 1fr)"};
+    
     gap: 20px;
    }
   
  
-  @media (min-width: 1450px) and (max-width: 1460px) {
+  @media (min-width: 1460px) and (max-width: 1999px) {
     grid-template-columns: ${(props) =>
-      props.$selected ? "repeat(1, 1fr)" : "repeat(2, 1fr)"};
+      props.$selected && !props.$isSidebarOpened
+        ? "repeat(2, 1fr)"
+        : props.$selected && props.$isSidebarOpened
+        ? "repeat(1, 1fr)"
+        : "repeat(3, 1fr)"};
+      
   }
-  @media (min-width: 712px) and (max-width: 1450px) {
-    grid-template-columns: ${(props) =>
-      props.$isSidebarOpened ? "repeat(1, 1fr)" : "repeat(2, 1fr)"};
-  }
-  @media (min-width: 1500px) and (max-width: 1999px) {
-    grid-template-columns: ${(props) =>
-      props.$selected ? "repeat(1, 1fr)" : "repeat(2, 1fr)"};
-  }
-  @media (min-width:1992px){
-    grid-template-columns: ${(props) =>
-      props.$selected ? "repeat(2, 1fr)" : "repeat(3, 1fr)"};
+
+ 
+  @media (min-width:1999px){
+    display:flex;
+    flex-direction:row;
+    flex-wrap:wrap;
   }
   
   editProfilelate-columns: repeat(4, 1fr);
@@ -47,11 +64,16 @@ const AgentProfileContainer = styled.div`
   width: 100%;
   padding: 20px;
 `;
-const AgentProfileSubContainer = styled.div<{ $selcted?: boolean }>`
+const AgentProfileSubContainer = styled.div<{
+  $selcted?: boolean;
+  $isSidebarOpened?: boolean;
+}>`
   display: flex;
   width: 100%;
 
-  @media (max-width: 714px) {
+  @media (max-width: 1534px) {
+    display: ${(props) =>
+      props.$selcted ? "none !important" : "block !important"};
     width: ${(props) => (props.$selcted ? "0" : "100vw")};
     max-width: 100%;
     flex-grow: 1;
@@ -59,26 +81,23 @@ const AgentProfileSubContainer = styled.div<{ $selcted?: boolean }>`
   height: calc(100vh - 96px);
   overflow: auto;
 `;
-const Input = styled.input`
-  flex-grow: 1;
-  background-color: transparent;
-  border: none;
-  outline: none;
-  color: white;
-`;
-const AgentProfileLeft = styled.div`
+
+const AgentProfileLeft = styled.div<{ $theme?: string }>`
   max-width: 600px;
+
   margin: 20px 10px 0px px;
   padding: 10px;
   border-radius: 10px;
-  @media (max-width: 714px) {
+  @media (max-width: 1534px) {
     width: 100%;
     max-width: 100%;
     flex-grow: 1;
   }
   width: 35%;
-  min-width: 395px;
-  background-color: #0b2227;
+
+  min-width: 470px;
+  background-color: ${(props) =>
+    props.$theme == "light" ? "#E5ECEE" : "#0b2227"};
   height: calc(100vh - 129px);
 `;
 const Scroll = styled.div`
@@ -90,21 +109,14 @@ const Row = styled.div`
   align-items: center;
   justify-content: space-between;
 `;
-const InputRow = styled.div`
-  display: flex;
-  padding: 10px 20px;
-  border-radius: 10px;
-  align-items: center;
-  justify-content: space-between;
-  background-color: #051316;
-`;
 
 const Paragraph = styled.p`
   color: #96adb3;
   margin-bottom: 0;
 `;
-const OnGoingCall = styled.div`
-  background-color: #051316;
+const OnGoingCall = styled.div<{ $theme?: string }>`
+  background-color: ${(props) =>
+    props.$theme == "light" ? "#C9D5D8" : "#051316"};
   padding: 16px, 12px;
   border-radius: 16px;
   padding: 10px;
@@ -113,10 +125,29 @@ const OnGoingCall = styled.div`
 `;
 const OnGoingCallRow = styled.div`
   display: flex;
+  flex-grow: 1;
   gap: 10px;
   border-radius: 20px;
   padding: 10px;
   background: linear-gradient(93.55deg, #096348 13.97%, #25955f 89.16%);
+`;
+const OnGoingCallRow1 = styled.button`
+  display: flex;
+  flex-grow: 1;
+  gap: 10px;
+  border-radius: 20px;
+  padding: 10px;
+  background: rgba(11, 34, 39, 1);
+  border: 1px solid rgba(14, 43, 49, 1);
+`;
+const GreenContainer = styled.div`
+  border-radius: 16px;
+  background-color: rgba(38, 246, 96, 0.15);
+  padding: 4px 8px;
+  display: flex;
+  max-width: fit-content;
+
+  color: rgba(16, 122, 71, 1);
 `;
 const OnGoingCallRowParagraph = styled.div`
   color: white;
@@ -157,7 +188,29 @@ const CallProfile = styled.img<{ $isHidden?: boolean }>`
   border-radius: 20px;
   display: ${(props) => (!props.$isHidden ? "none" : "block")};
 `;
-export function AgentProfiles({isSidebarOpened}:{isSidebarOpened:boolean}) {
+const CallOnQueParagraph = styled.p`
+  font-size: 20px;
+  color: rgba(201, 213, 216, 1);
+  font-weight: 600;
+  line-height: 25px;
+  letter-spacing: 0em;
+  text-align: left;
+`;
+const SeAllButton = styled.button<{ $theme?: string }>`
+  background-color: ${(props) =>
+    props.$theme == "light" ? "#C9D5D8" : "rgba(15, 46, 53, 1)"};
+  border-radius: 24px;
+  padding: 4px 10px;
+  border: none;
+  color: ${(props) =>
+    props.$theme == "light" ? "#0F2E35" : "rgba(201, 213, 216, 1)"};
+  height: 37px;
+`;
+export function AgentProfiles({
+  isSidebarOpened,
+}: {
+  isSidebarOpened: boolean;
+}) {
   const [selectedAgent, setSelectedAgent] = useState<agentType | null>(null);
   const callSteps = [
     { name: "Intro", color: "#F0B723", active: true },
@@ -165,13 +218,17 @@ export function AgentProfiles({isSidebarOpened}:{isSidebarOpened:boolean}) {
     { name: "Info", color: "#00B7DF26", active: false },
     { name: "Closing", color: "#0FBC0C26", active: false },
   ];
+  const [showModal, setShowModal] = useState(false);
+  const [showRedirect, setShowRedirect] = useState(false);
+  const [success, setSuccess] = useState(false);
+  const theme = useSelector((state: RootState) => state.theme.theme);
+
   return (
     <>
-      <AgentProfileContainer className="d-flex">
+      <AgentProfileContainer className="d-flex agent-profile">
         <AgentProfileSubContainer
           $selcted={selectedAgent != null}
-        
-          className="d-flex flex-column "
+          className="d-flex agent-profile flex-column "
         >
           <Controller selected={selectedAgent != null}></Controller>
           <GridContainer
@@ -181,6 +238,7 @@ export function AgentProfiles({isSidebarOpened}:{isSidebarOpened:boolean}) {
           >
             {agents.map((agent) => (
               <AgentModal
+                theme={theme}
                 onclick={() => {
                   setSelectedAgent(agent);
                 }}
@@ -192,8 +250,8 @@ export function AgentProfiles({isSidebarOpened}:{isSidebarOpened:boolean}) {
         </AgentProfileSubContainer>
 
         {selectedAgent != null && (
-          <AgentProfileLeft>
-            <Scroll>
+          <AgentProfileLeft $theme={theme}>
+            <Scroll className="agent-profile">
               <Row className="gap-2 w-full justify-content-end ">
                 <Row
                   className="gap-2 align-items-center cursor-pointer"
@@ -204,6 +262,7 @@ export function AgentProfiles({isSidebarOpened}:{isSidebarOpened:boolean}) {
                 </Row>
               </Row>
               <AgentModal
+                theme={theme}
                 isLeft={true}
                 key={selectedAgent.id}
                 agent={selectedAgent}
@@ -211,18 +270,32 @@ export function AgentProfiles({isSidebarOpened}:{isSidebarOpened:boolean}) {
               <Paragraph className="text-white bold pb-3">
                 Ongoing call
               </Paragraph>
-              <OnGoingCall className="p">
-                <Paragraph>Ongoing call with +84965482487</Paragraph>
+              <OnGoingCall $theme={theme} className="p">
+                <GreenContainer className="gap-1">
+                  <img src="/green-wave.svg" alt="" />
+                  Ongoing call with +84965482487
+                </GreenContainer>
                 <Row className="py-2">
                   <Row className="gap-2">
                     <img src="/wave.svg" alt="" />
                     <Paragraph>00:40:01</Paragraph>
                   </Row>
+                </Row>
+                <div className="d-flex flex-grow-1 gap-2">
+                  <OnGoingCallRow1
+                    onClick={() => setShowRedirect(true)}
+                    className="p-2"
+                  >
+                    <OnGoingCallRowParagraph>
+                      Redirect call
+                    </OnGoingCallRowParagraph>
+                    <img src="/forward.svg"></img>
+                  </OnGoingCallRow1>
                   <OnGoingCallRow className="p-2">
                     <OnGoingCallRowParagraph>Listen in</OnGoingCallRowParagraph>
                     <img src="/resume.svg"></img>
                   </OnGoingCallRow>
-                </Row>
+                </div>
                 <Row>
                   {callSteps.map((item, i) => (
                     <CallContainer key={i}>
@@ -241,19 +314,40 @@ export function AgentProfiles({isSidebarOpened}:{isSidebarOpened:boolean}) {
                   ))}
                 </Row>
               </OnGoingCall>
-              <InputRow>
-                <Input
-                  id="paste"
-                  type="text"
-                  className=""
-                  placeholder="Start typing ..."
-                />
-                <img src="/record.svg" alt="" />
-              </InputRow>
+              <div className="d-flex align-items-center justify-content-between">
+                <div>
+                  <CallOnQueParagraph>Calls on queue</CallOnQueParagraph>
+                  <p className="primary-text">
+                    Drag numbers to re-arrange numbers on queue
+                  </p>
+                </div>
+                <SeAllButton $theme={theme} onClick={() => setShowModal(true)}>
+                  See all
+                </SeAllButton>
+              </div>
             </Scroll>
           </AgentProfileLeft>
         )}
       </AgentProfileContainer>
+      <OngoingCallModal
+        show={showModal}
+        onHide={() => setShowModal(false)}
+      ></OngoingCallModal>
+      <CenteredModal
+        show={showRedirect}
+        onHide={() => setShowRedirect(false)}
+        btnText="Redirect call"
+        onContinue={() => {
+          setShowRedirect(false);
+          setTimeout(() => {}, 2000);
+          setSuccess(true);
+        }}
+        children={<Search placeholder="e.g +442345678"></Search>}
+      ></CenteredModal>
+      <SuccessMessage
+        show={success}
+        onHide={() => setSuccess(false)}
+      ></SuccessMessage>
     </>
   );
 }

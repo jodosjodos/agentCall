@@ -5,6 +5,12 @@ import { DropdownButton } from "../DropDown";
 import { CustomContactTable } from "./CustomContactTable/ContactTable";
 import CenteredModal from "../modals/Modal";
 import Search from "../Search";
+import CustomTable from "../CustomTable/Table";
+import { RecordingTableType } from "../../types/types";
+import { createColumnHelper } from "@tanstack/react-table";
+import { useSelector } from "react-redux";
+import { RootState } from "../../store";
+import { defaultContactData } from "../../data/contactCall";
 
 const RecordingTableContainer = styled.div`
   flex-grow: 1;
@@ -86,7 +92,7 @@ const DateParagraph = styled.p`
   margin: 0px;
 `;
 const CustomTableContainer = styled.div`
-  height: calc(100vh - 340px);
+  height: calc(100vh - 340px) !important;
   overflow: auto;
 `;
 
@@ -125,6 +131,29 @@ const CustomRow = styled.div`
   gap: 10px;
   padding-top: 20px;
 `;
+const ActionContainer = styled.button<{ $theme?: string }>`
+  border-radius: 8px;
+  border: ${(props) => (props.$theme == "light" ? "1px solid #000000" : "")};
+  display: flex;
+  width: fit-content;
+  justify-content: center;
+  background-color: ${(props) =>
+    props.$theme == "light" ? "#FEFEFE" : "#0f2e35"};
+  width: 30px;
+  padding: 5px 0;
+  &:hover {
+    cursor: pointer;
+  }
+  &:active {
+    background-color: #17454f;
+  }
+  &:hover {
+    background-color: #17454f;
+  }
+`;
+const ActionImage = styled.img`
+  width: 20px;
+`;
 const CheckBox = styled.input`
   width: 40px;
 `;
@@ -133,6 +162,65 @@ const OverAllContainer = styled.div`
 `;
 export function ContactRecordTable({ onContinue }: { onContinue: any }) {
   const [showImportLead, setShowImportLead] = useState(false);
+  const theme = useSelector((state: RootState) => state.theme.theme);
+  const columnHelper = createColumnHelper<RecordingTableType>();
+
+  const columns = [
+    columnHelper.accessor("contact", {
+      cell: (info) => info.getValue(),
+    }),
+    columnHelper.accessor((row) => row.number, {
+      id: "lastName",
+      cell: (info) => <span>{info.getValue()}</span>,
+      header: () => <span>Number</span>,
+    }),
+    columnHelper.accessor("campaign", {
+      header: () => "Campaign",
+      cell: (info) => info.renderValue(),
+    }),
+    columnHelper.accessor("call", {
+      header: () => <span>Call</span>,
+    }),
+    columnHelper.accessor("Date", {
+      header: "Date",
+    }),
+    columnHelper.accessor("duration", {
+      header: "Duration",
+    }),
+    columnHelper.accessor("outcome", {
+      header: "Outcome",
+    }),
+
+    columnHelper.display({
+      id: "actions",
+      header: () => (
+        <Row className="gap-1  px-1">
+          <ActionContainer $theme={theme}>
+            <ActionImage src="/resume_outline.svg" alt="" />
+          </ActionContainer>
+          <ActionContainer $theme={theme}>
+            <ActionImage src="/date.svg" alt="" />
+          </ActionContainer>
+          <ActionContainer $theme={theme}>
+            <ActionImage src="/contactIcon.svg" alt="" />
+          </ActionContainer>
+        </Row>
+      ),
+      cell: () => (
+        <Row className="gap-1  px-2">
+          <ActionContainer $theme={theme}>
+            <ActionImage src="/resume_outline.svg" alt="" />
+          </ActionContainer>
+          <ActionContainer $theme={theme}>
+            <ActionImage src="/date.svg" alt="" />
+          </ActionContainer>
+          <ActionContainer $theme={theme}>
+            <ActionImage src="/contactIcon.svg" alt="" />
+          </ActionContainer>
+        </Row>
+      ),
+    }),
+  ];
 
   return (
     <OverAllContainer className="flex-grow-1">
@@ -171,7 +259,11 @@ export function ContactRecordTable({ onContinue }: { onContinue: any }) {
           </DateContainer>
         </RecordingTableHeader>
         <CustomTableContainer className="table_container">
-          <CustomContactTable></CustomContactTable>
+          <CustomTable
+            data={defaultContactData}
+            columns={columns}
+            theme={theme}
+          ></CustomTable>
         </CustomTableContainer>
       </RecordingTableContainer>
 

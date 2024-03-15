@@ -1,8 +1,10 @@
 import styled from "styled-components";
 import { DropdownHome } from "./DropDownHome";
+import { useSelector } from "react-redux";
+import { RootState } from "../../store";
 
-const ParentButton = styled.div`
-  background-color: #0b2227;
+const ParentButton = styled.div<{theme:string}>`
+  background-color:${(props)=>props.theme === "light"?"#C9D5D8":"#0b2227"} ;
   height: fit-content;
   width: fit-content;
   max-width: fit-content;
@@ -17,8 +19,8 @@ const ParentButton = styled.div`
   padding: 0.5rem;
 `;
 
-const NotificationIcon = styled.img`
-  background-color: #0f2e35;
+const NotificationIcon = styled.img<{theme:string}>`
+  background-color: ${(props) => (props.theme ==="light"? "#C9D5D8" : "#0f2e35")} ;
   height: fit-content;
   border-radius: 10px;
   padding: 10px;
@@ -39,18 +41,19 @@ const ControllerContainer = styled.div<{ $selected?: boolean }>`
   }
 `;
 export function HomeController() {
+  const theme = useSelector((state: RootState) => state.theme.theme);
   return (
     <ControllerContainer
       $selected
       className="d-flex  gap-2 flex-row  py-4 px-2"
     >
-      <ParentButton className="d-flex flex-grow-1   gap-2">
+      <ParentButton theme={theme} className="d-flex flex-grow-1   gap-2">
         <DropdownHome name="Date" />
         <DropdownHome name="Week" />
         <DropdownHome name="Month" />
         <DropdownHome name="Custom" />
       </ParentButton>
-      <NotificationIcon src="/notification.svg" />
+      <NotificationIcon theme={theme} src="/notification.svg" />
     </ControllerContainer>
   );
 }
