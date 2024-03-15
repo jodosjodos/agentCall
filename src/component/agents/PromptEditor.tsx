@@ -21,7 +21,6 @@ const Menu = styled.div<{ $theme?: string }>`
 `;
 const Paragraph = styled.div`
   margin-bottom: 0px;
-  color: #96adb3;
 `;
 const EditorContainer = styled.div<{ $theme?: string }>`
   color: ${(props) => (props.$theme == "light" ? "#384B4F" : "white")};

@@ -11,6 +11,7 @@ import CenteredModal from "../modals/Modal";
 import { CompanyTableType } from "../../types/types";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store";
+import { ActionContainer, ActionImage } from "../CustomTable/TableComponent";
 
 const CompanyTableContainer = styled.div`
   flex-grow: 1;
@@ -95,27 +96,8 @@ const CustomTableContainer = styled.div`
   overflow: auto;
 `;
 
-const ActionContainer = styled.button<{ $theme?: string }>`
-  border-radius: 8px;
-  border: ${(props) => (props.$theme == "light" ? "1px solid #000000" : "")};
-  background-color: ${(props) =>
-    props.$theme == "light" ? "#FEFEFE" : "#0f2e35"};
-  display: flex;
-  width: fit-content;
-  justify-content: center;
 
-  width: 30px;
-  padding: 5px 0;
-  &:hover {
-    cursor: pointer;
-  }
-  &:hover {
-    cursor: pointer;
-  }
-`;
-const ActionImage = styled.img`
-  width: 20px;
-`;
+
 const columnHelper = createColumnHelper<CompanyTableType>();
 
 const LinkP = styled.button`
