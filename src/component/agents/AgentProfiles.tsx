@@ -8,6 +8,8 @@ import OngoingCallModal from "./OnGoingCall";
 import CenteredModal from "../modals/Modal";
 import Search from "../Search";
 import SuccessMessage from "./successMessage";
+import { useSelector } from "react-redux";
+import { RootState } from "../../store";
 
 const GridContainer = styled.div<{
   $selected?: boolean;
@@ -80,7 +82,7 @@ const AgentProfileSubContainer = styled.div<{
   overflow: auto;
 `;
 
-const AgentProfileLeft = styled.div`
+const AgentProfileLeft = styled.div<{ $theme?: string }>`
   max-width: 600px;
 
   margin: 20px 10px 0px px;
@@ -94,7 +96,8 @@ const AgentProfileLeft = styled.div`
   width: 35%;
 
   min-width: 470px;
-  background-color: #0b2227;
+  background-color: ${(props) =>
+    props.$theme == "light" ? "#E5ECEE" : "#0b2227"};
   height: calc(100vh - 129px);
 `;
 const Scroll = styled.div`
@@ -111,8 +114,9 @@ const Paragraph = styled.p`
   color: #96adb3;
   margin-bottom: 0;
 `;
-const OnGoingCall = styled.div`
-  background-color: #051316;
+const OnGoingCall = styled.div<{ $theme?: string }>`
+  background-color: ${(props) =>
+    props.$theme == "light" ? "#C9D5D8" : "#051316"};
   padding: 16px, 12px;
   border-radius: 16px;
   padding: 10px;
@@ -192,12 +196,14 @@ const CallOnQueParagraph = styled.p`
   letter-spacing: 0em;
   text-align: left;
 `;
-const SeAllButton = styled.button`
-  background-color: rgba(15, 46, 53, 1);
+const SeAllButton = styled.button<{ $theme?: string }>`
+  background-color: ${(props) =>
+    props.$theme == "light" ? "#C9D5D8" : "rgba(15, 46, 53, 1)"};
   border-radius: 24px;
   padding: 4px 10px;
   border: none;
-  color: rgba(201, 213, 216, 1);
+  color: ${(props) =>
+    props.$theme == "light" ? "#0F2E35" : "rgba(201, 213, 216, 1)"};
   height: 37px;
 `;
 export function AgentProfiles({
@@ -215,6 +221,7 @@ export function AgentProfiles({
   const [showModal, setShowModal] = useState(false);
   const [showRedirect, setShowRedirect] = useState(false);
   const [success, setSuccess] = useState(false);
+  const theme = useSelector((state: RootState) => state.theme.theme);
 
   return (
     <>
@@ -231,6 +238,7 @@ export function AgentProfiles({
           >
             {agents.map((agent) => (
               <AgentModal
+                theme={theme}
                 onclick={() => {
                   setSelectedAgent(agent);
                 }}
@@ -242,7 +250,7 @@ export function AgentProfiles({
         </AgentProfileSubContainer>
 
         {selectedAgent != null && (
-          <AgentProfileLeft>
+          <AgentProfileLeft $theme={theme}>
             <Scroll className="agent-profile">
               <Row className="gap-2 w-full justify-content-end ">
                 <Row
@@ -254,6 +262,7 @@ export function AgentProfiles({
                 </Row>
               </Row>
               <AgentModal
+                theme={theme}
                 isLeft={true}
                 key={selectedAgent.id}
                 agent={selectedAgent}
@@ -261,15 +270,15 @@ export function AgentProfiles({
               <Paragraph className="text-white bold pb-3">
                 Ongoing call
               </Paragraph>
-              <OnGoingCall className="p">
+              <OnGoingCall $theme={theme} className="p">
                 <GreenContainer className="gap-1">
                   <img src="/green-wave.svg" alt="" />
                   Ongoing call with +84965482487
                 </GreenContainer>
                 <Row className="py-2">
                   <Row className="gap-2">
-                    <Paragraph>00:40:01</Paragraph>
                     <img src="/wave.svg" alt="" />
+                    <Paragraph>00:40:01</Paragraph>
                   </Row>
                 </Row>
                 <div className="d-flex flex-grow-1 gap-2">
@@ -312,7 +321,7 @@ export function AgentProfiles({
                     Drag numbers to re-arrange numbers on queue
                   </p>
                 </div>
-                <SeAllButton onClick={() => setShowModal(true)}>
+                <SeAllButton $theme={theme} onClick={() => setShowModal(true)}>
                   See all
                 </SeAllButton>
               </div>
