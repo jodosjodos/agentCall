@@ -78,7 +78,6 @@ const DateButton = styled.div<{ theme: string }>`
   display: flex;
   gap: 10px;
   color: ${(props) => (props.theme === "light" ? "#0F2E35" : "#c9d5d8")};
-
 `;
 const DateContainer = styled.div`
   display: flex;
@@ -96,13 +95,15 @@ const CustomTableContainer = styled.div`
   overflow: auto;
 `;
 
-const ActionContainer = styled.div`
+const ActionContainer = styled.button<{ $theme?: string }>`
   border-radius: 8px;
-  border: 1px;
+  border: ${(props) => (props.$theme == "light" ? "1px solid #000000" : "")};
+  background-color: ${(props) =>
+    props.$theme == "light" ? "#FEFEFE" : "#0f2e35"};
   display: flex;
   width: fit-content;
   justify-content: center;
-  background-color: #0f2e35;
+
   width: 30px;
   padding: 5px 0;
   &:hover {
@@ -117,88 +118,6 @@ const ActionImage = styled.img`
 `;
 const columnHelper = createColumnHelper<CompanyTableType>();
 
-const columns = [
-  columnHelper.display({
-    id: "switch",
-    header: "Off/On",
-    cell: () => <MaterialDesignSwitch />,
-  }),
-  columnHelper.accessor("companyName", {
-    cell: (info) => info.getValue(),
-  }),
-  columnHelper.accessor((row) => row.emailAddress, {
-    id: "emailAddress",
-    cell: (info) => <span>{info.getValue()}</span>,
-    header: () => <span>Email Address</span>,
-  }),
-  columnHelper.accessor("phoneNumber", {
-    header: () => "Phone Number",
-    cell: (info) => info.renderValue(),
-  }),
-  columnHelper.accessor("registeredTime", {
-    header: () => <span>Registered Time</span>,
-    cell: (info) => info.renderValue(),
-  }),
-
-  columnHelper.accessor("dials", {
-    header: "Dials",
-    cell: (info) => info.renderValue(),
-  }),
-  columnHelper.accessor("pickups", {
-    header: "Pickups",
-    cell: (info) => info.renderValue(),
-  }),
-  columnHelper.accessor("failed", {
-    header: "Failed",
-    cell: (info) => info.renderValue(),
-  }),
-  columnHelper.accessor("busy", {
-    header: "Busy",
-    cell: (info) => info.renderValue(),
-  }),
-  columnHelper.accessor("amountspent", {
-    header: "Amount spent",
-    cell: (info) => info.renderValue(),
-  }),
-  columnHelper.accessor("outcome", {
-    header: "Outcomes",
-    cell: (info) => info.renderValue(),
-  }),
-  columnHelper.accessor("costOutcome", {
-    header: "Cost / outcome",
-    cell: (info) => info.renderValue(),
-  }),
-
-  columnHelper.display({
-    id: "actions",
-    header: () => (
-      <Row className="gap-1  px-1">
-        <ActionContainer>
-          <ActionImage src="/table-paste.svg" alt="" />
-        </ActionContainer>
-        <ActionContainer>
-          <ActionImage src="/delete.svg" alt="" />
-        </ActionContainer>
-        <ActionContainer>
-          <ActionImage src="/table-menu.svg" alt="" />
-        </ActionContainer>
-      </Row>
-    ),
-    cell: () => (
-      <Row className="gap-1  px-2">
-        <ActionContainer>
-          <ActionImage src="/table-paste.svg" alt="" />
-        </ActionContainer>
-        <ActionContainer>
-          <ActionImage src="/delete.svg" alt="" />
-        </ActionContainer>
-        <ActionContainer>
-          <ActionImage src="/table-menu.svg" alt="" />
-        </ActionContainer>
-      </Row>
-    ),
-  }),
-];
 const LinkP = styled.button`
   color: #c9d5d8;
   background-color: #0a2328;
@@ -214,14 +133,16 @@ const UnderLineSpan = styled.span`
   text-decoration: none;
   font-weight: semi-bold;
 `;
-const InputRow = styled.div`
+const InputRow = styled.div<{ $theme?: string }>`
   display: flex;
   padding: 10px 20px;
   border-radius: 10px;
   align-items: center;
   justify-content: space-between;
-  background-color: #051316;
+  background-color: ${(props) =>
+    props.$theme == "light" ? "#FEFEFE" : "#0f2e35"};
 `;
+
 const Input = styled.input`
   flex-grow: 1;
   background-color: transparent;
@@ -235,7 +156,88 @@ function CompanyTable() {
     console.log(showCreateCompany);
   }, [showCreateCompany]);
   const theme = useSelector((state: RootState) => state.theme.theme);
+  const columns = [
+    columnHelper.display({
+      id: "switch",
+      header: "Off/On",
+      cell: () => <MaterialDesignSwitch />,
+    }),
+    columnHelper.accessor("companyName", {
+      cell: (info) => info.getValue(),
+    }),
+    columnHelper.accessor((row) => row.emailAddress, {
+      id: "emailAddress",
+      cell: (info) => <span>{info.getValue()}</span>,
+      header: () => <span>Email Address</span>,
+    }),
+    columnHelper.accessor("phoneNumber", {
+      header: () => "Phone Number",
+      cell: (info) => info.renderValue(),
+    }),
+    columnHelper.accessor("registeredTime", {
+      header: () => <span>Registered Time</span>,
+      cell: (info) => info.renderValue(),
+    }),
 
+    columnHelper.accessor("dials", {
+      header: "Dials",
+      cell: (info) => info.renderValue(),
+    }),
+    columnHelper.accessor("pickups", {
+      header: "Pickups",
+      cell: (info) => info.renderValue(),
+    }),
+    columnHelper.accessor("failed", {
+      header: "Failed",
+      cell: (info) => info.renderValue(),
+    }),
+    columnHelper.accessor("busy", {
+      header: "Busy",
+      cell: (info) => info.renderValue(),
+    }),
+    columnHelper.accessor("amountspent", {
+      header: "Amount spent",
+      cell: (info) => info.renderValue(),
+    }),
+    columnHelper.accessor("outcome", {
+      header: "Outcomes",
+      cell: (info) => info.renderValue(),
+    }),
+    columnHelper.accessor("costOutcome", {
+      header: "Cost / outcome",
+      cell: (info) => info.renderValue(),
+    }),
+
+    columnHelper.display({
+      id: "actions",
+      header: () => (
+        <Row className="gap-1  px-1">
+          <ActionContainer $theme={theme}>
+            <ActionImage src="/table-paste.svg" alt="" />
+          </ActionContainer>
+          <ActionContainer $theme={theme}>
+            <ActionImage src="/delete.svg" alt="" />
+          </ActionContainer>
+          <ActionContainer $theme={theme}>
+            <ActionImage src="/table-menu.svg" alt="" />
+          </ActionContainer>
+        </Row>
+      ),
+      cell: () => (
+        <Row className="gap-1  px-2">
+          <ActionContainer $theme={theme}>
+            <ActionImage src="/table-paste.svg" alt="" />
+          </ActionContainer>
+          <ActionContainer $theme={theme}>
+            <ActionImage src="/delete.svg" alt="" />
+          </ActionContainer>
+          <ActionContainer $theme={theme}>
+            <ActionImage src="/table-menu.svg" alt="" />
+          </ActionContainer>
+        </Row>
+      ),
+    }),
+  ];
   return (
     <>
       <CompanyTableContainer className="flex-grow-1">
@@ -292,7 +294,7 @@ function CompanyTable() {
             <div className="d-flex flex-column gap-1">
               <div className="d-flex gap-0 flex-column">
                 <p className="mb-0">Company Name</p>
-                <InputRow>
+                <InputRow $theme={theme}>
                   <Input
                     id="paste"
                     type="text"
@@ -303,7 +305,7 @@ function CompanyTable() {
               </div>
               <div className="d-flex gap-0 flex-column">
                 <p className="mb-0">Email address</p>
-                <InputRow>
+                <InputRow $theme={theme}>
                   <Input
                     id="paste"
                     type="text"
@@ -314,7 +316,7 @@ function CompanyTable() {
               </div>
               <div className="d-flex gap-0 flex-column">
                 <p className="mb-0">Phone number</p>
-                <InputRow>
+                <InputRow $theme={theme}>
                   <Input
                     id="paste"
                     type="text"
@@ -325,7 +327,7 @@ function CompanyTable() {
               </div>
               <div className="d-flex gap-0 flex-column">
                 <p className="mb-0">Amount spent</p>
-                <InputRow>
+                <InputRow $theme={theme}>
                   <Input
                     id="paste"
                     type="text"

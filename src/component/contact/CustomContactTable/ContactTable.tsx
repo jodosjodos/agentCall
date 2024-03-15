@@ -96,26 +96,26 @@ const columns = [
     id: "actions",
     header: () => (
       <Row className="gap-1  px-1">
-        <ActionContainer>
+        <ActionContainer $theme={theme}>
           <ActionImage src="/resume_outline.svg" alt="" />
         </ActionContainer>
-        <ActionContainer>
+        <ActionContainer $theme={theme}>
           <ActionImage src="/date.svg" alt="" />
         </ActionContainer>
-        <ActionContainer>
+        <ActionContainer $theme={theme}>
           <ActionImage src="/contactIcon.svg" alt="" />
         </ActionContainer>
       </Row>
     ),
     cell: () => (
       <Row className="gap-1  px-2">
-        <ActionContainer>
+        <ActionContainer $theme={theme}>
           <ActionImage src="/resume_outline.svg" alt="" />
         </ActionContainer>
-        <ActionContainer>
+        <ActionContainer $theme={theme}>
           <ActionImage src="/date.svg" alt="" />
         </ActionContainer>
-        <ActionContainer>
+        <ActionContainer $theme={theme}>
           <ActionImage src="/contactIcon.svg" alt="" />
         </ActionContainer>
       </Row>

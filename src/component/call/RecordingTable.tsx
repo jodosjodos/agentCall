@@ -8,6 +8,7 @@ import { defaultData } from "../../data/call";
 import { RecordingTableType } from "../../types/types";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store";
+import { ActionContainer, ActionImage } from "../CustomTable/TableComponent";
 
 const RecordingTableContainer = styled.div`
   flex-grow: 1;
@@ -75,7 +76,6 @@ const DateButton = styled.div<{ theme: string }>`
   display: flex;
   gap: 10px;
   color: ${(props) => (props.theme === "light" ? "#0F2E35" : "#c9d5d8")};
-
 `;
 const DateContainer = styled.div`
   display: flex;
@@ -92,89 +92,68 @@ const CustomTableContainer = styled.div`
   height: calc(100vh - 340px) !important;
   overflow: auto;
 `;
-const ActionContainer = styled.button`
-  border-radius: 8px;
-  border: 1px;
-  display: flex;
-  width: fit-content;
-  justify-content: center;
-  background-color: #0f2e35;
-  width: 30px;
-  padding: 5px 0;
-  &:hover {
-    cursor: pointer;
-  }
-  &:active {
-    background-color: #17454f;
-  }
-  &:hover {
-    background-color: #17454f;
-  }
-`;
-const ActionImage = styled.img`
-  width: 20px;
-`;
+
 const columnHelper = createColumnHelper<RecordingTableType>();
 
-const columns = [
-  columnHelper.accessor("contact", {
-    cell: (info) => info.getValue(),
-  }),
-  columnHelper.accessor((row) => row.number, {
-    id: "lastName",
-    cell: (info) => <span>{info.getValue()}</span>,
-    header: () => <span>Number</span>,
-  }),
-  columnHelper.accessor("campaign", {
-    header: () => "Campaign",
-    cell: (info) => info.renderValue(),
-  }),
-  columnHelper.accessor("call", {
-    header: () => <span>Call</span>,
-  }),
-  columnHelper.accessor("Date", {
-    header: "Date",
-  }),
-  columnHelper.accessor("duration", {
-    header: "Duration",
-  }),
-  columnHelper.accessor("outcome", {
-    header: "Outcome",
-  }),
-
-  columnHelper.display({
-    id: "actions",
-    header: () => (
-      <Row className="gap-1  px-1">
-        <ActionContainer>
-          <ActionImage src="/resume_outline.svg" alt="" />
-        </ActionContainer>
-        <ActionContainer>
-          <ActionImage src="/date.svg" alt="" />
-        </ActionContainer>
-        <ActionContainer>
-          <ActionImage src="/contactIcon.svg" alt="" />
-        </ActionContainer>
-      </Row>
-    ),
-    cell: () => (
-      <Row className="gap-1  px-2">
-        <ActionContainer>
-          <ActionImage src="/resume_outline.svg" alt="" />
-        </ActionContainer>
-        <ActionContainer>
-          <ActionImage src="/date.svg" alt="" />
-        </ActionContainer>
-        <ActionContainer>
-          <ActionImage src="/contactIcon.svg" alt="" />
-        </ActionContainer>
-      </Row>
-    ),
-  }),
-];
 function RecordingTable() {
   const theme = useSelector((state: RootState) => state.theme.theme);
 
+  const columns = [
+    columnHelper.accessor("contact", {
+      cell: (info) => info.getValue(),
+    }),
+    columnHelper.accessor((row) => row.number, {
+      id: "lastName",
+      cell: (info) => <span>{info.getValue()}</span>,
+      header: () => <span>Number</span>,
+    }),
+    columnHelper.accessor("campaign", {
+      header: () => "Campaign",
+      cell: (info) => info.renderValue(),
+    }),
+    columnHelper.accessor("call", {
+      header: () => <span>Call</span>,
+    }),
+    columnHelper.accessor("Date", {
+      header: "Date",
+    }),
+    columnHelper.accessor("duration", {
+      header: "Duration",
+    }),
+    columnHelper.accessor("outcome", {
+      header: "Outcome",
+    }),
+
+    columnHelper.display({
+      id: "actions",
+      header: () => (
+        <Row className="gap-1  px-1">
+          <ActionContainer $theme={theme}>
+            <ActionImage src="/resume_outline.svg" alt="" />
+          </ActionContainer>
+          <ActionContainer $theme={theme}>
+            <ActionImage src="/date.svg" alt="" />
+          </ActionContainer>
+          <ActionContainer $theme={theme}>
+            <ActionImage src="/contactIcon.svg" alt="" />
+          </ActionContainer>
+        </Row>
+      ),
+      cell: () => (
+        <Row className="gap-1  px-2">
+          <ActionContainer $theme={theme}>
+            <ActionImage src="/resume_outline.svg" alt="" />
+          </ActionContainer>
+          <ActionContainer $theme={theme}>
+            <ActionImage src="/date.svg" alt="" />
+          </ActionContainer>
+          <ActionContainer $theme={theme}>
+            <ActionImage src="/contactIcon.svg" alt="" />
+          </ActionContainer>
+        </Row>
+      ),
+    }),
+  ];
   return (
     <RecordingTableContainer className="">
       <Title theme={theme}>Recordings</Title>
@@ -200,7 +179,11 @@ function RecordingTable() {
         </Relative>
       </RecordingTableHeader>
       <CustomTableContainer className="table_container">
-        <CustomTable data={defaultData} theme={theme} columns={columns}></CustomTable>
+        <CustomTable
+          data={defaultData}
+          theme={theme}
+          columns={columns}
+        ></CustomTable>
       </CustomTableContainer>
     </RecordingTableContainer>
   );

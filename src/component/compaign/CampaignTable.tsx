@@ -9,6 +9,7 @@ import MaterialDesignSwitch from "../switch";
 import { CampaignTableType } from "../../types/types";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store";
+import { ActionContainer, ActionImage } from "../CustomTable/TableComponent";
 
 const CampaignTableContainer = styled.div`
   flex-grow: 1;
@@ -93,109 +94,8 @@ const CustomTableContainer = styled.div`
   overflow: auto;
 `;
 
-const ActionContainer = styled.div`
-  border-radius: 8px;
-  border: 1px;
-  display: flex;
-  width: fit-content;
-  justify-content: center;
-  background-color: #0f2e35;
-  width: 30px;
-  padding: 5px 0;
-  &:hover {
-    cursor: pointer;
-  }
-`;
-const ActionImage = styled.img`
-  width: 20px;
-`;
 const columnHelper = createColumnHelper<CampaignTableType>();
 
-const columns = [
-  columnHelper.display({
-    id: "switch",
-    header: "Off/On",
-    cell: () => <MaterialDesignSwitch />,
-  }),
-  columnHelper.accessor("campaign", {
-    cell: (info) => info.getValue(),
-  }),
-  columnHelper.accessor((row) => row.type, {
-    id: "type",
-    cell: (info) => <span>{info.getValue()}</span>,
-    header: () => <span>Type</span>,
-  }),
-  columnHelper.accessor("budget", {
-    header: () => "Budget",
-    cell: (info) => info.renderValue(),
-  }),
-  columnHelper.accessor("list", {
-    header: () => <span>List</span>,
-    cell: (info) => info.renderValue(),
-  }),
-  columnHelper.accessor("agents", {
-    header: "Agents",
-    cell: (info) => info.renderValue(),
-  }),
-  columnHelper.accessor("dials", {
-    header: "Dials",
-    cell: (info) => info.renderValue(),
-  }),
-  columnHelper.accessor("pickups", {
-    header: "Pickups",
-    cell: (info) => info.renderValue(),
-  }),
-  columnHelper.accessor("failed", {
-    header: "Failed",
-    cell: (info) => info.renderValue(),
-  }),
-  columnHelper.accessor("busy", {
-    header: "Busy",
-    cell: (info) => info.renderValue(),
-  }),
-  columnHelper.accessor("amountspent", {
-    header: "Amount spent",
-    cell: (info) => info.renderValue(),
-  }),
-  columnHelper.accessor("outcome", {
-    header: "Outcomes",
-    cell: (info) => info.renderValue(),
-  }),
-  columnHelper.accessor("costOutcome", {
-    header: "Cost / outcome",
-    cell: (info) => info.renderValue(),
-  }),
-
-  columnHelper.display({
-    id: "actions",
-    header: () => (
-      <Row className="gap-1  px-1">
-        <ActionContainer>
-          <ActionImage src="/table-paste.svg" alt="" />
-        </ActionContainer>
-        <ActionContainer>
-          <ActionImage src="/delete.svg" alt="" />
-        </ActionContainer>
-        <ActionContainer>
-          <ActionImage src="/table-menu.svg" alt="" />
-        </ActionContainer>
-      </Row>
-    ),
-    cell: () => (
-      <Row className="gap-1  px-2">
-        <ActionContainer>
-          <ActionImage src="/table-paste.svg" alt="" />
-        </ActionContainer>
-        <ActionContainer>
-          <ActionImage src="/delete.svg" alt="" />
-        </ActionContainer>
-        <ActionContainer>
-          <ActionImage src="/table-menu.svg" alt="" />
-        </ActionContainer>
-      </Row>
-    ),
-  }),
-];
 const LinkP = styled.div`
   color: #c9d5d8;
   background-color: #0a2328;
@@ -213,6 +113,91 @@ const UnderLineSpan = styled.span`
 function CampaignTable() {
   const theme = useSelector((state: RootState) => state.theme.theme);
 
+  const columns = [
+    columnHelper.display({
+      id: "switch",
+      header: "Off/On",
+      cell: () => <MaterialDesignSwitch />,
+    }),
+    columnHelper.accessor("campaign", {
+      cell: (info) => info.getValue(),
+    }),
+    columnHelper.accessor((row) => row.type, {
+      id: "type",
+      cell: (info) => <span>{info.getValue()}</span>,
+      header: () => <span>Type</span>,
+    }),
+    columnHelper.accessor("budget", {
+      header: () => "Budget",
+      cell: (info) => info.renderValue(),
+    }),
+    columnHelper.accessor("list", {
+      header: () => <span>List</span>,
+      cell: (info) => info.renderValue(),
+    }),
+    columnHelper.accessor("agents", {
+      header: "Agents",
+      cell: (info) => info.renderValue(),
+    }),
+    columnHelper.accessor("dials", {
+      header: "Dials",
+      cell: (info) => info.renderValue(),
+    }),
+    columnHelper.accessor("pickups", {
+      header: "Pickups",
+      cell: (info) => info.renderValue(),
+    }),
+    columnHelper.accessor("failed", {
+      header: "Failed",
+      cell: (info) => info.renderValue(),
+    }),
+    columnHelper.accessor("busy", {
+      header: "Busy",
+      cell: (info) => info.renderValue(),
+    }),
+    columnHelper.accessor("amountspent", {
+      header: "Amount spent",
+      cell: (info) => info.renderValue(),
+    }),
+    columnHelper.accessor("outcome", {
+      header: "Outcomes",
+      cell: (info) => info.renderValue(),
+    }),
+    columnHelper.accessor("costOutcome", {
+      header: "Cost / outcome",
+      cell: (info) => info.renderValue(),
+    }),
+
+    columnHelper.display({
+      id: "actions",
+      header: () => (
+        <Row className="gap-1  px-1">
+          <ActionContainer $theme={theme}>
+            <ActionImage src="/table-paste.svg" alt="" />
+          </ActionContainer>
+          <ActionContainer $theme={theme}>
+            <ActionImage src="/delete.svg" alt="" />
+          </ActionContainer>
+          <ActionContainer $theme={theme}>
+            <ActionImage src="/table-menu.svg" alt="" />
+          </ActionContainer>
+        </Row>
+      ),
+      cell: () => (
+        <Row className="gap-1  px-2">
+          <ActionContainer $theme={theme}>
+            <ActionImage src="/table-paste.svg" alt="" />
+          </ActionContainer>
+          <ActionContainer $theme={theme}>
+            <ActionImage src="/delete.svg" alt="" />
+          </ActionContainer>
+          <ActionContainer $theme={theme}>
+            <ActionImage src="/table-menu.svg" alt="" />
+          </ActionContainer>
+        </Row>
+      ),
+    }),
+  ];
   return (
     <CampaignTableContainer className="">
       <div className="d-flex flex-lg-row flex-column items-center justify-content-between">

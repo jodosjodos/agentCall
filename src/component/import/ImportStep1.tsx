@@ -7,6 +7,7 @@ import CustomButton from "./CustomButton";
 import { contactType } from "../../types/types";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store";
+import { ActionContainer, ActionImage } from "../CustomTable/TableComponent";
 const ParagraphTitle = styled.p`
   font-size: 20px;
   font-weight: 600;
@@ -60,29 +61,7 @@ const ImportStep1SubContainer = styled(Row)`
 const DownloadImage = styled.img`
   width: 30px;
 `;
-const ActionContainer = styled.button`
-  border-radius: 8px;
 
-  border: 1px;
-  display: flex;
-  width: fit-content;
-  justify-content: center;
-  background-color: #0f2e35;
-  width: 30px;
-  padding: 5px 0;
-  &:hover {
-    cursor: pointer;
-  }
-  &:active {
-    background-color: #17454f;
-  }
-  &:hover {
-    background-color: #17454f;
-  }
-`;
-const ActionImage = styled.img`
-  width: 20px;
-`;
 const CustomRow = styled.div`
   flex-grow: 1;
 
@@ -122,26 +101,26 @@ function ImportStep1({ setActiveTopBar }: { setActiveTopBar?: any }) {
       id: "actions",
       header: () => (
         <CustomRow className="gap-1  px-1">
-          <ActionContainer>
+          <ActionContainer $theme={theme}>
             <ActionImage src="/resume_outline.svg" alt="" />
           </ActionContainer>
-          <ActionContainer>
+          <ActionContainer $theme={theme}>
             <ActionImage src="/date.svg" alt="" />
           </ActionContainer>
-          <ActionContainer>
+          <ActionContainer $theme={theme}>
             <ActionImage src="/contactIcon.svg" alt="" />
           </ActionContainer>
         </CustomRow>
       ),
       cell: () => (
         <CustomRow className="gap-1 justify-content-end   px-2">
-          <ActionContainer>
+          <ActionContainer $theme={theme}>
             <ActionImage src="/resume_outline.svg" alt="" />
           </ActionContainer>
-          <ActionContainer>
+          <ActionContainer $theme={theme}>
             <ActionImage src="/date.svg" alt="" />
           </ActionContainer>
-          <ActionContainer>
+          <ActionContainer $theme={theme}>
             <ActionImage src="/contactIcon.svg" alt="" />
           </ActionContainer>
         </CustomRow>

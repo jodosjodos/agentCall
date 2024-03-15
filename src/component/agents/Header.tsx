@@ -3,17 +3,20 @@ import { Col, Row } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
 import { RootState } from "../../store";
+import Toggle from "../Toggle";
 
 const H1Styled = styled.h4`
   color: #96adb3;
   font-weight: bold;
 `;
-const DivStyled = styled(Row)`
-  border-bottom: 1px solid #0f2e35;
-  display: flex;
-  flex-direction: column;
+const DivStyled = styled.div<{ theme: string }>`
+  border-bottom: ${(props) =>
+    props.theme === "light" ? "1px solid #9ABCC4" : "1px solid #0f2e35"};
+  width: 100%;
+  padding: 0px 0px 0px 50px;
   @media (max-width: 993px) {
     padding-top: 40px !important;
+    padding: 0 30px;
   }
 `;
 
@@ -49,18 +52,19 @@ const InputMod = styled.input<{ $theme?: string }>`
 export function Header({ hideSearch }: { hideSearch?: boolean }) {
   const theme = useSelector((state: RootState) => state.theme.theme);
   return (
-    <DivStyled className="px-5 py-1 d-flex flex-row justify-content-between">
-      <Col lg={10}>
+    <DivStyled className="px-5 align-items-center py-1 d-flex flex-row justify-content-between">
+      <Col>
         <H1Styled>Welcome Raam , Adi</H1Styled>
         <PModified>September 12, 2024</PModified>
       </Col>
 
       {!hideSearch && (
-        <Col lg={2} className="position-relative ">
+        <Col className="position-relative mx-3 ">
           <InputMod $theme={theme} type="text" placeholder="search" />
           <ImgMod src="/searchIcons.png" />
         </Col>
       )}
+      <Toggle></Toggle>
     </DivStyled>
   );
 }

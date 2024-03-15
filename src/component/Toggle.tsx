@@ -5,6 +5,7 @@ import { RootState } from "../store";
 import Switch from "react-switch";
 import styled from "styled-components";
 const DarkAndLight = styled.div<{ $theme?: string }>`
+  height: fit-content;
   background-color: ${(props) =>
     props.$theme == "light" ? "#f5f6f6" : "#0B2227"};
   display: flex;

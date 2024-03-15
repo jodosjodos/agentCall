@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { Row } from "react-bootstrap";
 import { DropdownButton } from "../DropDown";
-import { CustomContactTable } from "./CustomContactTable/ContactTable";
 import CenteredModal from "../modals/Modal";
 import Search from "../Search";
 import CustomTable from "../CustomTable/Table";
@@ -11,6 +10,7 @@ import { createColumnHelper } from "@tanstack/react-table";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store";
 import { defaultContactData } from "../../data/contactCall";
+import { ActionContainer, ActionImage } from "../CustomTable/TableComponent";
 
 const RecordingTableContainer = styled.div`
   flex-grow: 1;
@@ -25,13 +25,15 @@ const RecordingTableHeader = styled(Row)`
   flex-direction: row;
   padding-bottom: 10px;
 `;
-const InputMod = styled.input`
+const InputMod = styled.input<{ $theme?: string }>`
   float: right;
   padding: 6px 6px;
   border: none;
 
   font-size: 17px;
-  background-color: #0a2328;
+  background-color: ${(props) =>
+    props.$theme == "light" ? "#E5ECEE" : "#0a2328"};
+  outline: none;
   outline: none;
   border-radius: 8px;
   color: #96adb3;
@@ -41,6 +43,7 @@ const InputMod = styled.input`
   border-radius: 8px;
   color: #96adb3;
 `;
+
 const ImgMod = styled.img`
   width: 18px;
   position: absolute;
@@ -67,17 +70,21 @@ const Paragraph = styled.div`
   color: #394b4f;
   padding-bottom: 20px;
 `;
-const DateButton = styled.div`
+const DateButton = styled.div<{ $theme?: string }>`
   width: 134.5px;
   flex-grow: 1;
   padding: 4px;
   border-radius: 8px;
   border: 1px;
-  background-color: #0f2e35;
+  background-color: ${(props) =>
+    props.$theme == "light" ? "#E5ECEE" : "#0a2328"};
+  outline: none;
   padding: 9px;
   font-size: 14px;
   display: flex;
-  color: #c9d5d8;
+  color: ${(props) =>
+    props.$theme == "light" ? "#0a2328" : "#c9d5d8"};
+  
   gap: 10px;
 `;
 const DateContainer = styled.div`
@@ -96,7 +103,7 @@ const CustomTableContainer = styled.div`
   overflow: auto;
 `;
 
-const LinkP = styled.div<{$theme?:string}>`
+const LinkP = styled.div<{ $theme?: string }>`
   color: #c9d5d8;
   background-color: #0a2328;
   padding: 5px 8px;
@@ -131,29 +138,7 @@ const CustomRow = styled.div`
   gap: 10px;
   padding-top: 20px;
 `;
-const ActionContainer = styled.button<{ $theme?: string }>`
-  border-radius: 8px;
-  border: ${(props) => (props.$theme == "light" ? "1px solid #000000" : "")};
-  display: flex;
-  width: fit-content;
-  justify-content: center;
-  background-color: ${(props) =>
-    props.$theme == "light" ? "#FEFEFE" : "#0f2e35"};
-  width: 30px;
-  padding: 5px 0;
-  &:hover {
-    cursor: pointer;
-  }
-  &:active {
-    background-color: #17454f;
-  }
-  &:hover {
-    background-color: #17454f;
-  }
-`;
-const ActionImage = styled.img`
-  width: 20px;
-`;
+
 const CheckBox = styled.input`
   width: 40px;
 `;
@@ -221,7 +206,7 @@ export function ContactRecordTable({ onContinue }: { onContinue: any }) {
       ),
     }),
   ];
-  
+
   return (
     <OverAllContainer className="flex-grow-1">
       <RecordingTableContainer className="flex-grow-1">
@@ -241,19 +226,19 @@ export function ContactRecordTable({ onContinue }: { onContinue: any }) {
 
         <RecordingTableHeader>
           <Relative>
-            <InputMod type="text" placeholder="search" />
+            <InputMod $theme={theme} type="text" placeholder="search" />
             <ImgMod src="/searchIcons.png" />
           </Relative>
           <DropdownButton name="Compaign"></DropdownButton>
           <DropdownButton name="Outcome"></DropdownButton>
           <DropdownButton name="Call duration"></DropdownButton>
           <DateContainer>
-            <DateButton>
+            <DateButton $theme={theme}>
               Date & Time
               <img src="/date.svg" alt="" />
             </DateButton>
             <DateParagraph className="">To</DateParagraph>
-            <DateButton>
+            <DateButton $theme={theme}>
               Date & Time
               <img src="/date.svg" alt="" />
             </DateButton>

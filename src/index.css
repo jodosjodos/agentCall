@@ -63,6 +63,10 @@
   }
 }
 
+.light .custom_input {
+  background-color: #E5ECEE;
+}
+
 .custom_radio {
 
   padding: 8px 12px;

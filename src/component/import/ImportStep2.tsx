@@ -9,6 +9,7 @@ import CustomTable from "../CustomTable/Table";
 import { contactEditType } from "../../types/types";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store";
+import { ActionContainer, ActionImage } from "../CustomTable/TableComponent";
 
 const UploadContainer = styled.div`
   background-color: rgba(10, 35, 40, 1);
@@ -67,29 +68,7 @@ const ButtonContainer = styled.div`
 const DownloadImage = styled.img`
   width: 30px;
 `;
-const ActionContainer = styled.button`
-  border-radius: 8px;
 
-  border: 1px;
-  display: flex;
-  width: fit-content;
-  justify-content: center;
-  background-color: #0f2e35;
-  width: 30px;
-  padding: 5px 0;
-  &:hover {
-    cursor: pointer;
-  }
-  &:active {
-    background-color: #17454f;
-  }
-  &:hover {
-    background-color: #17454f;
-  }
-`;
-const ActionImage = styled.img`
-  width: 20px;
-`;
 const CustomRow = styled.div`
   flex-grow: 1;
 
@@ -141,26 +120,26 @@ function ImportStep2({ setActiveTopBar }: { setActiveTopBar?: any }) {
       id: "actions",
       header: () => (
         <CustomRow className="gap-1  px-1">
-          <ActionContainer>
+          <ActionContainer $theme={theme}>
             <ActionImage src="/resume_outline.svg" alt="" />
           </ActionContainer>
-          <ActionContainer>
+          <ActionContainer $theme={theme}>
             <ActionImage src="/date.svg" alt="" />
           </ActionContainer>
-          <ActionContainer>
+          <ActionContainer $theme={theme}>
             <ActionImage src="/contactIcon.svg" alt="" />
           </ActionContainer>
         </CustomRow>
       ),
       cell: () => (
         <CustomRow className="gap-1 justify-content-end   px-2">
-          <ActionContainer>
+          <ActionContainer $theme={theme}>
             <ActionImage src="/resume_outline.svg" alt="" />
           </ActionContainer>
-          <ActionContainer>
+          <ActionContainer $theme={theme}>
             <ActionImage src="/date.svg" alt="" />
           </ActionContainer>
-          <ActionContainer>
+          <ActionContainer $theme={theme}>
             <ActionImage src="/contactIcon.svg" alt="" />
           </ActionContainer>
         </CustomRow>
@@ -207,7 +186,9 @@ function ImportStep2({ setActiveTopBar }: { setActiveTopBar?: any }) {
           Input contacts manually
         </InputManuallyButton>
         <p className="primary-text">Or</p>
-        <DragAndDrop color={theme=="light"?"#E5ECEE":`rgba(5, 19, 22, 1)`}></DragAndDrop>
+        <DragAndDrop
+          color={theme == "light" ? "#E5ECEE" : `rgba(5, 19, 22, 1)`}
+        ></DragAndDrop>
         <div className="justify-content-end mt-2 gap-3 flex-wrap d-flex">
           <div className="d-flex  gap-2 align-items-center">
             <FormCheck></FormCheck>

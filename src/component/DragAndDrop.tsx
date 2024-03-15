@@ -12,8 +12,7 @@ function DragAndDrop({
   children?: ReactNode;
   key?: string;
   color?: string;
-  }) {
-    const theme = useSelector((state: RootState) => state.theme.theme);
+}) {
   const [isDragging, setIsDragging] = useState(false);
   const [file, setFile] = useState<File | null | undefined>(null);
 

@@ -9,6 +9,7 @@ import DragAndDrop from "../component/DragAndDrop";
 import AgentRow from "../component/call/AgentRow";
 import { useSelector } from "react-redux";
 import { RootState } from "../store";
+import Toggle from "../component/Toggle";
 
 const H1Styled = styled.h4<{ theme: string }>`
   font-weight: bold;
@@ -18,7 +19,6 @@ const DivStyled = styled.div<{ theme: string }>`
   border-bottom: ${(props) =>
     props.theme === "light" ? "1px solid #9ABCC4" : "1px solid #0f2e35"};
   display: flex;
-  flex-direction: column;
 
   @media (max-width: 600px) {
     margin-top: 40px;
@@ -112,7 +112,7 @@ const ComponentRender = styled.button<{ theme: string }>`
   &:hover {
     background-color: ${(props) =>
       props.theme === "light" ? "#0F2E35" : "#4a666c"};
-  color: ${(props) => (props.theme === "dark" ? "#0F2E35" : "#96adb3")};
+    color: ${(props) => (props.theme === "dark" ? "#0F2E35" : "#96adb3")};
 
     border-color: #96adb3;
   }
@@ -147,132 +147,138 @@ export function KnowledgePage({
 
   return (
     <KnowledgeContainer>
-      <Col>
-        <DivStyled theme={theme} className="px-5 py-1">
+      <DivStyled
+        theme={theme}
+        className="px-5  justify-content-between d-flex align-items-center py-1"
+      >
+        <div>
           <H1Styled theme={theme}>Welcome Raam , Adi</H1Styled>
           <PModified theme={theme}>September 12, 2024</PModified>
-        </DivStyled>
-        <PageContainer>
-          {isSidebarOpened && <AgentRow></AgentRow>}
-          <Row className="pt-3 gap-5 flex-grow-1   px-lg-5 mx-lg-0 mx-4 ">
-            <FileCol
-              theme={theme}
-              className="p-2 w-fit   d-flex  flex-column gap-3"
-            >
-              <StyledH4 theme={theme}>All files</StyledH4>
-              {/* parental one */}
-              <div className="d-flex flex-column gap-4">
-                {/* one component */}
-                <ComponentDiv
-                  theme={theme}
-                  className="d-flex  justify-content-between  pb-2"
-                >
-                  <div className="d-flex flex-row align-items-baseline gap-2">
-                    <CircledD></CircledD>
-                    <p>Documents</p>
-                  </div>
+        </div>
+        <Toggle></Toggle>
+      </DivStyled>
 
-                  <div className="d-flex flex-column gap-0 align-items-center">
-                    <p className="p-0 m-0">20 documents</p>
-                    <p className="p-0 m-0">200m tokens</p>
-                  </div>
-                </ComponentDiv>
-                <ComponentDiv
-                  theme={theme}
-                  className="d-flex  justify-content-between "
-                >
-                  <div className="d-flex flex-row align-items-baseline gap-2">
-                    <CircledS></CircledS>
-                    <p>SpreadSheet</p>
-                  </div>
-
-                  <div className="d-flex flex-column gap-0 align-items-center">
-                    <p className="p-0 m-0 text-end" style={{ width: "100%" }}>
-                      3 sheets
-                    </p>
-                    <p className="p-0 m-0">200m tokens</p>
-                  </div>
-                </ComponentDiv>
-                <ComponentDiv
-                  theme={theme}
-                  className="d-flex  justify-content-between "
-                >
-                  <div className="d-flex flex-row align-items-baseline gap-2">
-                    <CircledA></CircledA>
-                    <p>Audio</p>
-                  </div>
-
-                  <div className="d-flex flex-column gap-0 align-items-center">
-                    <p className="p-0 m-0 text-end" style={{ width: "100%" }}>
-                      38 files
-                    </p>
-                    <p className="p-0 m-0"> 956.5 minutes</p>
-                  </div>
-                </ComponentDiv>
-                <ComponentDiv
-                  theme={theme}
-                  className="d-flex  justify-content-between "
-                >
-                  <div className="d-flex flex-row align-items-baseline gap-2">
-                    <CircledV></CircledV>
-                    <p>Video</p>
-                  </div>
-
-                  <div className="d-flex flex-column gap-0 align-items-center">
-                    <p className="p-0 m-0  text-end" style={{ width: "100%" }}>
-                      38 files
-                    </p>
-                    <p className="p-0 m-0 "> 956.5 minutes</p>
-                  </div>
-                </ComponentDiv>
-              </div>
-              <div>
-                <p>90/100files</p>
-
-                <ParentProgressBar>
-                  <ChildProgressBar className="text-end">90%</ChildProgressBar>
-                </ParentProgressBar>
-              </div>
-            </FileCol>
-            <SalesCol theme={theme} className="d-flex flex-column gap-5 pt-3">
-              <LinkP
+      <PageContainer>
+        {isSidebarOpened && <AgentRow></AgentRow>}
+        <Row className="pt-3 gap-5 flex-grow-1   px-lg-5 mx-lg-0 mx-4 ">
+          <FileCol
+            theme={theme}
+            className="p-2 w-fit   d-flex  flex-column gap-3"
+          >
+            <StyledH4 theme={theme}>All files</StyledH4>
+            {/* parental one */}
+            <div className="d-flex flex-column gap-4">
+              {/* one component */}
+              <ComponentDiv
                 theme={theme}
-                className="text-end"
-                onClick={() => setModalShow(true)}
+                className="d-flex  justify-content-between  pb-2"
               >
-                + <UnderLineSpan> upload Document</UnderLineSpan>
-              </LinkP>
-
-              <div className="d-flex flex-column gap-3">
-                <div className="d-flex flex-wrap flex-lg-row flex-column gap-3">
-                  <ComponentRender
-                    theme={theme}
-                    onClick={() => setActiveButton("Inbound")}
-                    className="py-2 flex-grow-1 px-3"
-                  >
-                    Sales Pitches
-                  </ComponentRender>
-                  <ComponentRender
-                    theme={theme}
-                    onClick={() => setActiveButton("Outbound")}
-                    className="py-2  flex-grow-1 px-3"
-                  >
-                    Product Knowledge
-                  </ComponentRender>
-                  <ComponentRender
-                    theme={theme}
-                    onClick={() => setActiveButton("Inbound")}
-                    className="py-2 flex-grow-1 px-3"
-                  >
-                    Service guidelines
-                  </ComponentRender>
+                <div className="d-flex flex-row align-items-baseline gap-2">
+                  <CircledD></CircledD>
+                  <p>Documents</p>
                 </div>
-                <SalesPitchers activeButton={activeButton} />
+
+                <div className="d-flex flex-column gap-0 align-items-center">
+                  <p className="p-0 m-0">20 documents</p>
+                  <p className="p-0 m-0">200m tokens</p>
+                </div>
+              </ComponentDiv>
+              <ComponentDiv
+                theme={theme}
+                className="d-flex  justify-content-between "
+              >
+                <div className="d-flex flex-row align-items-baseline gap-2">
+                  <CircledS></CircledS>
+                  <p>SpreadSheet</p>
+                </div>
+
+                <div className="d-flex flex-column gap-0 align-items-center">
+                  <p className="p-0 m-0 text-end" style={{ width: "100%" }}>
+                    3 sheets
+                  </p>
+                  <p className="p-0 m-0">200m tokens</p>
+                </div>
+              </ComponentDiv>
+              <ComponentDiv
+                theme={theme}
+                className="d-flex  justify-content-between "
+              >
+                <div className="d-flex flex-row align-items-baseline gap-2">
+                  <CircledA></CircledA>
+                  <p>Audio</p>
+                </div>
+
+                <div className="d-flex flex-column gap-0 align-items-center">
+                  <p className="p-0 m-0 text-end" style={{ width: "100%" }}>
+                    38 files
+                  </p>
+                  <p className="p-0 m-0"> 956.5 minutes</p>
+                </div>
+              </ComponentDiv>
+              <ComponentDiv
+                theme={theme}
+                className="d-flex  justify-content-between "
+              >
+                <div className="d-flex flex-row align-items-baseline gap-2">
+                  <CircledV></CircledV>
+                  <p>Video</p>
+                </div>
+
+                <div className="d-flex flex-column gap-0 align-items-center">
+                  <p className="p-0 m-0  text-end" style={{ width: "100%" }}>
+                    38 files
+                  </p>
+                  <p className="p-0 m-0 "> 956.5 minutes</p>
+                </div>
+              </ComponentDiv>
+            </div>
+            <div>
+              <p>90/100files</p>
+
+              <ParentProgressBar>
+                <ChildProgressBar className="text-end">90%</ChildProgressBar>
+              </ParentProgressBar>
+            </div>
+          </FileCol>
+          <SalesCol theme={theme} className="d-flex flex-column gap-5 pt-3">
+            <LinkP
+              theme={theme}
+              className="text-end"
+              onClick={() => setModalShow(true)}
+            >
+              + <UnderLineSpan> upload Document</UnderLineSpan>
+            </LinkP>
+
+            <div className="d-flex flex-column gap-3">
+              <div className="d-flex flex-wrap flex-lg-row flex-column gap-3">
+                <ComponentRender
+                  theme={theme}
+                  onClick={() => setActiveButton("Inbound")}
+                  className="py-2 flex-grow-1 px-3"
+                >
+                  Sales Pitches
+                </ComponentRender>
+                <ComponentRender
+                  theme={theme}
+                  onClick={() => setActiveButton("Outbound")}
+                  className="py-2  flex-grow-1 px-3"
+                >
+                  Product Knowledge
+                </ComponentRender>
+                <ComponentRender
+                  theme={theme}
+                  onClick={() => setActiveButton("Inbound")}
+                  className="py-2 flex-grow-1 px-3"
+                >
+                  Service guidelines
+                </ComponentRender>
               </div>
-            </SalesCol>
-          </Row>
-        </PageContainer>
-      </Col>
+              <SalesPitchers activeButton={activeButton} />
+            </div>
+          </SalesCol>
+        </Row>
+      </PageContainer>
+
       <CenteredModal
         children={
           <div className="d-flex flex-column gap-1">
@@ -308,7 +314,11 @@ export function KnowledgePage({
       ></CenteredModal>
       <CenteredModal
         children={
-          <div className="d-flex flex-column gap-1">
+          <div
+            className={`d-flex  flex-column gap-1 ${
+              theme == "light" ? "light" : ""
+            }`}
+          >
             <div className="flex-grow flex-column">
               <label htmlFor="paste">Paste text</label>
               <input
@@ -319,7 +329,9 @@ export function KnowledgePage({
               />
             </div>
 
-            <DragAndDrop color={theme=="light"?"#E5ECEE":`rgba(5, 19, 22, 1)`}></DragAndDrop>
+            <DragAndDrop
+              color={theme == "light" ? "#E5ECEE" : `rgba(5, 19, 22, 1)`}
+            ></DragAndDrop>
           </div>
         }
         show={nextModalShow}
