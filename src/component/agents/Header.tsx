@@ -1,24 +1,26 @@
 import React from "react";
-import { Col, Row } from "react-bootstrap";
+import { Col } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
 import { RootState } from "../../store";
 
-const H1Styled = styled.h4`
-  color: #96adb3;
+const H1Styled = styled.h4<{ theme: string }>`
+  color: ${(props) => (props.theme === "light" ? "#051316" : "#96adb3")};
   font-weight: bold;
 `;
-const DivStyled = styled(Row)`
-  border-bottom: 1px solid #0f2e35;
-  display: flex;
-  flex-direction: column;
+const DivStyled = styled.div<{ theme: string }>`
+  border-bottom: ${(props) =>
+    props.theme === "light" ? "1px solid #9ABCC4" : "1px solid #0f2e35"};
+  width: 100%;
+  padding: 0px 0px 0px 50px;
   @media (max-width: 993px) {
     padding-top: 40px !important;
+    padding: 0 30px;
   }
 `;
 
-const PModified = styled.p`
-  color: #384b4f;
+const PModified = styled.p<{ theme: string }>`
+  color: ${(props) => (props.theme == "light" ? "#0F2E35" : "#384b4f")};
   font-weight: bold;
 `;
 
@@ -39,8 +41,9 @@ const InputMod = styled.input<{ $theme?: string }>`
     props.$theme == "light" ? "#C9D5D8" : "#0a2328"};
   outline: none;
   border-radius: 8px;
-  color: #96adb3;
-  @media (max-width: 600px) {
+  color: ${(props) => (props.$theme == "light" ? "#0F2E35" : "#96adb3")};
+   @media
+    (max-width: 600px) {
     width: 100%;
   }
   border-radius: 8px;
@@ -49,10 +52,13 @@ const InputMod = styled.input<{ $theme?: string }>`
 export function Header({ hideSearch }: { hideSearch?: boolean }) {
   const theme = useSelector((state: RootState) => state.theme.theme);
   return (
-    <DivStyled className="px-5 py-1 d-flex flex-row justify-content-between">
+    <DivStyled
+      theme={theme}
+      className="px-5 py-1 d-flex flex-row justify-content-between"
+    >
       <Col lg={10}>
-        <H1Styled>Welcome Raam , Adi</H1Styled>
-        <PModified>September 12, 2024</PModified>
+        <H1Styled theme={theme}>Welcome Raam , Adi</H1Styled>
+        <PModified theme={theme}>September 12, 2024</PModified>
       </Col>
 
       {!hideSearch && (

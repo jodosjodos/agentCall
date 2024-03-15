@@ -5,9 +5,11 @@ import CenteredModal from "../modals/Modal";
 import CustomInput from "../CustomInput";
 
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { RootState } from "../../store";
 
-const HMod = styled.h5`
-  color: #c9d5d8;
+const HMod = styled.h5<{theme:string}>`
+  color: ${(props) => (props.theme === "light" ? "#051316" : "#c9d5d8")};
   font-weight: bold;
 `;
 const PMode = styled.p`
@@ -28,9 +30,10 @@ const Input = styled.input`
   outline: none;
   color: white;
 `;
-const CreateButton = styled.button`
-  background-color: #00b7df;
+const CreateButton = styled.button<{theme:string}>`
+  background-color:${(props) => (props.theme === "light" ? "#0A2328" : "#00b7df")};
   border-radius: 20px;
+  color:${(props) => (props.theme === "light" ? "#DCDCDC" : "#101010")};
   min-width: fit-content;
   height: 45px;
   font-size: 14px;
@@ -40,8 +43,8 @@ const CreateButton = styled.button`
     color: #96adb3;
   }
 `;
-const ParentButton = styled.div`
-  background-color: #0b2227;
+const ParentButton = styled.div<{theme:string}>`
+  background-color:${(props) => (props.theme === "light" ? "#C9D5D8" : "#0b2227")};
   height: fit-content;
   width: fit-content;
   flex-wrap: wrap;
@@ -68,7 +71,7 @@ export function Controller({ selected }: { selected?: boolean }) {
   const [showCreateAgentModal, setShowCreateAgentModal] = useState(false);
   const [showEditingMethodModal, setshowEditingMethodModal] = useState(false);
   const [showCreatePrompModal, setShowCreatePrompModal] = useState(false);
-
+  const theme = useSelector((state: RootState) => state.theme.theme);
   const navigate = useNavigate();
   return (
     <>
@@ -78,13 +81,14 @@ export function Controller({ selected }: { selected?: boolean }) {
           className="d-flex  gap-2 flex-column flex-wrap justify-content-between py-4 px-4 "
         >
           <div className="d-flex flex-column">
-            <HMod>Click any agent to select</HMod>
+            <HMod theme={theme}>Click any agent to select</HMod>
             <PMode>
               any agent selected would be displayed on the right of panel
             </PMode>
           </div>
-          <ParentButton className="d-flex  gap-2">
+          <ParentButton theme={theme} className="d-flex  gap-2">
             <CreateButton
+            theme={theme}
               className=""
               onClick={() => setShowCreateAgentModal(true)}
             >

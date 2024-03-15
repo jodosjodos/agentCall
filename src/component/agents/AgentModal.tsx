@@ -53,9 +53,9 @@ const Row = styled.div<{ $minute_container?: boolean; $theme?: string }>`
   border-radius: ${(props) => (props.$minute_container ? "20px" : "0px")};
   padding: ${(props) => (props.$minute_container ? "2px 6px" : "0px")};
 `;
-const Paragraph = styled.div`
+const Paragraph = styled.div<{ $theme: string }>`
   margin-bottom: 0;
-  color: #96adb3;
+  color: ${(props) => (props.$theme == "light" ? "#0F2E35" : "#96adb3")};
 `;
 function AgentModal({
   agent,
@@ -66,73 +66,85 @@ function AgentModal({
   agent: AgentProfile;
   onclick?: React.MouseEventHandler<HTMLDivElement> | undefined;
   isLeft?: boolean;
-  theme?: string;
+  theme: string;
 }) {
   return (
     <AgentContainer $isLeft={isLeft} onClick={onclick} $theme={theme}>
       <Row className="d-flex flex-row">
         <div>
-          <img src={agent.profile} alt="" />
+          <img src={agent.profile} />
         </div>
 
         <div>
-          <Paragraph className="text-end py-2">{agent.time}</Paragraph>
-          <Paragraph className="text-end pb-2 ">Average call time</Paragraph>
+          <Paragraph $theme={theme} className="text-end py-2">
+            {agent.time}
+          </Paragraph>
+          <Paragraph $theme={theme} className="text-end pb-2 ">
+            Average call time
+          </Paragraph>
           <Row className="gap-2">
             <img src="/rateTime.svg" />
-            <Paragraph className="mb-0">min yesterday</Paragraph>
+            <Paragraph $theme={theme} className="mb-0">
+              min yesterday
+            </Paragraph>
           </Row>
         </div>
       </Row>
       <Row className="justify-content-start py-2 gap-2">
-        <Paragraph>{agent.name}</Paragraph>
+        <Paragraph $theme={theme}>{agent.name}</Paragraph>
         <EditIcon src="/editProfile.svg" alt="" className="" />
       </Row>
       <Row>
-        <Paragraph>Minutes talked</Paragraph>
+        <Paragraph $theme={theme}>Minutes talked</Paragraph>
         <Row $minute_container $theme={theme} className="gap-1">
           <img src="/clockIcon.svg" alt="" />
 
-          <Paragraph>{agent.minutesTalked}</Paragraph>
+          <Paragraph $theme={theme}>{agent.minutesTalked}</Paragraph>
         </Row>
       </Row>
       <Row className="py-2 ">
-        <Paragraph>Completed Leads</Paragraph>
+        <Paragraph $theme={theme}>Completed Leads</Paragraph>
         <Row className="gap-1">
           <img src="/leads.svg" alt="" />
-          <Paragraph>{agent.completedLeads}</Paragraph>
+          <Paragraph $theme={theme}>{agent.completedLeads}</Paragraph>
         </Row>
       </Row>
       <Row className="py-2 ">
-        <Paragraph>Incoming calls</Paragraph>
+        <Paragraph $theme={theme}>Incoming calls</Paragraph>
         <Row className="gap-1">
           <img src="/incoming_call.svg" alt="" />
 
-          <Paragraph>{agent.IncomingCalls}</Paragraph>
+          <Paragraph $theme={theme}>{agent.IncomingCalls}</Paragraph>
         </Row>
       </Row>
       <Row className="py-2 ">
-        <Paragraph>Finished Calls</Paragraph>
+        <Paragraph $theme={theme}>Finished Calls</Paragraph>
         <Row className="gap-1">
           <img src="/finished_call.svg" alt="" />
-          <Paragraph>{agent.FinishedCalls}</Paragraph>
+          <Paragraph $theme={theme}>{agent.FinishedCalls}</Paragraph>
         </Row>
       </Row>
       {!isLeft && (
         <>
-          <Paragraph className="text-center">Follow up container</Paragraph>
+          <Paragraph $theme={theme} className="text-center">
+            Follow up container
+          </Paragraph>
 
           <Row className="justify-content-center gap-2 py-2">
             <Row $theme={theme} $minute_container>
               <img src="/profile_delete.svg" alt="" width={20} />
-              <Paragraph className="text-bold">21</Paragraph>
+              <Paragraph $theme={theme} className="text-bold">
+                21
+              </Paragraph>
             </Row>
 
             <img src="/transfer.svg" alt="" width={20} />
 
             <Row $theme={theme} $minute_container>
               <img src="/profile_checked.svg" alt="" width={20} />
-              <Paragraph className="text-bold">21</Paragraph>
+              <Paragraph $theme={theme} className="text-bold">
+                21
+              </Paragraph>
             </Row>
           </Row>
         </>
