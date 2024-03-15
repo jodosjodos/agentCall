@@ -172,6 +172,16 @@
   color: white;
 }
 
+.light-mode .modal-content {
+  background-color: #C9D5D8 !important;
+  color: #0F2E35 Im !important;
+}
+
+.light-mode button {
+  background-color: #0A2328  !important;
+  color: white !important;
+}
+
 .first_header {
   border-top-left-radius: 30px;
   border-bottom-left-radius: 30px;

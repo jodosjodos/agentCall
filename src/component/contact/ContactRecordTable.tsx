@@ -96,7 +96,7 @@ const CustomTableContainer = styled.div`
   overflow: auto;
 `;
 
-const LinkP = styled.div`
+const LinkP = styled.div<{$theme?:string}>`
   color: #c9d5d8;
   background-color: #0a2328;
   padding: 5px 8px;
@@ -221,7 +221,7 @@ export function ContactRecordTable({ onContinue }: { onContinue: any }) {
       ),
     }),
   ];
-
+  
   return (
     <OverAllContainer className="flex-grow-1">
       <RecordingTableContainer className="flex-grow-1">
@@ -231,6 +231,7 @@ export function ContactRecordTable({ onContinue }: { onContinue: any }) {
             <Paragraph>Here are the current contacts</Paragraph>
           </div>
           <LinkP
+            $theme={theme}
             className=" text-center "
             onClick={() => setShowImportLead(true)}
           >

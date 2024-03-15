@@ -1,5 +1,7 @@
 import Modal from "react-bootstrap/Modal";
 import styled from "styled-components";
+import { RootState } from "../../store";
+import { useSelector } from "react-redux";
 const BackButton = styled.button`
   height: 40px;
   padding: 8px, 12px;
@@ -9,10 +11,11 @@ const BackButton = styled.button`
   gap: 4px;
 `;
 function CenteredModal(props: any) {
+  const theme = useSelector((state: RootState) => state.theme.theme);
   return (
     <Modal
       {...props}
-      className="centered_modal"
+      className={`centered_modal ${theme == "light" && "light-mode"}`}
       size="lg"
       id={props.id ? "flexible" : ""}
       aria-labelledby="contained-modal-title-vcenter"
