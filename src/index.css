@@ -167,6 +167,15 @@
 
 }
 
+.modal_title_light {
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 25px;
+  letter-spacing: 0em;
+  text-align: center;
+  color: #0F2E35;
+}
+
 .modal_label {
 
   font-size: 16px;

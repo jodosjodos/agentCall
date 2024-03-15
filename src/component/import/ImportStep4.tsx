@@ -13,8 +13,9 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../store";
 import { ActionContainer, ActionImage } from "../CustomTable/TableComponent";
 
-const UploadContainer = styled.div`
-  background-color: rgba(10, 35, 40, 1);
+const UploadContainer = styled.div<{ $theme?: string }>`
+  background-color: ${(props) =>
+    props.$theme == "light" ? "#C9D5D8" : "rgba(10, 35, 40, 1)"};
   border-radius: 10px;
 `;
 
@@ -63,12 +64,13 @@ const Input = styled.input`
   color: rgba(150, 173, 179, 1);
   outline: none;
 `;
-const InputManuallyButton = styled.button`
+const InputManuallyButton = styled.button<{ $theme?: string }>`
   padding: 10px;
   border-radius: 10px;
   color: rgba(0, 183, 223, 1);
   margin-bottom: 20px;
-  background-color: rgba(5, 19, 22, 1);
+  background-color: ${(props) =>
+    props.$theme == "light" ? "" : "rgba(5, 19, 22, 1)"};
   border: 1px solid rgba(0, 183, 223, 1);
 `;
 const CheckedContainer = styled.div`
@@ -181,8 +183,8 @@ function ImportStep4() {
             hidePagination={true}
           ></CustomTable>
         }
-        <UploadContainer className="p-2">
-          <InputManuallyButton onClick={() => {}}>
+        <UploadContainer $theme={theme} className="p-2">
+          <InputManuallyButton $theme={theme} onClick={() => {}}>
             Input contacts manually
           </InputManuallyButton>
           <p className="primary-text">Or</p>

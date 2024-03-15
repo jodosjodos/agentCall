@@ -22,8 +22,8 @@ function CenteredModal(props: any) {
       centered
     >
       <div>
-        <div className="d-flex p-2  justify-content-between align-items-center">
-          <p className="flex-grow h-fit text-center modal_title">
+        <div className={`d-flex p-2  justify-content-between align-items-center`}>
+          <p className={`flex-grow h-fit text-center ${theme=="light"?"modal_title_light":"modal_title"} `}>
             {props.title ? props.title : "Upload document"}
           </p>
           <img
