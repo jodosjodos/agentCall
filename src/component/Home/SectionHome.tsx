@@ -15,6 +15,7 @@ margin:0px;
  }
   }
 `;
+// section
 export function SectionHome() {
   return (
     <GridContainer className="gap-5 px-4 py-4">
