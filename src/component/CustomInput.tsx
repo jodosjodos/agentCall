@@ -1,7 +1,7 @@
 import React, { ReactNode, useState } from "react";
 import { RootState } from "../store";
 import { useSelector } from "react-redux";
-
+// customer input field
 function CustomInput({
   value,
   label,
