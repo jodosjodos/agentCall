@@ -8,6 +8,11 @@ export const AuthenticationContainer = styled.div<{ $theme?: string | null }>`
   gap: 21px;
   height: 100vh;
   width: 422px;
+  @media (max-width: 440px) {
+    width: 100%;
+
+    padding: 40px 30px;
+  }
   width: 100%;
   background-color: white;
   background: ${(props) =>
@@ -30,6 +35,11 @@ const InputContainer = styled.div<{ $theme?: string | null }>`
   border-radius: 4px;
   display: flex;
   width: 422px;
+  @media (max-width: 440px) {
+    width: 100%;
+    
+    
+  }
   padding: 12px;
   background-color: transparent;
   display: flex;
@@ -69,6 +79,9 @@ const PageDescription = styled.div<{ $theme?: string | null }>`
 const GoogleButton = styled.button`
   border-radius: 8px;
   width: 422px;
+  @media (max-width: 440px) {
+    width: 100%;
+  }
   border: none;
   height: 44px;
   background: #051316;
@@ -84,6 +97,9 @@ const GoogleButton = styled.button`
 `;
 const Continue = styled.button<{ $theme?: string | null }>`
   width: 422px;
+  @media (max-width: 440px) {
+    width: 100%;
+  }
   border: none;
   color: ${(props) => (props.$theme == "light" ? "white" : "#0F2E35")};
   background-color: ${(props) =>
@@ -126,6 +142,9 @@ const CheckBox = styled.input`
 `;
 const CheckBoxContainer = styled.div<{ $theme?: string }>`
   width: 422px;
+  @media (max-width: 440px) {
+    width: 100%;
+  }
   display: flex;
   align-items: start;
   padding: 5px 8px;
@@ -140,6 +159,9 @@ const CheckBoxContainer = styled.div<{ $theme?: string }>`
     props.$theme == "light" ? "#C9D5D8" : "#051316"};
 `;
 const Flex = styled.div<{ $theme?: string }>`
+  @media (max-width: 440px) {
+    width: 100%;
+  }
   width: 422px;
   display: flex;
   color: ${(props) => (props.$theme == "light" ? "#384B4F" : "white")};

@@ -47,7 +47,7 @@ function App() {
     "/login",
     "/signup",
     "/reset_password",
-    "new_password",
+    "/new_password",
   ];
   useEffect(() => {}, [showImport]);
 
