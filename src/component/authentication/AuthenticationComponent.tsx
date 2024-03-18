@@ -124,6 +124,7 @@ const FooterContainer = styled.div<{ $theme?: string | null }>`
   gap: 5px;
   justify-content: center;
 `;
+
 const Link = styled.a`
   font-size: 12px;
   font-weight: 500;
@@ -224,11 +225,17 @@ export function AuthFooter({
   );
 }
 
-export function ContinueButton({ onclick }: { onclick?: any }) {
+export function ContinueButton({
+  onclick,
+  text,
+}: {
+  onclick?: any;
+  text?: string;
+}) {
   const theme = useSelector((state: RootState) => state.theme.theme);
   return (
     <Continue onClick={onclick ? onclick : () => {}} $theme={theme}>
-      Continue
+      {text ? text : "Continue"}
     </Continue>
   );
 }

@@ -19,7 +19,7 @@ function LoginPage() {
       <AuthInput placeholder="USERNAME" icon="/person.svg"></AuthInput>
       <AuthInput placeholder="PASSWORD" icon="/lock.svg"></AuthInput>
       <LoginCheck></LoginCheck>
-      <ContinueButton></ContinueButton>
+      <ContinueButton text="LOGIN"></ContinueButton>
       <GoogleSignInButton></GoogleSignInButton>
       <div></div>
       <AuthFooter

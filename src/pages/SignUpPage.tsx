@@ -31,8 +31,8 @@ function SignUpPage() {
         icon="/lock.svg"
         inputType="password"
       ></AuthInput>
-       <SignUpCheck></SignUpCheck>
-      <ContinueButton></ContinueButton>
+      <SignUpCheck></SignUpCheck>
+      <ContinueButton text="SIGN UP"></ContinueButton>
       <GoogleSignInButton></GoogleSignInButton>
       <AuthFooter
         theme={theme}
