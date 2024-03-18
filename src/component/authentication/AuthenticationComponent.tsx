@@ -30,9 +30,10 @@ const CheckCont = styled.div<{ $theme: string | null }>`
     props.$theme == "light" ? "#0F2E35" : "##051316"};
 `;
 const InputContainer = styled.div<{ $theme?: string | null }>`
+  border-radius: 9px !important;
   border: 1px solid #0f2e35;
   color:${(props) => (props.$theme == "light" ? "#0F2E35" : "white")}
-  border-radius: 4px;
+  
   display: flex;
   width: 422px;
   @media (max-width: 440px) {
@@ -116,15 +117,15 @@ const Continue = styled.button<{ $theme?: string | null }>`
 `;
 
 const FooterContainer = styled.div<{ $theme?: string | null }>`
-  color: ${(props) => (props.$theme == "light" ? "#0A2328" : "#ffffff")};
-
+  color: ${(props) =>
+    props.$theme == "light" ? "#0A2328 !important" : "#ffffff !important"};
   display: flex;
   width: 442px;
   align-items: center;
   gap: 5px;
   justify-content: center;
 `;
-
+const Paragraph = styled.p``;
 const Link = styled.a`
   font-size: 12px;
   font-weight: 500;
@@ -219,7 +220,7 @@ export function AuthFooter({
 }) {
   return (
     <FooterContainer $theme={theme}>
-      <p className="mb-0">{title}</p>
+      <Paragraph className="mb-0">{title}</Paragraph>
       <Link href={to}>{linkName}</Link>
     </FooterContainer>
   );
