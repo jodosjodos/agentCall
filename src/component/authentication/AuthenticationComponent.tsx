@@ -100,7 +100,7 @@ const FooterContainer = styled.div<{ $theme?: string | null }>`
   color: ${(props) => (props.$theme == "light" ? "#0A2328" : "#ffffff")};
 
   display: flex;
-  widht: 442px;
+  width: 442px;
   align-items: center;
   gap: 5px;
   justify-content: center;

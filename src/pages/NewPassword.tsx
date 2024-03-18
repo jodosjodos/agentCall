@@ -5,12 +5,11 @@ import {
   AuthInput,
   ContinueButton,
   AuthFooter,
-  GoogleSignInButton,
 } from "../component/authentication/AuthenticationComponent";
 import { useSelector } from "react-redux";
 import { RootState } from "../store";
 
-function ForgotPassword() {
+function NewPassword() {
   const theme = useSelector((state: RootState) => state.theme.theme);
   return (
     <AuthenticationContainer $theme={theme}>
@@ -20,12 +19,16 @@ function ForgotPassword() {
       ></AuthTitle>
 
       <AuthInput
-        placeholder="INPUT YOUR EMAIL"
+        placeholder="SET NEW PASSWORD"
+        icon="/mail.svg"
+        inputType="email"
+      ></AuthInput>
+        <AuthInput
+        placeholder="CONFIRM NEW PASSWORD"
         icon="/mail.svg"
         inputType="email"
       ></AuthInput>
       <ContinueButton></ContinueButton>
-      <GoogleSignInButton></GoogleSignInButton>
       <AuthFooter
        
         title="Don't have an account?"
@@ -36,4 +39,4 @@ function ForgotPassword() {
   );
 }
 
-export default ForgotPassword;
+export default NewPassword;

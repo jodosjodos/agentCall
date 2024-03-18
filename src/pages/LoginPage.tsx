@@ -5,6 +5,7 @@ import {
   AuthTitle,
   AuthenticationContainer,
   ContinueButton,
+  GoogleSignInButton,
 } from "../component/authentication/AuthenticationComponent";
 import { useSelector } from "react-redux";
 import { RootState } from "../store";
@@ -17,6 +18,10 @@ function LoginPage() {
       <AuthInput placeholder="USERNAME" icon="/person.svg"></AuthInput>
       <AuthInput placeholder="PASSWORD" icon="/lock.svg"></AuthInput>
       <ContinueButton></ContinueButton>
+      <GoogleSignInButton></GoogleSignInButton>
+      <div>
+        
+      </div>
       <AuthFooter
         theme={theme}
         title="Dont have an account?"
