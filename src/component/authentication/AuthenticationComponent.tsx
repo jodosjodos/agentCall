@@ -14,7 +14,7 @@ export const AuthenticationContainer = styled.div<{ $theme?: string | null }>`
     padding: 40px 30px;
   }
   width: 100%;
-  background-color: white;
+
   background: ${(props) =>
     props.$theme == "light"
       ? 'url("/auth-background-large.svg")'
@@ -45,7 +45,7 @@ const InputContainer = styled.div<{ $theme?: string | null }>`
   background-color: transparent;
   display: flex;
   height: 44px;
-  gap: 20px;
+  gap: 10px;
 `;
 
 const Input = styled.input<{ $theme?: string }>`
@@ -117,15 +117,15 @@ const Continue = styled.button<{ $theme?: string | null }>`
 `;
 
 const FooterContainer = styled.div<{ $theme?: string | null }>`
-  color: ${(props) =>
-    props.$theme == "light" ? "#0A2328 !important" : "#ffffff !important"};
   display: flex;
   width: 442px;
   align-items: center;
   gap: 5px;
   justify-content: center;
 `;
-const Paragraph = styled.p``;
+const Paragraph = styled.p`
+  color: inherit !important;
+`;
 const Link = styled.a`
   font-size: 12px;
   font-weight: 500;
