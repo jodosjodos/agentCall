@@ -9,9 +9,11 @@ import {
 } from "../component/authentication/AuthenticationComponent";
 import { useSelector } from "react-redux";
 import { RootState } from "../store";
+import { useNavigate } from "react-router-dom";
 
 function ForgotPassword() {
   const theme = useSelector((state: RootState) => state.theme.theme);
+  const navigate = useNavigate();
   return (
     <AuthenticationContainer $theme={theme}>
       <AuthTitle
@@ -24,10 +26,13 @@ function ForgotPassword() {
         icon="/mail.svg"
         inputType="email"
       ></AuthInput>
-      <ContinueButton></ContinueButton>
+      <ContinueButton
+        onclick={() => {
+          navigate("/new_password");
+        }}
+      ></ContinueButton>
       <GoogleSignInButton></GoogleSignInButton>
       <AuthFooter
-       
         title="Don't have an account?"
         linkName="SIGN UP NOW"
         to="/signup"

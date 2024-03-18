@@ -20,17 +20,16 @@ function NewPassword() {
 
       <AuthInput
         placeholder="SET NEW PASSWORD"
-        icon="/mail.svg"
+        icon="/lock.svg"
         inputType="email"
       ></AuthInput>
-        <AuthInput
+      <AuthInput
         placeholder="CONFIRM NEW PASSWORD"
-        icon="/mail.svg"
+        icon="/lock.svg"
         inputType="email"
       ></AuthInput>
       <ContinueButton></ContinueButton>
       <AuthFooter
-       
         title="Don't have an account?"
         linkName="SIGN UP NOW"
         to="/signup"

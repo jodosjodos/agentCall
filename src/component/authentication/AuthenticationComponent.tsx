@@ -3,7 +3,8 @@ import { RootState } from "../../store";
 import { useSelector } from "react-redux";
 
 export const AuthenticationContainer = styled.div<{ $theme?: string | null }>`
-  padding-top: 168px;
+  overflow: auto;
+  padding-top: 100px;
   gap: 21px;
   height: 100vh;
   width: 422px;
@@ -23,8 +24,9 @@ const CheckCont = styled.div<{ $theme: string | null }>`
   background-color: ${(props) =>
     props.$theme == "light" ? "#0F2E35" : "##051316"};
 `;
-const InputContainer = styled.div<{ theme?: string | null }>`
+const InputContainer = styled.div<{ $theme?: string | null }>`
   border: 1px solid #0f2e35;
+  color:${(props) => (props.$theme == "light" ? "#0F2E35" : "white")}
   border-radius: 4px;
   display: flex;
   width: 422px;
@@ -35,9 +37,10 @@ const InputContainer = styled.div<{ theme?: string | null }>`
   gap: 20px;
 `;
 
-const Input = styled.input<{ theme?: string }>`
+const Input = styled.input<{ $theme?: string }>`
   background-color: transparent;
   border: none;
+  color: ${(props) => (props.$theme == "light" ? "#0A2328" : "#ffffff")};
   outline: none;
 
   flex-grow: 1;
@@ -113,6 +116,34 @@ const Link = styled.a`
   text-align: right;
   color: #09bed7;
 `;
+
+const CheckBox = styled.input`
+  width: 20px;
+  height: 20px;
+  &:hover {
+    cursor: pointer;
+  }
+`;
+const CheckBoxContainer = styled.div<{ $theme?: string }>`
+  width: 422px;
+  display: flex;
+  align-items: start;
+  padding: 5px 8px;
+  border-radius: 8px;
+  color: #96adb3;
+  font-size: 14px;
+  font-weight: 400;
+  gap: 6px;
+  height: fit-content;
+  line-height: 18px;
+  background-color: ${(props) =>
+    props.$theme == "light" ? "#C9D5D8" : "#051316"};
+`;
+const Flex = styled.div<{ $theme?: string }>`
+  width: 422px;
+  display: flex;
+  color: ${(props) => (props.$theme == "light" ? "#384B4F" : "white")};
+`;
 export function AuthInput({
   icon,
   placeholder,
@@ -122,10 +153,12 @@ export function AuthInput({
   placeholder: string;
   inputType?: string;
 }) {
+  const theme = useSelector((state: RootState) => state.theme.theme);
   return (
     <InputContainer>
       <img src={icon} alt="icon" />
       <Input
+        $theme={theme}
         placeholder={placeholder}
         type={inputType ? inputType : "text"}
       ></Input>
@@ -169,9 +202,13 @@ export function AuthFooter({
   );
 }
 
-export function ContinueButton() {
+export function ContinueButton({ onclick }: { onclick?: any }) {
   const theme = useSelector((state: RootState) => state.theme.theme);
-  return <Continue $theme={theme}>Continue</Continue>;
+  return (
+    <Continue onClick={onclick ? onclick : () => {}} $theme={theme}>
+      Continue
+    </Continue>
+  );
 }
 
 export function GoogleSignInButton() {
@@ -188,3 +225,37 @@ export function CheckContainer() {
 
   return <CheckCont $theme={theme}></CheckCont>;
 }
+export function SignUpCheck() {
+  const theme = useSelector((state: RootState) => state.theme.theme);
+
+  return (
+    <CheckBoxContainer $theme={theme}>
+      <CheckBox type="checkbox" name="" id="" />
+      <p>
+        By checking this box i confirm that all the contacts i am importing have
+        given me express written consent to contact them with artificial and
+        pre-recorded voice calls. I also agree to comply with all relevant TCPA,
+        TSR and regulatory laws/guidelines concerning my communication with
+        these contacts.
+      </p>
+    </CheckBoxContainer>
+  );
+}
+export function LoginCheck() {
+  const theme = useSelector((state: RootState) => state.theme.theme);
+
+  return (
+    <Flex $theme={theme} className="justify-content-between">
+      <div className="d-flex gap-2">
+        <CheckBox type="checkbox" name="" className="" id="remember" />
+        <label htmlFor="remember">Remember me</label>
+      </div>
+      <LoginLink href="/reset_password">Forgot password ?</LoginLink>
+    </Flex>
+  );
+}
+
+const LoginLink = styled.a`
+  color: inherit;
+  text-decoration: none;
+`;

@@ -6,6 +6,7 @@ import {
   GoogleSignInButton,
   ContinueButton,
   AuthFooter,
+  SignUpCheck,
 } from "../component/authentication/AuthenticationComponent";
 import { useSelector } from "react-redux";
 import { RootState } from "../store";
@@ -30,6 +31,7 @@ function SignUpPage() {
         icon="/lock.svg"
         inputType="password"
       ></AuthInput>
+       <SignUpCheck></SignUpCheck>
       <ContinueButton></ContinueButton>
       <GoogleSignInButton></GoogleSignInButton>
       <AuthFooter
