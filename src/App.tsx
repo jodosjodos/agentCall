@@ -43,7 +43,12 @@ const AppContainer = styled.div`
 `;
 function App() {
   const [showImport, setShowImport] = useState(false);
-  const pageHeaderNotShow = ["/login", "/signup", "/reset_password"];
+  const pageHeaderNotShow = [
+    "/login",
+    "/signup",
+    "/reset_password",
+    "new_password",
+  ];
   useEffect(() => {}, [showImport]);
 
   const findActiveLink = () => {
