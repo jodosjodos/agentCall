@@ -31,8 +31,8 @@ function Toggle() {
       <Switch
         checked={theme == "dark"}
         onChange={() => handleTheme()}
-        onColor="#86d3ff"
-        onHandleColor="#2693e6"
+        onColor="#224D57"
+        onHandleColor="#9ABCC4"
         handleDiameter={30}
         uncheckedIcon={false}
         checkedIcon={false}

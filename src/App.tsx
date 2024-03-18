@@ -17,6 +17,9 @@ import { useEffect, useState } from "react";
 import CompanyPage from "./pages/CompanyPage";
 import { useSelector } from "react-redux";
 import { RootState } from "./store";
+import LoginPage from "./pages/LoginPage";
+import SignUpPage from "./pages/SignUpPage";
+import ForgotPassword from "./pages/ForgotPassword";
 
 const SideBarDiv = styled.div<{ theme: string }>`
   background-color: ${(props) =>
@@ -39,7 +42,9 @@ const AppContainer = styled.div`
 `;
 function App() {
   const [showImport, setShowImport] = useState(false);
+  const pageHeaderNotShow = ["/login", "/signup", "/reset_password"];
   useEffect(() => {}, [showImport]);
+
   const findActiveLink = () => {
     return window.location.pathname;
   };
@@ -55,25 +60,8 @@ function App() {
     <AppContainer>
       <Router>
         <Container fluid>
-          <div className="d-lg-none p-0 m-0 d-block">
-            <SideBar
-              showImport={showImport}
-              setShowImport={setShowImport}
-              activeMobile={activeMobile}
-              setIsSidebarOpen={setIsSidebarOpen}
-              setActiveMobile={setActiveMobile}
-              isSidebarOpened={isSidebarOpened}
-              activePage={activePage}
-              setActivePage={setActivePage}
-            ></SideBar>
-          </div>
-          <Row>
-            <SideBarDiv
-              theme={theme}
-              onMouseEnter={() => setIsSidebarOpen(true)}
-              // sm={2}
-              className="col-auto d-none d-lg-flex  flex-column justify-content-between min-vh-100 gap "
-            >
+          {!pageHeaderNotShow.includes(activePage) && (
+            <div className="d-lg-none p-0 m-0 d-block">
               <SideBar
                 showImport={showImport}
                 setShowImport={setShowImport}
@@ -83,8 +71,31 @@ function App() {
                 isSidebarOpened={isSidebarOpened}
                 activePage={activePage}
                 setActivePage={setActivePage}
-              />
-            </SideBarDiv>
+              ></SideBar>
+            </div>
+          )}
+
+          <Row>
+            {!pageHeaderNotShow.includes(activePage) && (
+              <SideBarDiv
+                theme={theme}
+                onMouseEnter={() => setIsSidebarOpen(true)}
+                // sm={2}
+                className="col-auto d-none d-lg-flex  flex-column justify-content-between min-vh-100 gap "
+              >
+                <SideBar
+                  showImport={showImport}
+                  setShowImport={setShowImport}
+                  activeMobile={activeMobile}
+                  setIsSidebarOpen={setIsSidebarOpen}
+                  setActiveMobile={setActiveMobile}
+                  isSidebarOpened={isSidebarOpened}
+                  activePage={activePage}
+                  setActivePage={setActivePage}
+                />
+              </SideBarDiv>
+            )}
+
             <ParentCol theme={theme}>
               <Routes>
                 <Route
@@ -123,6 +134,9 @@ function App() {
                   path="/knowledge"
                   element={<KnowledgePage isSidebarOpened={isSidebarOpened} />}
                 />
+                <Route path="/login" element={<LoginPage />} />
+                <Route path="/signup" element={<SignUpPage />} />
+                <Route path="/reset_password" element={<ForgotPassword />} />
               </Routes>
             </ParentCol>
           </Row>
