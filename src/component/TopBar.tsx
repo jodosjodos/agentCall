@@ -6,8 +6,8 @@ import ImportStep2 from "./import/ImportStep2";
 import Search from "./Search";
 import CenteredModal from "./modals/Modal";
 import ImportStep4 from "./import/ImportStep4";
-import { useSelector } from "react-redux";
-import { RootState } from "../store";
+
+
 const TopBarContainer = styled.div`
   display: flex;
 

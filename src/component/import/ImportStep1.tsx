@@ -66,6 +66,7 @@ const DownloadImage = styled.img`
 const TableContainer = styled.div`
   width: 100%;
   overflow: auto;
+  
   padding: 0;
   margin: 0px;
 `;
@@ -128,6 +129,9 @@ function ImportStep1({ setActiveTopBar }: { setActiveTopBar?: any }) {
       </ImportStep1SubContainer>
       <TableContainer>
         <CustomTable
+          headerColor={"#051316"}
+          backgroundColor={"#0A2328"}
+          radius={"20px"}
           hidePagination={true}
           columns={columns}
           data={sampleData}

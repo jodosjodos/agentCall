@@ -9,10 +9,10 @@ import { useState } from "react";
 import "./table.css";
 import styled from "styled-components";
 
-const Th = styled.th<{ $width?: number; theme: string }>`
+const Th = styled.th<{ $width?: number; theme: string,color?:string }>`
   width: ${(props) => (props.$width ? `${props.$width}%` : "fit-content")};
   min-width: 100px;
-  background-color: ${(props) => (props.theme === "light" ? "#C9D5D8" : "")};
+  background-color: ${(props) => (props.theme === "light" ? "#C9D5D8" : `${props.color}`)};
   color: ${(props) => (props.theme === "light" ? "#0F2E35" : "")};
 `;
 const PaginationButton = styled.button<{ $active?: boolean,theme:string }>`
@@ -47,12 +47,18 @@ const Td = styled.tr<{ theme: string }>`
   color: ${(props) => (props.theme === "light" ? "#0F2E35" : "")};
 `;
 function CustomTable({
+  backgroundColor,
+  headerColor,
+  radius,
   columns,
   data,
   maxWidth,
   hidePagination,
   theme,
 }: {
+    headerColor?: string;
+    backgroundColor?: string;
+    radius?: string;
   columns: any;
   data: any;
   maxWidth?: number;
@@ -77,13 +83,19 @@ function CustomTable({
 
   //TODO:change icons for dark
   return (
-    <TableContainer $maxwidth={maxWidth} className="p-2  ">
+    <TableContainer style={
+      {
+        backgroundColor: backgroundColor,
+        borderRadius:radius,
+      }
+    } $maxwidth={maxWidth} className="p-2  ">
       <table>
-        <thead>
+        <thead >
           {table.getHeaderGroups().map((headerGroup) => (
-            <tr key={headerGroup.id}>
+            <tr  key={headerGroup.id}>
               {headerGroup.headers.map((header, index) => (
                 <Th
+                  color={headerColor}
                   theme={theme}
                   $width={100 / headerGroup.headers.length + 1}
                   className={`${index == 0 ? "first-thead" : ""} ${
