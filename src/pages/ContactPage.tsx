@@ -9,6 +9,7 @@ import Toggle from "../component/Toggle";
 const CallPageContainer = styled.div`
   display: flex;
   overflow: hidden;
+  flex:1;
   justify-content: space-between;
   @media (max-width: 625px) {
     flex-direction: column;

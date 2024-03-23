@@ -161,6 +161,7 @@ const CheckBox = styled.input`
 `;
 const OverAllContainer = styled.div`
   height: 100lvh;
+  width:100%;
 `;
 const SearchBtnContainer=styled.div`
 width:fit-content;
