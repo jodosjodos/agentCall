@@ -80,7 +80,7 @@ function CustomTable({
     },
     getCoreRowModel: getCoreRowModel(),
   });
-console.log(headerColor);
+console.log(headerColor,backgroundColor,radius);
 
   //TODO:change icons for dark
   return (
