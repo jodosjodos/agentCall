@@ -106,7 +106,7 @@ const LinkP = styled.div<{ $theme?: string }>`
   display:flex;
   gap:4px;
   &:hover {
-    cursor: pointer;
+    cursor: pointer;  
   }
   @media (max-width: 445px) {
     margin-bottom: 20px;
@@ -156,7 +156,7 @@ export function ContactRecordTable({ onContinue }: { onContinue: any }) {
         <input type="checkbox" checked={allSelected}  onChange={()=>setAllSelected(!allSelected)}/>
       ),
       cell: () => (
-        <input type="checkbox" checked={allSelected} className="mx-1"/>
+        <input type="checkbox" checked={allSelected}   className="mx-1"/>
       )
     }),
     columnHelper.accessor("fullName", {

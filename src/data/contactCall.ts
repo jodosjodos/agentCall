@@ -821,7 +821,7 @@ export const defaultContactData: RecordingTableType[] = [
       outcome: "Follow down",
     },
     {
-      contact: "Raam A",
+      fullName: "Raam A",
       number: "3093578590",
       campaign: "Long list",
       country: "Argentine",
