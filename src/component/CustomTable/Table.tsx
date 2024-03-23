@@ -49,11 +49,15 @@ const Td = styled.tr<{ theme: string }>`
 function CustomTable({
   headerColor,
   columns,
+  backgroundColor,
+  radius,
   data,
   maxWidth,
   hidePagination,
   theme,
 }: {
+  backgroundColor?:any,
+  radius?:any,
   headerColor?:any,
   columns: any;
   data: any;
