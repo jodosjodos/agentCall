@@ -11,7 +11,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../store";
 import { defaultContactData } from "../../data/contactCall";
 import { ActionContainer, ActionImage } from "../CustomTable/TableComponent";
-import '../CustomTable/table.css'
+import "../CustomTable/table.css";
 const RecordingTableContainer = styled.div`
   flex-grow: 1;
   padding: 24px 26px;
@@ -43,7 +43,6 @@ const InputMod = styled.input<{ $theme?: string }>`
   border-radius: 8px;
   color: #96adb3;
 `;
-
 
 const Relative = styled.div`
   position: relative;
@@ -77,9 +76,8 @@ const DateButton = styled.div<{ $theme?: string }>`
   padding: 9px;
   font-size: 14px;
   display: flex;
-  color: ${(props) =>
-    props.$theme == "light" ? "#0a2328" : "#c9d5d8"};
-  
+  color: ${(props) => (props.$theme == "light" ? "#0a2328" : "#c9d5d8")};
+
   gap: 10px;
 `;
 const DateContainer = styled.div`
@@ -103,10 +101,10 @@ const LinkP = styled.div<{ $theme?: string }>`
   background-color: #0a2328;
   padding: 5px 8px;
   border-radius: 18px;
-  display:flex;
-  gap:4px;
+  display: flex;
+  gap: 4px;
   &:hover {
-    cursor: pointer;  
+    cursor: pointer;
   }
   @media (max-width: 445px) {
     margin-bottom: 20px;
@@ -142,26 +140,40 @@ const CheckBox = styled.input`
 const OverAllContainer = styled.div`
   height: 100lvh;
 `;
+
+const SearchButton = styled.button<{ $theme?: string }>`
+ width:90px;
+ padding:8px 0px;
+ border-radius:20px;
+ border:none;
+  background-color: ${(props) =>
+    props.$theme == "light" ? "#E5ECEE" : "#00B7DF"};
+  color: ${(props) => (props.$theme == "light" ? "#0a2328" : "#101010")};
+`;
 export function ContactRecordTable({ onContinue }: { onContinue: any }) {
   const [showImportLead, setShowImportLead] = useState(false);
   const theme = useSelector((state: RootState) => state.theme.theme);
   const [allSelected, setAllSelected] = useState(false);
-  
+
   const columnHelper = createColumnHelper<RecordingTableType>();
 
   const columns = [
     columnHelper.display({
       id: "select",
       header: () => (
-        <input type="checkbox" checked={allSelected}  onChange={()=>setAllSelected(!allSelected)}/>
+        <input
+          type="checkbox"
+          checked={allSelected}
+          onChange={() => setAllSelected(!allSelected)}
+        />
       ),
       cell: () => (
-        <input type="checkbox" checked={allSelected}   className="mx-1"/>
-      )
+        <input type="checkbox" checked={allSelected} className="mx-1" />
+      ),
     }),
     columnHelper.accessor("fullName", {
       cell: (info) => info.getValue(),
-      header:"Full name"
+      header: "Full name",
     }),
     columnHelper.accessor((row) => row.number, {
       id: "number",
@@ -225,30 +237,30 @@ export function ContactRecordTable({ onContinue }: { onContinue: any }) {
             <Paragraph>Here are the current contacts</Paragraph>
           </div>
           <div className="d-flex gap-2">
-          <LinkP
-            $theme={theme}
-            className=" text-center "
-            onClick={() => setShowImportLead(true)}
-          >
-            + <UnderLineSpan>Add a new contact</UnderLineSpan>
+            <LinkP
+              $theme={theme}
+              className=" text-center "
+              onClick={() => setShowImportLead(true)}
+            >
+              + <UnderLineSpan>Add a new contact</UnderLineSpan>
             </LinkP>
             <LinkP
-            $theme={theme}
-            className=" text-center "
-            onClick={() => setShowImportLead(true)}
-          >
-            <img src="/import.svg" alt="import"  /><UnderLineSpan>Import new Contact</UnderLineSpan>
-          </LinkP>
+              $theme={theme}
+              className=" text-center "
+              onClick={() => setShowImportLead(true)}
+            >
+              <img src="/import.svg" alt="import" />
+              <UnderLineSpan>Import new Contact</UnderLineSpan>
+            </LinkP>
           </div>
-          
         </div>
 
         <RecordingTableHeader>
           <Relative>
             <InputMod $theme={theme} type="text" placeholder="Searching for?" />
-          
           </Relative>
-          <DropdownButton name="Compaign"></DropdownButton>
+
+          <DropdownButton name="Campaign"></DropdownButton>
           <DropdownButton name="Outcome"></DropdownButton>
           <DropdownButton name="Call duration"></DropdownButton>
           <DateContainer>
@@ -262,6 +274,7 @@ export function ContactRecordTable({ onContinue }: { onContinue: any }) {
               <img src="/date.svg" alt="" />
             </DateButton>
           </DateContainer>
+          <SearchButton $theme={theme}>Search</SearchButton>
         </RecordingTableHeader>
         <CustomTableContainer className="table_container">
           <CustomTable
