@@ -174,7 +174,7 @@ export function ContactRecordTable({ onContinue }: { onContinue: any }) {
   const [showImportLead, setShowImportLead] = useState(false);
   const [showCreateCompany, setShowCreateCompany] = useState(false);
   const theme = useSelector((state: RootState) => state.theme.theme);
-  let filteredTableData;
+  
   const [allSelected, setAllSelected] = useState(false);
   const [tableData,setTableData]=useState(defaultContactData)
   const columnHelper = createColumnHelper<ContactTableType>();
