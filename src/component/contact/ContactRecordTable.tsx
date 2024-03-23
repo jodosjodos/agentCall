@@ -174,14 +174,18 @@ export function ContactRecordTable({ onContinue }: { onContinue: any }) {
   const [showImportLead, setShowImportLead] = useState(false);
   const [showCreateCompany, setShowCreateCompany] = useState(false);
   const theme = useSelector((state: RootState) => state.theme.theme);
-  
+  let filteredTableData;
   const [allSelected, setAllSelected] = useState(false);
   const [tableData,setTableData]=useState(defaultContactData)
   const columnHelper = createColumnHelper<ContactTableType>();
   useEffect(() => {
     console.log("item removed")
-  },[tableData])
+  }, [tableData])
   
+  const handleDelete = (indexToRemove:number) => {
+    const updatedTableData = tableData.filter((_, index) => index !== indexToRemove);
+    setTableData(updatedTableData);
+  };
   const columns = [
     columnHelper.display({
       id: "select",
@@ -236,7 +240,7 @@ export function ContactRecordTable({ onContinue }: { onContinue: any }) {
           <ActionContainer $theme={theme}>
             <ActionImage src="/date.svg" alt="" />
           </ActionContainer>
-          <ActionContainer onClick={()=>setTableData(tableData.splice(1,1))} $theme={theme}>
+          <ActionContainer onClick={() =>handleDelete(props.row.index)} $theme={theme}>
             <ActionImage src="/delete.svg" alt="" />
           </ActionContainer>
         </Row>
