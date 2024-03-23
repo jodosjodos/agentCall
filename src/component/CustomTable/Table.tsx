@@ -47,12 +47,14 @@ const Td = styled.tr<{ theme: string }>`
   color: ${(props) => (props.theme === "light" ? "#0F2E35" : "")};
 `;
 function CustomTable({
+  headerColor,
   columns,
   data,
   maxWidth,
   hidePagination,
   theme,
 }: {
+  headerColor?:any,
   columns: any;
   data: any;
   maxWidth?: number;
