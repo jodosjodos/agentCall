@@ -123,10 +123,10 @@ function CustomTable({
         <thead >
           {table.getHeaderGroups().map((headerGroup) => (
             <tr key={headerGroup.id}>
-              <Th className="first-thead">
+              <Th theme={theme}  className="first-thead">
               <input
         type="checkbox"
-        checked={Object.values(rowSelection).every(Boolean)}
+       
         onChange={toggleAllRows}
       />  
               </Th>
