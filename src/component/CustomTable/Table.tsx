@@ -76,6 +76,7 @@ function CustomTable({
     },
     getCoreRowModel: getCoreRowModel(),
   });
+console.log(headerColor);
 
   //TODO:change icons for dark
   return (
