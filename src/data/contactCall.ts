@@ -1,6 +1,6 @@
-import { RecordingTableType } from "../types/types";
+import { ContactTableType } from "../types/types";
 
-export const defaultContactData: RecordingTableType[] = [
+export const defaultContactData: ContactTableType[] = [
     {
       fullName: "Raam A",
       number: "3093578590",

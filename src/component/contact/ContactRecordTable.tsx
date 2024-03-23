@@ -5,7 +5,7 @@ import { DropdownButton } from "../DropDown";
 import CenteredModal from "../modals/Modal";
 import Search from "../Search";
 import CustomTable from "../CustomTable/Table";
-import { RecordingTableType } from "../../types/types";
+import { ContactTableType } from "../../types/types";
 import { createColumnHelper } from "@tanstack/react-table";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store";
@@ -147,8 +147,11 @@ export function ContactRecordTable({ onContinue }: { onContinue: any }) {
   const theme = useSelector((state: RootState) => state.theme.theme);
   const [allSelected, setAllSelected] = useState(false);
   
-  const columnHelper = createColumnHelper<RecordingTableType>();
-
+  const columnHelper = createColumnHelper<ContactTableType>();
+  // const handleChecked = (e) => {
+  //   let isSelected = e.target.checked;
+  //   e.target.checked=!e.target.checked
+  // }
   const columns = [
     columnHelper.display({
       id: "select",
@@ -156,7 +159,7 @@ export function ContactRecordTable({ onContinue }: { onContinue: any }) {
         <input type="checkbox" checked={allSelected}  onChange={()=>setAllSelected(!allSelected)}/>
       ),
       cell: () => (
-        <input type="checkbox" checked={allSelected}   className="mx-1"/>
+        <input type="checkbox" checked={allSelected&&true}    className="mx-1"/>
       )
     }),
     columnHelper.accessor("fullName", {
