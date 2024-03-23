@@ -169,13 +169,16 @@ display:flex;
 gap:3px;
 
 `
+const ActionDiv = styled.div`
+width:180px;
+`
 
 export function ContactRecordTable({ onContinue }: { onContinue: any }) {
   const [showImportLead, setShowImportLead] = useState(false);
   const [showCreateCompany, setShowCreateCompany] = useState(false);
   const theme = useSelector((state: RootState) => state.theme.theme);
   
-  const [allSelected, setAllSelected] = useState(false);
+
   const [tableData,setTableData]=useState(defaultContactData)
   const columnHelper = createColumnHelper<ContactTableType>();
   useEffect(() => {
@@ -187,15 +190,7 @@ export function ContactRecordTable({ onContinue }: { onContinue: any }) {
     setTableData(updatedTableData);
   };
   const columns = [
-    columnHelper.display({
-      id: "select",
-      header: () => (
-        <input type="checkbox" checked={allSelected}  onChange={()=>setAllSelected(!allSelected)}/>
-      ),
-      cell: () => (
-        <input type="checkbox" checked={allSelected&&true}    className="mx-1"/>
-      )
-    }),
+    
     columnHelper.accessor("fullName", {
       cell: (info) => info.getValue(),
       header:"Full name"
@@ -226,7 +221,8 @@ export function ContactRecordTable({ onContinue }: { onContinue: any }) {
       id: "actions",
       header:"Actions",
       cell: (props) => (
-        <Row className="gap-1 d-flex  px-2">
+        <ActionDiv>
+  <Row className="gap-1 d-flex  px-2">
           
           <div style={{
             width:"fit-content"
@@ -244,6 +240,8 @@ export function ContactRecordTable({ onContinue }: { onContinue: any }) {
             <ActionImage src="/delete.svg" alt="" />
           </ActionContainer>
         </Row>
+        </ActionDiv>
+      
       ),
     }),
   ];
@@ -301,7 +299,7 @@ export function ContactRecordTable({ onContinue }: { onContinue: any }) {
         </RecordingTableHeader>
         <CustomTableContainer className="table_container">
           <CustomTable
-            maxWidth={1430}
+            maxWidth={1600}
             data={tableData}
             columns={columns}
             theme={theme}

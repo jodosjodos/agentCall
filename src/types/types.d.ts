@@ -34,7 +34,9 @@ interface Person {
   status: string;
   progress: number;
 }
-
+interface RowSelection {
+  [key: string]: boolean;
+}
 interface RecordingTableType {
   contact: string;
   number: string;

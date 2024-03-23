@@ -5,9 +5,10 @@ import {
   getPaginationRowModel,
   useReactTable,
 } from "@tanstack/react-table";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import "./table.css";
 import styled from "styled-components";
+import { RowSelection } from "../../types/types";
 
 const Th = styled.th<{ $width?: number; theme: string,color?:string }>`
   width: ${(props) => (props.$width ? `${props.$width}%` : "fit-content")};
@@ -44,6 +45,7 @@ const TableContainer = styled.div<{ $maxwidth?: number }>`
 `;
 
 const Td = styled.tr<{ theme: string }>`
+  
   color: ${(props) => (props.theme === "light" ? "#0F2E35" : "")};
 `;
 function CustomTable({
@@ -65,11 +67,26 @@ function CustomTable({
   hidePagination?: boolean;
   theme: string;
   }) {
-  const [rowSelection, setRowSelection] = useState({});
+  
   const [pagination, setPagination] = useState<PaginationState>({
     pageIndex: 0,
     pageSize: 10,
   });
+  const [rowSelection, setRowSelection] = useState<RowSelection>({});
+  const handleRowSelection = (rowId: string) => {
+    const updatedRowSelection = { ...rowSelection };
+    updatedRowSelection[rowId] = !updatedRowSelection[rowId]; 
+    setRowSelection(updatedRowSelection);
+  };
+  
+  
+  const toggleAllRows = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const updatedRowSelection:RowSelection = {};
+    table.getRowModel().rows.forEach((row) => {
+      updatedRowSelection[row.id] = e.target.checked;
+    });
+    setRowSelection(updatedRowSelection);
+  };
   const table = useReactTable({
     data: data,
     columns,
@@ -77,7 +94,7 @@ function CustomTable({
     getPaginationRowModel: getPaginationRowModel(),
     rowCount: data?.length,
     enableRowSelection: true,
-    onRowSelectionChange: setRowSelection,
+    onRowSelectionChange: ()=>{console.log("row selected")},
    
     
     state: {
@@ -86,11 +103,17 @@ function CustomTable({
     },
     getCoreRowModel: getCoreRowModel(),
   });
-  useEffect(()=>{})
+ 
 
+  // Function to handle row selection
+ 
   //TODO:change icons for dark
   return (
-    <TableContainer style={
+    <>
+      {
+        
+      }
+      <TableContainer style={
       {
         backgroundColor: backgroundColor,
         borderRadius:radius,
@@ -99,24 +122,35 @@ function CustomTable({
       <table>
         <thead >
           {table.getHeaderGroups().map((headerGroup) => (
-            <tr  key={headerGroup.id}>
+            <tr key={headerGroup.id}>
+              <Th className="first-thead">
+              <input
+        type="checkbox"
+        checked={Object.values(rowSelection).every(Boolean)}
+        onChange={toggleAllRows}
+      />  
+              </Th>
+                          
               {headerGroup.headers.map((header, index) => (
-                <Th
-                  color={headerColor}
-                  theme={theme}
-                  $width={100 / headerGroup.headers.length + 1}
-                  className={`${index == 0 ? "first-thead" : ""} ${
-                    index == headerGroup.headers.length - 1 ? "last-thead" : ""
-                  }`}
-                  key={header.id}
-                >
-                  {header.isPlaceholder
-                    ? null
-                    : flexRender(
-                        header.column.columnDef.header,
-                        header.getContext()
-                      )}
-                </Th>
+              <Th
+              color={headerColor}
+              theme={theme}
+              $width={100 / headerGroup.headers.length + 1}
+              className={` ${
+                index == headerGroup.headers.length - 1 ? "last-thead" : ""
+              }`}
+              key={header.id}
+            >
+              {header.isPlaceholder
+                ? null
+                : (
+                    <>
+         
+                      {flexRender(header.column.columnDef.header, header.getContext())}
+                    </>
+                  )
+            }
+            </Th>
               ))}
             </tr>
           ))}
@@ -124,6 +158,14 @@ function CustomTable({
         <tbody>
           {table.getRowModel().rows.map((row) => (
             <Td key={row.id} theme={theme}>
+              <td>
+              <input
+          type="checkbox"
+          checked={!!rowSelection[row.id]}
+          onChange={() => handleRowSelection(row.id)}
+        />
+              </td>
+        
               {row.getVisibleCells().map((cell) => (
                 <td className="py-2" key={cell.id}>
                   {flexRender(cell.column.columnDef.cell, cell.getContext())}
@@ -170,6 +212,8 @@ function CustomTable({
         </PaginationContainer>
       )}
     </TableContainer>
+    </>
+  
   );
 }
 
