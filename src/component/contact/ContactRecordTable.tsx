@@ -153,7 +153,8 @@ const Input = styled.input`
 `;
 
 const CheckBox = styled.input`
-  width: 40px;
+  width:80px !important;
+  height:50px;
 `;
 const OverAllContainer = styled.div`
   height: 100lvh;
