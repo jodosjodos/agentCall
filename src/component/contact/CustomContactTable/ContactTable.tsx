@@ -11,7 +11,7 @@ import "./table.css";
 import styled from "styled-components";
 import { Row } from "react-bootstrap";
 import { defaultContactData } from "../../../data/contactCall";
-import { RecordingTableType } from "../../../types/types";
+import { ContactTableType } from "../../../types/types";
 
 import { useSelector } from "react-redux";
 import { RootState } from "../../../store";
@@ -67,13 +67,14 @@ const TableContainer = styled.div`
   overflow: hidden;
   min-width: 800px;
 `;
-const columnHelper = createColumnHelper<RecordingTableType>();
+const columnHelper = createColumnHelper<ContactTableType>();
 
 
 export function CustomContactTable() {
 
 const columns = [
-  columnHelper.accessor("contact", {
+  columnHelper.accessor("fullName", {
+    header:"Full Name",
     cell: (info) => info.getValue(),
   }),
   columnHelper.accessor((row) => row.number, {
@@ -85,8 +86,8 @@ const columns = [
     header: () => "Campaign",
     cell: (info) => info.renderValue(),
   }),
-  columnHelper.accessor("call", {
-    header: () => <span>Call</span>,
+  columnHelper.accessor("country", {
+    header: () => <span>Country</span>,
   }),
   columnHelper.accessor("Date", {
     header: "Date",

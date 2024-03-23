@@ -34,8 +34,20 @@ interface Person {
   status: string;
   progress: number;
 }
-
+interface RowSelection {
+  [key: string]: boolean;
+}
 interface RecordingTableType {
+  contact: string;
+  number: string;
+  campaign: string;
+  call: string;
+  Date: string;
+  duration: string;
+  outcome: string;
+  id?: string;
+}
+interface ContactTableType {
   fullName: string;
   number: string;
   campaign: string;
@@ -45,6 +57,17 @@ interface RecordingTableType {
   outcome: string;
   id?: string;
 }
+interface CallTableType {
+  contact: string;
+  number: string;
+  campaign: string;
+  call: string;
+  Date: string;
+  duration: string;
+  outcome: string;
+  id?: string;
+}
+
 interface CampaignTableType {
   type: string;
   campaign: string;

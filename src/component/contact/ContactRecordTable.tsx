@@ -1,17 +1,19 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { Row } from "react-bootstrap";
 import { DropdownButton } from "../DropDown";
 import CenteredModal from "../modals/Modal";
 import Search from "../Search";
 import CustomTable from "../CustomTable/Table";
-import { RecordingTableType } from "../../types/types";
+import { ContactTableType } from "../../types/types";
 import { createColumnHelper } from "@tanstack/react-table";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store";
 import { defaultContactData } from "../../data/contactCall";
 import { ActionContainer, ActionImage } from "../CustomTable/TableComponent";
-import "../CustomTable/table.css";
+import '../CustomTable/table.css'
+import Switch from "../switch"
+import CustomButton from "../import/CustomButton";
 const RecordingTableContainer = styled.div`
   flex-grow: 1;
   padding: 24px 26px;
@@ -92,6 +94,7 @@ const DateParagraph = styled.p`
   margin: 0px;
 `;
 const CustomTableContainer = styled.div`
+  flex-grow:1;
   height: calc(100vh - 340px) !important;
   overflow: auto;
 `;
@@ -133,44 +136,60 @@ const CustomRow = styled.div`
   gap: 10px;
   padding-top: 20px;
 `;
+const InputRow = styled.div<{ $theme?: string }>`
+  display: flex;
+  padding: 10px 20px;
+  border-radius: 10px;
+  align-items: center;
+  justify-content: space-between;
+  background-color: ${(props) =>
+    props.$theme == "light" ? "#FEFEFE" : "#051316"};
+`;
+const Input = styled.input`
+  flex-grow: 1;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  color: white;
+`;
 
 const CheckBox = styled.input`
-  width: 40px;
+  width:80px !important;
+  height:50px;
 `;
 const OverAllContainer = styled.div`
   height: 100lvh;
+  overflow-x:auto;
 `;
+const SearchBtnContainer=styled.div`
+width:fit-content;
+height:fit-content !important;
+display:flex;
+gap:3px;
 
-const SearchButton = styled.button<{ $theme?: string }>`
- width:90px;
- padding:8px 0px;
- border-radius:20px;
- border:none;
-  background-color: ${(props) =>
-    props.$theme == "light" ? "#E5ECEE" : "#00B7DF"};
-  color: ${(props) => (props.$theme == "light" ? "#0a2328" : "#101010")};
-`;
+`
+const ActionDiv = styled.div`
+width:180px;
+`
+
 export function ContactRecordTable({ onContinue }: { onContinue: any }) {
   const [showImportLead, setShowImportLead] = useState(false);
+  const [showCreateCompany, setShowCreateCompany] = useState(false);
   const theme = useSelector((state: RootState) => state.theme.theme);
-  const [allSelected, setAllSelected] = useState(false);
+  
 
-  const columnHelper = createColumnHelper<RecordingTableType>();
-
+  const [tableData,setTableData]=useState(defaultContactData)
+  const columnHelper = createColumnHelper<ContactTableType>();
+  useEffect(() => {
+    console.log("item removed")
+  }, [tableData])
+  
+  const handleDelete = (indexToRemove:number) => {
+    const updatedTableData = tableData.filter((_, index) => index !== indexToRemove);
+    setTableData(updatedTableData);
+  };
   const columns = [
-    columnHelper.display({
-      id: "select",
-      header: () => (
-        <input
-          type="checkbox"
-          checked={allSelected}
-          onChange={() => setAllSelected(!allSelected)}
-        />
-      ),
-      cell: () => (
-        <input type="checkbox" checked={allSelected} className="mx-1" />
-      ),
-    }),
+    
     columnHelper.accessor("fullName", {
       cell: (info) => info.getValue(),
       header: "Full name",
@@ -199,31 +218,29 @@ export function ContactRecordTable({ onContinue }: { onContinue: any }) {
 
     columnHelper.display({
       id: "actions",
-      header: () => (
-        <Row className="gap-1  px-1">
+      header:"Actions",
+      cell: (props) => (
+        <ActionDiv>
+  <Row className="gap-1 d-flex  px-2">
+          
+          <div style={{
+            width:"fit-content"
+          }}>
+          <Switch></Switch>
+             </div>
+           
           <ActionContainer $theme={theme}>
             <ActionImage src="/resume_outline.svg" alt="" />
           </ActionContainer>
           <ActionContainer $theme={theme}>
             <ActionImage src="/date.svg" alt="" />
           </ActionContainer>
-          <ActionContainer $theme={theme}>
-            <ActionImage src="/contactIcon.svg" alt="" />
+          <ActionContainer onClick={() =>handleDelete(props.row.index)} $theme={theme}>
+            <ActionImage src="/delete.svg" alt="" />
           </ActionContainer>
         </Row>
-      ),
-      cell: () => (
-        <Row className="gap-1  px-2">
-          <ActionContainer $theme={theme}>
-            <ActionImage src="/resume_outline.svg" alt="" />
-          </ActionContainer>
-          <ActionContainer $theme={theme}>
-            <ActionImage src="/date.svg" alt="" />
-          </ActionContainer>
-          <ActionContainer $theme={theme}>
-            <ActionImage src="/contactIcon.svg" alt="" />
-          </ActionContainer>
-        </Row>
+        </ActionDiv>
+      
       ),
     }),
   ];
@@ -237,12 +254,12 @@ export function ContactRecordTable({ onContinue }: { onContinue: any }) {
             <Paragraph>Here are the current contacts</Paragraph>
           </div>
           <div className="d-flex gap-2">
-            <LinkP
-              $theme={theme}
-              className=" text-center "
-              onClick={() => setShowImportLead(true)}
-            >
-              + <UnderLineSpan>Add a new contact</UnderLineSpan>
+          <LinkP
+            $theme={theme}
+            className=" text-center "
+            onClick={() => setShowCreateCompany(true)}
+          >
+            + <UnderLineSpan>Add a new contact</UnderLineSpan>
             </LinkP>
             <LinkP
               $theme={theme}
@@ -274,11 +291,15 @@ export function ContactRecordTable({ onContinue }: { onContinue: any }) {
               <img src="/date.svg" alt="" />
             </DateButton>
           </DateContainer>
-          <SearchButton $theme={theme}>Search</SearchButton>
+          <SearchBtnContainer >
+
+          <CustomButton child={<div className="gap-2 align-items-center d-flex"><p className="mb-0">Search</p> <img style={{width:"20px",height:"20px"}} src="/search.svg" alt="" /></div>}></CustomButton>
+          </SearchBtnContainer>
         </RecordingTableHeader>
         <CustomTableContainer className="table_container">
           <CustomTable
-            data={defaultContactData}
+            maxWidth={1600}
+            data={tableData}
             columns={columns}
             theme={theme}
           ></CustomTable>
@@ -310,6 +331,64 @@ export function ContactRecordTable({ onContinue }: { onContinue: any }) {
         }
         title="Select a list to import leads into"
       ></CenteredModal>
+         {showCreateCompany && (
+        <CenteredModal
+          onHide={() => setShowCreateCompany(false)}
+          onContinue={() => setShowCreateCompany(false)}
+          show={showCreateCompany}
+          title="Add a new contact"
+          btnText="save"
+          children={
+            <div className="d-flex flex-column gap-1">
+              <div className="d-flex gap-0 flex-column">
+                <p className="mb-0">Full Name</p>
+                <InputRow $theme={theme}>
+                  <Input
+                    id="paste"
+                    type="text"
+                    className=""
+                    placeholder="Input agent name..."
+                  />
+                </InputRow>
+              </div>
+            
+              <div className="d-flex gap-0 flex-column">
+                <p className="mb-0">Contact number</p>
+                <InputRow $theme={theme}>
+                  <Input
+                    id="paste"
+                    type="text"
+                    className=""
+                    placeholder="e.g +445656565"
+                  />
+                </InputRow>
+              </div>
+              <div className="d-flex gap-0 flex-column">
+                <p className="mb-0">Campaign</p>
+                <InputRow $theme={theme}>
+                  <Input
+                    id="paste"
+                    type="text"
+                    className=""
+                    placeholder="Campaign"
+                  />
+                </InputRow>
+              </div>
+              <div className="d-flex gap-0 flex-column">
+                <p className="mb-0">Company</p>
+                <InputRow $theme={theme}>
+                  <Input
+                    id="paste"
+                    type="text"
+                    className=""
+                    placeholder="Company"
+                  />
+                </InputRow>
+              </div>
+            </div>
+          }
+        ></CenteredModal>
+      )}
     </OverAllContainer>
   );
 }

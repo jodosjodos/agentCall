@@ -20,7 +20,7 @@ const InputMod = styled.input<{ $theme?: string }>`
 
   font-size: 17px;
   background-color: ${(props) =>
-    props.$theme == "light" ? "#E5ECEE" : "#0a2328"};
+    props.$theme == "light" ? "#E5ECEE" : "#051316"};
   outline: none;
   border-radius: 8px;
   color: #96adb3;
