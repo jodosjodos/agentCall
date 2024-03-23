@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { Row } from "react-bootstrap";
 import { DropdownButton } from "../DropDown";
@@ -12,6 +12,8 @@ import { RootState } from "../../store";
 import { defaultContactData } from "../../data/contactCall";
 import { ActionContainer, ActionImage } from "../CustomTable/TableComponent";
 import '../CustomTable/table.css'
+import Switch from "../switch"
+import CustomButton from "../import/CustomButton";
 const RecordingTableContainer = styled.div`
   flex-grow: 1;
   padding: 24px 26px;
@@ -94,6 +96,7 @@ const DateParagraph = styled.p`
   margin: 0px;
 `;
 const CustomTableContainer = styled.div`
+  flex-grow:1;
   height: calc(100vh - 340px) !important;
   overflow: auto;
 `;
@@ -159,18 +162,26 @@ const CheckBox = styled.input`
 const OverAllContainer = styled.div`
   height: 100lvh;
 `;
+const SearchBtnContainer=styled.div`
+width:fit-content;
+height:fit-content !important;
+display:flex;
+gap:3px;
+
+`
+
 export function ContactRecordTable({ onContinue }: { onContinue: any }) {
   const [showImportLead, setShowImportLead] = useState(false);
   const [showCreateCompany, setShowCreateCompany] = useState(false);
   const theme = useSelector((state: RootState) => state.theme.theme);
   
   const [allSelected, setAllSelected] = useState(false);
-  
+  const [tableData,setTableData]=useState(defaultContactData)
   const columnHelper = createColumnHelper<ContactTableType>();
-  // const handleChecked = (e) => {
-  //   let isSelected = e.target.checked;
-  //   e.target.checked=!e.target.checked
-  // }
+  useEffect(() => {
+    console.log("item removed")
+  },[tableData])
+  
   const columns = [
     columnHelper.display({
       id: "select",
@@ -209,29 +220,24 @@ export function ContactRecordTable({ onContinue }: { onContinue: any }) {
 
     columnHelper.display({
       id: "actions",
-      header: () => (
-        <Row className="gap-1  px-1">
+      header:"Actions",
+      cell: (props) => (
+        <Row className="gap-1 d-flex  px-2">
+          
+          <div style={{
+            width:"fit-content"
+          }}>
+          <Switch></Switch>
+             </div>
+           
           <ActionContainer $theme={theme}>
             <ActionImage src="/resume_outline.svg" alt="" />
           </ActionContainer>
           <ActionContainer $theme={theme}>
             <ActionImage src="/date.svg" alt="" />
           </ActionContainer>
-          <ActionContainer $theme={theme}>
-            <ActionImage src="/contactIcon.svg" alt="" />
-          </ActionContainer>
-        </Row>
-      ),
-      cell: () => (
-        <Row className="gap-1  px-2">
-          <ActionContainer $theme={theme}>
-            <ActionImage src="/resume_outline.svg" alt="" />
-          </ActionContainer>
-          <ActionContainer $theme={theme}>
-            <ActionImage src="/date.svg" alt="" />
-          </ActionContainer>
-          <ActionContainer $theme={theme}>
-            <ActionImage src="/contactIcon.svg" alt="" />
+          <ActionContainer onClick={()=>setTableData(tableData.splice(1,1))} $theme={theme}>
+            <ActionImage src="/delete.svg" alt="" />
           </ActionContainer>
         </Row>
       ),
@@ -284,10 +290,15 @@ export function ContactRecordTable({ onContinue }: { onContinue: any }) {
               <img src="/date.svg" alt="" />
             </DateButton>
           </DateContainer>
+          <SearchBtnContainer >
+
+          <CustomButton child={<div className="gap-2 align-items-center d-flex"><p className="mb-0">Search</p> <img style={{width:"20px",height:"20px"}} src="/search.svg" alt="" /></div>}></CustomButton>
+          </SearchBtnContainer>
         </RecordingTableHeader>
         <CustomTableContainer className="table_container">
           <CustomTable
-            data={defaultContactData}
+            maxWidth={1430}
+            data={tableData}
             columns={columns}
             theme={theme}
           ></CustomTable>

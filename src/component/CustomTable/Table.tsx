@@ -5,7 +5,7 @@ import {
   getPaginationRowModel,
   useReactTable,
 } from "@tanstack/react-table";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./table.css";
 import styled from "styled-components";
 
@@ -64,7 +64,8 @@ function CustomTable({
   maxWidth?: number;
   hidePagination?: boolean;
   theme: string;
-}) {
+  }) {
+  const [rowSelection, setRowSelection] = useState({});
   const [pagination, setPagination] = useState<PaginationState>({
     pageIndex: 0,
     pageSize: 10,
@@ -75,11 +76,17 @@ function CustomTable({
     onPaginationChange: setPagination,
     getPaginationRowModel: getPaginationRowModel(),
     rowCount: data?.length,
+    enableRowSelection: true,
+    onRowSelectionChange: setRowSelection,
+   
+    
     state: {
+      rowSelection,
       pagination,
     },
     getCoreRowModel: getCoreRowModel(),
   });
+  useEffect(()=>{})
 
   //TODO:change icons for dark
   return (
