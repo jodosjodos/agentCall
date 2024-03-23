@@ -11,7 +11,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../store";
 import { defaultContactData } from "../../data/contactCall";
 import { ActionContainer, ActionImage } from "../CustomTable/TableComponent";
-
+import '../CustomTable/table.css'
 const RecordingTableContainer = styled.div`
   flex-grow: 1;
   padding: 24px 26px;
@@ -44,12 +44,7 @@ const InputMod = styled.input<{ $theme?: string }>`
   color: #96adb3;
 `;
 
-const ImgMod = styled.img`
-  width: 18px;
-  position: absolute;
-  right: 20px;
-  top: 9px;
-`;
+
 const Relative = styled.div`
   position: relative;
   width: fit-content;
@@ -108,6 +103,8 @@ const LinkP = styled.div<{ $theme?: string }>`
   background-color: #0a2328;
   padding: 5px 8px;
   border-radius: 18px;
+  display:flex;
+  gap:4px;
   &:hover {
     cursor: pointer;
   }
@@ -148,16 +145,18 @@ const OverAllContainer = styled.div`
 export function ContactRecordTable({ onContinue }: { onContinue: any }) {
   const [showImportLead, setShowImportLead] = useState(false);
   const theme = useSelector((state: RootState) => state.theme.theme);
+  const [allSelected, setAllSelected] = useState(false);
+  
   const columnHelper = createColumnHelper<RecordingTableType>();
 
   const columns = [
     columnHelper.display({
       id: "select",
       header: () => (
-        <input type="checkbox"/>
+        <input type="checkbox" checked={allSelected}  onChange={()=>setAllSelected(!allSelected)}/>
       ),
       cell: () => (
-        <input type="checkbox"/>
+        <input type="checkbox" checked={allSelected} className="mx-1"/>
       )
     }),
     columnHelper.accessor("fullName", {
@@ -225,13 +224,23 @@ export function ContactRecordTable({ onContinue }: { onContinue: any }) {
             <Title>Contacts</Title>
             <Paragraph>Here are the current contacts</Paragraph>
           </div>
+          <div className="d-flex gap-2">
           <LinkP
             $theme={theme}
             className=" text-center "
             onClick={() => setShowImportLead(true)}
           >
-            + <UnderLineSpan>Import new Contact</UnderLineSpan>
+            + <UnderLineSpan>Add a new contact</UnderLineSpan>
+            </LinkP>
+            <LinkP
+            $theme={theme}
+            className=" text-center "
+            onClick={() => setShowImportLead(true)}
+          >
+            <img src="/import.svg" alt="import"  /><UnderLineSpan>Import new Contact</UnderLineSpan>
           </LinkP>
+          </div>
+          
         </div>
 
         <RecordingTableHeader>
