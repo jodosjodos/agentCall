@@ -151,11 +151,21 @@ export function ContactRecordTable({ onContinue }: { onContinue: any }) {
   const columnHelper = createColumnHelper<RecordingTableType>();
 
   const columns = [
-    columnHelper.accessor("contact", {
+    columnHelper.display({
+      id: "select",
+      header: () => (
+        <input type="checkbox"/>
+      ),
+      cell: () => (
+        <input type="checkbox"/>
+      )
+    }),
+    columnHelper.accessor("fullName", {
       cell: (info) => info.getValue(),
+      header:"Full name"
     }),
     columnHelper.accessor((row) => row.number, {
-      id: "lastName",
+      id: "number",
       cell: (info) => <span>{info.getValue()}</span>,
       header: () => <span>Number</span>,
     }),
@@ -163,8 +173,8 @@ export function ContactRecordTable({ onContinue }: { onContinue: any }) {
       header: () => "Campaign",
       cell: (info) => info.renderValue(),
     }),
-    columnHelper.accessor("call", {
-      header: () => <span>Call</span>,
+    columnHelper.accessor("country", {
+      header: () => <span>Country</span>,
     }),
     columnHelper.accessor("Date", {
       header: "Date",
@@ -226,8 +236,8 @@ export function ContactRecordTable({ onContinue }: { onContinue: any }) {
 
         <RecordingTableHeader>
           <Relative>
-            <InputMod $theme={theme} type="text" placeholder="search" />
-            <ImgMod src="/searchIcons.png" />
+            <InputMod $theme={theme} type="text" placeholder="Searching for?" />
+          
           </Relative>
           <DropdownButton name="Compaign"></DropdownButton>
           <DropdownButton name="Outcome"></DropdownButton>

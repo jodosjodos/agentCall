@@ -36,10 +36,10 @@ interface Person {
 }
 
 interface RecordingTableType {
-  contact: string;
+  fullName: string;
   number: string;
   campaign: string;
-  call: string;
+  country: string;
   Date: string;
   duration: string;
   outcome: string;
