@@ -135,6 +135,22 @@ const CustomRow = styled.div`
   gap: 10px;
   padding-top: 20px;
 `;
+const InputRow = styled.div<{ $theme?: string }>`
+  display: flex;
+  padding: 10px 20px;
+  border-radius: 10px;
+  align-items: center;
+  justify-content: space-between;
+  background-color: ${(props) =>
+    props.$theme == "light" ? "#FEFEFE" : "#051316"};
+`;
+const Input = styled.input`
+  flex-grow: 1;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  color: white;
+`;
 
 const CheckBox = styled.input`
   width: 40px;
@@ -144,7 +160,9 @@ const OverAllContainer = styled.div`
 `;
 export function ContactRecordTable({ onContinue }: { onContinue: any }) {
   const [showImportLead, setShowImportLead] = useState(false);
+  const [showCreateCompany, setShowCreateCompany] = useState(false);
   const theme = useSelector((state: RootState) => state.theme.theme);
+  
   const [allSelected, setAllSelected] = useState(false);
   
   const columnHelper = createColumnHelper<ContactTableType>();
@@ -231,7 +249,7 @@ export function ContactRecordTable({ onContinue }: { onContinue: any }) {
           <LinkP
             $theme={theme}
             className=" text-center "
-            onClick={() => setShowImportLead(true)}
+            onClick={() => setShowCreateCompany(true)}
           >
             + <UnderLineSpan>Add a new contact</UnderLineSpan>
             </LinkP>
@@ -300,6 +318,64 @@ export function ContactRecordTable({ onContinue }: { onContinue: any }) {
         }
         title="Select a list to import leads into"
       ></CenteredModal>
+         {showCreateCompany && (
+        <CenteredModal
+          onHide={() => setShowCreateCompany(false)}
+          onContinue={() => setShowCreateCompany(false)}
+          show={showCreateCompany}
+          title="Add a new contact"
+          btnText="save"
+          children={
+            <div className="d-flex flex-column gap-1">
+              <div className="d-flex gap-0 flex-column">
+                <p className="mb-0">Full Name</p>
+                <InputRow $theme={theme}>
+                  <Input
+                    id="paste"
+                    type="text"
+                    className=""
+                    placeholder="Input agent name..."
+                  />
+                </InputRow>
+              </div>
+            
+              <div className="d-flex gap-0 flex-column">
+                <p className="mb-0">Contact number</p>
+                <InputRow $theme={theme}>
+                  <Input
+                    id="paste"
+                    type="text"
+                    className=""
+                    placeholder="e.g +445656565"
+                  />
+                </InputRow>
+              </div>
+              <div className="d-flex gap-0 flex-column">
+                <p className="mb-0">Campaign</p>
+                <InputRow $theme={theme}>
+                  <Input
+                    id="paste"
+                    type="text"
+                    className=""
+                    placeholder="Campaign"
+                  />
+                </InputRow>
+              </div>
+              <div className="d-flex gap-0 flex-column">
+                <p className="mb-0">Company</p>
+                <InputRow $theme={theme}>
+                  <Input
+                    id="paste"
+                    type="text"
+                    className=""
+                    placeholder="Company"
+                  />
+                </InputRow>
+              </div>
+            </div>
+          }
+        ></CenteredModal>
+      )}
     </OverAllContainer>
   );
 }
