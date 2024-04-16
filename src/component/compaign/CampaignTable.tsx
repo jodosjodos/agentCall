@@ -293,7 +293,7 @@ function CampaignTable() {
             child={
               <div className="gap-2 align-items-center d-flex">
                 <p className="mb-0">Search</p>{" "}
-                <ImageRender fileName="/search.svg"/>
+                <ImageRender color={theme=="light"?"#DCDCDC":"#101010"} fileName="/search.svg"/>
               </div>
             }
           ></CustomButton>

@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { AgentProfile } from "../../types/types";
+import ImageRender from "../ImageRender";
 
 
 const EditIcon = styled.img`
@@ -135,16 +136,18 @@ function AgentModal({
 
           <Row className="justify-content-center gap-2 py-2">
             <Row $theme={theme} $minute_container>
-              <img src="/profile_delete.svg" alt="" width={20} />
+            <ImageRender color={theme=="light"?"#0F2E35":"#E7E9EA"} fileName="/profile_delete.svg"/>
               <Paragraph $theme={theme} className="text-bold">
                 21
               </Paragraph>
             </Row>
+            <ImageRender color={theme=="light"?"#0F2E35":"#E7E9EA"} fileName="/transfer.svg"/>
 
-            <img src="/transfer.svg" alt="" width={20} />
+            
 
             <Row $theme={theme} $minute_container>
-              <img src="/profile_checked.svg" alt="" width={20} />
+             
+              <ImageRender color={theme=="light"?"#0F2E35":"#E7E9EA"} fileName="/profile_checked.svg"/>
               <Paragraph $theme={theme} className="text-bold">
                 21
               </Paragraph>

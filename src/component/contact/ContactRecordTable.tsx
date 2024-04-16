@@ -21,6 +21,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import DeleteModal from "../modals/DeleteModal";
 import "./contact.css";
 import CustomInput from "../CustomInput";
+import ImageRender from "../ImageRender";
 
 const RecordingTableContainer = styled.div`
   padding: 24px 26px;
@@ -660,11 +661,7 @@ export function ContactRecordTable({ onContinue }: { onContinue: any }) {
                 child={
                   <div className="gap-2 align-items-center d-flex">
                     <p className="mb-0">Search</p>{" "}
-                    <img
-                      style={{ width: "20px", height: "20px" }}
-                      src="/search.svg"
-                      alt=""
-                    />
+                    <ImageRender color={theme=="light"?"#DCDCDC":"#101010"} fileName="/search.svg"/>
                   </div>
                 }
               ></CustomButton>

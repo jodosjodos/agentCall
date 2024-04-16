@@ -3,6 +3,7 @@ import { agentCalls } from "../../types/types";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store";
 import { useNavigate } from "react-router-dom";
+import ImageRender from "../ImageRender";
 
 const Paragraph = styled.div<{ theme: string }>`
   margin-bottom: 0;
@@ -88,7 +89,7 @@ export function AgentCallSetting({ agent }: { agent: agentCalls }) {
           className="d-flex flex-row align-items-center gap-2"
           theme={theme}
         >
-          <img src="/clockIcon.svg" />
+             <ImageRender color={theme=="light"?"#0F2E35":"#E7E9EA"} fileName="/clockIcon.svg"/>
 
           <Paragraph theme={theme}>{agent.minutesTalked}</Paragraph>
         </Row>
@@ -98,7 +99,7 @@ export function AgentCallSetting({ agent }: { agent: agentCalls }) {
             className="d-flex flex-row align-items-center gap-1"
             theme={theme}
           >
-            <img src="/profile_delete.svg" alt="" />
+               <ImageRender color={theme=="light"?"#0F2E35":"#E7E9EA"} fileName="/profile_delete.svg"/>
             <Paragraph theme={theme} className="text-bold">
               {agent.client1}
             </Paragraph>
@@ -111,7 +112,7 @@ export function AgentCallSetting({ agent }: { agent: agentCalls }) {
             theme={theme}
             className="d-flex flex-row align-items-center gap-1"
           >
-            <img src="/profile_checked.svg" alt="" />
+              <ImageRender color={theme=="light"?"#0F2E35":"#E7E9EA"} fileName="/profile_checked.svg"/>
             <Paragraph theme={theme} className="text-bold">
               {agent.client2}
             </Paragraph>
