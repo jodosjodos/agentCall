@@ -24,7 +24,8 @@ import PhoneModal from "../modals/PhoneModal";
 import PhoneInput from 'react-phone-number-input';
 import 'react-phone-number-input/style.css';
 import CustomButton from "../import/CustomButton";
-import ImageRender from "../ImageRender";
+
+import TableImageRender from "../TableImageRender";
 
 const CompanyTableContainer = styled.div`
   flex-grow: 1;
@@ -204,21 +205,21 @@ function CompanyTable() {
         <Row className="gap-1  px-2">
           <ActionContainer $theme={theme}>
             <ActionImage >
-              <ImageRender fileName="/table-paste.svg" color={theme=="light"?"#0F2E35":"#96ADB3"}/>
+              <TableImageRender light="/table-paste-light.svg" dark="/table-paste.svg"/>
             </ActionImage>
           </ActionContainer>
           <ActionContainer $theme={theme}>
             <ActionImage 
               
             >
-              <ImageRender fileName="/delete.svg" color={theme=="light"?"#0F2E35":"#96ADB3"}/>
+              <TableImageRender light="/delete-light.svg" dark="/delete.svg"/>
             </ActionImage>
           </ActionContainer>
           <ActionContainer $theme={theme}>
             <ActionImage 
               
             >
-              <ImageRender fileName="/table-menu.svg" color={theme=="light"?"#0F2E35":"#96ADB3"}/>
+              <TableImageRender light="/table-menu-light.svg" dark="/table-menu.svg"/>
             </ActionImage>
           </ActionContainer>
         </Row>
@@ -231,7 +232,7 @@ function CompanyTable() {
                 setDuplicateModalshow(true)
               }}
             >
-              <ImageRender fileName="/table-paste.svg" color={theme=="light"?"#0F2E35":"#96ADB3"}/>
+             <TableImageRender light="/table-paste-light.svg" dark="/table-paste.svg"/>
             </ActionImage>
           </ActionContainer>
           <ActionContainer $theme={theme}>
@@ -240,7 +241,7 @@ function CompanyTable() {
                 setDeleteModalshow(true)
               }}
             >
-              <ImageRender fileName="/delete.svg" color={theme=="light"?"#0F2E35":"#96ADB3"}/>
+              <TableImageRender light="/delete-light.svg" dark="/delete.svg"/>
             </ActionImage>
           </ActionContainer>
           <ActionContainer $theme={theme}>
@@ -249,7 +250,7 @@ function CompanyTable() {
                 setActionModalshow(true)
               }}
             >
-              <ImageRender fileName="/table-menu.svg" color={theme=="light"?"#0F2E35":"#96ADB3"}/>
+                <TableImageRender light="/table-menu-light.svg" dark="/table-menu.svg"/>
             </ActionImage>
           </ActionContainer>
         </Row>

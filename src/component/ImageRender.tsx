@@ -24,9 +24,8 @@ function ImageRender({ fileName, color }: { fileName: string; color?: string }) 
       const modifiedSvg = replaceColor(svgContent, color);
       setSvgContent(modifiedSvg);
     }
-  }, [svgContent]);
+  }, [color,svgContent]);
 
-  
   const replaceColor = (svgText: string, newColor: string) => {
     const regex = /#[0-9A-Fa-f]{6}\b/g;
     const modifiedSvg = svgText.replace(regex, newColor);

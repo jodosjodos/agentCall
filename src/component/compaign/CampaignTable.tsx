@@ -21,6 +21,7 @@ import { ActionContainer, ActionImage } from "../CustomTable/TableComponent";
 import CustomButton from "../import/CustomButton";
 import ActionPopup from "../popup/ActionPopup";
 import ImageRender from "../ImageRender";
+import TableImageRender from "../TableImageRender";
 
 const CampaignTableContainer = styled.div`
   flex-grow: 1;
@@ -107,12 +108,8 @@ const DatePickerWrapper = styled(DatePicker)<{ $theme?: string }>`
     props.$theme == "light" ? "#0A2328" : "#C9D5D8"} !important;
 `;
 
-
 function CampaignTable() {
   const theme = useSelector((state: RootState) => state.theme.theme);
-  const TableMenu=()=><ImageRender fileName="/table-paste.svg" color={theme=="light"?"#0F2E35":"#96ADB3"}/>
-  const DeleteIcon=()=><ImageRender fileName="/delete.svg" color={theme=="light"?"#0F2E35":"#96ADB3"}/>
-  const PasteIcon= ()=><ImageRender fileName="/table-paste.svg" color={theme=="light"?"#0F2E35":"#96ADB3"}/>
   const columns = [
     columnHelper.display({
       id: "switch",
@@ -172,31 +169,32 @@ function CampaignTable() {
       id: "actions",
       header: () => (
         <Row className="gap-1  px-2">
-        <ActionContainer $theme={theme}>
-          <ActionImage
-            onClick={() => {
-              setDuplicateModalshow(true);
-            }}
-          >
-            <TableMenu/>
-          </ActionImage>
-        </ActionContainer>
-        <ActionContainer $theme={theme}>
-          <ActionImage >
-            <DeleteIcon/>
-          </ActionImage>
-        </ActionContainer>
-        <ActionContainer $theme={theme}>
-          <ActionImage
-            
-          
-           
-          >
-            <PasteIcon/>
-          </ActionImage>
-       
-        </ActionContainer>
-      </Row>
+          <ActionContainer $theme={theme}>
+            <ActionImage
+              onClick={() => {
+                setDuplicateModalshow(true);
+              }}
+            >
+              <TableImageRender
+                light="/table-paste-light.svg"
+                dark="/table-paste.svg"
+              />
+            </ActionImage>
+          </ActionContainer>
+          <ActionContainer $theme={theme}>
+            <ActionImage>
+              <TableImageRender light="/delete-light.svg" dark="/delete.svg" />
+            </ActionImage>
+          </ActionContainer>
+          <ActionContainer $theme={theme}>
+            <ActionImage>
+              <TableImageRender
+                light="/table-menu-light.svg"
+                dark="/table-menu.svg"
+              />
+            </ActionImage>
+          </ActionContainer>
+        </Row>
       ),
       cell: (props) => (
         <Row className="gap-1  px-2">
@@ -206,8 +204,10 @@ function CampaignTable() {
                 setDuplicateModalshow(true);
               }}
             >
-                  
-                  <ImageRender fileName="/table-paste.svg" color={theme=="light"?"#0F2E35":"#96ADB3"}/>
+              <TableImageRender
+                light="/table-paste-light.svg"
+                dark="/table-paste.svg"
+              />
             </ActionImage>
           </ActionContainer>
           <ActionContainer $theme={theme}>
@@ -216,20 +216,20 @@ function CampaignTable() {
                 setDeleteModalshow(true);
               }}
             >
-              
-              <ImageRender fileName="/delete.svg" color={theme=="light"?"#0F2E35":"#96ADB3"}/>
+              <TableImageRender light="/delete-light.svg" dark="/delete.svg" />
             </ActionImage>
           </ActionContainer>
           <ActionContainer $theme={theme}>
             <ActionImage
-              
-            
               onClick={() => {
                 console.log(props.row.id);
                 setActionModalshow(props.row.id);
               }}
             >
-              <ImageRender fileName="/table-menu.svg" color={theme=="light"?"#0F2E35":"#96ADB3"}/>
+              <TableImageRender
+                light="/table-menu-light.svg"
+                dark="/table-menu.svg"
+              />
             </ActionImage>
             {actionModalshow == props.row.id && (
               <ActionPopup
@@ -315,7 +315,10 @@ function CampaignTable() {
             child={
               <div className="gap-2 align-items-center d-flex">
                 <p className="mb-0">Search</p>{" "}
-                <ImageRender color={theme=="light"?"#DCDCDC":"#101010"} fileName="/search.svg"/>
+                <ImageRender
+                  color={theme == "light" ? "#DCDCDC" : "#101010"}
+                  fileName="/search.svg"
+                />
               </div>
             }
           ></CustomButton>

@@ -67,47 +67,48 @@ export function SideBar({
   showImport: boolean;
   setShowImport: any;
 }) {
+    const theme = useSelector((state: RootState) => state.theme.theme);
   const headers = [
     {
       name: "Home",
-      icon: "/HomeIcon.png",
+      icon: theme=="dark"?"/homeIcon.svg":"homeIcon-light.svg",
       to: "/",
     },
     {
       name: "Agent",
-      icon: "/agentIcon.png",
+      icon: theme=="dark"?"/agentIcon.svg":"agentIcon-light.svg",
       to: "/agent",
     },
     {
       name: "Calls",
-      icon: "/callIcon.png",
+      icon: theme=="dark"?"/callIcon.svg":"callIcon-light.svg",
       to: "/call",
     },
     {
       name: "Contacts",
-      icon: "/contactIcon.png",
+      icon: theme=="dark"?"/contactIcon.svg":"contactIcon-light.svg",
       to: "/contact",
     },
     {
       name: "Campaign",
-      icon: "/campaignIcon.png",
+      icon: theme=="dark"?"/campaignIcon.svg":"campaignIcon-light.svg",
       to: "/campaign",
     },
     {
       name: "Companies",
-      icon: "/companyIcon.png",
+      icon: theme=="dark"?"/companyIcon.svg":"companyIcon-light.svg",
       to: "/company",
     },
     {
       name: "Knowledge",
-      icon: "/knowledgeIcon.png",
+      icon: theme=="dark"?"/knowledgeIcon.svg":"knowledgeIcon-light.svg",
       to: "/knowledge",
     },
   ];
   useEffect(() => {}, [window.innerWidth]);
  
 
-  const theme = useSelector((state: RootState) => state.theme.theme);
+
   return (
     <div className="mt-2   position-relative">
      

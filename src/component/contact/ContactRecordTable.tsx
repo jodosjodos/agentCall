@@ -22,6 +22,7 @@ import DeleteModal from "../modals/DeleteModal";
 import "./contact.css";
 import CustomInput from "../CustomInput";
 import ImageRender from "../ImageRender";
+import TableImageRender from "../TableImageRender";
 
 const RecordingTableContainer = styled.div`
   padding: 24px 26px;
@@ -350,12 +351,12 @@ export function ContactRecordTable({ onContinue }: { onContinue: any }) {
                   }
                 }}
               >
-                <ImageRender fileName="/edit2.svg" color={theme=="light"?"#0F2E35":"#96ADB3"}/>
+                <TableImageRender light="/edit2-light.svg" dark="/edit2.svg"/>
               </ActionImage>
             </ActionContainer>
             <ActionContainer $theme={theme}>
               <ActionImage >
-              <ImageRender fileName="/date.svg" color={theme=="light"?"#0F2E35":"#96ADB3"}/>
+              <TableImageRender light="/date-light.svg" dark="/date.svg"/>
               </ActionImage>
             </ActionContainer>
             <ActionContainer $theme={theme}>
@@ -370,7 +371,7 @@ export function ContactRecordTable({ onContinue }: { onContinue: any }) {
                   }
                 }}
               >
-                <ImageRender fileName="/delete.svg" color={theme=="light"?"#0F2E35":"#96ADB3"}/>
+                <TableImageRender light="/delete-light.svg" dark="/delete.svg"/>
               </ActionImage>
             </ActionContainer>
           </Row>
@@ -420,12 +421,12 @@ export function ContactRecordTable({ onContinue }: { onContinue: any }) {
                   }
                 }}
               >
-                <ImageRender fileName="/edit2.svg" color={theme=="light"?"#0F2E35":"#96ADB3"}/>
+               <TableImageRender light="/edit2-light.svg" dark="/edit2.svg"/>
               </ActionImage>
             </ActionContainer>
             <ActionContainer $theme={theme}>
               <ActionImage >
-              <ImageRender fileName="/export.svg" color={theme=="light"?"#0F2E35":"#96ADB3"}/>
+              <TableImageRender light="/export-light.svg" dark="/export.svg"/>
               </ActionImage>
             </ActionContainer>
             <ActionContainer $theme={theme}>
@@ -440,7 +441,7 @@ export function ContactRecordTable({ onContinue }: { onContinue: any }) {
                   }
                 }}
               >
-                <ImageRender fileName="/delete.svg" color={theme=="light"?"#0F2E35":"#96ADB3"}/>
+                <TableImageRender light="/delete-light.svg" dark="/delete.svg"/>
               </ActionImage>
             </ActionContainer>
           </Row>

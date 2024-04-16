@@ -19,6 +19,7 @@ import CustomButton from "../import/CustomButton";
 import { useNavigate } from "react-router-dom";
 import ButtonPopup from "../popup/ButtonPopup";
 import ImageRender from "../ImageRender";
+import TableImageRender from "../TableImageRender";
 
 const RecordingTableContainer = styled.div`
   flex-grow: 1;
@@ -143,7 +144,8 @@ function RecordingTable() {
              
       
             >
-              <ImageRender fileName="/resume.svg" color={theme=="light"?"#0F2E35":"#96ADB3"}/>
+                          <TableImageRender light="/resume-light.svg" dark="/resume.svg"/>
+
             </ActionImage>
           </ActionContainer>
           <ActionContainer $theme={theme}>
@@ -151,7 +153,8 @@ function RecordingTable() {
             
               onClick={() => setDeleteModalshow(true)}
             >
-              <ImageRender fileName="/delete.svg" color={theme=="light"?"#0F2E35":"#96ADB3"}/>
+                                        <TableImageRender light="/delete-light.svg" dark="/delete.svg"/>
+
             </ActionImage>
           </ActionContainer>
           <ActionContainer $theme={theme}>
@@ -162,7 +165,7 @@ function RecordingTable() {
                 setActionModalshow(props.row.id);
               }}
             >
-              <ImageRender fileName="/table-menu.svg" color={theme=="light"?"#0F2E35":"#96ADB3"}/>
+             <TableImageRender light="/table-menu-light.svg" dark="/table-menu.svg"/>
             </ActionImage>
             {actionModalshow == props.row.id && (
               <ButtonPopup
