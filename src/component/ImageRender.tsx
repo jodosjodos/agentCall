@@ -17,14 +17,14 @@ function ImageRender({ fileName, color }: { fileName: string; color?: string }) 
     if (!svgContent) {
       fetchSvg();
     }
-  }, [fileName, svgContent]);
+  }, [fileName]);
 
   useEffect(() => {
     if (svgContent && color) {
       const modifiedSvg = replaceColor(svgContent, color);
       setSvgContent(modifiedSvg);
     }
-  }, [color]);
+  }, [color,svgContent]);
 
   const replaceColor = (svgText: string, newColor: string) => {
     const regex = /#[0-9A-Fa-f]{6}\b/g;
