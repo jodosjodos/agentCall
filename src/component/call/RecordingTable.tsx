@@ -59,6 +59,14 @@ const Paragraph = styled.div`
   padding-bottom: 20px;
 `;
 
+const DatePickerWrapper = styled(DatePicker)<{ $theme?: string }>`
+  background-color: ${(props) =>
+    props.$theme == "light" ? "#C9D5D8" : "#0A2328"} !important;
+  color: ${(props) =>
+    props.$theme == "light" ? "#0A2328" : "#C9D5D8"} !important;
+`;
+
+
 const DateContainer = styled.div`
   display: flex;
   align-items: center;
@@ -199,8 +207,9 @@ function RecordingTable() {
         />
         <DateContainer>
           <div className="input-with-icon">
-            <DatePicker
-              selected={startDate}
+          <DatePickerWrapper
+            $theme={theme}
+              selected={endDate}
               onChange={(date: Date) => setStartDate(date)}
               dropdownMode="select"
               calendarStartDay={1}
@@ -209,7 +218,8 @@ function RecordingTable() {
           </div>
           <DateParagraph $theme={theme} className="">To</DateParagraph>
           <div className="input-with-icon">
-            <DatePicker
+            <DatePickerWrapper
+            $theme={theme}
               selected={endDate}
               onChange={(date: Date) => setEndDate(date)}
               dropdownMode="select"

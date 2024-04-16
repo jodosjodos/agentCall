@@ -20,6 +20,7 @@ import DuplicateModal from "../modals/DuplicateModal";
 import { ActionContainer, ActionImage } from "../CustomTable/TableComponent";
 import CustomButton from "../import/CustomButton";
 import ActionPopup from "../popup/ActionPopup";
+import ImageRender from "../ImageRender";
 
 const CampaignTableContainer = styled.div`
   flex-grow: 1;
@@ -292,11 +293,7 @@ function CampaignTable() {
             child={
               <div className="gap-2 align-items-center d-flex">
                 <p className="mb-0">Search</p>{" "}
-                <img
-                  style={{ width: "20px", height: "20px" }}
-                  src="/search.svg"
-                  alt=""
-                />
+                <ImageRender fileName="/search.svg"/>
               </div>
             }
           ></CustomButton>

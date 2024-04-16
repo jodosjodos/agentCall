@@ -18,7 +18,7 @@ const UploadContainer = styled.div<{ $theme?: string }>`
   border-radius: 10px;
   min-width:352px;
 `;
-const DownloadButton = styled.button`
+const DownloadButton = styled.button<{$theme?:string}>`
   width: fit-content;
   max-width:fit-content;
   height: fit-content;
@@ -29,6 +29,9 @@ const DownloadButton = styled.button`
   padding: 8px;
   border-radius: 16px;
   gap: 2px;
+  p{
+    color:white;
+  }
   @media (max-width: 600px) {
     width: 100%;
   }
@@ -88,9 +91,9 @@ const DownloadImage = styled.img`
 `;
 
 
-const InputContainer = styled.div`
+const InputContainer = styled.div<{$theme?:string}>`
 display:flex;
-background: linear-gradient(180deg, #0B2227 0%, #09181B 77.4%);
+background: ${props=>props.$theme=="light"?"linear-gradient(180deg, #C9D5D8 0%, #96ADB3  77.4%)":"linear-gradient(180deg, #0B2227 0%, #09181B 77.4%)"} ;
 border: 1px solid #0F2E35
 color: #96ADB3;
 margin-right:10px;
@@ -117,15 +120,14 @@ const MoveButton = styled.div<{ $theme?: string }>`
   display: flex;
   align-items: center;
   padding: 3px 8px;
-  color: ${(props) =>
-    props.$theme == "light" ? "rgba(10, 35, 40, 1)" : "white"};
+  color: white;
   &:hover {
     cursor: pointer;
   }
 
   border-radius: 20px;
   background-color: ${(props) =>
-    props.$theme == "light" ? "#0F2E35" : "rgba(10, 35, 40, 1)"};
+    props.$theme == "light" ? "#224D57" : "rgba(10, 35, 40, 1)"};
 `;
 const SubContainer=styled.div`
 
@@ -146,7 +148,7 @@ const EditButton = styled.div<{ $theme?: string }>`
 
   border-radius: 8px;
   background-color: ${(props) =>
-    props.$theme == "light" ? "#0F2E35" : "rgba(10, 35, 40, 1)"};
+    props.$theme == "light" ? "#224D57" : "rgba(10, 35, 40, 1)"};
 `;
 
 
@@ -187,8 +189,8 @@ function ImportStep2({ setActiveTopBar,isSidebarOpened }: { setActiveTopBar?: an
     columnHelper.accessor("firstName", {
       header: () => "First name",
 
-      cell: () => <InputContainer><Input placeholder="John" disabled={editRow.firstName}></Input>
-        <EditButton onClick={() => {
+      cell: () => <InputContainer $theme={theme}><Input placeholder="John" disabled={editRow.firstName}></Input>
+        <EditButton $theme={theme} onClick={() => {
           setEditRow(prevState => ({
             ...prevState,
             firstName: false
@@ -210,8 +212,8 @@ function ImportStep2({ setActiveTopBar,isSidebarOpened }: { setActiveTopBar?: an
     }),
     columnHelper.accessor("lastName", {
       header: () => "Last name",
-      cell: () => <InputContainer ><Input disabled={editRow.lastName} placeholder="Jonah"></Input>
-        <EditButton onClick={() => {
+      cell: () => <InputContainer $theme={theme} ><Input disabled={editRow.lastName} placeholder="Jonah"></Input>
+        <EditButton $theme={theme} onClick={() => {
           setEditRow(prevState => ({
             ...prevState,
             lastName: false
@@ -235,8 +237,8 @@ function ImportStep2({ setActiveTopBar,isSidebarOpened }: { setActiveTopBar?: an
     }),
     columnHelper.accessor((row) => row.email, {
       id: "email",
-      cell: () => <InputContainer ><Input disabled={editRow.email} placeholder="John@mail..."></Input>
-        <EditButton onClick={() => {
+      cell: () => <InputContainer $theme={theme} ><Input disabled={editRow.email} placeholder="John@mail..."></Input>
+        <EditButton $theme={theme} onClick={() => {
           setEditRow(prevState => ({
             ...prevState,
             email: false
@@ -257,8 +259,8 @@ function ImportStep2({ setActiveTopBar,isSidebarOpened }: { setActiveTopBar?: an
       header: () => <span>Example</span>,
     }),
     columnHelper.accessor("phone", {
-      cell: () => <InputContainer><Input disabled={editRow.phoneNumber} placeholder="+4499654..."></Input>
-        <EditButton onClick={() => {
+      cell: () => <InputContainer $theme={theme}><Input disabled={editRow.phoneNumber} placeholder="+4499654..."></Input>
+        <EditButton $theme={theme} onClick={() => {
           setEditRow(prevState => ({
             ...prevState,
             phoneNumber: false
@@ -308,7 +310,7 @@ function ImportStep2({ setActiveTopBar,isSidebarOpened }: { setActiveTopBar?: an
     },
   ];
 
-  const bg= theme  === "light" ? "black" : "red";
+  const bg= theme  === "light" ? "#C9D5D8" : "#0A2328";
   return (
     <ImportStep2Container>
       <ImportStep2SubContainer>
@@ -322,7 +324,7 @@ function ImportStep2({ setActiveTopBar,isSidebarOpened }: { setActiveTopBar?: an
         <ButtonContainer className="d-flex mb-2 ">
           <DownloadButton>
             <DownloadImage src="/down.svg" alt="Download" />
-            <p className="primary-text mb-0">Add to List</p>
+            <p className=" mb-0">Add to List</p>
           </DownloadButton>
           <CustomButton   
           onclick={() => setActiveTopBar(4)}
