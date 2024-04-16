@@ -110,7 +110,7 @@ const DatePickerWrapper = styled(DatePicker)<{ $theme?: string }>`
 
 function CampaignTable() {
   const theme = useSelector((state: RootState) => state.theme.theme);
-  const TableMenu=()=><ImageRender fileName="/table-menu.svg" color={theme=="light"?"#0F2E35":"#96ADB3"}/>
+  const TableMenu=()=><ImageRender fileName="/table-paste.svg" color={theme=="light"?"#0F2E35":"#96ADB3"}/>
   const DeleteIcon=()=><ImageRender fileName="/delete.svg" color={theme=="light"?"#0F2E35":"#96ADB3"}/>
   const PasteIcon= ()=><ImageRender fileName="/table-paste.svg" color={theme=="light"?"#0F2E35":"#96ADB3"}/>
   const columns = [
@@ -178,7 +178,7 @@ function CampaignTable() {
               setDuplicateModalshow(true);
             }}
           >
-            <PasteIcon  />
+            <TableMenu/>
           </ActionImage>
         </ActionContainer>
         <ActionContainer $theme={theme}>
@@ -192,7 +192,7 @@ function CampaignTable() {
           
            
           >
-            <TableMenu/>
+            <PasteIcon/>
           </ActionImage>
        
         </ActionContainer>
@@ -206,7 +206,8 @@ function CampaignTable() {
                 setDuplicateModalshow(true);
               }}
             >
-          <PasteIcon/>
+                  
+                  <ImageRender fileName="/table-paste.svg" color={theme=="light"?"#0F2E35":"#96ADB3"}/>
             </ActionImage>
           </ActionContainer>
           <ActionContainer $theme={theme}>
@@ -215,7 +216,8 @@ function CampaignTable() {
                 setDeleteModalshow(true);
               }}
             >
-               <DeleteIcon/>
+              
+              <ImageRender fileName="/delete.svg" color={theme=="light"?"#0F2E35":"#96ADB3"}/>
             </ActionImage>
           </ActionContainer>
           <ActionContainer $theme={theme}>
@@ -227,7 +229,7 @@ function CampaignTable() {
                 setActionModalshow(props.row.id);
               }}
             >
-             <TableMenu/>
+              <ImageRender fileName="/table-menu.svg" color={theme=="light"?"#0F2E35":"#96ADB3"}/>
             </ActionImage>
             {actionModalshow == props.row.id && (
               <ActionPopup
