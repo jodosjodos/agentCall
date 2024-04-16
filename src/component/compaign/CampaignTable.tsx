@@ -107,9 +107,12 @@ const DatePickerWrapper = styled(DatePicker)<{ $theme?: string }>`
     props.$theme == "light" ? "#0A2328" : "#C9D5D8"} !important;
 `;
 
+
 function CampaignTable() {
   const theme = useSelector((state: RootState) => state.theme.theme);
-
+  const TableMenu=()=><ImageRender fileName="/table-menu.svg" color={theme=="light"?"#0F2E35":"#96ADB3"}/>
+  const DeleteIcon=()=><ImageRender fileName="/delete.svg" color={theme=="light"?"#0F2E35":"#96ADB3"}/>
+  const PasteIcon= ()=><ImageRender fileName="/table-paste.svg" color={theme=="light"?"#0F2E35":"#96ADB3"}/>
   const columns = [
     columnHelper.display({
       id: "switch",
@@ -175,14 +178,12 @@ function CampaignTable() {
               setDuplicateModalshow(true);
             }}
           >
-            <ImageRender fileName="/table-paste.svg" color={theme=="light"?"#0F2E35":"#96ADB3"}/>
+            <PasteIcon  />
           </ActionImage>
         </ActionContainer>
         <ActionContainer $theme={theme}>
-          <ActionImage
-            
-          >
-            <ImageRender fileName="/delete.svg" color={theme=="light"?"#0F2E35":"#96ADB3"}/>
+          <ActionImage >
+            <DeleteIcon/>
           </ActionImage>
         </ActionContainer>
         <ActionContainer $theme={theme}>
@@ -191,7 +192,7 @@ function CampaignTable() {
           
            
           >
-            <ImageRender fileName="/table-menu.svg" color={theme=="light"?"#0F2E35":"#96ADB3"}/>
+            <TableMenu/>
           </ActionImage>
        
         </ActionContainer>
@@ -205,7 +206,7 @@ function CampaignTable() {
                 setDuplicateModalshow(true);
               }}
             >
-              <ImageRender fileName="/table-paste.svg" color={theme=="light"?"#0F2E35":"#96ADB3"}/>
+          <PasteIcon/>
             </ActionImage>
           </ActionContainer>
           <ActionContainer $theme={theme}>
@@ -214,7 +215,7 @@ function CampaignTable() {
                 setDeleteModalshow(true);
               }}
             >
-              <ImageRender fileName="/delete.svg" color={theme=="light"?"#0F2E35":"#96ADB3"}/>
+               <DeleteIcon/>
             </ActionImage>
           </ActionContainer>
           <ActionContainer $theme={theme}>
@@ -226,7 +227,7 @@ function CampaignTable() {
                 setActionModalshow(props.row.id);
               }}
             >
-              <ImageRender fileName="/table-menu.svg" color={theme=="light"?"#0F2E35":"#96ADB3"}/>
+             <TableMenu/>
             </ActionImage>
             {actionModalshow == props.row.id && (
               <ActionPopup

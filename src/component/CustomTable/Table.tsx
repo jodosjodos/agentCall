@@ -106,10 +106,6 @@ function CustomTable({
     getCoreRowModel: getCoreRowModel(),
   });
 
-
-  // Function to handle row selection
-
-  //TODO:change icons for dark
   return (
     <>
       {
