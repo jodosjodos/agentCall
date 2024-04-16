@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 import { Link } from "react-router-dom";
 import styled from "styled-components";
@@ -68,44 +68,46 @@ export function SideBar({
   setShowImport: any;
 }) {
     const theme = useSelector((state: RootState) => state.theme.theme);
+    const [hovered,setHovered]=useState(activePage)
   const headers = [
     {
       name: "Home",
-      icon: theme=="dark"?"/homeIcon.svg":"homeIcon-light.svg",
+      icon: theme=="dark"||activePage=="/"||hovered=="/"?"/homeIcon.svg":"homeIcon-light.svg",
       to: "/",
     },
     {
       name: "Agent",
-      icon: theme=="dark"?"/agentIcon.svg":"agentIcon-light.svg",
+      icon: theme=="dark"||activePage=="/agent"||hovered=="/agent"?"agentIcon.svg":"agentIcon-light.svg",
       to: "/agent",
     },
     {
       name: "Calls",
-      icon: theme=="dark"?"/callIcon.svg":"callIcon-light.svg",
+      icon: theme=="dark"||activePage=="/call"||hovered=="/call"?"/callIcon.svg":"callIcon-light.svg",
       to: "/call",
     },
     {
       name: "Contacts",
-      icon: theme=="dark"?"/contactIcon.svg":"contactIcon-light.svg",
+      icon: theme=="dark"||activePage=="/contact"||hovered=="/contact"?"/contactIcon.svg":"contactIcon-light.svg",
       to: "/contact",
     },
     {
       name: "Campaign",
-      icon: theme=="dark"?"/campaignIcon.svg":"campaignIcon-light.svg",
+      icon: theme=="dark"||activePage=="/campaign"||hovered=="/campaign"?"/campaignIcon.svg":"campaignIcon-light.svg",
       to: "/campaign",
     },
     {
       name: "Companies",
-      icon: theme=="dark"?"/companyIcon.svg":"companyIcon-light.svg",
+      icon: theme=="dark"||activePage=="/company"||hovered=="/company"?"/companyIcon.svg":"companyIcon-light.svg",
       to: "/company",
     },
     {
       name: "Knowledge",
-      icon: theme=="dark"?"/knowledgeIcon.svg":"knowledgeIcon-light.svg",
+      icon: theme=="dark"||activePage=="/knowledge"||hovered=="/knowledge"?"/knowledgeIcon.svg":"knowledgeIcon-light.svg",
       to: "/knowledge",
     },
   ];
   useEffect(() => {}, [window.innerWidth]);
+ 
  
 
 
@@ -137,6 +139,7 @@ export function SideBar({
               className={`nav-link ${activeMobile ? "mobile_active" : ""}  ${
                 activePage == header.to ? "active-link" : ""
               }`}
+              onMouseEnter={()=>setHovered(header.to)}
               id="link"
               aria-current="page"
             >
@@ -151,3 +154,5 @@ export function SideBar({
     </div>
   );
 }
+
+
