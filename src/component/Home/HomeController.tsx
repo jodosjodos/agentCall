@@ -6,6 +6,7 @@ import { RootState } from "../../store";
 
 import Calendar from "../Calendar";
 import { useState } from "react";
+import ImageRender from "../ImageRender";
 
 const ParentButton = styled.div<{theme:string}>`
   background-color:${(props)=>props.theme === "light"?"#C9D5D8":"#0b2227"} ;
@@ -23,7 +24,7 @@ const ParentButton = styled.div<{theme:string}>`
   padding: 0.5rem;
 `;
 
-const NotificationIcon = styled.img<{theme:string}>`
+const NotificationIcon = styled.div<{theme:string}>`
   background-color: ${(props) => (props.theme ==="light"? "#C9D5D8" : "#0f2e35")} ;
   height: fit-content;
   border-radius: 10px;
@@ -61,7 +62,9 @@ export function HomeController() {
         <DropdownHome action={<Calendar setCurrentMonth={setCurrentMonth} selectedDate={selectedDate}  setSelectedDate={setSelectedDate}  currentYear={currentYear} setCurrentYear={setCurrentYear} currentMonth={currentMonth}   isMonthSelector />} name="Filer by month" />
       
       </ParentButton>
-      <NotificationIcon theme={theme} src="/notification.svg" />
+      <NotificationIcon theme={theme} >
+        <ImageRender fileName="/notification.svg" color={theme=="light"?"#0F2E35":"#96ADB3"} />
+      </NotificationIcon>
     </ControllerContainer>
   );
 }
