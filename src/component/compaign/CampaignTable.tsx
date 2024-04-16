@@ -168,47 +168,66 @@ function CampaignTable() {
     columnHelper.display({
       id: "actions",
       header: () => (
-        <Row className="gap-1  px-1">
-          <ActionContainer $theme={theme}>
-            <ActionImage src="/table-paste.svg" alt="" />
-          </ActionContainer>
-          <ActionContainer $theme={theme}>
-            <ActionImage src="/delete.svg" alt="" />
-          </ActionContainer>
-          <ActionContainer $theme={theme}>
-            <ActionImage src="/table-menu.svg" alt="" />
-          </ActionContainer>
-        </Row>
+        <Row className="gap-1  px-2">
+        <ActionContainer $theme={theme}>
+          <ActionImage
+            onClick={() => {
+              setDuplicateModalshow(true);
+            }}
+          >
+            <ImageRender fileName="/table-paste.svg" color={theme=="light"?"#0F2E35":"#96ADB3"}/>
+          </ActionImage>
+        </ActionContainer>
+        <ActionContainer $theme={theme}>
+          <ActionImage
+            
+          >
+            <ImageRender fileName="/delete.svg" color={theme=="light"?"#0F2E35":"#96ADB3"}/>
+          </ActionImage>
+        </ActionContainer>
+        <ActionContainer $theme={theme}>
+          <ActionImage
+            
+          
+           
+          >
+            <ImageRender fileName="/table-menu.svg" color={theme=="light"?"#0F2E35":"#96ADB3"}/>
+          </ActionImage>
+       
+        </ActionContainer>
+      </Row>
       ),
       cell: (props) => (
         <Row className="gap-1  px-2">
           <ActionContainer $theme={theme}>
             <ActionImage
-              src="/table-paste.svg"
-              alt=""
               onClick={() => {
                 setDuplicateModalshow(true);
               }}
-            />
+            >
+              <ImageRender fileName="/table-paste.svg" color={theme=="light"?"#0F2E35":"#96ADB3"}/>
+            </ActionImage>
           </ActionContainer>
           <ActionContainer $theme={theme}>
             <ActionImage
-              src="/delete.svg"
-              alt=""
               onClick={() => {
                 setDeleteModalshow(true);
               }}
-            />
+            >
+              <ImageRender fileName="/delete.svg" color={theme=="light"?"#0F2E35":"#96ADB3"}/>
+            </ActionImage>
           </ActionContainer>
           <ActionContainer $theme={theme}>
             <ActionImage
-              src="/table-menu.svg"
-              alt=""
+              
+            
               onClick={() => {
                 console.log(props.row.id);
                 setActionModalshow(props.row.id);
               }}
-            />
+            >
+              <ImageRender fileName="/table-menu.svg" color={theme=="light"?"#0F2E35":"#96ADB3"}/>
+            </ActionImage>
             {actionModalshow == props.row.id && (
               <ActionPopup
                 setActionModalShow={setActionModalshow}

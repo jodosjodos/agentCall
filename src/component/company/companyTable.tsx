@@ -24,6 +24,7 @@ import PhoneModal from "../modals/PhoneModal";
 import PhoneInput from 'react-phone-number-input';
 import 'react-phone-number-input/style.css';
 import CustomButton from "../import/CustomButton";
+import ImageRender from "../ImageRender";
 
 const CompanyTableContainer = styled.div`
   flex-grow: 1;
@@ -200,41 +201,56 @@ function CompanyTable() {
     columnHelper.display({
       id: "actions",
       header: () => (
-        <Row className="gap-1  px-1">
+        <Row className="gap-1  px-2">
           <ActionContainer $theme={theme}>
-            <ActionImage src="/table-paste.svg" alt="" />
+            <ActionImage >
+              <ImageRender fileName="/table-paste.svg" color={theme=="light"?"#0F2E35":"#96ADB3"}/>
+            </ActionImage>
           </ActionContainer>
           <ActionContainer $theme={theme}>
-            <ActionImage src="/delete.svg" alt=""
-            />
+            <ActionImage 
+              
+            >
+              <ImageRender fileName="/delete.svg" color={theme=="light"?"#0F2E35":"#96ADB3"}/>
+            </ActionImage>
           </ActionContainer>
           <ActionContainer $theme={theme}>
-            <ActionImage src="/table-menu.svg" alt="" />
+            <ActionImage 
+              
+            >
+              <ImageRender fileName="/table-menu.svg" color={theme=="light"?"#0F2E35":"#96ADB3"}/>
+            </ActionImage>
           </ActionContainer>
         </Row>
       ),
       cell: () => (
         <Row className="gap-1  px-2">
           <ActionContainer $theme={theme}>
-            <ActionImage src="/table-paste.svg" alt=""
+            <ActionImage 
               onClick={() => {
                 setDuplicateModalshow(true)
               }}
-            />
+            >
+              <ImageRender fileName="/table-paste.svg" color={theme=="light"?"#0F2E35":"#96ADB3"}/>
+            </ActionImage>
           </ActionContainer>
           <ActionContainer $theme={theme}>
-            <ActionImage src="/delete.svg" alt=""
+            <ActionImage 
               onClick={() => {
                 setDeleteModalshow(true)
               }}
-            />
+            >
+              <ImageRender fileName="/delete.svg" color={theme=="light"?"#0F2E35":"#96ADB3"}/>
+            </ActionImage>
           </ActionContainer>
           <ActionContainer $theme={theme}>
-            <ActionImage src="/table-menu.svg" alt=""
+            <ActionImage 
               onClick={() => {
                 setActionModalshow(true)
               }}
-            />
+            >
+              <ImageRender fileName="/table-menu.svg" color={theme=="light"?"#0F2E35":"#96ADB3"}/>
+            </ActionImage>
           </ActionContainer>
         </Row>
       ),

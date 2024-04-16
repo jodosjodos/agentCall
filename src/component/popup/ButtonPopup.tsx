@@ -1,6 +1,7 @@
 import React, { useRef, useEffect } from 'react';
 import styled from 'styled-components';
 import { ActionImage } from '../CustomTable/TableComponent';
+import ImageRender from '../ImageRender';
 
 const ButtonPopupContainer = styled.dialog<{ theme?: string, $id: string }>`
   display: flex;
@@ -44,15 +45,21 @@ function ButtonPopup({ setActionModalShow, rowId }: { setActionModalShow: any, r
         <p className="mb-3">More actions</p>
       </div>
       <div className="d-flex justify-start gap-0 flex-row">
-        <ActionImage src="./import.svg" style={{ marginRight: '10px' }} />
+        <ActionImage  style={{ marginRight: '10px' }} >
+          <ImageRender fileName='/import.svg' />
+        </ActionImage>
         <text>Export</text>
       </div>
       <div className="d-flex justify-start flex-row">
-        <ActionImage src="./note-2.svg" style={{ marginRight: '10px' }} />
+        <ActionImage  style={{ marginRight: '10px' }} >
+        <ImageRender fileName='/note-2.svg' />
+        </ActionImage>
         <text>Read</text>
       </div>
       <div className="d-flex justify-start flex-row">
-        <ActionImage src="./messages.svg" style={{ marginRight: '10px' }} />
+        <ActionImage  style={{ marginRight: '10px' }} >
+        <ImageRender fileName='/message.svg' />
+        </ActionImage>
         <text>Feedback</text>
       </div>
     </ButtonPopupContainer>

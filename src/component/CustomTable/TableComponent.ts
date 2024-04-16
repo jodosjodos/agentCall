@@ -23,6 +23,6 @@ export const ActionContainer = styled.button<{ $theme?: string }>`
   }
 `;
 
-export const ActionImage = styled.img`
+export const ActionImage = styled.div`
   width: 20px;
 `;

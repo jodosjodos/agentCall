@@ -341,8 +341,7 @@ export function ContactRecordTable({ onContinue }: { onContinue: any }) {
           <Row className="gap-1 d-flex  px-2">
             <ActionContainer $theme={theme}>
               <ActionImage
-                src="/edit-2.svg"
-                alt=""
+                
                 onClick={() => {
                   if (typeof row.original?.id !== "undefined") {
                     showEditModal(row.original.id.toString());
@@ -350,15 +349,18 @@ export function ContactRecordTable({ onContinue }: { onContinue: any }) {
                     console.error("ID is undefined");
                   }
                 }}
-              />
+              >
+                <ImageRender fileName="/edit2.svg" color={theme=="light"?"#0F2E35":"#96ADB3"}/>
+              </ActionImage>
             </ActionContainer>
             <ActionContainer $theme={theme}>
-              <ActionImage src="/date.svg" alt="" />
+              <ActionImage >
+              <ImageRender fileName="/date.svg" color={theme=="light"?"#0F2E35":"#96ADB3"}/>
+              </ActionImage>
             </ActionContainer>
             <ActionContainer $theme={theme}>
               <ActionImage
-                src="/delete.svg"
-                alt=""
+                
                 onClick={() => {
                   if (typeof row.original?.id !== "undefined") {
                     setSelectedRow(row.original.id.toString());
@@ -367,7 +369,9 @@ export function ContactRecordTable({ onContinue }: { onContinue: any }) {
                     console.error("ID is undefined");
                   }
                 }}
-              />
+              >
+                <ImageRender fileName="/delete.svg" color={theme=="light"?"#0F2E35":"#96ADB3"}/>
+              </ActionImage>
             </ActionContainer>
           </Row>
         </ActionDiv>
@@ -407,8 +411,7 @@ export function ContactRecordTable({ onContinue }: { onContinue: any }) {
           <Row className="gap-1 justify-content-end px-3 d-flex  ">
             <ActionContainer className="" $theme={theme}>
               <ActionImage
-                src="/edit-2.svg"
-                alt=""
+               
                 onClick={() => {
                   if (typeof row.original?.id !== "undefined") {
                     showEditModal(row.original.id.toString());
@@ -416,15 +419,18 @@ export function ContactRecordTable({ onContinue }: { onContinue: any }) {
                     console.error("ID is undefined");
                   }
                 }}
-              />
+              >
+                <ImageRender fileName="/edit2.svg" color={theme=="light"?"#0F2E35":"#96ADB3"}/>
+              </ActionImage>
             </ActionContainer>
             <ActionContainer $theme={theme}>
-              <ActionImage src="/export.svg" alt="" />
+              <ActionImage >
+              <ImageRender fileName="/export.svg" color={theme=="light"?"#0F2E35":"#96ADB3"}/>
+              </ActionImage>
             </ActionContainer>
             <ActionContainer $theme={theme}>
               <ActionImage
-                src="/delete.svg"
-                alt=""
+                
                 onClick={() => {
                   if (typeof row.original?.id !== "undefined") {
                     setSelectedRow(row.original.id.toString());
@@ -433,7 +439,9 @@ export function ContactRecordTable({ onContinue }: { onContinue: any }) {
                     console.error("ID is undefined");
                   }
                 }}
-              />
+              >
+                <ImageRender fileName="/delete.svg" color={theme=="light"?"#0F2E35":"#96ADB3"}/>
+              </ActionImage>
             </ActionContainer>
           </Row>
         </ActionDiv>

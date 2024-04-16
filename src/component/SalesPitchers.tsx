@@ -5,6 +5,7 @@ import { RootState } from "../store";
 import { ActionContainer, ActionImage } from "./CustomTable/TableComponent";
 import DeleteModal from "./modals/DeleteModal";
 import Knowledge from "../api/Knowledge";
+import ImageRender from "./ImageRender";
 
 const TableParent = styled.table`
   color: #c9d5d8;
@@ -67,7 +68,9 @@ export function SalesPitchers({ filelist, GetAllKnowledge }: { filelist: any; Ge
             <Td className="pt-4 pb-2">{item.file_name}</Td>
             <Td className="pt-4 pb-2">
               <ActionContainer onClick={() => { setSelectedItem(item.id); setShowmodal(true) }} $theme={theme}>
-                <ActionImage src="/delete.svg" alt="" />
+                <ActionImage   >
+                <ImageRender fileName='/import.svg' />
+                </ActionImage>
               </ActionContainer>
             </Td>
           </TRrMade>

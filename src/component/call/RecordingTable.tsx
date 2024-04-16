@@ -140,26 +140,30 @@ function RecordingTable() {
           <ActionContainer $theme={theme}>
             <ActionImage
               onClick={() => navigate("/playcall")}
-              src="/resume.svg"
-              alt=""
-            />
+             
+      
+            >
+              <ImageRender fileName="/resume.svg" color={theme=="light"?"#0F2E35":"#96ADB3"}/>
+            </ActionImage>
           </ActionContainer>
           <ActionContainer $theme={theme}>
             <ActionImage
-              src="/delete.svg"
-              alt=""
+            
               onClick={() => setDeleteModalshow(true)}
-            />
+            >
+              <ImageRender fileName="/delete.svg" color={theme=="light"?"#0F2E35":"#96ADB3"}/>
+            </ActionImage>
           </ActionContainer>
           <ActionContainer $theme={theme}>
             <ActionImage
-              src="/table-menu.svg"
-              alt=""
+             
               onClick={() => {
                 console.log(props.row.id);
                 setActionModalshow(props.row.id);
               }}
-            />
+            >
+              <ImageRender fileName="/table-menu.svg" color={theme=="light"?"#0F2E35":"#96ADB3"}/>
+            </ActionImage>
             {actionModalshow == props.row.id && (
               <ButtonPopup
                 setActionModalShow={setActionModalshow}
